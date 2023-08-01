@@ -11,7 +11,7 @@ function EntriesContainer() {
             key={entry.slug}
             JPDefinition={entry.japanese[0].word}
             JPReading={entry.japanese[0].reading}
-            ENDefinition={entry.english_definitions}
+            ENDefinition={entry.senses[0].english_definitions}
           />
         );
       })}

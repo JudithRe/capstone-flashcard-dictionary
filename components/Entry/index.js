@@ -4,8 +4,14 @@ function Entry({ JPDefinition, JPReading, ENDefinition }) {
   return (
     <StyledWordCard>
       <StyledJPDefinition>{JPDefinition}</StyledJPDefinition>
-      <StyledDefinition>[{JPReading}]</StyledDefinition>
-      <StyledDefinition>{ENDefinition.join(" ⦁ ")}</StyledDefinition>
+      <StyledUl>
+        <StyledDefinition>[{JPReading}]</StyledDefinition>
+      </StyledUl>
+      <StyledUl>
+        {ENDefinition.map((definition) => (
+          <StyledDefinition key={definition}>{definition}</StyledDefinition>
+        ))}
+      </StyledUl>
     </StyledWordCard>
   );
 }
@@ -22,14 +28,32 @@ const StyledWordCard = styled.section`
   box-shadow: var(--default-box-shadow);
 `;
 
-const StyledJPDefinition = styled.div`
-  background-color: var(--white);
+const StyledJPDefinition = styled.h2`
+  background-color: inherit;
   font-size: 1.5rem;
+  margin: 0px;
 `;
 
-const StyledDefinition = styled.div`
-  background-color: var(--white);
+const StyledDefinition = styled.li`
+  display: inline-block;
+  background-color: inherit;
+  list-style-type: none;
+
   font-size: 1rem;
+  &:not(:last-child)::after {
+    content: " ⦁ ";
+    background-color: inherit;
+  }
+  &:last-child {
+    padding-left: 0.3rem;
+  }
+`;
+
+const StyledUl = styled.ul`
+  background-color: inherit;
+  padding: 0;
+  text-align: center;
+  margin: 0;
 `;
 
 export default Entry;
