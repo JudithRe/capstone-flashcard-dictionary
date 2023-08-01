@@ -1,10 +1,10 @@
-import { styled } from "styled-components";
 import Entry from "../Entry";
 import { dummyData } from "@/pages/api/dummyData";
+import { StyledSection } from "../StyledComponents/StyledSection";
 
 function EntriesContainer() {
   return (
-    <StyledEntrySection>
+    <StyledSection>
       {dummyData.map((entry) => {
         return (
           <Entry
@@ -15,15 +15,8 @@ function EntriesContainer() {
           />
         );
       })}
-    </StyledEntrySection>
+    </StyledSection>
   );
 }
-
-const StyledEntrySection = styled.section`
-  padding: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-`;
 
 export default EntriesContainer;
