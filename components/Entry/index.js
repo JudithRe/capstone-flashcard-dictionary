@@ -5,7 +5,7 @@ function Entry({ JPDefinition, JPReading, ENDefinition }) {
     <StyledWordCard>
       <StyledJPDefinition>{JPDefinition}</StyledJPDefinition>
       <StyledDefinition>[{JPReading}]</StyledDefinition>
-      <StyledDefinition>{ENDefinition}</StyledDefinition>
+      <StyledDefinition>{ENDefinition.join(" ⦁ ")}</StyledDefinition>
     </StyledWordCard>
   );
 }
@@ -19,7 +19,7 @@ const StyledWordCard = styled.section`
   background-color: var(--white);
   width: 320px;
   border-radius: 25px;
-  box-shadow: 3px 3px 10px grey;
+  box-shadow: var(--default-box-shadow);
 `;
 
 const StyledJPDefinition = styled.div`
