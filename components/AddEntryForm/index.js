@@ -37,8 +37,15 @@ function AddEntryForm({ handleAddEntry, createNewEntryList }) {
             name="jpInput"
             required
           />
-          <label htmlFor="reading">Reading / Comment</label>
-          <input type="text" id="reading" name="reading" />
+          <label htmlFor="reading">Reading</label>
+          <input
+            onChange={(event) => {
+              event.target.value = wanakana.toKana(event.target.value); //To change input to JP Characters directly
+            }}
+            type="text"
+            id="reading"
+            name="reading"
+          />
           <StyledSubmitButton type="submit">Add</StyledSubmitButton>
         </StyledForm>
       </StyledCard>

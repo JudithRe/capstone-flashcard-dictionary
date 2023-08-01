@@ -3,7 +3,6 @@ import Entry from "../Entry";
 import { StyledSection } from "../StyledComponents/StyledSection";
 
 function EntriesContainer({ wordList }) {
-  console.log("wordList ", wordList);
   return (
     <StyledSection>
       {wordList.map((entry) => {
