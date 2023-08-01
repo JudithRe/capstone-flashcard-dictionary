@@ -6,7 +6,7 @@ function Entry({ JPDefinition, JPReading, ENDefinition }) {
     <StyledCard>
       <StyledJPDefinition>{JPDefinition}</StyledJPDefinition>
       <StyledUl>
-        <StyledDefinition>[{JPReading}]</StyledDefinition>
+        <StyledDefinition>{JPReading}</StyledDefinition>
       </StyledUl>
       <StyledUl>
         {ENDefinition.map((definition) => (

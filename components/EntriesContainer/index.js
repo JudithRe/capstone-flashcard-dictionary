@@ -1,11 +1,12 @@
 import Entry from "../Entry";
-import { dummyData } from "@/pages/api/dummyData";
+
 import { StyledSection } from "../StyledComponents/StyledSection";
 
-function EntriesContainer() {
+function EntriesContainer({ wordList }) {
+  console.log("wordList ", wordList);
   return (
     <StyledSection>
-      {dummyData.map((entry) => {
+      {wordList.map((entry) => {
         return (
           <Entry
             key={entry.slug}
