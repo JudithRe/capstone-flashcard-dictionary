@@ -30,4 +30,8 @@ export default createGlobalStyle`
     margin: 0;
     font-family: system-ui;
   }
+  
+  .inherit-background-color {
+  background-color: inherit;
+}
 `;
