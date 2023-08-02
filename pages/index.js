@@ -1,4 +1,4 @@
-import { MainContent } from "@/components/StyledComponents/MainContentSection";
+import { MainContent } from "@/components/StyledComponents/MainContent";
 
 export default function HomePage() {
   return (

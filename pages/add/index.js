@@ -1,7 +1,7 @@
 import AddEntryForm from "@/components/AddEntryForm";
 import EntriesContainer from "@/components/EntriesContainer";
 import Heading from "@/components/PageHeading";
-import { MainContent } from "@/components/StyledComponents/MainContentSection";
+import { MainContent } from "@/components/StyledComponents/MainContent";
 import { StyledSection } from "@/components/StyledComponents/StyledSection";
 
 export default function AddEntries({ handleAddEntry, wordList }) {

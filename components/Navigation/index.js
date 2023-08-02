@@ -4,23 +4,25 @@ import { device } from "@/utils/globalValues";
 
 export default function Navigation() {
   return (
-    <StyledNavigation>
-      <li className="inherit-background-color">
-        <StyledNavigationLink href="/words">Words</StyledNavigationLink>
-      </li>
-      <li className="inherit-background-color">
-        <StyledNavigationLink href="/add">Add</StyledNavigationLink>
-      </li>
-    </StyledNavigation>
+    <nav>
+      <StyledNavList>
+        <li className="inherit-background-color">
+          <StyledNavigationLink href="/words">Words</StyledNavigationLink>
+        </li>
+        <li className="inherit-background-color">
+          <StyledNavigationLink href="/add">Add</StyledNavigationLink>
+        </li>
+      </StyledNavList>
+    </nav>
   );
 }
 
-const StyledNavigation = styled.footer`
+const StyledNavList = styled.ul`
+  margin: 0;
   position: fixed;
   bottom: 0;
   width: 100%;
   display: flex;
-  flex-direction: row;
   justify-content: space-around;
   height: var(--footer-height);
   padding: 2rem;
