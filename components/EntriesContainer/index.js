@@ -1,11 +1,11 @@
-import { styled } from "styled-components";
 import Entry from "../Entry";
-import { dummyData } from "@/pages/api/dummyData";
 
-function EntriesContainer() {
+import { StyledSection } from "../StyledComponents/StyledSection";
+
+function EntriesContainer({ wordList }) {
   return (
-    <StyledEntrySection>
-      {dummyData.map((entry) => {
+    <StyledSection>
+      {wordList.map((entry) => {
         return (
           <Entry
             key={entry.slug}
@@ -15,15 +15,8 @@ function EntriesContainer() {
           />
         );
       })}
-    </StyledEntrySection>
+    </StyledSection>
   );
 }
-
-const StyledEntrySection = styled.section`
-  padding: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-`;
 
 export default EntriesContainer;

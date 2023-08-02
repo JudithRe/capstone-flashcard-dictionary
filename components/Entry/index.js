@@ -1,32 +1,21 @@
 import { styled } from "styled-components";
+import { StyledCard } from "../StyledComponents/StyledCard";
 
 function Entry({ JPDefinition, JPReading, ENDefinition }) {
   return (
-    <StyledWordCard>
+    <StyledCard>
       <StyledJPDefinition>{JPDefinition}</StyledJPDefinition>
       <StyledUl>
-        <StyledDefinition>[{JPReading}]</StyledDefinition>
+        <StyledDefinition>{JPReading}</StyledDefinition>
       </StyledUl>
       <StyledUl>
         {ENDefinition.map((definition) => (
           <StyledDefinition key={definition}>{definition}</StyledDefinition>
         ))}
       </StyledUl>
-    </StyledWordCard>
+    </StyledCard>
   );
 }
-
-const StyledWordCard = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  padding: 1rem;
-  background-color: var(--white);
-  width: 320px;
-  border-radius: 25px;
-  box-shadow: var(--default-box-shadow);
-`;
 
 const StyledJPDefinition = styled.h2`
   background-color: inherit;
