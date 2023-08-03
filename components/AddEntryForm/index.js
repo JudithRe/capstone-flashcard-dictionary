@@ -1,7 +1,6 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 import { StyledCard } from "../StyledComponents/StyledCard";
 import { StyledSection } from "../StyledComponents/StyledSection";
-import Heading from "../PageHeading";
 import { convertToKana } from "@/utils/helperFunctions.js";
 
 function AddEntryForm({ handleAddEntry }) {
