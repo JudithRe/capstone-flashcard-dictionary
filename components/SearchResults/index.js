@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 import EntriesContainer from "../EntriesContainer";
 
 function SearchResults({ searchResults, searchTerm }) {

@@ -1,6 +1,5 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 import SearchResults from "../SearchResults";
-import { useState } from "react";
 
 function SearchBar({ query, setQuery, handleSearchInput, searchResults }) {
   function handleSearchBarSubmit(event) {

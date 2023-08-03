@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 
 export const StyledSection = styled.section`
   padding: 1rem;

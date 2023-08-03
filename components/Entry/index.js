@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 import { StyledCard } from "../StyledComponents/StyledCard";
 
 function Entry({ JPDefinition, JPReading, ENDefinition }) {
