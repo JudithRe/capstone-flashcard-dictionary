@@ -1,7 +1,9 @@
+import { MainContent } from "@/components/StyledComponents/MainContent";
+
 export default function HomePage() {
   return (
-    <div>
-      <h1>Hello from Next.js</h1>
-    </div>
+    <MainContent>
+      <h1>Flashcard Dictionary Capstone</h1>
+    </MainContent>
   );
 }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import GlobalStyle from "../styles";
 import { dummyData } from "./api/dummyData";
+import Layout from "@/components/Layout";
 
 export default function App({ Component, pageProps }) {
   const [wordList, setWordList] = useState(dummyData);
@@ -44,6 +45,7 @@ export default function App({ Component, pageProps }) {
         handleAddEntry={handleAddEntry}
         {...pageProps}
       />
+      <Layout />
     </>
   );
 }

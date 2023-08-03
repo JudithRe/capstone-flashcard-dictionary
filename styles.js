@@ -12,6 +12,10 @@ export default createGlobalStyle`
     --text-color: #30343F;
     --white: #ffffff;
 
+/* HEIGHTS */
+
+--footer-height: 5rem;
+
 /* OTHER */
 
     --default-box-shadow: 6px 10px 10px -4px #969496;
