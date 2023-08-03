@@ -7,10 +7,13 @@ export default function Navigation() {
     <nav>
       <StyledNavList>
         <li className="inherit-background-color">
-          <StyledNavigationLink href="/words">Words</StyledNavigationLink>
+          <StyledNavigationLink href="/">🏠</StyledNavigationLink>
         </li>
         <li className="inherit-background-color">
-          <StyledNavigationLink href="/add">Add</StyledNavigationLink>
+          <StyledNavigationLink href="/words">📚</StyledNavigationLink>
+        </li>
+        <li className="inherit-background-color">
+          <StyledNavigationLink href="/add">➕</StyledNavigationLink>
         </li>
       </StyledNavList>
     </nav>
