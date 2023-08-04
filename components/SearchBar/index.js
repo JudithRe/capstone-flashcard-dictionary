@@ -54,7 +54,7 @@ function SearchBar({
         <StyledSearchBar
           onChange={(event) => handleSearchBarOnInput(event.target.value)}
           type="text"
-          placeholder="Search..."
+          placeholder="Search... (hit enter to search the dictionary)"
           aria-label="search-bar"
           name="searchInput"
         />
