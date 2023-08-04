@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import GlobalStyle from "../styles";
 import { dummyData } from "./api/dummyData";
 import Layout from "@/components/Layout";
@@ -89,15 +89,15 @@ export default function App({ Component, pageProps }) {
     }
   }
 
-  function handleDictionarySearch(dictionaryQuery) {
-    console.log("handleDictionarySearch ", dictionaryQuery);
+  useEffect(() => {
     setDictionaryResults([]);
+
     mutate();
     if (data) {
       const structuredOutput = refactorDictionaryOutput(data);
       setDictionaryResults(structuredOutput);
     }
-  }
+  }, [query, mutate, data]);
 
   return (
     <>
@@ -112,7 +112,7 @@ export default function App({ Component, pageProps }) {
         setSearchResults={setSearchResults}
         dictionaryResults={dictionaryResults}
         setDictionaryResults={setDictionaryResults}
-        handleDictionarySearch={handleDictionarySearch}
+        // handleDictionarySearch={handleDictionarySearch}
         isLoading={isLoading}
         {...pageProps}
       />

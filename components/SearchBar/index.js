@@ -24,20 +24,20 @@ function SearchBar({
     setQuery(searchQuery.searchInput);
     handleSearchInput(searchQuery.searchInput);
 
-    if (searchResults.length === 0) {
-      handleDictionarySearch(searchQuery.searchInput);
-    }
+    // if (searchResults.length === 0) {
+    //   handleDictionarySearch(searchQuery.searchInput);
+    // }
 
     form.reset();
   }
 
   //OnChange should still look up the words
-  function handleSearchBarOnInput(query) {
-    setSearchResults([]);
-    setDictionaryResults([]);
-    setQuery(query);
-    handleSearchInput(query);
-  }
+  // function handleSearchBarOnInput(query) {
+  //   setSearchResults([]);
+  //   setDictionaryResults([]);
+  //   setQuery(query);
+  //   handleSearchInput(query);
+  // }
 
   return (
     <>
