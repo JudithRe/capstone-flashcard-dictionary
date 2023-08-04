@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import SearchResults from "../SearchResults";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function SearchBar({
   query,
@@ -15,6 +15,9 @@ function SearchBar({
   isLoading,
 }) {
   const [hasEntries, setHasEntries] = useState(false);
+  useEffect(() => {
+    setSearchResults(searchResults);
+  }, [searchResults, setSearchResults]);
 
   function handleSearchBarSubmit(event) {
     event.preventDefault();
@@ -30,6 +33,7 @@ function SearchBar({
     // Search Dictionary if no searchResults in list
     if (searchResults.length === 0 && query.length > 0) {
       setDictionaryQuery(searchQuery.searchInput);
+
       setHasEntries(false);
     }
 

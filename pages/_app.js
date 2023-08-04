@@ -17,7 +17,7 @@ const fetcher = async (url) => {
     throw error;
   }
 
-  return response.json();
+  return await response.json();
 };
 export default function App({ Component, pageProps }) {
   // States
@@ -98,12 +98,11 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
     setDictionaryResults([]);
 
-    mutate();
     if (data) {
       const structuredOutput = refactorDictionaryOutput(data);
       setDictionaryResults(structuredOutput);
     }
-  }, [dictionaryQuery, mutate, data]);
+  }, [dictionaryQuery, data]);
 
   return (
     <>
