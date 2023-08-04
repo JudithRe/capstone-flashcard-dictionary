@@ -8,6 +8,11 @@ export default function HomePage({
   setQuery,
   searchResults,
   handleSearchInput,
+  setDictionaryResults,
+  handleDictionarySearch,
+  dictionaryResults,
+  isLoading,
+  setSearchResults,
 }) {
   return (
     <MainContent>
@@ -17,6 +22,11 @@ export default function HomePage({
         setQuery={setQuery}
         handleSearchInput={handleSearchInput}
         searchResults={searchResults}
+        setDictionaryResults={setDictionaryResults}
+        handleDictionarySearch={handleDictionarySearch}
+        dictionaryResults={dictionaryResults}
+        isLoading={isLoading}
+        setSearchResults={setSearchResults}
       />
     </MainContent>
   );

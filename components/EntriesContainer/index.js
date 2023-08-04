@@ -9,9 +9,9 @@ function EntriesContainer({ wordList }) {
         return (
           <Entry
             key={entry.slug}
-            JPDefinition={entry.japanese[0].word}
-            JPReading={entry.japanese[0].reading}
-            ENDefinition={entry.senses[0].english_definitions}
+            JPDefinition={entry.japanese.word}
+            JPReading={entry.japanese.reading}
+            ENDefinition={entry.english}
           />
         );
       })}

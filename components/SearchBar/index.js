@@ -1,7 +1,19 @@
 import styled from "styled-components";
 import SearchResults from "../SearchResults";
+import { useEffect } from "react";
+import refactorDictionaryOutput from "@/utils/refactorDictionaryOutput";
 
-function SearchBar({ query, setQuery, handleSearchInput, searchResults }) {
+function SearchBar({
+  query,
+  setQuery,
+  handleSearchInput,
+  searchResults,
+  setSearchResults,
+  setDictionaryResults,
+  dictionaryResults,
+  handleDictionarySearch,
+  isLoading,
+}) {
   function handleSearchBarSubmit(event) {
     event.preventDefault();
     const form = event.target;
@@ -12,11 +24,17 @@ function SearchBar({ query, setQuery, handleSearchInput, searchResults }) {
     setQuery(searchQuery.searchInput);
     handleSearchInput(searchQuery.searchInput);
 
+    if (searchResults.length === 0) {
+      handleDictionarySearch(searchQuery.searchInput);
+    }
+
     form.reset();
   }
 
   //OnChange should still look up the words
   function handleSearchBarOnInput(query) {
+    setSearchResults([]);
+    setDictionaryResults([]);
     setQuery(query);
     handleSearchInput(query);
   }
@@ -25,7 +43,7 @@ function SearchBar({ query, setQuery, handleSearchInput, searchResults }) {
     <>
       <StyledSearchBarForm onSubmit={(event) => handleSearchBarSubmit(event)}>
         <StyledSearchBar
-          onChange={(event) => handleSearchBarOnInput(event.target.value)}
+          // onChange={(event) => handleSearchBarOnInput(event.target.value)}
           type="text"
           placeholder="Search..."
           aria-label="search-bar"
@@ -33,15 +51,14 @@ function SearchBar({ query, setQuery, handleSearchInput, searchResults }) {
         />
         <StyledSearchBarButton>🔍</StyledSearchBarButton>
       </StyledSearchBarForm>
-      {query.length > 0 ? (
-        <SearchResults
-          searchResults={searchResults}
-          searchTerm={query}
-          handleSearchInput={handleSearchInput}
-        />
-      ) : (
-        ""
-      )}
+
+      <SearchResults
+        searchResults={searchResults}
+        searchTerm={query}
+        handleSearchInput={handleSearchInput}
+        dictionaryResults={dictionaryResults}
+        isLoading={isLoading}
+      />
     </>
   );
 }

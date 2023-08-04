@@ -3,17 +3,11 @@ export const dummyData = [
   {
     isDictionaryEntry: false,
     slug: "家庭",
-    japanese: [
-      {
-        word: "家庭",
-        reading: "かてい",
-      },
-    ],
-    senses: [
-      {
-        english_definitions: ["home", "household"],
-      },
-    ],
+    japanese: {
+      word: "家庭",
+      reading: "かてい",
+    },
+    english: ["home", "household"],
 
     study: {
       lastReview: "2023-5-23",
@@ -27,18 +21,13 @@ export const dummyData = [
   },
   {
     isDictionaryEntry: false,
+
     slug: "犬",
-    japanese: [
-      {
-        word: "犬",
-        reading: "いぬ",
-      },
-    ],
-    senses: [
-      {
-        english_definitions: ["dog"],
-      },
-    ],
+    japanese: {
+      word: "犬",
+      reading: "いぬ",
+    },
+    english: ["dog"],
 
     study: {
       lastReview: "2023-5-23",
@@ -53,17 +42,11 @@ export const dummyData = [
   {
     isDictionaryEntry: false,
     slug: "猫",
-    japanese: [
-      {
-        word: "猫",
-        reading: "ねこ",
-      },
-    ],
-    senses: [
-      {
-        english_definitions: ["cat"],
-      },
-    ],
+    japanese: {
+      word: "猫",
+      reading: "ねこ",
+    },
+    english: ["cat"],
 
     study: {
       lastReview: "2023-5-23",
@@ -77,18 +60,13 @@ export const dummyData = [
   },
   {
     isDictionaryEntry: false,
+
     slug: "晩ご飯",
-    japanese: [
-      {
-        word: "晩ご飯",
-        reading: "ばんごはん",
-      },
-    ],
-    senses: [
-      {
-        english_definitions: ["dinner", "evening meal"],
-      },
-    ],
+    japanese: {
+      word: "晩ご飯",
+      reading: "ばんごはん",
+    },
+    english: ["dinner", "evening meal"],
 
     study: {
       lastReview: "2023-5-23",
@@ -103,17 +81,11 @@ export const dummyData = [
   {
     isDictionaryEntry: false,
     slug: "卵",
-    japanese: [
-      {
-        word: "卵",
-        reading: "たまご",
-      },
-    ],
-    senses: [
-      {
-        english_definitions: ["eggs", "egg"],
-      },
-    ],
+    japanese: {
+      word: "卵",
+      reading: "たまご",
+    },
+    english: ["eggs", "egg"],
 
     study: {
       lastReview: "2023-5-23",
@@ -128,21 +100,12 @@ export const dummyData = [
   {
     isDictionaryEntry: false,
     slug: "小学校",
-    japanese: [
-      {
-        word: "小学校",
-        reading: "しょうがっこう",
-      },
-    ],
-    senses: [
-      {
-        english_definitions: [
-          "primary school",
-          "elementary school",
-          "grade school",
-        ],
-      },
-    ],
+    japanese: {
+      word: "小学校",
+      reading: "しょうがっこう",
+    },
+    english: ["primary school", "elementary school", "grade school"],
+
     study: {
       lastReview: "2023-5-23",
       stage: 1,
