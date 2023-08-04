@@ -11,7 +11,6 @@ export default function HomePage({
   searchResults,
   handleSearchInput,
   setDictionaryResults,
-  handleDictionarySearch,
   dictionaryResults,
   isLoading,
   setSearchResults,
@@ -26,11 +25,10 @@ export default function HomePage({
         setDictionaryQuery={setDictionaryQuery}
         handleSearchInput={handleSearchInput}
         searchResults={searchResults}
+        setSearchResults={setSearchResults}
         setDictionaryResults={setDictionaryResults}
-        handleDictionarySearch={handleDictionarySearch}
         dictionaryResults={dictionaryResults}
         isLoading={isLoading}
-        setSearchResults={setSearchResults}
       />
     </MainContent>
   );

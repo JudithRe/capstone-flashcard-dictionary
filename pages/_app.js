@@ -20,16 +20,19 @@ const fetcher = async (url) => {
   return response.json();
 };
 export default function App({ Component, pageProps }) {
+  // States
   const [query, setQuery] = useState("");
   const [dictionaryQuery, setDictionaryQuery] = useState("");
-  const DictionaryURL = `/api/dictionary-search/${dictionaryQuery}`;
-  const { data, error, isLoading, mutate } = useSWR(DictionaryURL, fetcher);
   const [wordList, setWordList] = useState(dummyData);
   const [searchResults, setSearchResults] = useState([]);
   const [dictionaryResults, setDictionaryResults] = useState([]);
 
+  // Fetching from Dictionary
+  const DictionaryURL = `/api/dictionary-search/${dictionaryQuery}`;
+  const { data, isLoading, mutate } = useSWR(DictionaryURL, fetcher);
+
+  // Add Entry to Word List
   function handleAddEntry({ newEntry }) {
-    console.log("newEntry ", newEntry);
     const { japaneseInput, reading, englishInput } = newEntry;
     const newEntryObject = {
       isDictionaryEntry: false,
@@ -54,6 +57,7 @@ export default function App({ Component, pageProps }) {
     setWordList([newEntryObject, ...wordList]);
   }
 
+  // Search Word List
   function handleSearchInput(query) {
     setSearchResults([]);
     const searchedRegex = new RegExp(query, "i");
@@ -90,6 +94,7 @@ export default function App({ Component, pageProps }) {
     }
   }
 
+  // Search Dictionary
   useEffect(() => {
     setDictionaryResults([]);
 
@@ -115,7 +120,6 @@ export default function App({ Component, pageProps }) {
         setSearchResults={setSearchResults}
         dictionaryResults={dictionaryResults}
         setDictionaryResults={setDictionaryResults}
-        // handleDictionarySearch={handleDictionarySearch}
         isLoading={isLoading}
         {...pageProps}
       />

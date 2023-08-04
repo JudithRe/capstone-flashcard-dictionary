@@ -1,5 +1,5 @@
 import EntriesContainer from "../EntriesContainer";
-import SearchResults, { StyledResultDisplay } from "../SearchResults";
+import { StyledResultDisplay } from "../SearchResults";
 
 function DictionaryResults({
   query,
@@ -7,16 +7,14 @@ function DictionaryResults({
   dictionaryResults,
   isLoading,
 }) {
-  //   if (SearchResults.length > 0) {
-  //     return;
-  //   }
-
   if (dictionaryQuery.length === 0) {
     return;
   }
 
   if (isLoading) {
-    return <p>Loading dictionary entries...</p>;
+    return (
+      <StyledResultDisplay>Loading dictionary entries...</StyledResultDisplay>
+    );
   }
 
   return (

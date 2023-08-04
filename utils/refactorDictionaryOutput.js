@@ -1,5 +1,4 @@
 function refactorDictionaryOutput(dictionaryOutput) {
-  console.log("dictionary Output ", dictionaryOutput);
   const structuredDictionaryObject = dictionaryOutput["data"].map((entry) => ({
     slug: entry["slug"],
     japanese: {

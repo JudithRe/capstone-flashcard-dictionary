@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import SearchResults from "../SearchResults";
-import { useEffect } from "react";
-import refactorDictionaryOutput from "@/utils/refactorDictionaryOutput";
 
 function SearchBar({
   query,
@@ -13,7 +11,6 @@ function SearchBar({
   setSearchResults,
   setDictionaryResults,
   dictionaryResults,
-  handleDictionarySearch,
   isLoading,
 }) {
   function handleSearchBarSubmit(event) {
@@ -26,6 +23,7 @@ function SearchBar({
     setQuery(searchQuery.searchInput);
     handleSearchInput(searchQuery.searchInput);
 
+    // Search Dictionary if no searchResults in list
     if (searchResults.length === 0 && query.length > 0) {
       setDictionaryQuery(searchQuery.searchInput);
     }
@@ -35,9 +33,12 @@ function SearchBar({
 
   // OnChange should still look up the words
   function handleSearchBarOnInput(query) {
+    // Empty useStates before searching for new word
     setDictionaryQuery("");
     setSearchResults([]);
     setDictionaryResults([]);
+
+    // search in word List
     setQuery(query);
     handleSearchInput(query);
   }
@@ -59,7 +60,6 @@ function SearchBar({
         searchResults={searchResults}
         query={query}
         dictionaryQuery={dictionaryQuery}
-        handleSearchInput={handleSearchInput}
         dictionaryResults={dictionaryResults}
         isLoading={isLoading}
       />
