@@ -21,7 +21,8 @@ const fetcher = async (url) => {
 };
 export default function App({ Component, pageProps }) {
   const [query, setQuery] = useState("");
-  const DictionaryURL = `/api/dictionary-search/${query}`;
+  const [dictionaryQuery, setDictionaryQuery] = useState("");
+  const DictionaryURL = `/api/dictionary-search/${dictionaryQuery}`;
   const { data, error, isLoading, mutate } = useSWR(DictionaryURL, fetcher);
   const [wordList, setWordList] = useState(dummyData);
   const [searchResults, setSearchResults] = useState([]);
@@ -97,7 +98,7 @@ export default function App({ Component, pageProps }) {
       const structuredOutput = refactorDictionaryOutput(data);
       setDictionaryResults(structuredOutput);
     }
-  }, [query, mutate, data]);
+  }, [dictionaryQuery, mutate, data]);
 
   return (
     <>
@@ -107,6 +108,7 @@ export default function App({ Component, pageProps }) {
         handleAddEntry={handleAddEntry}
         query={query}
         setQuery={setQuery}
+        setDictionaryQuery={setDictionaryQuery}
         handleSearchInput={handleSearchInput}
         searchResults={searchResults}
         setSearchResults={setSearchResults}

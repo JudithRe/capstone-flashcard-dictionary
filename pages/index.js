@@ -6,6 +6,7 @@ import { MainContent } from "@/components/StyledComponents/MainContent";
 export default function HomePage({
   query,
   setQuery,
+  setDictionaryQuery,
   searchResults,
   handleSearchInput,
   setDictionaryResults,
@@ -20,6 +21,7 @@ export default function HomePage({
       <SearchBar
         query={query}
         setQuery={setQuery}
+        setDictionaryQuery={setDictionaryQuery}
         handleSearchInput={handleSearchInput}
         searchResults={searchResults}
         setDictionaryResults={setDictionaryResults}

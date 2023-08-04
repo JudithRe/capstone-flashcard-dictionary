@@ -6,6 +6,7 @@ import refactorDictionaryOutput from "@/utils/refactorDictionaryOutput";
 function SearchBar({
   query,
   setQuery,
+  setDictionaryQuery,
   handleSearchInput,
   searchResults,
   setSearchResults,
@@ -24,26 +25,26 @@ function SearchBar({
     setQuery(searchQuery.searchInput);
     handleSearchInput(searchQuery.searchInput);
 
-    // if (searchResults.length === 0) {
-    //   handleDictionarySearch(searchQuery.searchInput);
-    // }
+    if (searchResults.length === 0 && query.length > 0) {
+      setDictionaryQuery(searchQuery.searchInput);
+    }
 
     form.reset();
   }
 
-  //OnChange should still look up the words
-  // function handleSearchBarOnInput(query) {
-  //   setSearchResults([]);
-  //   setDictionaryResults([]);
-  //   setQuery(query);
-  //   handleSearchInput(query);
-  // }
+  // OnChange should still look up the words
+  function handleSearchBarOnInput(query) {
+    setSearchResults([]);
+    setDictionaryResults([]);
+    setQuery(query);
+    handleSearchInput(query);
+  }
 
   return (
     <>
       <StyledSearchBarForm onSubmit={(event) => handleSearchBarSubmit(event)}>
         <StyledSearchBar
-          // onChange={(event) => handleSearchBarOnInput(event.target.value)}
+          onChange={(event) => handleSearchBarOnInput(event.target.value)}
           type="text"
           placeholder="Search..."
           aria-label="search-bar"
