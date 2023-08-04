@@ -1,10 +1,19 @@
 import EntriesContainer from "../EntriesContainer";
 import SearchResults, { StyledResultDisplay } from "../SearchResults";
 
-function DictionaryResults({ searchTerm, dictionaryResults, isLoading }) {
+function DictionaryResults({
+  query,
+  dictionaryQuery,
+  dictionaryResults,
+  isLoading,
+}) {
   //   if (SearchResults.length > 0) {
   //     return;
   //   }
+
+  if (dictionaryQuery.length === 0) {
+    return;
+  }
 
   if (isLoading) {
     return <p>Loading dictionary entries...</p>;
@@ -14,8 +23,8 @@ function DictionaryResults({ searchTerm, dictionaryResults, isLoading }) {
     <>
       <StyledResultDisplay>
         {dictionaryResults.length > 0
-          ? `${dictionaryResults.length} results for "${searchTerm}" from jisho.org`
-          : `No results for "${searchTerm}"`}
+          ? `${dictionaryResults.length} results for "${query}" from jisho.org`
+          : `No results for "${query}"`}
       </StyledResultDisplay>
       <EntriesContainer wordList={dictionaryResults} />
     </>

@@ -108,6 +108,7 @@ export default function App({ Component, pageProps }) {
         handleAddEntry={handleAddEntry}
         query={query}
         setQuery={setQuery}
+        dictionaryQuery={dictionaryQuery}
         setDictionaryQuery={setDictionaryQuery}
         handleSearchInput={handleSearchInput}
         searchResults={searchResults}

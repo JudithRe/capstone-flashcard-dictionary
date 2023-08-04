@@ -6,6 +6,7 @@ import refactorDictionaryOutput from "@/utils/refactorDictionaryOutput";
 function SearchBar({
   query,
   setQuery,
+  dictionaryQuery,
   setDictionaryQuery,
   handleSearchInput,
   searchResults,
@@ -34,6 +35,7 @@ function SearchBar({
 
   // OnChange should still look up the words
   function handleSearchBarOnInput(query) {
+    setDictionaryQuery("");
     setSearchResults([]);
     setDictionaryResults([]);
     setQuery(query);
@@ -55,7 +57,8 @@ function SearchBar({
 
       <SearchResults
         searchResults={searchResults}
-        searchTerm={query}
+        query={query}
+        dictionaryQuery={dictionaryQuery}
         handleSearchInput={handleSearchInput}
         dictionaryResults={dictionaryResults}
         isLoading={isLoading}
