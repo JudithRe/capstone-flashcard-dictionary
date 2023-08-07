@@ -1,4 +1,4 @@
-export function refactorDictionaryOutput(dictionaryOutput) {
+export function handleDictionaryOutput(dictionaryOutput, wordList) {
   const structuredDictionaryObject = dictionaryOutput["data"].map((entry) => ({
     showAddButton: true,
     isDictionaryEntry: true,
@@ -14,11 +14,7 @@ export function refactorDictionaryOutput(dictionaryOutput) {
     english: entry["senses"][0]["english_definitions"],
   }));
 
-  return structuredDictionaryObject;
-}
-
-export function checkWordList({ structuredOutput, wordList }) {
-  const checkedDictionaryOutput = structuredOutput.map((entry) => {
+  const checkedDictionaryOutput = structuredDictionaryObject.map((entry) => {
     const isInWordList = wordList.find(
       (wordListEntry) => wordListEntry.slug === entry.slug
     );
@@ -28,4 +24,6 @@ export function checkWordList({ structuredOutput, wordList }) {
     return entry;
   });
   return checkedDictionaryOutput;
+
+  // return structuredDictionaryObject;
 }

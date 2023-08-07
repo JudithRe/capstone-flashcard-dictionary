@@ -4,10 +4,7 @@ import { dummyData } from "./api/dummyData";
 import Layout from "@/components/Layout";
 import * as wanakana from "wanakana";
 import { convertToKana } from "@/utils/helperFunctions";
-import {
-  refactorDictionaryOutput,
-  checkWordList,
-} from "@/utils/refactorDictionaryOutput";
+import { handleDictionaryOutput } from "@/utils/refactorDictionaryOutput";
 import useSWR from "swr";
 
 const fetcher = async (url) => {
@@ -81,11 +78,8 @@ export default function App({ Component, pageProps }) {
     setDictionaryResults([]);
 
     if (data) {
-      const structuredOutput = refactorDictionaryOutput(data);
-      const checkedOutput = checkWordList({ structuredOutput, wordList });
-
-      // setDictionaryResults(structuredOutput);
-      setDictionaryResults(checkedOutput);
+      const structuredOutput = handleDictionaryOutput(data, wordList);
+      setDictionaryResults(structuredOutput);
     }
   }, [dictionaryQuery, data, wordList]);
 
