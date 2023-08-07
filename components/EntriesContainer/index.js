@@ -2,16 +2,15 @@ import Entry from "../Entry";
 
 import { StyledSection } from "../StyledComponents/StyledSection";
 
-function EntriesContainer({ wordList }) {
+function EntriesContainer({ wordList, handleAddEntry }) {
   return (
     <StyledSection>
       {wordList.map((entry) => {
         return (
           <Entry
             key={entry.slug}
-            JPDefinition={entry.japanese.word}
-            JPReading={entry.japanese.reading}
-            ENDefinition={entry.english}
+            entry={entry}
+            handleAddEntry={handleAddEntry}
           />
         );
       })}

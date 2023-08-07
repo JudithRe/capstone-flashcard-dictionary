@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import EntriesContainer from "../EntriesContainer";
 import DictionaryResults from "../DictionaryResults";
+import { StyledSubmitButton } from "../StyledComponents/StyledSubmitButton";
 
 function SearchResults({
   searchResults,
@@ -11,6 +12,7 @@ function SearchResults({
   isLoading,
   hasEntries,
   setHasEntries,
+  handleAddEntry,
 }) {
   if (query.length === 0) {
     return;
@@ -29,17 +31,20 @@ function SearchResults({
           : `No results for "${query}" in your word list.`}
       </StyledResultDisplay>
       {searchResults.length > 0 ? (
-        <EntriesContainer wordList={searchResults} />
+        <EntriesContainer
+          wordList={searchResults}
+          handleAddEntry={handleAddEntry}
+        />
       ) : (
         ""
       )}
       {hasEntries ? (
-        <StyledSearchButton
+        <StyledSubmitButton
           type="button"
           onClick={() => handleSearchDictionaryButtonSubmit()}
         >
           Search Dictionary
-        </StyledSearchButton>
+        </StyledSubmitButton>
       ) : (
         ""
       )}
@@ -48,6 +53,7 @@ function SearchResults({
         dictionaryQuery={dictionaryQuery}
         dictionaryResults={dictionaryResults}
         isLoading={isLoading}
+        handleAddEntry={handleAddEntry}
       />
     </>
   );
@@ -55,16 +61,6 @@ function SearchResults({
 
 export const StyledResultDisplay = styled.p`
   align-self: center;
-`;
-
-const StyledSearchButton = styled.button`
-  background-color: var(--highlight-red);
-  color: var(--white);
-  border-radius: 25px;
-  border: none;
-  box-shadow: var(--default-box-shadow);
-  padding: 10px;
-  margin: auto;
 `;
 
 export default SearchResults;
