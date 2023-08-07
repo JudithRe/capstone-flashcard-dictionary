@@ -33,7 +33,7 @@ const StyledDefinition = styled.li`
     content: " ⦁ ";
     background-color: inherit;
   }
-  &:last-child {
+  &:not(:first-child) {
     padding-left: 0.3rem;
   }
 `;
