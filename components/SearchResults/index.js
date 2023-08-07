@@ -2,6 +2,7 @@ import styled from "styled-components";
 import EntriesContainer from "../EntriesContainer";
 import DictionaryResults from "../DictionaryResults";
 import { StyledSubmitButton } from "../StyledComponents/StyledSubmitButton";
+import { MainContent } from "../StyledComponents/MainContent";
 
 function SearchResults({
   searchResults,
@@ -39,12 +40,12 @@ function SearchResults({
         ""
       )}
       {hasEntries ? (
-        <StyledSubmitButton
+        <StyledSearchButton
           type="button"
           onClick={() => handleSearchDictionaryButtonSubmit()}
         >
           Search Dictionary
-        </StyledSubmitButton>
+        </StyledSearchButton>
       ) : (
         ""
       )}
@@ -61,6 +62,10 @@ function SearchResults({
 
 export const StyledResultDisplay = styled.p`
   align-self: center;
+`;
+
+const StyledSearchButton = styled(StyledSubmitButton)`
+  margin: auto;
 `;
 
 export default SearchResults;
