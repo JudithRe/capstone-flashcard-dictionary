@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import GlobalStyle from "../styles";
-import { dummyData } from "./api/dummyData";
 import Layout from "@/components/Layout";
 import * as wanakana from "wanakana";
 import { convertToKana } from "@/utils/helperFunctions";
@@ -23,17 +22,38 @@ export default function App({ Component, pageProps }) {
   // States
   const [query, setQuery] = useState("");
   const [dictionaryQuery, setDictionaryQuery] = useState("");
-  const [wordList, setWordList] = useState(dummyData);
   const [searchResults, setSearchResults] = useState([]);
   const [dictionaryResults, setDictionaryResults] = useState([]);
 
   // Fetching from Dictionary
   const DictionaryURL = `/api/dictionary-search/${dictionaryQuery}`;
-  const { data, isLoading, mutate } = useSWR(DictionaryURL, fetcher);
+  const { data: dictionaryData, isLoading: dictionaryIsLoading } = useSWR(
+    DictionaryURL,
+    fetcher
+  );
+
+  // Fetching from database
+  const DatabaseURL = `/api/word-list/`;
+  const {
+    data: databaseData,
+    isLoading: databaseIsLoading,
+    mutate: databaseMutate,
+  } = useSWR(DatabaseURL, fetcher);
 
   // Add Entry to Word List
-  function handleAddEntry(newEntry) {
-    setWordList([{ ...newEntry, showAddButton: false }, ...wordList]);
+  async function handleAddEntry(newEntry) {
+    const entryWithoutAddButton = { ...newEntry, showAddButton: false };
+    const response = await fetch("/api/word-list", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(entryWithoutAddButton),
+    });
+
+    if (response.ok) {
+      databaseMutate();
+    }
   }
 
   // Search Word List
@@ -43,13 +63,13 @@ export default function App({ Component, pageProps }) {
 
     //Check for input types
     if (!wanakana.isKana(query)) {
-      const englishResults = wordList.filter((item) =>
+      const englishResults = databaseData.filter((item) =>
         searchedRegex.test(item.english)
       );
 
       //Search for words that have a reading in Kana with the same spelling
       const japaneseRegEx = new RegExp(convertToKana(query), "i");
-      const japaneseResults = wordList.filter((item) =>
+      const japaneseResults = databaseData.filter((item) =>
         japaneseRegEx.test(item.japanese.reading)
       );
 
@@ -58,7 +78,7 @@ export default function App({ Component, pageProps }) {
 
     //If all Kana only search Reading
     if (wanakana.isKana(query)) {
-      const results = wordList.filter((item) =>
+      const results = databaseData.filter((item) =>
         searchedRegex.test(item.japanese.reading)
       );
       setSearchResults(results);
@@ -66,7 +86,7 @@ export default function App({ Component, pageProps }) {
 
     //If Kanjis are included search Japanese Definition
     if (wanakana.isKanji(query) || wanakana.isMixed(query)) {
-      const results = wordList.filter((item) =>
+      const results = databaseData.filter((item) =>
         searchedRegex.test(item.japanese.word)
       );
       setSearchResults(results);
@@ -77,17 +97,21 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
     setDictionaryResults([]);
 
-    if (data) {
-      const structuredOutput = handleDictionaryOutput(data, wordList);
+    if (dictionaryData && databaseData) {
+      const structuredOutput = handleDictionaryOutput({
+        dictionaryData,
+        databaseData,
+      });
       setDictionaryResults(structuredOutput);
     }
-  }, [dictionaryQuery, data, wordList]);
+  }, [dictionaryQuery, dictionaryData, databaseData]);
 
   return (
     <>
       <GlobalStyle />
       <Component
-        wordList={wordList}
+        wordList={databaseData}
+        databaseIsLoading={databaseIsLoading}
         handleAddEntry={handleAddEntry}
         query={query}
         setQuery={setQuery}
@@ -98,7 +122,7 @@ export default function App({ Component, pageProps }) {
         setSearchResults={setSearchResults}
         dictionaryResults={dictionaryResults}
         setDictionaryResults={setDictionaryResults}
-        isLoading={isLoading}
+        dictionaryIsLoading={dictionaryIsLoading}
         {...pageProps}
       />
       <Layout />

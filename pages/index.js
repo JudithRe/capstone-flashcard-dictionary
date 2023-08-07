@@ -12,7 +12,7 @@ export default function HomePage({
   handleSearchInput,
   setDictionaryResults,
   dictionaryResults,
-  isLoading,
+  dictionaryIsLoading,
   setSearchResults,
   handleAddEntry,
 }) {
@@ -29,7 +29,7 @@ export default function HomePage({
         setSearchResults={setSearchResults}
         setDictionaryResults={setDictionaryResults}
         dictionaryResults={dictionaryResults}
-        isLoading={isLoading}
+        dictionaryIsLoading={dictionaryIsLoading}
         handleAddEntry={handleAddEntry}
       />
     </MainContent>

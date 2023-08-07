@@ -12,7 +12,7 @@ function SearchBar({
   setSearchResults,
   setDictionaryResults,
   dictionaryResults,
-  isLoading,
+  dictionaryIsLoading,
   handleAddEntry,
 }) {
   const [hasEntries, setHasEntries] = useState(false);
@@ -72,7 +72,7 @@ function SearchBar({
         dictionaryQuery={dictionaryQuery}
         setDictionaryQuery={setDictionaryQuery}
         dictionaryResults={dictionaryResults}
-        isLoading={isLoading}
+        dictionaryIsLoading={dictionaryIsLoading}
         hasEntries={hasEntries}
         setHasEntries={setHasEntries}
         handleAddEntry={handleAddEntry}

@@ -5,32 +5,33 @@ function DictionaryResults({
   query,
   dictionaryQuery,
   dictionaryResults,
-  isLoading,
+  dictionaryIsLoading,
   handleAddEntry,
 }) {
   if (dictionaryQuery.length === 0) {
     return;
   }
 
-  if (isLoading) {
+  if (dictionaryIsLoading) {
     return (
       <StyledResultDisplay>Loading dictionary entries...</StyledResultDisplay>
     );
   }
 
-  return (
-    <>
-      <StyledResultDisplay>
-        {dictionaryResults.length > 0
-          ? `${dictionaryResults.length} results for "${query}" from jisho.org`
-          : `No results for "${query}"`}
-      </StyledResultDisplay>
-      <EntriesContainer
-        wordList={dictionaryResults}
-        handleAddEntry={handleAddEntry}
-      />
-    </>
-  );
+  if (dictionaryResults) {
+    return (
+      <>
+        <StyledResultDisplay>
+          {dictionaryResults.length > 0
+            ? `${dictionaryResults.length} results for "${query}" from jisho.org`
+            : `No results for "${query}"`}
+        </StyledResultDisplay>
+        <EntriesContainer
+          wordList={dictionaryResults}
+          handleAddEntry={handleAddEntry}
+        />
+      </>
+    );
+  }
 }
-
 export default DictionaryResults;

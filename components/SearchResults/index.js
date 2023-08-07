@@ -2,7 +2,6 @@ import styled from "styled-components";
 import EntriesContainer from "../EntriesContainer";
 import DictionaryResults from "../DictionaryResults";
 import { StyledSubmitButton } from "../StyledComponents/StyledSubmitButton";
-import { MainContent } from "../StyledComponents/MainContent";
 
 function SearchResults({
   searchResults,
@@ -10,7 +9,7 @@ function SearchResults({
   dictionaryQuery,
   setDictionaryQuery,
   dictionaryResults,
-  isLoading,
+  dictionaryIsLoading,
   hasEntries,
   setHasEntries,
   handleAddEntry,
@@ -49,7 +48,7 @@ function SearchResults({
         query={query}
         dictionaryQuery={dictionaryQuery}
         dictionaryResults={dictionaryResults}
-        isLoading={isLoading}
+        dictionaryIsLoading={dictionaryIsLoading}
         handleAddEntry={handleAddEntry}
       />
     </>
