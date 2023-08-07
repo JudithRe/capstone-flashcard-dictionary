@@ -18,19 +18,20 @@ function DictionaryResults({
     );
   }
 
-  return (
-    <>
-      <StyledResultDisplay>
-        {dictionaryResults.length > 0
-          ? `${dictionaryResults.length} results for "${query}" from jisho.org`
-          : `No results for "${query}"`}
-      </StyledResultDisplay>
-      <EntriesContainer
-        wordList={dictionaryResults}
-        handleAddEntry={handleAddEntry}
-      />
-    </>
-  );
+  if (dictionaryResults) {
+    return (
+      <>
+        <StyledResultDisplay>
+          {dictionaryResults.length > 0
+            ? `${dictionaryResults.length} results for "${query}" from jisho.org`
+            : `No results for "${query}"`}
+        </StyledResultDisplay>
+        <EntriesContainer
+          wordList={dictionaryResults}
+          handleAddEntry={handleAddEntry}
+        />
+      </>
+    );
+  }
 }
-
 export default DictionaryResults;

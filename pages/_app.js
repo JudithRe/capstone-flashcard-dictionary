@@ -40,9 +40,6 @@ export default function App({ Component, pageProps }) {
     mutate: databaseMutate,
   } = useSWR(DatabaseURL, fetcher);
 
-  // Word List useState
-  const [wordList, setWordList] = useState([]);
-
   // Add Entry to Word List
   async function handleAddEntry(newEntry) {
     const entryWithoutAddButton = { ...newEntry, showAddButton: false };
@@ -59,13 +56,6 @@ export default function App({ Component, pageProps }) {
     }
   }
 
-  // Set wordList to current state of database
-  useEffect(() => {
-    if (databaseData) {
-      setWordList(databaseData);
-    }
-  }, [databaseData, wordList]);
-
   // Search Word List
   function handleSearchInput(query) {
     setSearchResults([]);
@@ -73,13 +63,13 @@ export default function App({ Component, pageProps }) {
 
     //Check for input types
     if (!wanakana.isKana(query)) {
-      const englishResults = wordList.filter((item) =>
+      const englishResults = databaseData.filter((item) =>
         searchedRegex.test(item.english)
       );
 
       //Search for words that have a reading in Kana with the same spelling
       const japaneseRegEx = new RegExp(convertToKana(query), "i");
-      const japaneseResults = wordList.filter((item) =>
+      const japaneseResults = databaseData.filter((item) =>
         japaneseRegEx.test(item.japanese.reading)
       );
 
@@ -88,7 +78,7 @@ export default function App({ Component, pageProps }) {
 
     //If all Kana only search Reading
     if (wanakana.isKana(query)) {
-      const results = wordList.filter((item) =>
+      const results = databaseData.filter((item) =>
         searchedRegex.test(item.japanese.reading)
       );
       setSearchResults(results);
@@ -96,7 +86,7 @@ export default function App({ Component, pageProps }) {
 
     //If Kanjis are included search Japanese Definition
     if (wanakana.isKanji(query) || wanakana.isMixed(query)) {
-      const results = wordList.filter((item) =>
+      const results = databaseData.filter((item) =>
         searchedRegex.test(item.japanese.word)
       );
       setSearchResults(results);
@@ -107,17 +97,21 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
     setDictionaryResults([]);
 
-    if (dictionaryData) {
-      const structuredOutput = handleDictionaryOutput(dictionaryData, wordList);
+    if (dictionaryData && databaseData) {
+      const structuredOutput = handleDictionaryOutput({
+        dictionaryData,
+        databaseData,
+      });
       setDictionaryResults(structuredOutput);
     }
-  }, [dictionaryQuery, dictionaryData, wordList]);
+  }, [dictionaryQuery, dictionaryData, databaseData]);
 
   return (
     <>
       <GlobalStyle />
       <Component
-        wordList={wordList}
+        wordList={databaseData}
+        databaseIsLoading={databaseIsLoading}
         handleAddEntry={handleAddEntry}
         query={query}
         setQuery={setQuery}
@@ -129,7 +123,6 @@ export default function App({ Component, pageProps }) {
         dictionaryResults={dictionaryResults}
         setDictionaryResults={setDictionaryResults}
         dictionaryIsLoading={dictionaryIsLoading}
-        databaseIsLoading={databaseIsLoading}
         {...pageProps}
       />
       <Layout />

@@ -9,19 +9,22 @@ function EntriesContainer({ wordList, handleAddEntry, databaseIsLoading }) {
       <StyledResultDisplay>Loading word list entries...</StyledResultDisplay>
     );
   }
-  return (
-    <StyledSection>
-      {wordList.map((entry) => {
-        return (
-          <Entry
-            key={entry.slug}
-            entry={entry}
-            handleAddEntry={handleAddEntry}
-          />
-        );
-      })}
-    </StyledSection>
-  );
+
+  if (wordList) {
+    return (
+      <StyledSection>
+        {wordList.map((entry) => {
+          return (
+            <Entry
+              key={entry._id}
+              entry={entry}
+              handleAddEntry={handleAddEntry}
+            />
+          );
+        })}
+      </StyledSection>
+    );
+  }
 }
 
 export default EntriesContainer;
