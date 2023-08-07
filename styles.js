@@ -18,7 +18,7 @@ export default createGlobalStyle`
 
 /* OTHER */
 
-    --default-box-shadow: 6px 10px 10px -4px #969496;
+    --default-box-shadow: 4px 8px 10px -4px #969496;
     --inset-box-shadow: 1px 1px 5px -1px #969496;
   }
   

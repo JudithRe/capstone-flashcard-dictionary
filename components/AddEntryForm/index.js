@@ -11,7 +11,28 @@ function AddEntryForm({ handleAddEntry }) {
     const formData = new FormData(form);
     const newEntry = Object.fromEntries(formData);
 
-    handleAddEntry({ newEntry });
+    const { japaneseInput, reading, englishInput } = newEntry;
+    const newEntryObject = {
+      isDictionaryEntry: false,
+      slug: japaneseInput,
+      japanese: {
+        word: japaneseInput,
+        reading: reading,
+      },
+      english: englishInput.split(", "),
+
+      study: {
+        lastReview: "new",
+        stage: 0,
+        interval: 0.5,
+        wrongAnswerCount: 0,
+        rightAnswerCount: 0,
+        ease: 2.5,
+        streak: 0,
+      },
+    };
+
+    handleAddEntry(newEntryObject);
 
     form.reset();
     form.englishInput.focus();

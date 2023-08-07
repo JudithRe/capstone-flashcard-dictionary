@@ -14,6 +14,7 @@ export default function HomePage({
   dictionaryResults,
   isLoading,
   setSearchResults,
+  handleAddEntry,
 }) {
   return (
     <MainContent>
@@ -29,6 +30,7 @@ export default function HomePage({
         setDictionaryResults={setDictionaryResults}
         dictionaryResults={dictionaryResults}
         isLoading={isLoading}
+        handleAddEntry={handleAddEntry}
       />
     </MainContent>
   );

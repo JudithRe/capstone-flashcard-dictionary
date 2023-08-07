@@ -1,6 +1,7 @@
 // Uses Structure from dictionary API, but adds study data for later
 export const dummyData = [
   {
+    showAddButton: false,
     isDictionaryEntry: false,
     slug: "家庭",
     japanese: {
@@ -20,6 +21,7 @@ export const dummyData = [
     },
   },
   {
+    showAddButton: false,
     isDictionaryEntry: false,
 
     slug: "犬",
@@ -40,6 +42,7 @@ export const dummyData = [
     },
   },
   {
+    showAddButton: false,
     isDictionaryEntry: false,
     slug: "猫",
     japanese: {
@@ -59,6 +62,7 @@ export const dummyData = [
     },
   },
   {
+    showAddButton: false,
     isDictionaryEntry: false,
 
     slug: "晩ご飯",
@@ -79,6 +83,7 @@ export const dummyData = [
     },
   },
   {
+    showAddButton: false,
     isDictionaryEntry: false,
     slug: "卵",
     japanese: {
@@ -98,6 +103,7 @@ export const dummyData = [
     },
   },
   {
+    showAddButton: false,
     isDictionaryEntry: false,
     slug: "小学校",
     japanese: {

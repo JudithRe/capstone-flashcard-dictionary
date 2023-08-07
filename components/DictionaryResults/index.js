@@ -6,6 +6,7 @@ function DictionaryResults({
   dictionaryQuery,
   dictionaryResults,
   isLoading,
+  handleAddEntry,
 }) {
   if (dictionaryQuery.length === 0) {
     return;
@@ -24,7 +25,10 @@ function DictionaryResults({
           ? `${dictionaryResults.length} results for "${query}" from jisho.org`
           : `No results for "${query}"`}
       </StyledResultDisplay>
-      <EntriesContainer wordList={dictionaryResults} />
+      <EntriesContainer
+        wordList={dictionaryResults}
+        handleAddEntry={handleAddEntry}
+      />
     </>
   );
 }

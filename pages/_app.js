@@ -4,7 +4,7 @@ import { dummyData } from "./api/dummyData";
 import Layout from "@/components/Layout";
 import * as wanakana from "wanakana";
 import { convertToKana } from "@/utils/helperFunctions";
-import refactorDictionaryOutput from "@/utils/refactorDictionaryOutput";
+import { handleDictionaryOutput } from "@/utils/refactorDictionaryOutput";
 import useSWR from "swr";
 
 const fetcher = async (url) => {
@@ -32,29 +32,8 @@ export default function App({ Component, pageProps }) {
   const { data, isLoading, mutate } = useSWR(DictionaryURL, fetcher);
 
   // Add Entry to Word List
-  function handleAddEntry({ newEntry }) {
-    const { japaneseInput, reading, englishInput } = newEntry;
-    const newEntryObject = {
-      isDictionaryEntry: false,
-      slug: japaneseInput,
-      japanese: {
-        word: japaneseInput,
-        reading: reading,
-      },
-      english: englishInput.split(", "),
-
-      study: {
-        lastReview: "new",
-        stage: 0,
-        interval: 0.5,
-        wrongAnswerCount: 0,
-        rightAnswerCount: 0,
-        ease: 2.5,
-        streak: 0,
-      },
-    };
-
-    setWordList([newEntryObject, ...wordList]);
+  function handleAddEntry(newEntry) {
+    setWordList([{ ...newEntry, showAddButton: false }, ...wordList]);
   }
 
   // Search Word List
@@ -94,15 +73,15 @@ export default function App({ Component, pageProps }) {
     }
   }
 
-  // Search Dictionary
+  // Search Dictionary and check if word is already in Word List
   useEffect(() => {
     setDictionaryResults([]);
 
     if (data) {
-      const structuredOutput = refactorDictionaryOutput(data);
+      const structuredOutput = handleDictionaryOutput(data, wordList);
       setDictionaryResults(structuredOutput);
     }
-  }, [dictionaryQuery, data]);
+  }, [dictionaryQuery, data, wordList]);
 
   return (
     <>

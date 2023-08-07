@@ -1,15 +1,28 @@
 import styled from "styled-components";
 import { StyledCard } from "../StyledComponents/StyledCard";
+import { StyledSubmitButton } from "../StyledComponents/StyledSubmitButton";
 
-function Entry({ JPDefinition, JPReading, ENDefinition }) {
+function Entry({ entry, handleAddEntry }) {
+  const { japanese, english, showAddButton, isDictionaryEntry } = entry;
+
   return (
     <StyledCard>
-      <StyledJPDefinition>{JPDefinition}</StyledJPDefinition>
+      {showAddButton && (
+        <StyledSubmitButton type="button" onClick={() => handleAddEntry(entry)}>
+          +
+        </StyledSubmitButton>
+      )}
+      {!showAddButton && isDictionaryEntry && (
+        <StyledSubmitButton type="button" disabled="true">
+          ✔
+        </StyledSubmitButton>
+      )}
+      <StyledJPDefinition>{japanese.word}</StyledJPDefinition>
       <StyledUl>
-        <StyledDefinition>{JPReading}</StyledDefinition>
+        <StyledDefinition>{japanese.reading}</StyledDefinition>
       </StyledUl>
       <StyledUl>
-        {ENDefinition.map((definition) => (
+        {english.map((definition) => (
           <StyledDefinition key={definition}>{definition}</StyledDefinition>
         ))}
       </StyledUl>
