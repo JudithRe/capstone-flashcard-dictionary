@@ -13,7 +13,7 @@ function Entry({ entry, handleAddEntry }) {
         </StyledSubmitButton>
       )}
       {!showAddButton && isDictionaryEntry && (
-        <StyledSubmitButton type="button" disabled="true">
+        <StyledSubmitButton type="button" disabled={true}>
           ✔
         </StyledSubmitButton>
       )}

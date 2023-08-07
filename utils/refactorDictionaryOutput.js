@@ -12,6 +12,15 @@ export function handleDictionaryOutput(dictionaryOutput, wordList) {
       reading: entry["japanese"][0]["reading"],
     },
     english: entry["senses"][0]["english_definitions"],
+    study: {
+      lastReview: "never",
+      stage: 0,
+      interval: 1,
+      wrongAnswerCount: 0,
+      rightAnswerCount: 0,
+      ease: 2.5,
+      streak: 0,
+    },
   }));
 
   const checkedDictionaryOutput = structuredDictionaryObject.map((entry) => {

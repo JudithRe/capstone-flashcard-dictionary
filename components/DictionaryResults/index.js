@@ -5,14 +5,14 @@ function DictionaryResults({
   query,
   dictionaryQuery,
   dictionaryResults,
-  isLoading,
+  dictionaryIsLoading,
   handleAddEntry,
 }) {
   if (dictionaryQuery.length === 0) {
     return;
   }
 
-  if (isLoading) {
+  if (dictionaryIsLoading) {
     return (
       <StyledResultDisplay>Loading dictionary entries...</StyledResultDisplay>
     );
