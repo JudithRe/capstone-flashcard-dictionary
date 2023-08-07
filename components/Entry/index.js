@@ -7,16 +7,15 @@ function Entry({ entry, handleAddEntry }) {
 
   return (
     <StyledCard>
-      {showAddButton ? (
+      {showAddButton && (
         <StyledSubmitButton type="button" onClick={() => handleAddEntry(entry)}>
           +
         </StyledSubmitButton>
-      ) : !showAddButton && isDictionaryEntry ? (
+      )}
+      {!showAddButton && isDictionaryEntry && (
         <StyledSubmitButton type="button" disabled="true">
           ✔
         </StyledSubmitButton>
-      ) : (
-        ""
       )}
       <StyledJPDefinition>{japanese.word}</StyledJPDefinition>
       <StyledUl>

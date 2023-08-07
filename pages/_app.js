@@ -4,7 +4,8 @@ import { dummyData } from "./api/dummyData";
 import Layout from "@/components/Layout";
 import * as wanakana from "wanakana";
 import { convertToKana } from "@/utils/helperFunctions";
-import refactorDictionaryOutput, {
+import {
+  refactorDictionaryOutput,
   checkWordList,
 } from "@/utils/refactorDictionaryOutput";
 import useSWR from "swr";
@@ -81,15 +82,7 @@ export default function App({ Component, pageProps }) {
 
     if (data) {
       const structuredOutput = refactorDictionaryOutput(data);
-      const checkedOutput = structuredOutput.map((entry) => {
-        const isInWordList = wordList.find(
-          (wordListEntry) => wordListEntry.slug === entry.slug
-        );
-        if (isInWordList) {
-          return { ...entry, showAddButton: false };
-        }
-        return entry;
-      });
+      const checkedOutput = checkWordList({ structuredOutput, wordList });
 
       // setDictionaryResults(structuredOutput);
       setDictionaryResults(checkedOutput);

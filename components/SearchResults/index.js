@@ -31,23 +31,19 @@ function SearchResults({
           ? `${searchResults.length} results for "${query}" in your word list.`
           : `No results for "${query}" in your word list.`}
       </StyledResultDisplay>
-      {searchResults.length > 0 ? (
+      {searchResults.length > 0 && (
         <EntriesContainer
           wordList={searchResults}
           handleAddEntry={handleAddEntry}
         />
-      ) : (
-        ""
       )}
-      {hasEntries ? (
+      {hasEntries && (
         <StyledSearchButton
           type="button"
           onClick={() => handleSearchDictionaryButtonSubmit()}
         >
           Search Dictionary
         </StyledSearchButton>
-      ) : (
-        ""
       )}
       <DictionaryResults
         query={query}
