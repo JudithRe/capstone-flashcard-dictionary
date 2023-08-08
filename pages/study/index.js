@@ -15,10 +15,6 @@ export default function StudyPage({ wordList }) {
   const [isStudyMode, setIsStudyMode] = useState(false);
   const [isFront, setIsFront] = useState(true);
 
-  useEffect(() => {
-    setIsStudyMode(isStudyMode);
-  }, [isStudyMode, studyList, setStudyList, setIsStudyMode]);
-
   return (
     <>
       {!isStudyMode && (
