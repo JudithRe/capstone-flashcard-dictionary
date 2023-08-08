@@ -7,13 +7,48 @@ export default function Navigation() {
     <nav>
       <StyledNavList>
         <li className="inherit-background-color">
-          <StyledNavigationLink href="/">🏠</StyledNavigationLink>
+          <StyledNavigationLink href="/">
+            <span
+              className="inherit-background-color"
+              role="img"
+              aria-label="Home"
+            >
+              🏠
+            </span>
+          </StyledNavigationLink>
         </li>
         <li className="inherit-background-color">
-          <StyledNavigationLink href="/words">📚</StyledNavigationLink>
+          <StyledNavigationLink href="/words">
+            <span
+              className="inherit-background-color"
+              role="img"
+              aria-label="Word List"
+            >
+              📚
+            </span>
+          </StyledNavigationLink>
         </li>
         <li className="inherit-background-color">
-          <StyledNavigationLink href="/add">➕</StyledNavigationLink>
+          <StyledNavigationLink href="/add">
+            <span
+              className="inherit-background-color"
+              role="img"
+              aria-label="Add Words"
+            >
+              ➕
+            </span>
+          </StyledNavigationLink>
+        </li>
+        <li className="inherit-background-color">
+          <StyledNavigationLink href="/study">
+            <span
+              className="inherit-background-color"
+              role="img"
+              aria-label="Study"
+            >
+              📝
+            </span>
+          </StyledNavigationLink>
         </li>
       </StyledNavList>
     </nav>

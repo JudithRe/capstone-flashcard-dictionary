@@ -9,9 +9,14 @@ export const StyledSubmitButton = styled.button`
   border-radius: 25px;
   box-shadow: var(--default-box-shadow);
   font-weight: 500;
+  font-size: 1.2rem;
 
   &:disabled {
     background-color: var(--light-grey);
     box-shadow: var(--inset-box-shadow);
   }
+`;
+
+export const StyledCenteredButton = styled(StyledSubmitButton)`
+  margin: auto;
 `;

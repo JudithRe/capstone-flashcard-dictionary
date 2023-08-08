@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import EntriesContainer from "../EntriesContainer";
 import DictionaryResults from "../DictionaryResults";
-import { StyledSubmitButton } from "../StyledComponents/StyledSubmitButton";
+import { StyledCenteredButton } from "../StyledComponents/StyledSubmitButton";
 
 function SearchResults({
   searchResults,
@@ -37,12 +37,12 @@ function SearchResults({
         />
       )}
       {hasEntries && (
-        <StyledSearchButton
+        <StyledCenteredButton
           type="button"
           onClick={() => handleSearchDictionaryButtonSubmit()}
         >
           Search Dictionary
-        </StyledSearchButton>
+        </StyledCenteredButton>
       )}
       <DictionaryResults
         query={query}
@@ -57,10 +57,6 @@ function SearchResults({
 
 export const StyledResultDisplay = styled.p`
   align-self: center;
-`;
-
-const StyledSearchButton = styled(StyledSubmitButton)`
-  margin: auto;
 `;
 
 export default SearchResults;

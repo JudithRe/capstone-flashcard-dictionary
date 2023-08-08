@@ -17,7 +17,7 @@ export function handleDictionaryOutput({
       },
       english: entry["senses"][0]["english_definitions"],
       study: {
-        lastReview: "never",
+        lastReview: "new",
         stage: 0,
         interval: 1,
         wrongAnswerCount: 0,
