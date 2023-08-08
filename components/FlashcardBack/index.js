@@ -5,13 +5,13 @@ import { StyledCard } from "../StyledComponents/StyledCard";
 function FlashcardBack({ entry, studyList, setIsFront }) {
   const { japanese, english } = entry;
 
-  function handleRightAnswer({ studyList, setIsFront }) {
+  function handleRightAnswer() {
     studyList.shift();
     setIsFront(true);
     // Logic will be added in next user story
   }
 
-  function handleWrongAnswer({ studyList, setIsFront }) {
+  function handleWrongAnswer() {
     studyList.shift();
     setIsFront(true);
     // Logic will be added in next user story
@@ -29,14 +29,10 @@ function FlashcardBack({ entry, studyList, setIsFront }) {
         ))}
       </StyledUl>
       <StyledAnswerSection>
-        <WrongAnswerButton
-          onClick={() => handleWrongAnswer({ studyList, setIsFront })}
-        >
+        <WrongAnswerButton onClick={() => handleWrongAnswer()}>
           X
         </WrongAnswerButton>
-        <RightAnswerButton
-          onClick={() => handleRightAnswer({ studyList, setIsFront })}
-        >
+        <RightAnswerButton onClick={() => handleRightAnswer()}>
           ✔
         </RightAnswerButton>
       </StyledAnswerSection>
