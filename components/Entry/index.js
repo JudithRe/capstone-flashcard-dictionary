@@ -30,13 +30,13 @@ function Entry({ entry, handleAddEntry }) {
   );
 }
 
-const StyledJPDefinition = styled.h2`
+export const StyledJPDefinition = styled.h2`
   background-color: inherit;
   font-size: 1.5rem;
   margin: 0px;
 `;
 
-const StyledDefinition = styled.li`
+export const StyledDefinition = styled.li`
   display: inline-block;
   background-color: inherit;
   list-style-type: none;
@@ -51,7 +51,7 @@ const StyledDefinition = styled.li`
   }
 `;
 
-const StyledUl = styled.ul`
+export const StyledUl = styled.ul`
   background-color: inherit;
   padding: 0;
   text-align: center;

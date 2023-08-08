@@ -12,9 +12,10 @@ export default createGlobalStyle`
     --text-color: #30343F;
     --white: #ffffff;
 
-/* HEIGHTS */
+/* HEIGHTS and WIDTHS */
 
 --footer-height: 5rem;
+--card-width: 320px;
 
 /* OTHER */
 
