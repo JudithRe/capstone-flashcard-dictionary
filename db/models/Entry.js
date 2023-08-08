@@ -23,10 +23,9 @@ const entrySchema = new Schema(
       properties: {
         lastReview: { type: String },
         stage: { type: Number },
-        interval: { type: Number },
+        lastWasWrongAnswer: { type: Boolean },
         wrongAnswerCount: { type: Number },
         rightAnswerCount: { type: Number },
-        ease: { type: Number },
         streak: { type: Number },
       },
     },

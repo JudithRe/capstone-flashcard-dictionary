@@ -6,11 +6,11 @@ import {
   StyledCenteredButton,
   StyledSubmitButton,
 } from "@/components/StyledComponents/StyledSubmitButton";
-import { generateStudyMode } from "@/utils/study";
+import { generateStudyMode } from "@/utils/studyFunctions";
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 
-export default function StudyPage({ wordList }) {
+export default function StudyPage({ wordList, databaseMutate }) {
   const [studyList, setStudyList] = useState([]);
   const [isStudyMode, setIsStudyMode] = useState(false);
   const [isFront, setIsFront] = useState(true);
@@ -54,6 +54,7 @@ export default function StudyPage({ wordList }) {
               setIsFront={setIsFront}
               studyList={studyList}
               entry={studyList[0]}
+              databaseMutate={databaseMutate}
             />
           )}
         </StudyModal>

@@ -1,21 +1,10 @@
 import { styled } from "styled-components";
 import { StyledDefinition, StyledJPDefinition, StyledUl } from "../Entry";
 import { StyledCard } from "../StyledComponents/StyledCard";
+import { handleRightAnswer, handleWrongAnswer } from "@/utils/studyFunctions";
 
-function FlashcardBack({ entry, studyList, setIsFront }) {
+function FlashcardBack({ entry, studyList, setIsFront, databaseMutate }) {
   const { japanese, english } = entry;
-
-  function handleRightAnswer() {
-    studyList.shift();
-    setIsFront(true);
-    // Logic will be added in next user story
-  }
-
-  function handleWrongAnswer() {
-    studyList.shift();
-    setIsFront(true);
-    // Logic will be added in next user story
-  }
 
   return (
     <StyledFlashcard>
@@ -29,10 +18,18 @@ function FlashcardBack({ entry, studyList, setIsFront }) {
         ))}
       </StyledUl>
       <StyledAnswerSection>
-        <WrongAnswerButton onClick={() => handleWrongAnswer()}>
+        <WrongAnswerButton
+          onClick={() =>
+            handleWrongAnswer({ studyList, setIsFront, entry, databaseMutate })
+          }
+        >
           X
         </WrongAnswerButton>
-        <RightAnswerButton onClick={() => handleRightAnswer()}>
+        <RightAnswerButton
+          onClick={() =>
+            handleRightAnswer({ studyList, setIsFront, entry, databaseMutate })
+          }
+        >
           ✔
         </RightAnswerButton>
       </StyledAnswerSection>
