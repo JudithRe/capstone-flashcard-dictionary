@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import Link from "next/link";
 import { device } from "@/utils/globalValues";
+import HomeIcon from "@/assets/icons/HomeIcon";
+import ListIcon from "@/assets/icons/ListIcon";
+import AddIcon from "@/assets/icons/AddIcon";
+import StudyIcon from "@/assets/icons/StudyIcon";
 
 export default function Navigation() {
   return (
@@ -13,18 +17,7 @@ export default function Navigation() {
               role="img"
               aria-label="Home"
             >
-              🏠
-            </span>
-          </StyledNavigationLink>
-        </li>
-        <li className="inherit-background-color">
-          <StyledNavigationLink href="/words">
-            <span
-              className="inherit-background-color"
-              role="img"
-              aria-label="Word List"
-            >
-              📚
+              <HomeIcon />
             </span>
           </StyledNavigationLink>
         </li>
@@ -35,7 +28,7 @@ export default function Navigation() {
               role="img"
               aria-label="Add Words"
             >
-              ➕
+              <AddIcon />
             </span>
           </StyledNavigationLink>
         </li>
@@ -46,7 +39,18 @@ export default function Navigation() {
               role="img"
               aria-label="Study"
             >
-              📝
+              <StudyIcon />
+            </span>
+          </StyledNavigationLink>
+        </li>
+        <li className="inherit-background-color">
+          <StyledNavigationLink href="/words">
+            <span
+              className="inherit-background-color"
+              role="img"
+              aria-label="Word List"
+            >
+              <ListIcon />
             </span>
           </StyledNavigationLink>
         </li>
@@ -61,7 +65,8 @@ const StyledNavList = styled.ul`
   bottom: 0;
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
   height: var(--footer-height);
   padding: 2rem;
   background-color: var(--dark-main);
