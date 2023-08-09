@@ -7,6 +7,9 @@ export function handleDictionaryOutput({
       showAddButton: true,
       isDictionaryEntry: true,
       slug: entry["slug"],
+      isCommon: entry["is_common"],
+      jlpt: entry["jlpt"][0],
+      wanikani: entry["tags"][0],
       japanese: {
         word: `${
           entry["japanese"][0]["word"]
@@ -35,6 +38,7 @@ export function handleDictionaryOutput({
       }
       return entry;
     });
+
     return checkedDictionaryOutput;
   }
 

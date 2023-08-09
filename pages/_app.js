@@ -43,6 +43,7 @@ export default function App({ Component, pageProps }) {
   // Add Entry to Word List
   async function handleAddEntry(newEntry) {
     const entryWithoutAddButton = { ...newEntry, showAddButton: false };
+
     const response = await fetch("/api/word-list", {
       method: "POST",
       headers: {

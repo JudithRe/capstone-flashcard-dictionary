@@ -7,48 +7,37 @@ import {
 import { StyledSectionRightAlign } from "../StyledComponents/StyledSection";
 import { deleteEntry } from "@/utils/deleteEntry";
 
-function Entry({ entry, handleAddEntry, isEditMode, databaseMutate }) {
-  const { japanese, english, showAddButton, isDictionaryEntry, _id } = entry;
+import { LinkWithoutDecoration } from "../StyledComponents/LinkWithoutDecoration";
+import EntryContent from "../EntryContent";
 
-  return (
-    <StyledCard>
-      <StyledSectionRightAlign>
-        {showAddButton && (
-          <StyledSubmitButton
-            type="button"
-            onClick={(event) => {
-              event.target.disabled = true;
-              handleAddEntry(entry);
-            }}
-          >
-            +
-          </StyledSubmitButton>
-        )}
-        {!showAddButton && isDictionaryEntry && (
-          <StyledSubmitButton type="button" disabled={true}>
-            ✔
-          </StyledSubmitButton>
-        )}
-        {isEditMode && (
-          <StyledSecondaryButton
-            type="button"
-            onClick={() => deleteEntry(_id, databaseMutate)}
-          >
-            X
-          </StyledSecondaryButton>
-        )}
-      </StyledSectionRightAlign>
-      <StyledJPDefinition>{japanese.word}</StyledJPDefinition>
-      <StyledUl>
-        <StyledDefinition>{japanese.reading}</StyledDefinition>
-      </StyledUl>
-      <StyledUl>
-        {english.map((definition) => (
-          <StyledDefinition key={definition}>{definition}</StyledDefinition>
-        ))}
-      </StyledUl>
-    </StyledCard>
-  );
+function Entry({ entry, handleAddEntry, isEditMode, databaseMutate }) {
+  const { _id } = entry;
+
+  if (_id) {
+    return (
+      <LinkWithoutDecoration href={`/words/${_id}`}>
+        <EntryContent
+          isEditMode={isEditMode}
+          key={entry._id}
+          entry={entry}
+          handleAddEntry={handleAddEntry}
+          databaseMutate={databaseMutate}
+        />
+      </LinkWithoutDecoration>
+    );
+  }
+
+  if (!_id) {
+    return (
+      <EntryContent
+        isEditMode={isEditMode}
+        key={entry._id}
+        entry={entry}
+        handleAddEntry={handleAddEntry}
+        databaseMutate={databaseMutate}
+      />
+    );
+  }
 }
 
 export const StyledJPDefinition = styled.h2`

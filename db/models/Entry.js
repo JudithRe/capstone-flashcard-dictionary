@@ -7,6 +7,9 @@ const entrySchema = new Schema(
     showAddButton: { type: Boolean, required: true },
     isDictionaryEntry: { type: Boolean, required: true },
     slug: { type: String, required: true },
+    isCommon: { type: Boolean },
+    jlpt: { type: String },
+    wanikani: { type: String },
     japanese: {
       type: Object,
       required: true,
