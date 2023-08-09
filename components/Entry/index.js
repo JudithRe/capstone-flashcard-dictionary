@@ -5,7 +5,7 @@ import {
   StyledSubmitButton,
 } from "../StyledComponents/StyledButtons";
 import { StyledSectionRightAlign } from "../StyledComponents/StyledSection";
-import { deleteEntry } from "@/utils/editingFunctions";
+import { deleteEntry } from "@/utils/deleteEntry";
 
 function Entry({ entry, handleAddEntry, isEditMode, databaseMutate }) {
   const { japanese, english, showAddButton, isDictionaryEntry, _id } = entry;
