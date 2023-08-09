@@ -19,10 +19,9 @@ export function handleDictionaryOutput({
       study: {
         lastReview: "new",
         stage: 0,
-        interval: 1,
+        lastWasWrongAnswer: false,
         wrongAnswerCount: 0,
         rightAnswerCount: 0,
-        ease: 2.5,
         streak: 0,
       },
     }));

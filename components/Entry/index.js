@@ -8,7 +8,13 @@ function Entry({ entry, handleAddEntry }) {
   return (
     <StyledCard>
       {showAddButton && (
-        <StyledSubmitButton type="button" onClick={() => handleAddEntry(entry)}>
+        <StyledSubmitButton
+          type="button"
+          onClick={(event) => {
+            event.target.disabled = true;
+            handleAddEntry(entry);
+          }}
+        >
           +
         </StyledSubmitButton>
       )}

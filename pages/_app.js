@@ -112,6 +112,7 @@ export default function App({ Component, pageProps }) {
       <Component
         wordList={databaseData}
         databaseIsLoading={databaseIsLoading}
+        databaseMutate={databaseMutate}
         handleAddEntry={handleAddEntry}
         query={query}
         setQuery={setQuery}
