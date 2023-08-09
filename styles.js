@@ -10,12 +10,12 @@ export default createGlobalStyle`
     --highlight-green: #5F8179;
     --dark-main: #2E2836;
     --text-color: #30343F;
-    --white: #ffffff;
+    --white: #ffffff; 
 
 /* HEIGHTS and WIDTHS */
 
---footer-height: 5rem;
---card-width: 320px;
+    --footer-height: 5rem;
+    --card-width: 360px;
 
 /* OTHER */
 

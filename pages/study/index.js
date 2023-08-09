@@ -5,9 +5,9 @@ import { MainContent } from "@/components/StyledComponents/MainContent";
 import {
   StyledCenteredButton,
   StyledSubmitButton,
-} from "@/components/StyledComponents/StyledSubmitButton";
+} from "@/components/StyledComponents/StyledButtons";
 import { generateStudyMode } from "@/utils/studyFunctions";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { styled } from "styled-components";
 
 export default function StudyPage({ wordList, databaseMutate }) {

@@ -3,7 +3,13 @@ import { StyledResultDisplay } from "../SearchResults";
 
 import { StyledSection } from "../StyledComponents/StyledSection";
 
-function EntriesContainer({ wordList, handleAddEntry, databaseIsLoading }) {
+function EntriesContainer({
+  wordList,
+  handleAddEntry,
+  databaseIsLoading,
+  isEditMode,
+  databaseMutate,
+}) {
   if (databaseIsLoading) {
     return (
       <StyledResultDisplay>Loading word list entries...</StyledResultDisplay>
@@ -17,9 +23,11 @@ function EntriesContainer({ wordList, handleAddEntry, databaseIsLoading }) {
           if (entry._id) {
             return (
               <Entry
+                isEditMode={isEditMode}
                 key={entry._id}
                 entry={entry}
                 handleAddEntry={handleAddEntry}
+                databaseMutate={databaseMutate}
               />
             );
           }

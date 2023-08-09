@@ -20,3 +20,7 @@ export const StyledSubmitButton = styled.button`
 export const StyledCenteredButton = styled(StyledSubmitButton)`
   margin: auto;
 `;
+
+export const StyledSecondaryButton = styled(StyledSubmitButton)`
+  background-color: var(--dark-main);
+`;

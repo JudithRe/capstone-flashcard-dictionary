@@ -6,4 +6,11 @@ export const StyledSection = styled.section`
   justify-content: center;
   flex-wrap: wrap;
   gap: 1rem;
+  width: 100%;
+`;
+
+export const StyledSectionRightAlign = styled(StyledSection)`
+  justify-content: flex-end;
+  justify-self: flex-end;
+  background-color: inherit;
 `;

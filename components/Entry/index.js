@@ -1,28 +1,43 @@
 import styled from "styled-components";
 import { StyledCard } from "../StyledComponents/StyledCard";
-import { StyledSubmitButton } from "../StyledComponents/StyledSubmitButton";
+import {
+  StyledSecondaryButton,
+  StyledSubmitButton,
+} from "../StyledComponents/StyledButtons";
+import { StyledSectionRightAlign } from "../StyledComponents/StyledSection";
+import { deleteEntry } from "@/utils/deleteEntry";
 
-function Entry({ entry, handleAddEntry }) {
-  const { japanese, english, showAddButton, isDictionaryEntry } = entry;
+function Entry({ entry, handleAddEntry, isEditMode, databaseMutate }) {
+  const { japanese, english, showAddButton, isDictionaryEntry, _id } = entry;
 
   return (
     <StyledCard>
-      {showAddButton && (
-        <StyledSubmitButton
-          type="button"
-          onClick={(event) => {
-            event.target.disabled = true;
-            handleAddEntry(entry);
-          }}
-        >
-          +
-        </StyledSubmitButton>
-      )}
-      {!showAddButton && isDictionaryEntry && (
-        <StyledSubmitButton type="button" disabled={true}>
-          ✔
-        </StyledSubmitButton>
-      )}
+      <StyledSectionRightAlign>
+        {showAddButton && (
+          <StyledSubmitButton
+            type="button"
+            onClick={(event) => {
+              event.target.disabled = true;
+              handleAddEntry(entry);
+            }}
+          >
+            +
+          </StyledSubmitButton>
+        )}
+        {!showAddButton && isDictionaryEntry && (
+          <StyledSubmitButton type="button" disabled={true}>
+            ✔
+          </StyledSubmitButton>
+        )}
+        {isEditMode && (
+          <StyledSecondaryButton
+            type="button"
+            onClick={() => deleteEntry(_id, databaseMutate)}
+          >
+            X
+          </StyledSecondaryButton>
+        )}
+      </StyledSectionRightAlign>
       <StyledJPDefinition>{japanese.word}</StyledJPDefinition>
       <StyledUl>
         <StyledDefinition>{japanese.reading}</StyledDefinition>

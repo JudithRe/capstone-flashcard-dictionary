@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import EntriesContainer from "../EntriesContainer";
 import DictionaryResults from "../DictionaryResults";
-import { StyledCenteredButton } from "../StyledComponents/StyledSubmitButton";
+import { StyledCenteredButton } from "../StyledComponents/StyledButtons";
 
 function SearchResults({
   searchResults,
