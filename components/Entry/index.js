@@ -1,3 +1,4 @@
+import { device } from "@/utils/globalValues";
 import styled from "styled-components";
 import { StyledCard } from "../StyledComponents/StyledCard";
 import {
@@ -15,7 +16,7 @@ function Entry({ entry, handleAddEntry, isEditMode, databaseMutate }) {
 
   if (_id) {
     return (
-      <>
+      <PositionRelativeDiv>
         <LinkWithoutDecoration href={`/words/${_id}`}>
           <StyledCard>
             <EntryContent
@@ -37,7 +38,7 @@ function Entry({ entry, handleAddEntry, isEditMode, databaseMutate }) {
             </StyledSecondaryButton>
           </StyledEditComponent>
         )}
-      </>
+      </PositionRelativeDiv>
     );
   }
 
@@ -86,8 +87,21 @@ const StyledEditComponent = styled.div`
   background-color: transparent;
   display: flex;
   flex-direction: column;
-  margin-left: -35px;
-  z-index: 15;
+  position: absolute;
+  top: 0;
+  right: -20px;
+  z-index: 1;
+
+  @media ${device.tablet} {
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    margin-left: -35px;
+  }
+`;
+
+const PositionRelativeDiv = styled.div`
+  position: relative;
 `;
 
 export const StyledJPDefinition = styled.h2`
