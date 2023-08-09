@@ -84,6 +84,5 @@ const StyledHeading3 = styled.h3`
 const StyledTag = styled.p`
   padding: 15px;
   border-radius: 25px;
-  background-color: var(--dark-main);
-  color: var(--white);
+  background-color: var(--light-grey);
 `;
