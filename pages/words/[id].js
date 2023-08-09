@@ -10,6 +10,7 @@ import {
   StyledCenterAlign,
   StyledSectionLeftAlign,
 } from "@/components/StyledComponents/StyledSection";
+import { getVisualDate } from "@/utils/helperFunctions";
 import { useRouter } from "next/router";
 
 import styled from "styled-components";
@@ -29,6 +30,7 @@ export default function WordDetail({ wordList, databaseIsLoading }) {
   const { lastReview, stage, wrongAnswerCount, rightAnswerCount, streak } =
     study;
 
+  const visualReviewDate = getVisualDate(lastReview);
   return (
     <MainContent>
       <StyledCenterAlign>
@@ -62,9 +64,11 @@ export default function WordDetail({ wordList, databaseIsLoading }) {
 
         <StyledCard>
           <StyledHeading2>Study Progress</StyledHeading2>
-          <StyledTag>Stage {stage}</StyledTag>
-          <StyledTag>Streak {streak}</StyledTag>
-          <p className="inherit-background-color">{`last review: ${lastReview}`}</p>
+          <StyledCenterAlign>
+            <StyledTag>Stage {stage}</StyledTag>
+            <StyledTag>Streak {streak}</StyledTag>
+          </StyledCenterAlign>
+          <p className="inherit-background-color">{`last review: ${visualReviewDate}`}</p>
           <p className="inherit-background-color">{`wrong: ${wrongAnswerCount} / right: ${rightAnswerCount}`}</p>
         </StyledCard>
       </StyledCenterAlign>

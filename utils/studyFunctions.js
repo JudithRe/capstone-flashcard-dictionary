@@ -47,10 +47,12 @@ function isDue(lastReview, stage) {
   }
 
   const reviewDate = new Date(lastReview);
+  console.log("reviewDate ", reviewDate);
   if (interval >= 0 && interval <= 120) {
     const dueDate = new Date(
       reviewDate.setDate(reviewDate.getDate() + interval)
     );
+    console.log("dueDate ", dueDate);
 
     if (currentDate >= dueDate) {
       return true;
@@ -158,7 +160,7 @@ function setNewStreak(streak, wasWrongAnswer) {
 
 // Determine whether to increase, decrease or decrease by 2
 function setNewStage(newStreak, stage, stageModifier) {
-  if (newStreak <= -2) {
+  if (newStreak <= -2 && stage - 2 >= 0) {
     return stage - 2;
   }
   if (newStreak > -2 && stage + stageModifier >= 0) {
