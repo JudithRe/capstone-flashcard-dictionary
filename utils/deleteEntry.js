@@ -1,3 +1,5 @@
+import { useRouter } from "next/router";
+
 // Delete entry from database
 
 export async function deleteEntry(_id, databaseMutate) {
@@ -7,7 +9,7 @@ export async function deleteEntry(_id, databaseMutate) {
 
   if (response.ok) {
     databaseMutate();
-    router.push("/words"); //to use the same function for deletion on detail page.
+    //router.push("/words"); //to use the same function for deletion on detail page.
   } else {
     console.log("There was a problem ", response.status);
   }
