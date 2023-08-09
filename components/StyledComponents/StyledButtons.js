@@ -23,5 +23,4 @@ export const StyledCenteredButton = styled(StyledSubmitButton)`
 
 export const StyledSecondaryButton = styled(StyledSubmitButton)`
   background-color: var(--dark-main);
-  z-index: 100;
 `;

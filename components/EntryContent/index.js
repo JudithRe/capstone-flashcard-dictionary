@@ -1,43 +1,10 @@
 import styled from "styled-components";
-import { StyledCard } from "../StyledComponents/StyledCard";
-import {
-  StyledSecondaryButton,
-  StyledSubmitButton,
-} from "../StyledComponents/StyledButtons";
-import { StyledSectionRightAlign } from "../StyledComponents/StyledSection";
-import { deleteEntry } from "@/utils/deleteEntry";
 
 function EntryContent({ entry, handleAddEntry, isEditMode, databaseMutate }) {
-  const { japanese, english, showAddButton, isDictionaryEntry, _id } = entry;
+  const { japanese, english } = entry;
 
   return (
-    <StyledCard>
-      <StyledSectionRightAlign>
-        {showAddButton && (
-          <StyledSubmitButton
-            type="button"
-            onClick={(event) => {
-              event.target.disabled = true;
-              handleAddEntry(entry);
-            }}
-          >
-            +
-          </StyledSubmitButton>
-        )}
-        {!showAddButton && isDictionaryEntry && (
-          <StyledSubmitButton type="button" disabled={true}>
-            ✔
-          </StyledSubmitButton>
-        )}
-        {isEditMode && (
-          <StyledSecondaryButton
-            type="button"
-            onClick={() => deleteEntry(_id, databaseMutate)}
-          >
-            X
-          </StyledSecondaryButton>
-        )}
-      </StyledSectionRightAlign>
+    <>
       <StyledJPDefinition>{japanese.word}</StyledJPDefinition>
       <StyledUl>
         <StyledDefinition>{japanese.reading}</StyledDefinition>
@@ -47,7 +14,7 @@ function EntryContent({ entry, handleAddEntry, isEditMode, databaseMutate }) {
           <StyledDefinition key={definition}>{definition}</StyledDefinition>
         ))}
       </StyledUl>
-    </StyledCard>
+    </>
   );
 }
 

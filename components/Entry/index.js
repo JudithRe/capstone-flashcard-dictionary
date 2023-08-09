@@ -11,11 +11,65 @@ import { LinkWithoutDecoration } from "../StyledComponents/LinkWithoutDecoration
 import EntryContent from "../EntryContent";
 
 function Entry({ entry, handleAddEntry, isEditMode, databaseMutate }) {
-  const { _id } = entry;
+  const { _id, showAddButton, isDictionaryEntry } = entry;
 
   if (_id) {
     return (
-      <LinkWithoutDecoration href={`/words/${_id}`}>
+      <>
+        <LinkWithoutDecoration href={`/words/${_id}`}>
+          <StyledCard>
+            <EntryContent
+              isEditMode={isEditMode}
+              key={entry._id}
+              entry={entry}
+              handleAddEntry={handleAddEntry}
+              databaseMutate={databaseMutate}
+            />
+          </StyledCard>
+        </LinkWithoutDecoration>
+        {isEditMode && (
+          <StyledEditComponent>
+            <StyledSecondaryButton
+              type="button"
+              onClick={() => deleteEntry(_id, databaseMutate)}
+            >
+              X
+            </StyledSecondaryButton>
+          </StyledEditComponent>
+        )}
+      </>
+    );
+  }
+
+  if (!_id) {
+    return (
+      <StyledCard>
+        <StyledSectionRightAlign>
+          {showAddButton && (
+            <StyledSubmitButton
+              type="button"
+              onClick={(event) => {
+                event.target.disabled = true;
+                handleAddEntry(entry);
+              }}
+            >
+              +
+            </StyledSubmitButton>
+          )}
+          {!showAddButton && isDictionaryEntry && (
+            <StyledSubmitButton type="button" disabled={true}>
+              ✔
+            </StyledSubmitButton>
+          )}
+          {isEditMode && (
+            <StyledSecondaryButton
+              type="button"
+              onClick={() => deleteEntry(_id, databaseMutate)}
+            >
+              X
+            </StyledSecondaryButton>
+          )}
+        </StyledSectionRightAlign>
         <EntryContent
           isEditMode={isEditMode}
           key={entry._id}
@@ -23,22 +77,18 @@ function Entry({ entry, handleAddEntry, isEditMode, databaseMutate }) {
           handleAddEntry={handleAddEntry}
           databaseMutate={databaseMutate}
         />
-      </LinkWithoutDecoration>
-    );
-  }
-
-  if (!_id) {
-    return (
-      <EntryContent
-        isEditMode={isEditMode}
-        key={entry._id}
-        entry={entry}
-        handleAddEntry={handleAddEntry}
-        databaseMutate={databaseMutate}
-      />
+      </StyledCard>
     );
   }
 }
+
+const StyledEditComponent = styled.div`
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  margin-left: -35px;
+  z-index: 15;
+`;
 
 export const StyledJPDefinition = styled.h2`
   background-color: inherit;
@@ -50,7 +100,6 @@ export const StyledDefinition = styled.li`
   display: inline-block;
   background-color: inherit;
   list-style-type: none;
-
   font-size: 1rem;
   &:not(:last-child)::after {
     content: " ⦁ ";
@@ -60,7 +109,6 @@ export const StyledDefinition = styled.li`
     padding-left: 0.3rem;
   }
 `;
-
 export const StyledUl = styled.ul`
   background-color: inherit;
   padding: 0;

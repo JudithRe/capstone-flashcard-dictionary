@@ -11,11 +11,11 @@ import {
   StyledSectionLeftAlign,
 } from "@/components/StyledComponents/StyledSection";
 import { useRouter } from "next/router";
-import { useState } from "react";
-import { styled } from "styled-components";
+
+import styled from "styled-components";
 
 export default function WordDetail({ wordList, databaseIsLoading }) {
-  const [isEditMode, setIsEditMode] = useState(false);
+  // const [isEditMode, setIsEditMode] = useState(false);
   const router = useRouter();
   const { id } = router.query;
 
@@ -24,6 +24,7 @@ export default function WordDetail({ wordList, databaseIsLoading }) {
   }
 
   const entryData = wordList.find(({ _id }) => _id === id);
+
   const { english, japanese, isCommon, jlpt, wanikani, study } = entryData;
   const { lastReview, stage, wrongAnswerCount, rightAnswerCount, streak } =
     study;
@@ -62,6 +63,7 @@ export default function WordDetail({ wordList, databaseIsLoading }) {
         <StyledCard>
           <StyledHeading2>Study Progress</StyledHeading2>
           <StyledTag>Stage {stage}</StyledTag>
+          <StyledTag>Streak {streak}</StyledTag>
           <p className="inherit-background-color">{`last review: ${lastReview}`}</p>
           <p className="inherit-background-color">{`wrong: ${wrongAnswerCount} / right: ${rightAnswerCount}`}</p>
         </StyledCard>
