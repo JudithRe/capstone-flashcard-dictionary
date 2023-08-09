@@ -106,22 +106,11 @@ async function handleUpdateEntryInStudyMode({
   const { _id, study } = entry;
   const { stage, wrongAnswerCount, rightAnswerCount, streak } = study;
 
-  const newStreak =
-    wasWrongAnswer && streak > 0
-      ? 0
-      : wasWrongAnswer && streak <= 0
-      ? streak - 1
-      : !wasWrongAnswer && streak < 0
-      ? 0
-      : streak + 1;
+  const newStreak = setNewStreak(streak, wasWrongAnswer);
+  console.log("new streak ", newStreak);
 
-  // Determine whether to increase, decrease or decrease by 2
-  const newStage =
-    newStreak <= -2
-      ? stage - 2
-      : newStreak > -2 && stage + stageModifier >= 0
-      ? stage + stageModifier
-      : 0;
+  const newStage = setNewStage(newStreak, stage, stageModifier);
+  console.log("new stage ", newStage);
 
   const newWrongAnswerCount = wasWrongAnswer
     ? wrongAnswerCount + 1
@@ -153,4 +142,27 @@ async function handleUpdateEntryInStudyMode({
   if (response.ok) {
     databaseMutate();
   }
+}
+
+function setNewStreak(streak, wasWrongAnswer) {
+  if ((wasWrongAnswer && streak > 0) || (!wasWrongAnswer && streak < 0)) {
+    return 0;
+  }
+
+  if (wasWrongAnswer && streak <= 0) {
+    return streak - 1;
+  }
+
+  return streak + 1;
+}
+
+// Determine whether to increase, decrease or decrease by 2
+function setNewStage(newStreak, stage, stageModifier) {
+  if (newStreak <= -2) {
+    return stage - 2;
+  }
+  if (newStreak > -2 && stage + stageModifier >= 0) {
+    return stage + stageModifier;
+  }
+  return 0;
 }

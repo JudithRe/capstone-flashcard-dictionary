@@ -23,7 +23,7 @@ export default async function handler(request, response) {
 
     await Entry.findByIdAndUpdate(id, updatedEntry);
 
-    response.status(203).json({ status: "Entry updated." });
+    response.status(200).json({ status: "Entry updated." });
     return;
   }
 
@@ -31,6 +31,6 @@ export default async function handler(request, response) {
   if (request.method === "DELETE") {
     await Entry.findByIdAndDelete(id);
 
-    response.status(203).json({ status: "Entry deleted." });
+    response.status(200).json({ status: "Entry deleted." });
   }
 }

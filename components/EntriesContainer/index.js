@@ -14,9 +14,18 @@ function EntriesContainer({ wordList, handleAddEntry, databaseIsLoading }) {
     return (
       <StyledSection>
         {wordList.map((entry) => {
+          if (entry._id) {
+            return (
+              <Entry
+                key={entry._id}
+                entry={entry}
+                handleAddEntry={handleAddEntry}
+              />
+            );
+          }
           return (
             <Entry
-              key={entry._id}
+              key={entry.slug}
               entry={entry}
               handleAddEntry={handleAddEntry}
             />
