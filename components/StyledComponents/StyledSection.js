@@ -28,6 +28,7 @@ export const StyledCenterAlign = styled.div`
   flex-wrap: wrap;
   width: 100%;
   align-items: center;
-  background-color: inherit;
+  background-color: transparent;
   gap: 0.5rem;
+  z-index: 2;
 `;

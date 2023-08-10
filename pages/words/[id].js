@@ -28,7 +28,9 @@ export default function WordDetail({
   databaseMutate,
   isDetailEditMode,
   setIsDetailEditMode,
+  setActivePage,
 }) {
+  setActivePage("word-list");
   const router = useRouter();
   const { id } = router.query;
 
@@ -70,7 +72,7 @@ export default function WordDetail({
             <StyledSecondaryButton type="button" onClick={() => router.back()}>
               Back
             </StyledSecondaryButton>
-            <StyledSubmitButton
+            <StyledSecondaryButton
               type="button"
               onClick={() => setIsDetailEditMode(true)}
             >
@@ -81,7 +83,7 @@ export default function WordDetail({
               >
                 <EditIcon height="20px" width="20px" />
               </span>
-            </StyledSubmitButton>
+            </StyledSecondaryButton>
           </StyledSectionLeftAlign>
 
           <StyledCard>

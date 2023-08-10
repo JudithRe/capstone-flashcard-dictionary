@@ -7,6 +7,7 @@ export const MainContent = styled.main`
   justify-content: center;
   gap: 1rem;
   margin-bottom: var(--footer-height);
+  z-index: 2;
 
   @media ${device.tablet} {
     margin-bottom: 0;

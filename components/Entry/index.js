@@ -143,7 +143,7 @@ const StyledEditComponent = styled.div`
   top: 0;
   padding: 10px;
   right: -30px;
-  z-index: 1;
+  z-index: 3;
 
   @media ${device.tablet} {
     margin-left: -35px;
