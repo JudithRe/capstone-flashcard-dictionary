@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import SearchResults from "../SearchResults";
 import { useEffect, useState } from "react";
+import SearchIcon from "@/assets/icons/SearchIcon";
 
 function SearchBar({
   query,
@@ -63,7 +64,15 @@ function SearchBar({
           aria-label="search-bar"
           name="searchInput"
         />
-        <StyledSearchBarButton>🔍</StyledSearchBarButton>
+        <StyledSearchBarButton>
+          <span
+            className="inherit-background-color"
+            role="img"
+            aria-label="Search"
+          >
+            <SearchIcon height="30px" width="30px" />
+          </span>
+        </StyledSearchBarButton>
       </StyledSearchBarForm>
 
       <SearchResults

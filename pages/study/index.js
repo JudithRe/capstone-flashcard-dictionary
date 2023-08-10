@@ -1,3 +1,4 @@
+import WrongIcon from "@/assets/icons/WrongIcon";
 import FlashcardBack from "@/components/FlashcardBack";
 import FlashcardFront from "@/components/FlashcardFront";
 import Heading from "@/components/PageHeading";
@@ -39,6 +40,13 @@ export default function StudyPage({ wordList, databaseMutate }) {
             type="button"
             onClick={() => setIsStudyMode(false)}
           >
+            <span
+              className="inherit-background-color"
+              role="img"
+              aria-label="exit"
+            >
+              <WrongIcon height="16px" width="16px" />
+            </span>{" "}
             End Session
           </StyledEndSessionButton>
           {isFront && studyList.length === 0 && (
@@ -79,7 +87,6 @@ const StyledEndSessionButton = styled(StyledSubmitButton)`
   &::before {
     background-color: inherit;
     color: var(--white);
-    content: "X ";
   }
 `;
 

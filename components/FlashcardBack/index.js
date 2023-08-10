@@ -2,6 +2,8 @@ import { styled } from "styled-components";
 import { StyledDefinition, StyledJPDefinition, StyledUl } from "../Entry";
 import { StyledCard } from "../StyledComponents/StyledCard";
 import { handleRightAnswer, handleWrongAnswer } from "@/utils/studyFunctions";
+import WrongIcon from "@/assets/icons/WrongIcon";
+import CorrectIcon from "@/assets/icons/CorrectIcon";
 
 function FlashcardBack({ entry, studyList, setIsFront, databaseMutate }) {
   const { japanese, english } = entry;
@@ -23,14 +25,26 @@ function FlashcardBack({ entry, studyList, setIsFront, databaseMutate }) {
             handleWrongAnswer({ studyList, setIsFront, entry, databaseMutate })
           }
         >
-          X
+          <span
+            className="inherit-background-color"
+            role="img"
+            aria-label="did not know"
+          >
+            <WrongIcon width="20px" height="20px" />
+          </span>
         </WrongAnswerButton>
         <RightAnswerButton
           onClick={() =>
             handleRightAnswer({ studyList, setIsFront, entry, databaseMutate })
           }
         >
-          ✔
+          <span
+            className="inherit-background-color"
+            role="img"
+            aria-label="did know"
+          >
+            <CorrectIcon width="20px" height="20px" />
+          </span>
         </RightAnswerButton>
       </StyledAnswerSection>
     </StyledFlashcard>
