@@ -1,9 +1,9 @@
-export default function ListIcon() {
+export default function ListIcon({ height = "40", width = "40" }) {
   return (
     <svg
       className="inherit-background-color"
-      width="40"
-      height="40"
+      width={width}
+      height={height}
       viewBox="0 0 60 60"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

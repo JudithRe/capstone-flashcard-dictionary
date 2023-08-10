@@ -4,6 +4,8 @@ import { MainContent } from "@/components/StyledComponents/MainContent";
 import { StyledSectionRightAlign } from "@/components/StyledComponents/StyledSection";
 import { StyledSecondaryButton } from "@/components/StyledComponents/StyledButtons";
 import { useState } from "react";
+import EditIcon from "@/assets/icons/EditIcon";
+import CorrectIcon from "@/assets/icons/CorrectIcon";
 
 export default function WordList({
   wordList,
@@ -20,7 +22,23 @@ export default function WordList({
           type="button"
           onClick={() => setIsEditMode(!isEditMode)}
         >
-          {!isEditMode ? "✎" : "✔"}
+          {!isEditMode ? (
+            <span
+              className="inherit-background-color"
+              role="img"
+              aria-label="edit"
+            >
+              <EditIcon height="20px" width="20px" />
+            </span>
+          ) : (
+            <span
+              className="inherit-background-color"
+              role="img"
+              aria-label="done editing"
+            >
+              <CorrectIcon height="16px" width="16px" />
+            </span>
+          )}
         </StyledSecondaryButton>
       </StyledSectionRightAlign>
       <EntriesContainer

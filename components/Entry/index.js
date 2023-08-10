@@ -10,6 +10,9 @@ import { deleteEntry } from "@/utils/deleteEntry";
 
 import { LinkWithoutDecoration } from "../StyledComponents/LinkWithoutDecoration";
 import EntryContent from "../EntryContent";
+import DeleteIcon from "@/assets/icons/DeleteIcon";
+import CorrectIcon from "@/assets/icons/CorrectIcon";
+import AddIcon from "@/assets/icons/AddIcon";
 
 function Entry({ entry, handleAddEntry, isEditMode, databaseMutate }) {
   const { _id, showAddButton, isDictionaryEntry } = entry;
@@ -34,7 +37,13 @@ function Entry({ entry, handleAddEntry, isEditMode, databaseMutate }) {
               type="button"
               onClick={() => deleteEntry(_id, databaseMutate)}
             >
-              X
+              <span
+                className="inherit-background-color"
+                role="img"
+                aria-label="delete"
+              >
+                <DeleteIcon width="16px" height="16px" />
+              </span>
             </StyledSecondaryButton>
           </StyledEditComponent>
         )}
@@ -54,12 +63,24 @@ function Entry({ entry, handleAddEntry, isEditMode, databaseMutate }) {
                 handleAddEntry(entry);
               }}
             >
-              +
+              <span
+                className="inherit-background-color"
+                role="img"
+                aria-label="add to list"
+              >
+                <AddIcon height="16px" width="16px" />
+              </span>
             </StyledSubmitButton>
           )}
           {!showAddButton && isDictionaryEntry && (
             <StyledSubmitButton type="button" disabled={true}>
-              ✔
+              <span
+                className="inherit-background-color"
+                role="img"
+                aria-label="in list already"
+              >
+                <CorrectIcon height="16px" width="16px" />
+              </span>
             </StyledSubmitButton>
           )}
           {isEditMode && (
@@ -67,7 +88,13 @@ function Entry({ entry, handleAddEntry, isEditMode, databaseMutate }) {
               type="button"
               onClick={() => deleteEntry(_id, databaseMutate)}
             >
-              X
+              <span
+                className="inherit-background-color"
+                role="img"
+                aria-label="delete"
+              >
+                <DeleteIcon width="16px" height="16px" />
+              </span>
             </StyledSecondaryButton>
           )}
         </StyledSectionRightAlign>

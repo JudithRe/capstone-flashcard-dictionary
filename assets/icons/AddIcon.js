@@ -1,9 +1,9 @@
-export default function AddIcon() {
+export default function AddIcon({ height = "40", width = "40" }) {
   return (
     <svg
       className="inherit-background-color"
-      width="40"
-      height="40"
+      width={width}
+      height={height}
       viewBox="0 0 60 60"
       xmlns="http://www.w3.org/2000/svg"
     >
