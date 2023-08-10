@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-function EntryContent({ entry, handleAddEntry, isEditMode, databaseMutate }) {
+function EntryContent({ entry }) {
   const { japanese, english } = entry;
 
   return (

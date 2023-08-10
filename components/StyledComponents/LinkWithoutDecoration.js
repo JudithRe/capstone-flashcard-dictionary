@@ -1,5 +1,5 @@
-const { default: Link } = require("next/link");
-const { styled } = require("styled-components");
+import Link from "next/link";
+import styled from "styled-components";
 
 export const LinkWithoutDecoration = styled(Link)`
   text-decoration: none;

@@ -3,6 +3,7 @@ import {
   StyledJPDefinition,
   StyledUl,
 } from "@/components/Entry";
+import { StyledResultDisplay } from "@/components/SearchResults";
 import { MainContent } from "@/components/StyledComponents/MainContent";
 import { StyledSecondaryButton } from "@/components/StyledComponents/StyledButtons";
 import { StyledCard } from "@/components/StyledComponents/StyledCard";
@@ -16,7 +17,6 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 
 export default function WordDetail({ wordList, databaseIsLoading }) {
-  // const [isEditMode, setIsEditMode] = useState(false);
   const router = useRouter();
   const { id } = router.query;
 
@@ -26,54 +26,66 @@ export default function WordDetail({ wordList, databaseIsLoading }) {
 
   const entryData = wordList.find(({ _id }) => _id === id);
 
-  const { english, japanese, isCommon, jlpt, wanikani, study } = entryData;
-  const { lastReview, stage, wrongAnswerCount, rightAnswerCount, streak } =
-    study;
+  if (!entryData) {
+    return (
+      <MainContent>
+        <StyledResultDisplay>No entry found.</StyledResultDisplay>
+      </MainContent>
+    );
+  }
 
-  const visualReviewDate = getVisualDate(lastReview);
-  return (
-    <MainContent>
-      <StyledCenterAlign>
-        <StyledSectionLeftAlign>
-          <StyledSecondaryButton type="button" onClick={() => router.back()}>
-            Back
-          </StyledSecondaryButton>
-        </StyledSectionLeftAlign>
+  if (entryData) {
+    const { english, japanese, isCommon, jlpt, wanikani, study } = entryData;
+    const { lastReview, stage, wrongAnswerCount, rightAnswerCount, streak } =
+      study;
 
-        <StyledCard>
-          <StyledJPDefinition>{japanese.word}</StyledJPDefinition>
-          <StyledUl>
-            <StyledDefinition>{japanese.reading}</StyledDefinition>
-          </StyledUl>
-          <StyledUl>
-            {english.map((definition) => (
-              <StyledDefinition key={definition}>{definition}</StyledDefinition>
-            ))}
-          </StyledUl>
-        </StyledCard>
+    const visualReviewDate = getVisualDate(lastReview);
+    return (
+      <MainContent>
+        <StyledCenterAlign>
+          <StyledSectionLeftAlign>
+            <StyledSecondaryButton type="button" onClick={() => router.back()}>
+              Back
+            </StyledSecondaryButton>
+          </StyledSectionLeftAlign>
 
-        <StyledCard>
-          <StyledHeading2>Further Information</StyledHeading2>
-          <StyledTag>{isCommon ? "Common Word" : "Not Common"}</StyledTag>
-          {(jlpt || wanikani) && <StyledHeading3>Difficulty</StyledHeading3>}
-          <StyledCenterAlign>
-            {jlpt && <StyledTag>{jlpt}</StyledTag>}
-            {wanikani && <StyledTag>{wanikani}</StyledTag>}
-          </StyledCenterAlign>
-        </StyledCard>
+          <StyledCard>
+            <StyledJPDefinition>{japanese.word}</StyledJPDefinition>
+            <StyledUl>
+              <StyledDefinition>{japanese.reading}</StyledDefinition>
+            </StyledUl>
+            <StyledUl>
+              {english.map((definition) => (
+                <StyledDefinition key={definition}>
+                  {definition}
+                </StyledDefinition>
+              ))}
+            </StyledUl>
+          </StyledCard>
 
-        <StyledCard>
-          <StyledHeading2>Study Progress</StyledHeading2>
-          <StyledCenterAlign>
-            <StyledTag>Stage {stage}</StyledTag>
-            <StyledTag>Streak {streak}</StyledTag>
-          </StyledCenterAlign>
-          <p className="inherit-background-color">{`last review: ${visualReviewDate}`}</p>
-          <p className="inherit-background-color">{`wrong: ${wrongAnswerCount} / right: ${rightAnswerCount}`}</p>
-        </StyledCard>
-      </StyledCenterAlign>
-    </MainContent>
-  );
+          <StyledCard>
+            <StyledHeading2>Further Information</StyledHeading2>
+            <StyledTag>{isCommon ? "Common Word" : "Not Common"}</StyledTag>
+            {(jlpt || wanikani) && <StyledHeading3>Difficulty</StyledHeading3>}
+            <StyledCenterAlign>
+              {jlpt && <StyledTag>{jlpt}</StyledTag>}
+              {wanikani && <StyledTag>{wanikani}</StyledTag>}
+            </StyledCenterAlign>
+          </StyledCard>
+
+          <StyledCard>
+            <StyledHeading2>Study Progress</StyledHeading2>
+            <StyledCenterAlign>
+              <StyledTag>Stage {stage}</StyledTag>
+              <StyledTag>Streak {streak}</StyledTag>
+            </StyledCenterAlign>
+            <p className="inherit-background-color">{`last review: ${visualReviewDate}`}</p>
+            <p className="inherit-background-color">{`wrong: ${wrongAnswerCount} / right: ${rightAnswerCount}`}</p>
+          </StyledCard>
+        </StyledCenterAlign>
+      </MainContent>
+    );
+  }
 }
 
 const StyledHeading2 = styled.h2`

@@ -47,12 +47,11 @@ function isDue(lastReview, stage) {
   }
 
   const reviewDate = new Date(lastReview);
-  console.log("reviewDate ", reviewDate);
+
   if (interval >= 0 && interval <= 120) {
     const dueDate = new Date(
       reviewDate.setDate(reviewDate.getDate() + interval)
     );
-    console.log("dueDate ", dueDate);
 
     if (currentDate >= dueDate) {
       return true;
@@ -109,10 +108,8 @@ async function handleUpdateEntryInStudyMode({
   const { stage, wrongAnswerCount, rightAnswerCount, streak } = study;
 
   const newStreak = setNewStreak(streak, wasWrongAnswer);
-  console.log("new streak ", newStreak);
 
   const newStage = setNewStage(newStreak, stage, stageModifier);
-  console.log("new stage ", newStage);
 
   const newWrongAnswerCount = wasWrongAnswer
     ? wrongAnswerCount + 1
