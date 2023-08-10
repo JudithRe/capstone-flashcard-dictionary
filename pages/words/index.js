@@ -12,7 +12,9 @@ export default function WordList({
   databaseIsLoading,
   databaseMutate,
   setIsDetailEditMode,
+  setActivePage,
 }) {
+  setActivePage("word-list");
   const [isEditMode, setIsEditMode] = useState(false);
 
   return (

@@ -16,12 +16,18 @@ export default function HomePage({
   dictionaryIsLoading,
   setSearchResults,
   handleAddEntry,
+  setActivePage,
 }) {
+  setActivePage("home");
   return (
     <MainContent>
       <Heading
         PageTitle={
-          <span role="h1" aria-label="Jisho Genius">
+          <span
+            className="transparent-background-color"
+            role="h1"
+            aria-label="Jisho Genius"
+          >
             <JG />
           </span>
         }

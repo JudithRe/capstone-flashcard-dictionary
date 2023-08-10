@@ -11,7 +11,8 @@ import { generateStudyMode } from "@/utils/studyFunctions";
 import { useState } from "react";
 import { styled } from "styled-components";
 
-export default function StudyPage({ wordList, databaseMutate }) {
+export default function StudyPage({ wordList, databaseMutate, setActivePage }) {
+  setActivePage("study");
   const [studyList, setStudyList] = useState([]);
   const [isStudyMode, setIsStudyMode] = useState(false);
   const [isFront, setIsFront] = useState(true);

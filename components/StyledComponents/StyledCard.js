@@ -11,4 +11,5 @@ export const StyledCard = styled.section`
   border-radius: 25px;
   box-shadow: var(--default-box-shadow);
   position: relative;
+  z-index: 2;
 `;

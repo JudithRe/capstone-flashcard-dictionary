@@ -7,8 +7,7 @@ import AddIcon from "@/assets/icons/AddIcon";
 import StudyIcon from "@/assets/icons/StudyIcon";
 import { useState } from "react";
 
-export default function Navigation() {
-  const [activePage, setActivePage] = useState("home");
+export default function Navigation({ activePage }) {
   return (
     <nav>
       <StyledNavList>

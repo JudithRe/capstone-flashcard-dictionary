@@ -25,6 +25,7 @@ export default function App({ Component, pageProps }) {
   const [searchResults, setSearchResults] = useState([]);
   const [dictionaryResults, setDictionaryResults] = useState([]);
   const [isDetailEditMode, setIsDetailEditMode] = useState(false);
+  const [activePage, setActivePage] = useState("home");
 
   // Fetching from Dictionary
   const DictionaryURL = `/api/dictionary-search/${dictionaryQuery}`;
@@ -128,9 +129,11 @@ export default function App({ Component, pageProps }) {
         dictionaryIsLoading={dictionaryIsLoading}
         setIsDetailEditMode={setIsDetailEditMode}
         isDetailEditMode={isDetailEditMode}
+        activePage={activePage}
+        setActivePage={setActivePage}
         {...pageProps}
       />
-      <Layout />
+      <Layout activePage={activePage} setActivePage={setActivePage} />
     </>
   );
 }

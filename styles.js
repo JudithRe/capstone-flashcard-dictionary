@@ -42,4 +42,8 @@ export default createGlobalStyle`
   .inherit-background-color {
   background-color: inherit;
 }
+
+.transparent-background-color {
+  background-color: transparent;
+}
 `;

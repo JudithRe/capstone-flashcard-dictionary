@@ -19,7 +19,10 @@ export const StyledSubmitButton = styled.button`
 `;
 
 export const StyledCenteredButton = styled(StyledSubmitButton)`
-  margin: auto;
+  position: absolute;
+  transform: translate(50%, -50%);
+  top: 50%;
+  right: 50%;
 `;
 
 export const StyledSecondaryButton = styled(StyledSubmitButton)`
