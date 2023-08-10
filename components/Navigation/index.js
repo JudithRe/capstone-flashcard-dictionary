@@ -71,6 +71,7 @@ const StyledNavList = styled.ul`
   padding: 2rem;
   background-color: var(--dark-main);
   list-style-type: none;
+  z-index: 5;
 
   @media ${device.tablet} {
     top: 0;

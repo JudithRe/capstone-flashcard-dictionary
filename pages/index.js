@@ -1,3 +1,4 @@
+import JG from "@/assets/icons/JG";
 import Heading from "@/components/PageHeading";
 import SearchBar from "@/components/SearchBar";
 
@@ -18,7 +19,13 @@ export default function HomePage({
 }) {
   return (
     <MainContent>
-      <Heading PageTitle="Flashcard Dictionary Capstone" />
+      <Heading
+        PageTitle={
+          <span role="h1" aria-label="Jisho Genius">
+            <JG />
+          </span>
+        }
+      />
       <SearchBar
         query={query}
         setQuery={setQuery}

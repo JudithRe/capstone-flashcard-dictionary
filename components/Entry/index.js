@@ -1,3 +1,4 @@
+import { device } from "@/utils/globalValues";
 import styled from "styled-components";
 import { StyledCard } from "../StyledComponents/StyledCard";
 import {
@@ -7,49 +8,101 @@ import {
 import { StyledSectionRightAlign } from "../StyledComponents/StyledSection";
 import { deleteEntry } from "@/utils/deleteEntry";
 
-function Entry({ entry, handleAddEntry, isEditMode, databaseMutate }) {
-  const { japanese, english, showAddButton, isDictionaryEntry, _id } = entry;
+import { LinkWithoutDecoration } from "../StyledComponents/LinkWithoutDecoration";
+import EntryContent from "../EntryContent";
 
-  return (
-    <StyledCard>
-      <StyledSectionRightAlign>
-        {showAddButton && (
-          <StyledSubmitButton
-            type="button"
-            onClick={(event) => {
-              event.target.disabled = true;
-              handleAddEntry(entry);
-            }}
-          >
-            +
-          </StyledSubmitButton>
-        )}
-        {!showAddButton && isDictionaryEntry && (
-          <StyledSubmitButton type="button" disabled={true}>
-            ✔
-          </StyledSubmitButton>
-        )}
+function Entry({ entry, handleAddEntry, isEditMode, databaseMutate }) {
+  const { _id, showAddButton, isDictionaryEntry } = entry;
+
+  if (_id) {
+    return (
+      <PositionRelativeDiv>
+        <LinkWithoutDecoration href={`/words/${_id}`}>
+          <StyledCard>
+            <EntryContent
+              isEditMode={isEditMode}
+              key={entry._id}
+              entry={entry}
+              handleAddEntry={handleAddEntry}
+              databaseMutate={databaseMutate}
+            />
+          </StyledCard>
+        </LinkWithoutDecoration>
         {isEditMode && (
-          <StyledSecondaryButton
-            type="button"
-            onClick={() => deleteEntry(_id, databaseMutate)}
-          >
-            X
-          </StyledSecondaryButton>
+          <StyledEditComponent>
+            <StyledSecondaryButton
+              type="button"
+              onClick={() => deleteEntry(_id, databaseMutate)}
+            >
+              X
+            </StyledSecondaryButton>
+          </StyledEditComponent>
         )}
-      </StyledSectionRightAlign>
-      <StyledJPDefinition>{japanese.word}</StyledJPDefinition>
-      <StyledUl>
-        <StyledDefinition>{japanese.reading}</StyledDefinition>
-      </StyledUl>
-      <StyledUl>
-        {english.map((definition) => (
-          <StyledDefinition key={definition}>{definition}</StyledDefinition>
-        ))}
-      </StyledUl>
-    </StyledCard>
-  );
+      </PositionRelativeDiv>
+    );
+  }
+
+  if (!_id) {
+    return (
+      <StyledCard>
+        <StyledSectionRightAlign>
+          {showAddButton && (
+            <StyledSubmitButton
+              type="button"
+              onClick={(event) => {
+                event.target.disabled = true;
+                handleAddEntry(entry);
+              }}
+            >
+              +
+            </StyledSubmitButton>
+          )}
+          {!showAddButton && isDictionaryEntry && (
+            <StyledSubmitButton type="button" disabled={true}>
+              ✔
+            </StyledSubmitButton>
+          )}
+          {isEditMode && (
+            <StyledSecondaryButton
+              type="button"
+              onClick={() => deleteEntry(_id, databaseMutate)}
+            >
+              X
+            </StyledSecondaryButton>
+          )}
+        </StyledSectionRightAlign>
+        <EntryContent
+          isEditMode={isEditMode}
+          key={entry._id}
+          entry={entry}
+          handleAddEntry={handleAddEntry}
+          databaseMutate={databaseMutate}
+        />
+      </StyledCard>
+    );
+  }
 }
+
+const StyledEditComponent = styled.div`
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  right: -20px;
+  z-index: 1;
+
+  @media ${device.tablet} {
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    margin-left: -35px;
+  }
+`;
+
+const PositionRelativeDiv = styled.div`
+  position: relative;
+`;
 
 export const StyledJPDefinition = styled.h2`
   background-color: inherit;
@@ -61,7 +114,6 @@ export const StyledDefinition = styled.li`
   display: inline-block;
   background-color: inherit;
   list-style-type: none;
-
   font-size: 1rem;
   &:not(:last-child)::after {
     content: " ⦁ ";
@@ -71,7 +123,6 @@ export const StyledDefinition = styled.li`
     padding-left: 0.3rem;
   }
 `;
-
 export const StyledUl = styled.ul`
   background-color: inherit;
   padding: 0;
