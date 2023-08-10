@@ -10,6 +10,6 @@ export const MainContent = styled.main`
 
   @media ${device.tablet} {
     margin-bottom: 0;
-    margin-top: var(--footer-height);
+    margin-top: 100px;
   }
 `;
