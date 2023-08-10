@@ -13,8 +13,17 @@ import EntryContent from "../EntryContent";
 import DeleteIcon from "@/assets/icons/DeleteIcon";
 import CorrectIcon from "@/assets/icons/CorrectIcon";
 import AddIcon from "@/assets/icons/AddIcon";
+import EditIcon from "@/assets/icons/EditIcon";
+import { useRouter } from "next/router";
 
-function Entry({ entry, handleAddEntry, isEditMode, databaseMutate }) {
+function Entry({
+  entry,
+  handleAddEntry,
+  isEditMode,
+  databaseMutate,
+  setIsDetailEditMode,
+}) {
+  const router = useRouter();
   const { _id, showAddButton, isDictionaryEntry } = entry;
 
   if (_id) {
@@ -45,6 +54,21 @@ function Entry({ entry, handleAddEntry, isEditMode, databaseMutate }) {
                 <DeleteIcon width="16px" height="16px" />
               </span>
             </StyledSecondaryButton>
+            <StyledSubmitButton
+              type="button"
+              onClick={() => {
+                setIsDetailEditMode(true);
+                router.push(`/words/${_id}`);
+              }}
+            >
+              <span
+                className="inherit-background-color"
+                role="img"
+                aria-label="edit"
+              >
+                <EditIcon width="16px" height="16px" />
+              </span>
+            </StyledSubmitButton>
           </StyledEditComponent>
         )}
       </PositionRelativeDiv>
@@ -115,14 +139,13 @@ const StyledEditComponent = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
+  gap: 0.3rem;
   top: 0;
-  right: -20px;
+  padding: 10px;
+  right: -30px;
   z-index: 1;
 
   @media ${device.tablet} {
-    background-color: transparent;
-    display: flex;
-    flex-direction: column;
     margin-left: -35px;
   }
 `;

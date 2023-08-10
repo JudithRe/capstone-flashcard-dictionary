@@ -71,14 +71,14 @@ function AddEntryForm({ handleAddEntry }) {
             id="reading"
             name="reading"
           />
-          <StyledSubmitButton type="submit">Add</StyledSubmitButton>
+          <StyledFormSubmitButton type="submit">Add</StyledFormSubmitButton>
         </StyledForm>
       </StyledCard>
     </StyledSection>
   );
 }
 
-const StyledForm = styled.form`
+export const StyledForm = styled.form`
   background-color: inherit;
   display: flex;
   flex-direction: column;
@@ -86,13 +86,13 @@ const StyledForm = styled.form`
   width: 100%;
 `;
 
-const StyledFormLabel = styled.label`
+export const StyledFormLabel = styled.label`
   background-color: inherit;
   margin-bottom: -5px;
   font-weight: 500;
 `;
 
-const StyledFormInput = styled.input`
+export const StyledFormInput = styled.input`
   background-color: inherit;
   padding: 10px;
   border: 1px solid var(--light-grey);
@@ -100,7 +100,7 @@ const StyledFormInput = styled.input`
   box-shadow: inset var(--inset-box-shadow);
 `;
 
-const StyledSubmitButton = styled.button`
+export const StyledFormSubmitButton = styled.button`
   align-self: flex-end;
   background-color: var(--highlight-red);
   color: var(--white);
