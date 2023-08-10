@@ -41,7 +41,7 @@ function EditingForm({
         word: japaneseInput,
         reading: reading,
       },
-      english: englishInput.split(", "),
+      english: englishInput.split(","),
       study: {
         ...previousEntry.study,
         stage: 0,
