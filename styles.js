@@ -11,6 +11,7 @@ export default createGlobalStyle`
     --dark-main: #2E2836;
     --text-color: #30343F;
     --white: #ffffff; 
+    --overlay: rgba(203, 203, 2012, 0.8);
 
 /* HEIGHTS and WIDTHS */
 

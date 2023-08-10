@@ -11,6 +11,7 @@ export default function WordList({
   wordList,
   databaseIsLoading,
   databaseMutate,
+  setIsDetailEditMode,
 }) {
   const [isEditMode, setIsEditMode] = useState(false);
 
@@ -43,6 +44,7 @@ export default function WordList({
       </StyledSectionRightAlign>
       <EntriesContainer
         isEditMode={isEditMode}
+        setIsDetailEditMode={setIsDetailEditMode}
         wordList={wordList}
         databaseIsLoading={databaseIsLoading}
         databaseMutate={databaseMutate}

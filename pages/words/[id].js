@@ -1,3 +1,5 @@
+import EditIcon from "@/assets/icons/EditIcon";
+import EditingForm from "@/components/EditingForm";
 import {
   StyledDefinition,
   StyledJPDefinition,
@@ -5,7 +7,10 @@ import {
 } from "@/components/Entry";
 import { StyledResultDisplay } from "@/components/SearchResults";
 import { MainContent } from "@/components/StyledComponents/MainContent";
-import { StyledSecondaryButton } from "@/components/StyledComponents/StyledButtons";
+import {
+  StyledSecondaryButton,
+  StyledSubmitButton,
+} from "@/components/StyledComponents/StyledButtons";
 import { StyledCard } from "@/components/StyledComponents/StyledCard";
 import {
   StyledCenterAlign,
@@ -13,10 +18,17 @@ import {
 } from "@/components/StyledComponents/StyledSection";
 import { getVisualDate } from "@/utils/helperFunctions";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 import styled from "styled-components";
 
-export default function WordDetail({ wordList, databaseIsLoading }) {
+export default function WordDetail({
+  wordList,
+  databaseIsLoading,
+  databaseMutate,
+  isDetailEditMode,
+  setIsDetailEditMode,
+}) {
   const router = useRouter();
   const { id } = router.query;
 
@@ -42,11 +54,34 @@ export default function WordDetail({ wordList, databaseIsLoading }) {
     const visualReviewDate = getVisualDate(lastReview);
     return (
       <MainContent>
+        {isDetailEditMode && (
+          <EditingForm
+            setIsDetailEditMode={setIsDetailEditMode}
+            previousEnglish={english}
+            previousJapanese={japanese.word}
+            previousReading={japanese.reading}
+            entry={entryData}
+            _id={id}
+            databaseMutate={databaseMutate}
+          />
+        )}
         <StyledCenterAlign>
           <StyledSectionLeftAlign>
             <StyledSecondaryButton type="button" onClick={() => router.back()}>
               Back
             </StyledSecondaryButton>
+            <StyledSubmitButton
+              type="button"
+              onClick={() => setIsDetailEditMode(true)}
+            >
+              <span
+                className="inherit-background-color"
+                role="img"
+                aria-label="edit"
+              >
+                <EditIcon height="20px" width="20px" />
+              </span>
+            </StyledSubmitButton>
           </StyledSectionLeftAlign>
 
           <StyledCard>
