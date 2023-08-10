@@ -5,68 +5,83 @@ import HomeIcon from "@/assets/icons/HomeIcon";
 import ListIcon from "@/assets/icons/ListIcon";
 import AddIcon from "@/assets/icons/AddIcon";
 import StudyIcon from "@/assets/icons/StudyIcon";
+import { useState } from "react";
 
 export default function Navigation() {
+  const [activePage, setActivePage] = useState("home");
   return (
     <nav>
       <StyledNavList>
-        <li className="inherit-background-color">
+        <StyledNavigationItem>
           <StyledNavigationLink href="/">
             <span
               className="inherit-background-color"
               role="img"
               aria-label="Home"
             >
-              <HomeIcon />
+              <HomeIcon
+                className="nav-transition"
+                height={activePage === "home" ? "55px" : "30px"}
+                width={activePage === "home" ? "55px" : "30px"}
+              />
             </span>
           </StyledNavigationLink>
-        </li>
-        <li className="inherit-background-color">
+        </StyledNavigationItem>
+        <StyledNavigationItem>
           <StyledNavigationLink href="/add">
             <span
               className="inherit-background-color"
               role="img"
               aria-label="Add Words"
             >
-              <AddIcon />
+              <AddIcon
+                height={activePage === "add" ? "55px" : "30px"}
+                width={activePage === "add" ? "55px" : "30px"}
+              />
             </span>
           </StyledNavigationLink>
-        </li>
-        <li className="inherit-background-color">
+        </StyledNavigationItem>
+        <StyledNavigationItem>
           <StyledNavigationLink href="/study">
             <span
               className="inherit-background-color"
               role="img"
               aria-label="Study"
             >
-              <StudyIcon />
+              <StudyIcon
+                height={activePage === "study" ? "55px" : "30px"}
+                width={activePage === "study" ? "55px" : "30px"}
+              />
             </span>
           </StyledNavigationLink>
-        </li>
-        <li className="inherit-background-color">
+        </StyledNavigationItem>
+        <StyledNavigationItem>
           <StyledNavigationLink href="/words">
             <span
               className="inherit-background-color"
               role="img"
               aria-label="Word List"
             >
-              <ListIcon />
+              <ListIcon
+                height={activePage === "word-list" ? "55px" : "30px"}
+                width={activePage === "word-list" ? "55px" : "30px"}
+              />
             </span>
           </StyledNavigationLink>
-        </li>
+        </StyledNavigationItem>
       </StyledNavList>
     </nav>
   );
 }
 
 const StyledNavList = styled.ul`
-  margin: 0;
+  margin-bottom: -2rem;
   position: fixed;
   bottom: 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   height: var(--footer-height);
   padding: 2rem;
   background-color: var(--dark-main);
@@ -74,7 +89,26 @@ const StyledNavList = styled.ul`
   z-index: 5;
 
   @media ${device.tablet} {
+    background-color: transparent;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    width: auto;
+
     top: 0;
+    left: 0;
+  }
+`;
+
+const StyledNavigationItem = styled.li`
+  padding: 15px;
+  border-radius: 50%;
+  background-color: var(--dark-main);
+
+  @media ${device.tablet} {
+    border-radius: 0 50% 50% 0;
+    margin-left: 0;
+    margin-left: -35px;
   }
 `;
 
