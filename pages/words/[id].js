@@ -16,6 +16,7 @@ import {
 } from "@/components/StyledComponents/StyledSection";
 import { getVisualDate } from "@/utils/helperFunctions";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 import styled from "styled-components";
 
@@ -27,7 +28,10 @@ export default function WordDetail({
   setIsDetailEditMode,
   setActivePage,
 }) {
-  setActivePage("word-list");
+  useEffect(() => {
+    setActivePage("word-list");
+  }, [setActivePage]);
+
   const router = useRouter();
   const { id } = router.query;
 

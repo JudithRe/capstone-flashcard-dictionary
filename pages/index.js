@@ -1,9 +1,8 @@
 import JG from "@/assets/icons/JG";
 import Heading from "@/components/PageHeading";
 import SearchBar from "@/components/SearchBar";
-
 import { MainContent } from "@/components/StyledComponents/MainContent";
-
+import { useEffect } from "react";
 export default function HomePage({
   query,
   setQuery,
@@ -18,7 +17,10 @@ export default function HomePage({
   handleAddEntry,
   setActivePage,
 }) {
-  setActivePage("home");
+  useEffect(() => {
+    setActivePage("home");
+  }, [setActivePage]);
+
   return (
     <MainContent>
       <Heading
@@ -32,6 +34,7 @@ export default function HomePage({
           </span>
         }
       />
+
       <SearchBar
         query={query}
         setQuery={setQuery}

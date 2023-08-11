@@ -10,15 +10,18 @@
     "test": "jest --watchAll"
   },
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.8",
     "mongoose": "^7.4.2",
     "next": "13.4.8",
+    "next-auth": "^4.22.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "styled-components": "^6.0.2",
     "swr": "^2.2.0",
     "unofficial-jisho-api": "^2.3.2",
+    "validator": "^13.11.0",
     "wanakana": "^5.1.0"
   },
   "devDependencies": {

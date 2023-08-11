@@ -3,7 +3,7 @@ import Heading from "@/components/PageHeading";
 import { MainContent } from "@/components/StyledComponents/MainContent";
 import { StyledSectionRightAlign } from "@/components/StyledComponents/StyledSection";
 import { StyledSecondaryButton } from "@/components/StyledComponents/StyledButtons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EditIcon from "@/assets/icons/EditIcon";
 import CorrectIcon from "@/assets/icons/CorrectIcon";
 
@@ -14,7 +14,9 @@ export default function WordList({
   setIsDetailEditMode,
   setActivePage,
 }) {
-  setActivePage("word-list");
+  useEffect(() => {
+    setActivePage("word-list");
+  }, [setActivePage]);
   const [isEditMode, setIsEditMode] = useState(false);
 
   return (

@@ -9,11 +9,14 @@ import {
   StyledSubmitButton,
 } from "@/components/StyledComponents/StyledButtons";
 import { generateStudyMode } from "@/utils/studyFunctions";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 
 export default function StudyPage({ wordList, databaseMutate, setActivePage }) {
-  setActivePage("study");
+  useEffect(() => {
+    setActivePage("study");
+  }, [setActivePage]);
+
   const [studyList, setStudyList] = useState([]);
   const [isStudyMode, setIsStudyMode] = useState(false);
   const [isFront, setIsFront] = useState(true);
