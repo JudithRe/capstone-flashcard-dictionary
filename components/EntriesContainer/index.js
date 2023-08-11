@@ -1,5 +1,6 @@
 import Entry from "../Entry";
 import { StyledResultDisplay } from "../SearchResults";
+import { FixedCenteredPosition } from "../StyledComponents/Modal";
 
 import { StyledSection } from "../StyledComponents/StyledSection";
 
@@ -14,7 +15,9 @@ function EntriesContainer({
 }) {
   if (databaseIsLoading) {
     return (
-      <StyledResultDisplay>Loading word list entries...</StyledResultDisplay>
+      <FixedCenteredPosition>
+        <StyledResultDisplay>Loading word list entries...</StyledResultDisplay>
+      </FixedCenteredPosition>
     );
   }
 
