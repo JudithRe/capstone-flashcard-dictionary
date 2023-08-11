@@ -105,7 +105,8 @@ const StyledNavigationItem = styled.li`
   background-color: var(--dark-main);
 
   @media ${device.tablet} {
-    border-radius: 0 50% 50% 0;
+    padding-left: 40px;
+    border-radius: 0 40% 40% 0;
     margin-left: 0;
     margin-left: -35px;
   }

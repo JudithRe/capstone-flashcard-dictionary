@@ -7,6 +7,7 @@ import {
 } from "@/components/Entry";
 import { StyledResultDisplay } from "@/components/SearchResults";
 import { MainContent } from "@/components/StyledComponents/MainContent";
+import { FixedCenteredPosition } from "@/components/StyledComponents/Modal";
 import {
   StyledSecondaryButton,
   StyledSubmitButton,
@@ -43,7 +44,9 @@ export default function WordDetail({
   if (!entryData) {
     return (
       <MainContent>
-        <StyledResultDisplay>No entry found.</StyledResultDisplay>
+        <FixedCenteredPosition>
+          <StyledResultDisplay>No entry found.</StyledResultDisplay>
+        </FixedCenteredPosition>
       </MainContent>
     );
   }

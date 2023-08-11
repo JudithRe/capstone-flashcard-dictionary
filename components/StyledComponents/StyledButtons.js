@@ -4,7 +4,7 @@ export const StyledSubmitButton = styled.button`
   align-self: flex-end;
   background-color: var(--highlight-red);
   color: var(--white);
-  padding: 8px 13px;
+  padding: 12px 17px;
   border: none;
   border-radius: 25px;
   box-shadow: var(--default-box-shadow);
@@ -19,10 +19,7 @@ export const StyledSubmitButton = styled.button`
 `;
 
 export const StyledCenteredButton = styled(StyledSubmitButton)`
-  position: absolute;
-  transform: translate(50%, -50%);
-  top: 50%;
-  right: 50%;
+  align-self: center;
 `;
 
 export const StyledSecondaryButton = styled(StyledSubmitButton)`
