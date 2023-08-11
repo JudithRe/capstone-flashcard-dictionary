@@ -46,4 +46,8 @@ export default createGlobalStyle`
 .transparent-background-color {
   background-color: transparent;
 }
+
+.navTransition {
+  transition: 250ms linear;
+}
 `;
