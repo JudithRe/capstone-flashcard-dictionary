@@ -85,7 +85,7 @@ const StyledStudyDisplay = styled.div`
 const StyledEndSessionButton = styled(StyledSubmitButton)`
   position: fixed;
   top: 1rem;
-  left: 1rem;
+  right: 1rem;
   background-color: var(--dark-main);
 
   &::before {

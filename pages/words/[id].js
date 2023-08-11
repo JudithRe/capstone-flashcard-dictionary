@@ -8,18 +8,14 @@ import {
 import { StyledResultDisplay } from "@/components/SearchResults";
 import { MainContent } from "@/components/StyledComponents/MainContent";
 import { FixedCenteredPosition } from "@/components/StyledComponents/Modal";
-import {
-  StyledSecondaryButton,
-  StyledSubmitButton,
-} from "@/components/StyledComponents/StyledButtons";
+import { StyledSecondaryButton } from "@/components/StyledComponents/StyledButtons";
 import { StyledCard } from "@/components/StyledComponents/StyledCard";
 import {
   StyledCenterAlign,
-  StyledSectionLeftAlign,
+  StyledSectionRightAlign,
 } from "@/components/StyledComponents/StyledSection";
 import { getVisualDate } from "@/utils/helperFunctions";
 import { useRouter } from "next/router";
-import { useState } from "react";
 
 import styled from "styled-components";
 
@@ -71,7 +67,7 @@ export default function WordDetail({
           />
         )}
         <StyledCenterAlign>
-          <StyledSectionLeftAlign>
+          <StyledSectionRightAlign>
             <StyledSecondaryButton type="button" onClick={() => router.back()}>
               Back
             </StyledSecondaryButton>
@@ -87,7 +83,7 @@ export default function WordDetail({
                 <EditIcon height="20px" width="20px" />
               </span>
             </StyledSecondaryButton>
-          </StyledSectionLeftAlign>
+          </StyledSectionRightAlign>
 
           <StyledCard>
             <StyledJPDefinition>{japanese.word}</StyledJPDefinition>
