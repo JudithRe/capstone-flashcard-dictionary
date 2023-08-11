@@ -3,6 +3,7 @@ import FlashcardBack from "@/components/FlashcardBack";
 import FlashcardFront from "@/components/FlashcardFront";
 import Heading from "@/components/PageHeading";
 import { MainContent } from "@/components/StyledComponents/MainContent";
+import { FixedCenteredPosition } from "@/components/StyledComponents/Modal";
 import {
   StyledCenteredButton,
   StyledSubmitButton,
@@ -22,17 +23,19 @@ export default function StudyPage({ wordList, databaseMutate, setActivePage }) {
       {!isStudyMode && (
         <MainContent>
           <Heading PageTitle="Study" />
-          <StyledCenteredButton
-            onClick={() =>
-              generateStudyMode({
-                wordList,
-                setStudyList,
-                setIsStudyMode,
-              })
-            }
-          >
-            START
-          </StyledCenteredButton>
+          <FixedCenteredPosition>
+            <StyledCenteredButton
+              onClick={() =>
+                generateStudyMode({
+                  wordList,
+                  setStudyList,
+                  setIsStudyMode,
+                })
+              }
+            >
+              START
+            </StyledCenteredButton>
+          </FixedCenteredPosition>
         </MainContent>
       )}
       {isStudyMode && (

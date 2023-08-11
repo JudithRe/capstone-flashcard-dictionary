@@ -1,4 +1,3 @@
-import { device } from "@/utils/globalValues";
 import styled from "styled-components";
 
 export const Modal = styled.main`
@@ -8,4 +7,11 @@ export const Modal = styled.main`
   width: 100vw;
   height: 100vh;
   z-index: 5;
+`;
+
+export const FixedCenteredPosition = styled.div`
+  position: absolute;
+  transform: translate(50%, -50%);
+  top: 50%;
+  right: 50%;
 `;
