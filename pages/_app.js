@@ -85,7 +85,7 @@ export default function App({
         databaseData.filter((entry) => entry.userId[0] === activeUser)
       );
     }
-  }, [databaseData, activeUser, databaseMutate]);
+  }, [databaseData, activeUser]);
 
   // Search Word List
   function handleSearchInput(query) {
