@@ -32,11 +32,11 @@ export default function HomePage({
   dictionaryIsLoading,
   setSearchResults,
   handleAddEntry,
-  setActivePage,
+  handleActivePage,
 }) {
   useEffect(() => {
-    setActivePage("home");
-  }, [setActivePage]);
+    handleActivePage("home");
+  }, [handleActivePage]);
 
   return (
     <>

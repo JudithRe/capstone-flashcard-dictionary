@@ -24,11 +24,11 @@ export async function getServerSideProps(context) {
 export default function AddEntries({
   handleAddEntry,
   wordList,
-  setActivePage,
+  handleActivePage,
 }) {
   useEffect(() => {
-    setActivePage("add");
-  }, [setActivePage]);
+    handleActivePage("add");
+  }, [handleActivePage]);
 
   return (
     <MainContent>

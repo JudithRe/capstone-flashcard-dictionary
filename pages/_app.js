@@ -31,6 +31,14 @@ export default function App({
   const [isDetailEditMode, setIsDetailEditMode] = useState(false);
   const [activePage, setActivePage] = useState("home");
 
+  function handleActivePage(activePage) {
+    setActivePage(activePage);
+  }
+
+  function handleDetailEditMode(boolean) {
+    setIsDetailEditMode(boolean);
+  }
+
   // Fetching from Dictionary
   const DictionaryURL = `/api/dictionary-search/${dictionaryQuery}`;
   const { data: dictionaryData, isLoading: dictionaryIsLoading } = useSWR(
@@ -132,13 +140,13 @@ export default function App({
           dictionaryResults={dictionaryResults}
           setDictionaryResults={setDictionaryResults}
           dictionaryIsLoading={dictionaryIsLoading}
-          setIsDetailEditMode={setIsDetailEditMode}
+          handleDetailEditMode={handleDetailEditMode}
           isDetailEditMode={isDetailEditMode}
           activePage={activePage}
-          setActivePage={setActivePage}
+          handleActivePage={handleActivePage}
           {...pageProps}
         />
-        <Layout activePage={activePage} setActivePage={setActivePage} />
+        <Layout activePage={activePage} handleActivePage={handleActivePage} />
       </SessionProvider>
     </>
   );

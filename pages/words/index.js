@@ -27,12 +27,12 @@ export default function WordList({
   wordList,
   databaseIsLoading,
   databaseMutate,
-  setIsDetailEditMode,
-  setActivePage,
+  handleDetailEditMode,
+  handleActivePage,
 }) {
   useEffect(() => {
-    setActivePage("word-list");
-  }, [setActivePage]);
+    handleActivePage("word-list");
+  }, [handleActivePage]);
 
   const [isEditMode, setIsEditMode] = useState(false);
 
@@ -66,7 +66,7 @@ export default function WordList({
         </StyledSectionRightAlign>
         <EntriesContainer
           isEditMode={isEditMode}
-          setIsDetailEditMode={setIsDetailEditMode}
+          handleDetailEditMode={handleDetailEditMode}
           wordList={wordList}
           databaseIsLoading={databaseIsLoading}
           databaseMutate={databaseMutate}

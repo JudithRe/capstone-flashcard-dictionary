@@ -28,10 +28,14 @@ export async function getServerSideProps(context) {
   return { props: {} };
 }
 
-export default function StudyPage({ wordList, databaseMutate, setActivePage }) {
+export default function StudyPage({
+  wordList,
+  databaseMutate,
+  handleActivePage,
+}) {
   useEffect(() => {
-    setActivePage("study");
-  }, [setActivePage]);
+    handleActivePage("study");
+  }, [handleActivePage]);
 
   const [studyList, setStudyList] = useState([]);
   const [isStudyMode, setIsStudyMode] = useState(false);

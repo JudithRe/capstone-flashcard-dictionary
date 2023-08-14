@@ -41,12 +41,12 @@ export default function WordDetail({
   databaseIsLoading,
   databaseMutate,
   isDetailEditMode,
-  setIsDetailEditMode,
-  setActivePage,
+  handleDetailEditMode,
+  handleActivePage,
 }) {
   useEffect(() => {
-    setActivePage("word-list");
-  }, [setActivePage]);
+    handleActivePage("word-list");
+  }, [handleActivePage]);
 
   const router = useRouter();
   const { id } = router.query;
@@ -77,7 +77,7 @@ export default function WordDetail({
       <MainContent>
         {isDetailEditMode && (
           <EditingForm
-            setIsDetailEditMode={setIsDetailEditMode}
+            handleDetailEditMode={handleDetailEditMode}
             previousEnglish={english}
             previousJapanese={japanese.word}
             previousReading={japanese.reading}
@@ -93,7 +93,7 @@ export default function WordDetail({
             </StyledSecondaryButton>
             <StyledSecondaryButton
               type="button"
-              onClick={() => setIsDetailEditMode(true)}
+              onClick={() => handleDetailEditMode(true)}
             >
               <span
                 className="inherit-background-color"
