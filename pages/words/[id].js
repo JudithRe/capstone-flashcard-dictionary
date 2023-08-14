@@ -57,7 +57,11 @@ export default function WordDetail({
   const { id } = router.query;
 
   if (databaseIsLoading) {
-    return <p>Loading...</p>;
+    return (
+      <FixedCenteredPosition>
+        <StyledResultDisplay>Loading...</StyledResultDisplay>
+      </FixedCenteredPosition>
+    );
   }
 
   const entryData = wordList.find(({ _id }) => _id === id);
