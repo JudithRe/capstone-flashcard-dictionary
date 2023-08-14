@@ -3,14 +3,12 @@ import User from "@/db/models/User";
 
 export default async function handler(req, res) {
   await dbConnect();
-  console.log("req.body ", req.body);
 
   if (req.method === "POST") {
     const { username } = req.body;
-    console.log("username ", username);
 
     const existingUser = await User.findOne({ username });
-    console.log("existingUser", existingUser);
+
     if (existingUser) {
       return res
         .status(418)

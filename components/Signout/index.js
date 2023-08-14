@@ -5,7 +5,7 @@ import { StyledSettingsButton } from "../StyledComponents/StyledButtons";
 
 export default function Signout() {
   const { data: session } = useSession();
-  console.log("session ", session);
+
   if (session?.user?.username) {
     return (
       <>
