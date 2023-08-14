@@ -22,7 +22,6 @@
     "styled-components": "^6.0.2",
     "swr": "^2.2.0",
     "unofficial-jisho-api": "^2.3.2",
-    "validator": "^13.11.0",
     "wanakana": "^5.1.0"
   },
   "devDependencies": {
