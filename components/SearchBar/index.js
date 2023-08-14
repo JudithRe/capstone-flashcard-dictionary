@@ -97,6 +97,7 @@ const StyledSearchBarForm = styled.form`
   background-color: var(--white);
   padding: 10px;
   border-radius: 25px;
+  z-index: 5;
   box-shadow: var(--default-box-shadow);
 `;
 

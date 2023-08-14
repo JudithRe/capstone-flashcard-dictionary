@@ -1,50 +1,37 @@
+import dbConnect from "@/db/connect";
+import User from "@/db/models/User";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import User from "@/db/models/User";
-import dbConnect from "@/db/connect";
 
 export default NextAuth({
-  // Enable JSON Web Tokens -> no stored sessions in db
   session: {
     jwt: true,
   },
 
-  // login providers
   providers: [
     CredentialsProvider({
       name: "credentials",
 
       credentials: {
-        email: { label: "Email", type: "email" },
+        username: { label: "Username", type: "text" },
         password: { label: "Password", type: "password" },
       },
 
-      // runs upon calling the signin function
       authorize: async (credentials) => {
-        await dbConnect();
+        dbConnect();
 
-        if (!dbConnect) {
-          throw new Error({ error: "No connection to database!" });
-        }
-
-        // Find the user and also return the password field
-        const user = await User.findOne({ email: credentials.email }).select(
-          "+password"
-        );
+        const user = await User.findOne({
+          username: credentials.username,
+        }).select("+password");
 
         if (!user) {
-          return res
-            .status(400)
-            .json({ message: "No user with this name! Please sign up!" });
+          throw new Error("No user with a matching username was found.");
         }
 
-        // Use the comparePassword method from User Model to authenticate
         const pwValid = await user.comparePassword(credentials.password);
 
         if (!pwValid) {
-          return res
-            .status(401)
-            .json({ message: "Password or Email is wrong!" });
+          throw new Error("Your password is invalid");
         }
 
         return user;
@@ -57,7 +44,7 @@ export default NextAuth({
       if (user) {
         token.user = {
           _id: user._id,
-          email: user.email,
+          username: user.username,
           role: user.role,
         };
       }
@@ -72,6 +59,7 @@ export default NextAuth({
     },
   },
   pages: {
-    signIn: "/signin",
+    signIn: "/login",
+    error: "/login",
   },
 });

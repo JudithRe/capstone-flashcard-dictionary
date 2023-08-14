@@ -1,33 +1,16 @@
 import dbConnect from "@/db/connect";
 import User from "@/db/models/User";
-// import handler from "@/utils/loginHandler";
-
-// handler.post(createUser);
-
-// async function createUser(req, res) {
-//   const data = req.body;
-
-//   const { email, password } = data;
-
-//   await dbConnect();
-
-//   const user = await User.create(req.body);
-
-//   res.status(201).json({ message: "Created user!" });
-// }
-
-// export default handler;
 
 export default async function handler(req, res) {
   await dbConnect();
+  console.log("req.body ", req.body);
 
   if (req.method === "POST") {
-    const { data } = req.body;
-    // const { email, password } = data;
+    const { username } = req.body;
+    console.log("username ", username);
 
-    console.log("data", data);
-
-    const existingUser = await User.findOne({ data });
+    const existingUser = await User.findOne({ username });
+    console.log("existingUser", existingUser);
     if (existingUser) {
       return res
         .status(418)

@@ -17,6 +17,7 @@ export default createGlobalStyle`
 
     --footer-height: 5rem;
     --card-width: 360px;
+  --header-height: 100px;
     --header-height-mobile: 300px;
     --header-height-desktop: 500px; 
 

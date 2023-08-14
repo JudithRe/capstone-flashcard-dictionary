@@ -11,6 +11,22 @@ import {
 import { generateStudyMode } from "@/utils/studyFunctions";
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
+import { hasToken } from "@/utils/checkUser";
+
+export async function getServerSideProps(context) {
+  const token = await hasToken(context.req);
+
+  if (!token) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+
+  return { props: {} };
+}
 
 export default function StudyPage({ wordList, databaseMutate, setActivePage }) {
   useEffect(() => {
@@ -97,7 +113,7 @@ const StyledEndSessionButton = styled(StyledSubmitButton)`
   }
 `;
 
-const StudyModal = styled.section`
+export const StudyModal = styled.section`
   position: fixed;
   background-color: var(--light-grey);
   width: 100vw;
