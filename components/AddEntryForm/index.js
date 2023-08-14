@@ -3,7 +3,7 @@ import { StyledCard } from "../StyledComponents/StyledCard";
 import { StyledSection } from "../StyledComponents/StyledSection";
 import { convertToKana } from "@/utils/helperFunctions.js";
 
-function AddEntryForm({ handleAddEntry }) {
+function AddEntryForm({ handleAddEntry, activeUser }) {
   function handleFormSubmit(event) {
     event.preventDefault();
     const form = event.target;
@@ -13,6 +13,7 @@ function AddEntryForm({ handleAddEntry }) {
 
     const { japaneseInput, reading, englishInput } = newEntry;
     const newEntryObject = {
+      userId: activeUser,
       isDictionaryEntry: false,
       slug: japaneseInput,
       japanese: {

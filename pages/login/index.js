@@ -7,9 +7,13 @@ import { FixedCenteredPosition } from "@/components/StyledComponents/Modal";
 import Heading from "@/components/PageHeading";
 import JG from "@/assets/icons/JG";
 
-function AuthPage() {
+function AuthPage({ handleActivePage }) {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
+
+  useEffect(() => {
+    handleActivePage("login");
+  }, [handleActivePage]);
 
   useEffect(() => {
     getSession().then((session) => {

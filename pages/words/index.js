@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import EditIcon from "@/assets/icons/EditIcon";
 import CorrectIcon from "@/assets/icons/CorrectIcon";
 import { hasToken } from "@/utils/checkUser";
+import { useSession } from "next-auth/react";
 
 export async function getServerSideProps(context) {
   const token = await hasToken(context.req);
@@ -29,10 +30,14 @@ export default function WordList({
   databaseMutate,
   handleDetailEditMode,
   handleActivePage,
+  handleActiveUser,
 }) {
+  const { data: session } = useSession();
+
   useEffect(() => {
     handleActivePage("word-list");
-  }, [handleActivePage]);
+    handleActiveUser(session?.user._id);
+  }, [handleActivePage, handleActiveUser, session]);
 
   const [isEditMode, setIsEditMode] = useState(false);
 

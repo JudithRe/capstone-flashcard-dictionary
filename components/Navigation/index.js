@@ -5,9 +5,11 @@ import HomeIcon from "@/assets/icons/HomeIcon";
 import ListIcon from "@/assets/icons/ListIcon";
 import AddIcon from "@/assets/icons/AddIcon";
 import StudyIcon from "@/assets/icons/StudyIcon";
-import { useState } from "react";
 
 export default function Navigation({ activePage }) {
+  if (activePage === "login") {
+    return;
+  }
   return (
     <nav>
       <StyledNavList>

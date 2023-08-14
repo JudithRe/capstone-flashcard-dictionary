@@ -11,7 +11,7 @@ export function generateStudyMode({ wordList, setStudyList, setIsStudyMode }) {
   return entriesDue;
 }
 
-function isDue(lastReview, stage) {
+export function isDue(lastReview, stage) {
   if (lastReview === "new") {
     return true;
   }

@@ -5,6 +5,7 @@ import Signout from "@/components/Signout";
 import { MainContent } from "@/components/StyledComponents/MainContent";
 import { useEffect } from "react";
 import { hasToken } from "@/utils/checkUser";
+import { useSession } from "next-auth/react";
 
 export async function getServerSideProps(context) {
   const token = await hasToken(context.req);
@@ -33,10 +34,14 @@ export default function HomePage({
   setSearchResults,
   handleAddEntry,
   handleActivePage,
+  handleActiveUser,
 }) {
+  const { data: session } = useSession();
+
   useEffect(() => {
     handleActivePage("home");
-  }, [handleActivePage]);
+    handleActiveUser(session?.user._id);
+  }, [handleActivePage, handleActiveUser, session]);
 
   return (
     <>

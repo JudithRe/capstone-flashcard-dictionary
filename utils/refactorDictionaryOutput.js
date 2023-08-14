@@ -1,9 +1,11 @@
 export function handleDictionaryOutput({
   dictionaryData,
-  databaseData: wordList,
+  wordList,
+  activeUser,
 }) {
   if (dictionaryData) {
     const structuredDictionaryObject = dictionaryData["data"].map((entry) => ({
+      userId: activeUser,
       showAddButton: true,
       isDictionaryEntry: true,
       slug: entry["slug"],
@@ -33,6 +35,7 @@ export function handleDictionaryOutput({
       const isInWordList = wordList.find(
         (wordListEntry) => wordListEntry.slug === entry.slug
       );
+
       if (isInWordList) {
         return { ...entry, showAddButton: false };
       }

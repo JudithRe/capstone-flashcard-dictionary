@@ -12,6 +12,7 @@ import { generateStudyMode } from "@/utils/studyFunctions";
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { hasToken } from "@/utils/checkUser";
+import { useSession } from "next-auth/react";
 
 export async function getServerSideProps(context) {
   const token = await hasToken(context.req);
@@ -32,10 +33,14 @@ export default function StudyPage({
   wordList,
   databaseMutate,
   handleActivePage,
+  handleActiveUser,
 }) {
+  const { data: session } = useSession();
+
   useEffect(() => {
     handleActivePage("study");
-  }, [handleActivePage]);
+    handleActiveUser(session?.user._id);
+  }, [handleActivePage, handleActiveUser, session]);
 
   const [studyList, setStudyList] = useState([]);
   const [isStudyMode, setIsStudyMode] = useState(false);
