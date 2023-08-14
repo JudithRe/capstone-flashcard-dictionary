@@ -109,7 +109,7 @@ const StyledEndSessionButton = styled(StyledSubmitButton)`
 
   &::before {
     background-color: inherit;
-    color: var(--white);
+    color: var(--dark-mode-text-color);
   }
 `;
 

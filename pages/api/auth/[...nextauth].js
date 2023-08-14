@@ -31,7 +31,7 @@ export default NextAuth({
         const pwValid = await user.comparePassword(credentials.password);
 
         if (!pwValid) {
-          throw new Error("Your password is invalid");
+          throw new Error("Wrong Password");
         }
 
         return user;

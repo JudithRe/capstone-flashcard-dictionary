@@ -103,7 +103,7 @@ export const StyledFormInput = styled.input`
 export const StyledFormSubmitButton = styled.button`
   align-self: flex-end;
   background-color: var(--highlight-red);
-  color: var(--white);
+  color: var(--dark-mode-text-color);
   padding: 10px 15px;
   border: none;
   border-radius: 25px;

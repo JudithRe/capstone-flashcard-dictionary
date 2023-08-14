@@ -19,7 +19,7 @@ function AuthForm() {
     errorMessage: "",
   });
 
-  const [isLogin, setIsLogin] = useState(true);
+  const [loginProcess, setLoginProcess] = useState(true);
   const router = useRouter();
 
   async function createUser(username, password) {
@@ -44,7 +44,7 @@ function AuthForm() {
   }
 
   function switchAuthModeHandler() {
-    setIsLogin((prevState) => !prevState);
+    setLoginProcess((prevState) => !prevState);
   }
 
   async function submitHandler(event) {
@@ -53,7 +53,7 @@ function AuthForm() {
     const enteredUsername = usernameInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
 
-    if (isLogin) {
+    if (loginProcess) {
       const loginAttempt = await signIn("credentials", {
         redirect: false,
         username: enteredUsername,
@@ -81,7 +81,7 @@ function AuthForm() {
       {!registered ? (
         <>
           <h2 className="inherit-background-color">
-            {isLogin ? "Login" : "Sign Up"}
+            {loginProcess ? "Login" : "Sign Up"}
           </h2>
           <StyledForm onSubmit={submitHandler}>
             <StyledFormLabel htmlFor="username">Username</StyledFormLabel>
@@ -104,15 +104,15 @@ function AuthForm() {
             />
 
             <StyledSubmitButton>
-              {isLogin ? "Login" : "Create Account"}
+              {loginProcess ? "Login" : "Create Account"}
             </StyledSubmitButton>
 
             <p className="inherit-background-color">
-              {isLogin ? "No Account yet?" : "Already a user?"}
+              {loginProcess ? "No Account yet?" : "Already a user?"}
             </p>
 
             <StyledSettingsButton type="button" onClick={switchAuthModeHandler}>
-              {isLogin ? "Create Account" : "Login"}
+              {loginProcess ? "Create Account" : "Log in"}
             </StyledSettingsButton>
           </StyledForm>
         </>

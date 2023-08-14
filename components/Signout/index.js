@@ -10,7 +10,7 @@ export default function Signout() {
     return (
       <>
         <StyledFixedSection>
-          <InlineParagraph>Hello {session?.user?.username}</InlineParagraph>
+          <span>Hello {session?.user?.username} </span>
           <StyledSettingsButton onClick={() => signOut()}>
             Sign Out
           </StyledSettingsButton>
@@ -20,12 +20,6 @@ export default function Signout() {
     );
   }
 }
-
-const InlineParagraph = styled.p`
-  display: inline-block;
-  background-color: transparent;
-  margin-right: 10px;
-`;
 
 const StyledCircle = styled.div`
   position: absolute;
@@ -37,7 +31,7 @@ const StyledCircle = styled.div`
   height: 300px;
   border-radius: 50%;
   background-color: var(--highlight-red);
-  color: var(--white);
+  color: var(--dark-mode-text-color);
 
   @media ${device.tablet} {
     width: 500px;

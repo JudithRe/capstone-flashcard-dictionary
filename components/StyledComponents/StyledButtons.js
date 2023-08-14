@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledSubmitButton = styled.button`
   align-self: flex-end;
   background-color: var(--highlight-red);
-  color: var(--white);
+  color: var(--dark-mode-text-color);
   padding: 12px 17px;
   border: none;
   border-radius: 25px;
@@ -31,7 +31,7 @@ export const StyledSecondaryButton = styled(StyledSubmitButton)`
 export const StyledSettingsButton = styled.button`
   align-self: flex-end;
   background-color: var(--dark-main);
-  color: var(--white);
+  color: var(--dark-mode-text-color);
   padding: 10px 15px;
   border: none;
   border-radius: 25px;
