@@ -13,7 +13,7 @@ function FlashcardFront({ entry, setIsFront }) {
 
 export const StyledFlashcardFrontButton = styled.button`
   width: var(--card-width);
-  background-color: var(--white);
+  background-color: var(--dark-mode-text-color);
   padding: 1rem;
   position: fixed;
   border-radius: 25px;

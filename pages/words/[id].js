@@ -16,18 +16,38 @@ import {
 } from "@/components/StyledComponents/StyledSection";
 import { getVisualDate } from "@/utils/helperFunctions";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 import styled from "styled-components";
+import { hasToken } from "@/utils/checkUser";
+
+export async function getServerSideProps(context) {
+  const token = await hasToken(context.req);
+
+  if (!token) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+
+  return { props: {} };
+}
 
 export default function WordDetail({
   wordList,
   databaseIsLoading,
   databaseMutate,
   isDetailEditMode,
-  setIsDetailEditMode,
-  setActivePage,
+  handleDetailEditMode,
+  handleActivePage,
 }) {
-  setActivePage("word-list");
+  useEffect(() => {
+    handleActivePage("word-list");
+  }, [handleActivePage]);
+
   const router = useRouter();
   const { id } = router.query;
 
@@ -57,7 +77,7 @@ export default function WordDetail({
       <MainContent>
         {isDetailEditMode && (
           <EditingForm
-            setIsDetailEditMode={setIsDetailEditMode}
+            handleDetailEditMode={handleDetailEditMode}
             previousEnglish={english}
             previousJapanese={japanese.word}
             previousReading={japanese.reading}
@@ -73,7 +93,7 @@ export default function WordDetail({
             </StyledSecondaryButton>
             <StyledSecondaryButton
               type="button"
-              onClick={() => setIsDetailEditMode(true)}
+              onClick={() => handleDetailEditMode(true)}
             >
               <span
                 className="inherit-background-color"

@@ -74,7 +74,7 @@ const StyledAnswerButton = styled.button`
   height: 50px;
   padding: 5px 25px;
   box-shadow: var(--default-box-shadow);
-  color: var(--white);
+  color: var(--dark-mode-text-color);
 `;
 
 const RightAnswerButton = styled(StyledAnswerButton)`

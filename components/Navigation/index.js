@@ -114,7 +114,7 @@ const StyledNavigationItem = styled.li`
 
 const StyledNavigationLink = styled(Link)`
   background-color: inherit;
-  color: var(--white);
+  color: var(--dark-mode-text-color);
   text-decoration: none;
   font-size: 1.3em;
 `;

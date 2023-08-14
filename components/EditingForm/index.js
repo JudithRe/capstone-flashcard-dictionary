@@ -11,7 +11,7 @@ import {
 import WrongIcon from "@/assets/icons/WrongIcon";
 
 function EditingForm({
-  setIsDetailEditMode,
+  handleDetailEditMode,
   previousEnglish,
   previousJapanese,
   previousReading,
@@ -27,7 +27,7 @@ function EditingForm({
     const newEntry = Object.fromEntries(formData);
 
     updateEntry(newEntry, entry);
-    setIsDetailEditMode(false);
+    handleDetailEditMode(false);
 
     form.reset();
     form.englishInput.focus();
@@ -66,7 +66,7 @@ function EditingForm({
       <StyledCenteredCard>
         <StyledSecondaryButton
           type="button"
-          onClick={() => setIsDetailEditMode(false)}
+          onClick={() => handleDetailEditMode(false)}
         >
           <span
             className="inherit-background-color"

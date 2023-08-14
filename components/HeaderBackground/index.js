@@ -15,6 +15,7 @@ const StyledCircle = styled.div`
   height: 300px;
   border-radius: 50%;
   background-color: var(--highlight-red);
+  color: var(--dark-mode-text-color);
 
   @media ${device.tablet} {
     width: 500px;

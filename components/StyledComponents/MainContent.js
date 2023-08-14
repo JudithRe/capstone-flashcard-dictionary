@@ -7,10 +7,11 @@ export const MainContent = styled.main`
   justify-content: center;
   gap: 1rem;
   margin-bottom: var(--footer-height);
+  margin-top: var(--header-height-mobile);
   z-index: 2;
 
   @media ${device.tablet} {
     margin-bottom: 0;
-    margin-top: 100px;
+    margin-top: var(--header-height-desktop);
   }
 `;

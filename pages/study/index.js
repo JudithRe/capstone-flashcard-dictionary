@@ -9,11 +9,34 @@ import {
   StyledSubmitButton,
 } from "@/components/StyledComponents/StyledButtons";
 import { generateStudyMode } from "@/utils/studyFunctions";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { styled } from "styled-components";
+import { hasToken } from "@/utils/checkUser";
 
-export default function StudyPage({ wordList, databaseMutate, setActivePage }) {
-  setActivePage("study");
+export async function getServerSideProps(context) {
+  const token = await hasToken(context.req);
+
+  if (!token) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+
+  return { props: {} };
+}
+
+export default function StudyPage({
+  wordList,
+  databaseMutate,
+  handleActivePage,
+}) {
+  useEffect(() => {
+    handleActivePage("study");
+  }, [handleActivePage]);
+
   const [studyList, setStudyList] = useState([]);
   const [isStudyMode, setIsStudyMode] = useState(false);
   const [isFront, setIsFront] = useState(true);
@@ -90,11 +113,11 @@ const StyledEndSessionButton = styled(StyledSubmitButton)`
 
   &::before {
     background-color: inherit;
-    color: var(--white);
+    color: var(--dark-mode-text-color);
   }
 `;
 
-const StudyModal = styled.section`
+export const StudyModal = styled.section`
   position: fixed;
   background-color: var(--light-grey);
   width: 100vw;

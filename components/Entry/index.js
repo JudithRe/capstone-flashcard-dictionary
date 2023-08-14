@@ -21,7 +21,7 @@ function Entry({
   handleAddEntry,
   isEditMode,
   databaseMutate,
-  setIsDetailEditMode,
+  handleDetailEditMode,
 }) {
   const router = useRouter();
   const { _id, showAddButton, isDictionaryEntry } = entry;
@@ -57,7 +57,7 @@ function Entry({
             <StyledSubmitButton
               type="button"
               onClick={() => {
-                setIsDetailEditMode(true);
+                handleDetailEditMode(true);
                 router.push(`/words/${_id}`);
               }}
             >

@@ -1,11 +1,11 @@
 import HeaderBackground from "../HeaderBackground";
 import Navigation from "../Navigation";
 
-export default function Layout({ activePage, setActivePage }) {
+export default function Layout({ activePage, handleActivePage }) {
   return (
     <>
       <HeaderBackground />
-      <Navigation activePage={activePage} setActivePage={setActivePage} />
+      <Navigation activePage={activePage} handleActivePage={handleActivePage} />
     </>
   );
 }

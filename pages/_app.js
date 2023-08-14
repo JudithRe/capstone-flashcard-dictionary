@@ -5,6 +5,7 @@ import * as wanakana from "wanakana";
 import { convertToKana } from "@/utils/helperFunctions";
 import { handleDictionaryOutput } from "@/utils/refactorDictionaryOutput";
 import useSWR from "swr";
+import { SessionProvider } from "next-auth/react";
 
 const fetcher = async (url) => {
   const response = await fetch(url);
@@ -18,7 +19,10 @@ const fetcher = async (url) => {
 
   return await response.json();
 };
-export default function App({ Component, pageProps }) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
   // States
   const [query, setQuery] = useState("");
   const [dictionaryQuery, setDictionaryQuery] = useState("");
@@ -26,6 +30,14 @@ export default function App({ Component, pageProps }) {
   const [dictionaryResults, setDictionaryResults] = useState([]);
   const [isDetailEditMode, setIsDetailEditMode] = useState(false);
   const [activePage, setActivePage] = useState("home");
+
+  function handleActivePage(activePage) {
+    setActivePage(activePage);
+  }
+
+  function handleDetailEditMode(boolean) {
+    setIsDetailEditMode(boolean);
+  }
 
   // Fetching from Dictionary
   const DictionaryURL = `/api/dictionary-search/${dictionaryQuery}`;
@@ -112,28 +124,30 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
-      <Component
-        wordList={databaseData}
-        databaseIsLoading={databaseIsLoading}
-        databaseMutate={databaseMutate}
-        handleAddEntry={handleAddEntry}
-        query={query}
-        setQuery={setQuery}
-        dictionaryQuery={dictionaryQuery}
-        setDictionaryQuery={setDictionaryQuery}
-        handleSearchInput={handleSearchInput}
-        searchResults={searchResults}
-        setSearchResults={setSearchResults}
-        dictionaryResults={dictionaryResults}
-        setDictionaryResults={setDictionaryResults}
-        dictionaryIsLoading={dictionaryIsLoading}
-        setIsDetailEditMode={setIsDetailEditMode}
-        isDetailEditMode={isDetailEditMode}
-        activePage={activePage}
-        setActivePage={setActivePage}
-        {...pageProps}
-      />
-      <Layout activePage={activePage} setActivePage={setActivePage} />
+      <SessionProvider session={session}>
+        <Component
+          wordList={databaseData}
+          databaseIsLoading={databaseIsLoading}
+          databaseMutate={databaseMutate}
+          handleAddEntry={handleAddEntry}
+          query={query}
+          setQuery={setQuery}
+          dictionaryQuery={dictionaryQuery}
+          setDictionaryQuery={setDictionaryQuery}
+          handleSearchInput={handleSearchInput}
+          searchResults={searchResults}
+          setSearchResults={setSearchResults}
+          dictionaryResults={dictionaryResults}
+          setDictionaryResults={setDictionaryResults}
+          dictionaryIsLoading={dictionaryIsLoading}
+          handleDetailEditMode={handleDetailEditMode}
+          isDetailEditMode={isDetailEditMode}
+          activePage={activePage}
+          handleActivePage={handleActivePage}
+          {...pageProps}
+        />
+        <Layout activePage={activePage} handleActivePage={handleActivePage} />
+      </SessionProvider>
     </>
   );
 }

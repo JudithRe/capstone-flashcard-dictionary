@@ -5,8 +5,12 @@ function Heading({ PageTitle }) {
 }
 
 const StyledPageHeading = styled.h1`
+  position: absolute;
+  left: 50%;
+  top: 1rem;
+  transform: translate(-50%);
   background-color: transparent;
-  color: var(--white);
+  color: var(--dark-mode-text-color);
   font-size: 2rem;
   padding: 1rem;
   text-align: center;

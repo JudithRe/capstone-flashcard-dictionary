@@ -10,15 +10,16 @@ export default createGlobalStyle`
     --highlight-green: #5F8179;
     --dark-main: #2E2836;
     --text-color: #30343F;
-    --white: #ffffff; 
+    --dark-mode-text-color: #ffffff; 
     --overlay: rgba(203, 203, 2012, 0.8);
 
 /* HEIGHTS and WIDTHS */
 
     --footer-height: 5rem;
     --card-width: 360px;
-    --header-height-mobile: 300px;
-    --header-height-desktop: 500px; 
+  --header-height: 100px;
+    --header-height-mobile: 175px;
+    --header-height-desktop: 200px; 
 
 /* OTHER */
 

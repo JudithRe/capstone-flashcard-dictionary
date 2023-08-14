@@ -11,7 +11,7 @@ function EntriesContainer({
   isEditMode,
   databaseMutate,
   isDetailEditMode,
-  setIsDetailEditMode,
+  handleDetailEditMode,
 }) {
   if (databaseIsLoading) {
     return (
@@ -30,7 +30,7 @@ function EntriesContainer({
               <Entry
                 isEditMode={isEditMode}
                 isDetailEditMode={isDetailEditMode}
-                setIsDetailEditMode={setIsDetailEditMode}
+                handleDetailEditMode={handleDetailEditMode}
                 key={entry._id}
                 entry={entry}
                 handleAddEntry={handleAddEntry}
