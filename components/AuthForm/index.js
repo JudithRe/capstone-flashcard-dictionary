@@ -9,6 +9,7 @@ import {
   StyledSubmitButton,
 } from "../StyledComponents/StyledButtons";
 import styled from "styled-components";
+import ErrorIcon from "@/assets/icons/ErrorIcon";
 
 function AuthForm() {
   const [registered, setRegistered] = useState(false);
@@ -93,7 +94,16 @@ function AuthForm() {
             />
 
             {loginError.hasError && (
-              <StyledErrorMessage>{loginError.errorMessage}</StyledErrorMessage>
+              <StyledErrorMessage>
+                <span
+                  className="inherit-background-color"
+                  role="img"
+                  aria-label="error"
+                >
+                  <ErrorIcon height="18px" width="18px" />
+                </span>
+                {loginError.errorMessage}
+              </StyledErrorMessage>
             )}
             <StyledFormLabel htmlFor="password">Password</StyledFormLabel>
             <StyledFormInput
@@ -142,7 +152,6 @@ const StyledErrorMessage = styled.p`
 
   &::before {
     background-color: inherit;
-    content: "❗️";
   }
 `;
 
