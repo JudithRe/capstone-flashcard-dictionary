@@ -78,7 +78,6 @@ function Entry({
               type="button"
               onClick={(event) => {
                 event.target.disabled = true;
-
                 handleAddEntry(entry);
               }}
             >
