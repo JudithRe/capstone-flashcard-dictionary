@@ -1,6 +1,6 @@
 export function handleDictionaryOutput({
   dictionaryData,
-  wordList,
+  databaseData,
   activeUser,
 }) {
   if (dictionaryData) {
@@ -32,7 +32,7 @@ export function handleDictionaryOutput({
     }));
 
     const checkedDictionaryOutput = structuredDictionaryObject.map((entry) => {
-      const isInWordList = wordList.find(
+      const isInWordList = databaseData.find(
         (wordListEntry) => wordListEntry.slug === entry.slug
       );
 
@@ -44,6 +44,4 @@ export function handleDictionaryOutput({
 
     return checkedDictionaryOutput;
   }
-
-  // return structuredDictionaryObject;
 }

@@ -30,16 +30,10 @@ export default function App({
   const [searchResults, setSearchResults] = useState([]);
   const [dictionaryResults, setDictionaryResults] = useState([]);
   const [isDetailEditMode, setIsDetailEditMode] = useState(false);
-  const [activePage, setActivePage] = useState("home");
-  const [activeUser, setActiveUser] = useState("");
-  const [wordList, setWordList] = useState([]);
+  const [activeUser, setActiveUser] = useState();
 
   function handleActiveUser(activeUser) {
     setActiveUser(activeUser);
-  }
-
-  function handleActivePage(activePage) {
-    setActivePage(activePage);
   }
 
   function handleDetailEditMode(boolean) {
@@ -54,7 +48,8 @@ export default function App({
   );
 
   // Fetching from database
-  const DatabaseURL = `/api/word-list/`;
+  const DatabaseURL = `/api/word-list/${activeUser ? activeUser : "loading"}`; // Only fetching data for activeUser
+
   const {
     data: databaseData,
     isLoading: databaseIsLoading,
@@ -78,46 +73,37 @@ export default function App({
     }
   }
 
-  // Get words for user only
-  useEffect(() => {
-    if (databaseData) {
-      setWordList(
-        databaseData.filter((entry) => entry.userId[0] === activeUser)
-      );
-    }
-  }, [databaseData, activeUser]);
-
   // Search Word List
   function handleSearchInput(query) {
     setSearchResults([]);
     const searchedRegex = new RegExp(query, "i");
 
-    //Check for input types
+    // Check for input types
     if (!wanakana.isKana(query)) {
-      const englishResults = wordList.filter((item) =>
+      const englishResults = databaseData.filter((item) =>
         searchedRegex.test(item.english)
       );
 
-      //Search for words that have a reading in Kana with the same spelling
+      // Search for words that have a reading in Kana with the same spelling
       const japaneseRegEx = new RegExp(convertToKana(query), "i");
-      const japaneseResults = wordList.filter((item) =>
+      const japaneseResults = databaseData.filter((item) =>
         japaneseRegEx.test(item.japanese.reading)
       );
 
       setSearchResults([...englishResults, ...japaneseResults]);
     }
 
-    //If all Kana only search Reading
+    // If all Kana only search Reading
     if (wanakana.isKana(query)) {
-      const results = wordList.filter((item) =>
+      const results = databaseData.filter((item) =>
         searchedRegex.test(item.japanese.reading)
       );
       setSearchResults(results);
     }
 
-    //If Kanjis are included search Japanese Definition
+    // If Kanjis are included search Japanese Definition
     if (wanakana.isKanji(query) || wanakana.isMixed(query)) {
-      const results = wordList.filter((item) =>
+      const results = databaseData.filter((item) =>
         searchedRegex.test(item.japanese.word)
       );
       setSearchResults(results);
@@ -131,19 +117,19 @@ export default function App({
     if (dictionaryData && databaseData) {
       const structuredOutput = handleDictionaryOutput({
         dictionaryData,
-        wordList,
+        databaseData,
         activeUser,
       });
       setDictionaryResults(structuredOutput);
     }
-  }, [dictionaryQuery, dictionaryData, databaseData, activeUser, wordList]);
+  }, [dictionaryQuery, dictionaryData, databaseData, activeUser]);
 
   return (
     <>
-      <GlobalStyle />
       <SessionProvider session={session}>
+        <GlobalStyle />
         <Component
-          wordList={wordList}
+          wordList={databaseData}
           databaseIsLoading={databaseIsLoading}
           databaseMutate={databaseMutate}
           handleAddEntry={handleAddEntry}
@@ -159,13 +145,10 @@ export default function App({
           dictionaryIsLoading={dictionaryIsLoading}
           handleDetailEditMode={handleDetailEditMode}
           isDetailEditMode={isDetailEditMode}
-          activePage={activePage}
-          handleActivePage={handleActivePage}
           activeUser={activeUser}
-          handleActiveUser={handleActiveUser}
           {...pageProps}
         />
-        <Layout activePage={activePage} handleActivePage={handleActivePage} />
+        <Layout handleActiveUser={handleActiveUser} />
       </SessionProvider>
     </>
   );

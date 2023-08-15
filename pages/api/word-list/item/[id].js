@@ -6,7 +6,6 @@ export default async function handler(request, response) {
 
   const { id } = request.query;
 
-  // In preparation for future US
   if (request.method === "GET") {
     const entry = await Entry.findById(id);
 
@@ -27,7 +26,6 @@ export default async function handler(request, response) {
     return;
   }
 
-  // In preparation for future US
   if (request.method === "DELETE") {
     await Entry.findByIdAndDelete(id);
 

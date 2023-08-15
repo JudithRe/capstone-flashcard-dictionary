@@ -16,11 +16,8 @@ import {
 } from "@/components/StyledComponents/StyledSection";
 import { getVisualDate } from "@/utils/helperFunctions";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
-
 import styled from "styled-components";
 import { hasToken } from "@/utils/checkUser";
-import { useSession } from "next-auth/react";
 
 export async function getServerSideProps(context) {
   const token = await hasToken(context.req);
@@ -43,16 +40,7 @@ export default function WordDetail({
   databaseMutate,
   isDetailEditMode,
   handleDetailEditMode,
-  handleActivePage,
-  handleActiveUser,
 }) {
-  const { data: session } = useSession();
-
-  useEffect(() => {
-    handleActivePage("word-list");
-    handleActiveUser(session?.user._id);
-  }, [handleActivePage, handleActiveUser, session]);
-
   const router = useRouter();
   const { id } = router.query;
 

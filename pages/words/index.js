@@ -3,11 +3,10 @@ import Heading from "@/components/PageHeading";
 import { MainContent } from "@/components/StyledComponents/MainContent";
 import { StyledSectionRightAlign } from "@/components/StyledComponents/StyledSection";
 import { StyledSecondaryButton } from "@/components/StyledComponents/StyledButtons";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import EditIcon from "@/assets/icons/EditIcon";
 import CorrectIcon from "@/assets/icons/CorrectIcon";
 import { hasToken } from "@/utils/checkUser";
-import { useSession } from "next-auth/react";
 
 export async function getServerSideProps(context) {
   const token = await hasToken(context.req);
@@ -29,16 +28,7 @@ export default function WordList({
   databaseIsLoading,
   databaseMutate,
   handleDetailEditMode,
-  handleActivePage,
-  handleActiveUser,
 }) {
-  const { data: session } = useSession();
-
-  useEffect(() => {
-    handleActivePage("word-list");
-    handleActiveUser(session?.user._id);
-  }, [handleActivePage, handleActiveUser, session]);
-
   const [isEditMode, setIsEditMode] = useState(false);
 
   return (

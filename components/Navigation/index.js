@@ -5,9 +5,13 @@ import HomeIcon from "@/assets/icons/HomeIcon";
 import ListIcon from "@/assets/icons/ListIcon";
 import AddIcon from "@/assets/icons/AddIcon";
 import StudyIcon from "@/assets/icons/StudyIcon";
+import { useRouter } from "next/router";
 
-export default function Navigation({ activePage }) {
-  if (activePage === "login") {
+export default function Navigation() {
+  const router = useRouter();
+  const activePath = router.pathname;
+
+  if (activePath === "/login") {
     return;
   }
   return (
@@ -22,8 +26,8 @@ export default function Navigation({ activePage }) {
             >
               <HomeIcon
                 className="nav-transition"
-                height={activePage === "home" ? "55px" : "30px"}
-                width={activePage === "home" ? "55px" : "30px"}
+                height={activePath === "/" ? "55px" : "30px"}
+                width={activePath === "/" ? "55px" : "30px"}
               />
             </span>
           </StyledNavigationLink>
@@ -36,8 +40,8 @@ export default function Navigation({ activePage }) {
               aria-label="Add Words"
             >
               <AddIcon
-                height={activePage === "add" ? "55px" : "30px"}
-                width={activePage === "add" ? "55px" : "30px"}
+                height={activePath === "/add" ? "55px" : "30px"}
+                width={activePath === "/add" ? "55px" : "30px"}
               />
             </span>
           </StyledNavigationLink>
@@ -50,8 +54,8 @@ export default function Navigation({ activePage }) {
               aria-label="Study"
             >
               <StudyIcon
-                height={activePage === "study" ? "55px" : "30px"}
-                width={activePage === "study" ? "55px" : "30px"}
+                height={activePath === "/study" ? "55px" : "30px"}
+                width={activePath === "/study" ? "55px" : "30px"}
               />
             </span>
           </StyledNavigationLink>
@@ -64,8 +68,8 @@ export default function Navigation({ activePage }) {
               aria-label="Word List"
             >
               <ListIcon
-                height={activePage === "word-list" ? "55px" : "30px"}
-                width={activePage === "word-list" ? "55px" : "30px"}
+                height={activePath === "/words" ? "55px" : "30px"}
+                width={activePath === "/words" ? "55px" : "30px"}
               />
             </span>
           </StyledNavigationLink>

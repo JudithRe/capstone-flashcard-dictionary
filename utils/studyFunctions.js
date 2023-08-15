@@ -132,7 +132,7 @@ async function handleUpdateEntryInStudyMode({
   };
 
   // Update entry in database
-  const response = await fetch(`/api/word-list/${_id}`, {
+  const response = await fetch(`/api/word-list/item/${_id}`, {
     method: "PUT",
     body: JSON.stringify(updatedEntry),
     headers: { "Content-Type": "application/json" },

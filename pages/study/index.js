@@ -9,10 +9,9 @@ import {
   StyledSubmitButton,
 } from "@/components/StyledComponents/StyledButtons";
 import { generateStudyMode } from "@/utils/studyFunctions";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { styled } from "styled-components";
 import { hasToken } from "@/utils/checkUser";
-import { useSession } from "next-auth/react";
 
 export async function getServerSideProps(context) {
   const token = await hasToken(context.req);
@@ -29,19 +28,7 @@ export async function getServerSideProps(context) {
   return { props: {} };
 }
 
-export default function StudyPage({
-  wordList,
-  databaseMutate,
-  handleActivePage,
-  handleActiveUser,
-}) {
-  const { data: session } = useSession();
-
-  useEffect(() => {
-    handleActivePage("study");
-    handleActiveUser(session?.user._id);
-  }, [handleActivePage, handleActiveUser, session]);
-
+export default function StudyPage({ wordList, databaseMutate }) {
   const [studyList, setStudyList] = useState([]);
   const [isStudyMode, setIsStudyMode] = useState(false);
   const [isFront, setIsFront] = useState(true);

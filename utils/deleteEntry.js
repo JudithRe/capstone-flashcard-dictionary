@@ -1,9 +1,7 @@
-import { useRouter } from "next/router";
-
 // Delete entry from database
 
 export async function deleteEntry(_id, databaseMutate) {
-  const response = await fetch(`/api/word-list/${_id}`, {
+  const response = await fetch(`/api/word-list/item/${_id}`, {
     method: "DELETE",
   });
 
