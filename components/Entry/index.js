@@ -31,13 +31,7 @@ function Entry({
       <PositionRelativeDiv>
         <LinkWithoutDecoration href={`/words/${_id}`}>
           <StyledCard>
-            <EntryContent
-              isEditMode={isEditMode}
-              key={entry._id}
-              entry={entry}
-              handleAddEntry={handleAddEntry}
-              databaseMutate={databaseMutate}
-            />
+            <EntryContent entry={entry} />
           </StyledCard>
         </LinkWithoutDecoration>
         {isEditMode && (
@@ -122,13 +116,7 @@ function Entry({
             </StyledSecondaryButton>
           )}
         </StyledSectionRightAlign>
-        <EntryContent
-          isEditMode={isEditMode}
-          key={entry._id}
-          entry={entry}
-          handleAddEntry={handleAddEntry}
-          databaseMutate={databaseMutate}
-        />
+        <EntryContent entry={entry} />
       </StyledCard>
     );
   }

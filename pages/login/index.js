@@ -2,10 +2,10 @@ import { useRouter } from "next/router";
 import { getSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import AuthForm from "@/components/AuthForm";
-import styled from "styled-components";
 import { FixedCenteredPosition } from "@/components/StyledComponents/Modal";
 import Heading from "@/components/PageHeading";
 import JG from "@/assets/icons/JG";
+import { StyledResultDisplay } from "@/components/SearchResults";
 
 function AuthPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -22,7 +22,24 @@ function AuthPage() {
   }, [router]);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return (
+      <>
+        <Heading
+          PageTitle={
+            <span
+              className="transparent-background-color"
+              role="h1"
+              aria-label="Jisho Genius"
+            >
+              <JG />
+            </span>
+          }
+        />
+        <FixedCenteredPosition>
+          <StyledResultDisplay>Loading...</StyledResultDisplay>
+        </FixedCenteredPosition>
+      </>
+    );
   }
 
   return (
@@ -46,12 +63,3 @@ function AuthPage() {
 }
 
 export default AuthPage;
-
-const StyledDIV = styled.div`
-  position: fixed;
-  background-color: transparent;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  z-index: 1;
-`;

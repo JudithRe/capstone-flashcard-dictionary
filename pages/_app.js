@@ -6,6 +6,7 @@ import { convertToKana } from "@/utils/helperFunctions";
 import { handleDictionaryOutput } from "@/utils/refactorDictionaryOutput";
 import useSWR from "swr";
 import { SessionProvider } from "next-auth/react";
+import {} from "next-auth/react";
 
 const fetcher = async (url) => {
   const response = await fetch(url);
@@ -29,10 +30,10 @@ export default function App({
   const [searchResults, setSearchResults] = useState([]);
   const [dictionaryResults, setDictionaryResults] = useState([]);
   const [isDetailEditMode, setIsDetailEditMode] = useState(false);
-  const [activePage, setActivePage] = useState("home");
+  const [activeUser, setActiveUser] = useState();
 
-  function handleActivePage(activePage) {
-    setActivePage(activePage);
+  function handleActiveUser(activeUser) {
+    setActiveUser(activeUser);
   }
 
   function handleDetailEditMode(boolean) {
@@ -47,7 +48,8 @@ export default function App({
   );
 
   // Fetching from database
-  const DatabaseURL = `/api/word-list/`;
+  const DatabaseURL = `/api/word-list/${activeUser ? activeUser : "loading"}`; // Only fetching data for activeUser
+
   const {
     data: databaseData,
     isLoading: databaseIsLoading,
@@ -58,7 +60,7 @@ export default function App({
   async function handleAddEntry(newEntry) {
     const entryWithoutAddButton = { ...newEntry, showAddButton: false };
 
-    const response = await fetch("/api/word-list", {
+    const response = await fetch(DatabaseURL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -76,13 +78,13 @@ export default function App({
     setSearchResults([]);
     const searchedRegex = new RegExp(query, "i");
 
-    //Check for input types
+    // Check for input types
     if (!wanakana.isKana(query)) {
       const englishResults = databaseData.filter((item) =>
         searchedRegex.test(item.english)
       );
 
-      //Search for words that have a reading in Kana with the same spelling
+      // Search for words that have a reading in Kana with the same spelling
       const japaneseRegEx = new RegExp(convertToKana(query), "i");
       const japaneseResults = databaseData.filter((item) =>
         japaneseRegEx.test(item.japanese.reading)
@@ -91,7 +93,7 @@ export default function App({
       setSearchResults([...englishResults, ...japaneseResults]);
     }
 
-    //If all Kana only search Reading
+    // If all Kana only search Reading
     if (wanakana.isKana(query)) {
       const results = databaseData.filter((item) =>
         searchedRegex.test(item.japanese.reading)
@@ -99,7 +101,7 @@ export default function App({
       setSearchResults(results);
     }
 
-    //If Kanjis are included search Japanese Definition
+    // If Kanjis are included search Japanese Definition
     if (wanakana.isKanji(query) || wanakana.isMixed(query)) {
       const results = databaseData.filter((item) =>
         searchedRegex.test(item.japanese.word)
@@ -116,15 +118,16 @@ export default function App({
       const structuredOutput = handleDictionaryOutput({
         dictionaryData,
         databaseData,
+        activeUser,
       });
       setDictionaryResults(structuredOutput);
     }
-  }, [dictionaryQuery, dictionaryData, databaseData]);
+  }, [dictionaryQuery, dictionaryData, databaseData, activeUser]);
 
   return (
     <>
-      <GlobalStyle />
       <SessionProvider session={session}>
+        <GlobalStyle />
         <Component
           wordList={databaseData}
           databaseIsLoading={databaseIsLoading}
@@ -142,11 +145,10 @@ export default function App({
           dictionaryIsLoading={dictionaryIsLoading}
           handleDetailEditMode={handleDetailEditMode}
           isDetailEditMode={isDetailEditMode}
-          activePage={activePage}
-          handleActivePage={handleActivePage}
+          activeUser={activeUser}
           {...pageProps}
         />
-        <Layout activePage={activePage} handleActivePage={handleActivePage} />
+        <Layout handleActiveUser={handleActiveUser} />
       </SessionProvider>
     </>
   );

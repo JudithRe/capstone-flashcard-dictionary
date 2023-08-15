@@ -16,8 +16,6 @@ import {
 } from "@/components/StyledComponents/StyledSection";
 import { getVisualDate } from "@/utils/helperFunctions";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
-
 import styled from "styled-components";
 import { hasToken } from "@/utils/checkUser";
 
@@ -42,17 +40,16 @@ export default function WordDetail({
   databaseMutate,
   isDetailEditMode,
   handleDetailEditMode,
-  handleActivePage,
 }) {
-  useEffect(() => {
-    handleActivePage("word-list");
-  }, [handleActivePage]);
-
   const router = useRouter();
   const { id } = router.query;
 
   if (databaseIsLoading) {
-    return <p>Loading...</p>;
+    return (
+      <FixedCenteredPosition>
+        <StyledResultDisplay>Loading...</StyledResultDisplay>
+      </FixedCenteredPosition>
+    );
   }
 
   const entryData = wordList.find(({ _id }) => _id === id);

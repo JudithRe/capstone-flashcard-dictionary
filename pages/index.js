@@ -3,7 +3,6 @@ import Heading from "@/components/PageHeading";
 import SearchBar from "@/components/SearchBar";
 import Signout from "@/components/Signout";
 import { MainContent } from "@/components/StyledComponents/MainContent";
-import { useEffect } from "react";
 import { hasToken } from "@/utils/checkUser";
 
 export async function getServerSideProps(context) {
@@ -32,12 +31,7 @@ export default function HomePage({
   dictionaryIsLoading,
   setSearchResults,
   handleAddEntry,
-  handleActivePage,
 }) {
-  useEffect(() => {
-    handleActivePage("home");
-  }, [handleActivePage]);
-
   return (
     <>
       <Heading

@@ -1,9 +1,11 @@
 export function handleDictionaryOutput({
   dictionaryData,
-  databaseData: wordList,
+  databaseData,
+  activeUser,
 }) {
   if (dictionaryData) {
     const structuredDictionaryObject = dictionaryData["data"].map((entry) => ({
+      userId: activeUser,
       showAddButton: true,
       isDictionaryEntry: true,
       slug: entry["slug"],
@@ -30,9 +32,10 @@ export function handleDictionaryOutput({
     }));
 
     const checkedDictionaryOutput = structuredDictionaryObject.map((entry) => {
-      const isInWordList = wordList.find(
+      const isInWordList = databaseData.find(
         (wordListEntry) => wordListEntry.slug === entry.slug
       );
+
       if (isInWordList) {
         return { ...entry, showAddButton: false };
       }
@@ -41,6 +44,4 @@ export function handleDictionaryOutput({
 
     return checkedDictionaryOutput;
   }
-
-  // return structuredDictionaryObject;
 }

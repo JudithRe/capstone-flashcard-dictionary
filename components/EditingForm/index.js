@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { StyledCard } from "../StyledComponents/StyledCard";
-import { StyledSection } from "../StyledComponents/StyledSection";
 import { convertToKana } from "@/utils/helperFunctions.js";
 import { Modal } from "../StyledComponents/Modal";
 import { StyledForm, StyledFormInput, StyledFormLabel } from "../AddEntryForm";
@@ -50,7 +49,7 @@ function EditingForm({
     };
 
     // Update entry in database
-    const response = await fetch(`/api/word-list/${_id}`, {
+    const response = await fetch(`/api/word-list/item/${_id}`, {
       method: "PUT",
       body: JSON.stringify(updatedEntry),
       headers: { "Content-Type": "application/json" },

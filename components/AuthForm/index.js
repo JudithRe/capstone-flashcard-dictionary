@@ -114,7 +114,7 @@ function AuthForm() {
             />
 
             <StyledSubmitButton>
-              {loginProcess ? "Login" : "Create Account"}
+              {loginProcess ? "Log in" : "Create Account"}
             </StyledSubmitButton>
 
             <p className="inherit-background-color">

@@ -28,13 +28,13 @@ function SearchBar({
     const formData = new FormData(form);
     const searchQuery = Object.fromEntries(formData);
 
-    setQuery(searchQuery.searchInput);
-    handleSearchInput(searchQuery.searchInput);
+    setQuery(searchQuery.searchInput.toLowerCase());
+    handleSearchInput(searchQuery.searchInput.toLowerCase());
     setHasEntries(true);
 
     // Search Dictionary if no searchResults in list
     if (searchResults.length === 0 && query.length > 0) {
-      setDictionaryQuery(searchQuery.searchInput);
+      setDictionaryQuery(searchQuery.searchInput.toLowerCase());
 
       setHasEntries(false);
     }
@@ -58,7 +58,9 @@ function SearchBar({
     <>
       <StyledSearchBarForm onSubmit={(event) => handleSearchBarSubmit(event)}>
         <StyledSearchBar
-          onChange={(event) => handleSearchBarOnInput(event.target.value)}
+          onChange={(event) =>
+            handleSearchBarOnInput(event.target.value.toLowerCase())
+          }
           type="text"
           placeholder="Search... (hit enter to search the dictionary)"
           aria-label="search-bar"

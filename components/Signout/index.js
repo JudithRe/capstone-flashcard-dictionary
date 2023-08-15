@@ -10,7 +10,9 @@ export default function Signout() {
     return (
       <>
         <StyledFixedSection>
-          <span>Hello {session?.user?.username} </span>
+          <span className="transparent-background-color">
+            Hello {session?.user?.username}{" "}
+          </span>
           <StyledSettingsButton onClick={() => signOut()}>
             Sign Out
           </StyledSettingsButton>
