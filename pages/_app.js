@@ -60,7 +60,7 @@ export default function App({
   async function handleAddEntry(newEntry) {
     const entryWithoutAddButton = { ...newEntry, showAddButton: false };
 
-    const response = await fetch("/api/word-list", {
+    const response = await fetch(DatabaseURL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
