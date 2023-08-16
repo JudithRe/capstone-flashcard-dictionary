@@ -65,7 +65,20 @@ function AuthForm() {
         router.replace("/");
       }
       if (!loginAttempt.ok) {
-        setLoginError({ hasError: true, errorMessage: loginAttempt.error });
+        const errorMessage = loginAttempt.error;
+        if (
+          errorMessage.includes("Password") ||
+          errorMessage.includes("This username is already") ||
+          errorMessage.includes("user with a matching username")
+        ) {
+          setLoginError({ hasError: true, errorMessage: loginAttempt.error });
+          return;
+        }
+
+        setLoginError({
+          hasError: true,
+          errorMessage: "Still loading. Please wait a minute and try again.",
+        });
       }
     } else {
       try {
