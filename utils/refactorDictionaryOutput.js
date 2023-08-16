@@ -5,7 +5,7 @@ export function handleDictionaryOutput({
 }) {
   if (dictionaryData) {
     const structuredDictionaryObject = dictionaryData["data"].map((entry) => ({
-      userId: activeUser,
+      userId: activeUser._id,
       showAddButton: true,
       isDictionaryEntry: true,
       slug: entry["slug"],

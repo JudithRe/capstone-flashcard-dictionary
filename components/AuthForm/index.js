@@ -26,7 +26,7 @@ function AuthForm() {
   async function createUser(username, password) {
     const response = await fetch("/api/auth/signup", {
       method: "POST",
-      body: JSON.stringify({ username, password, role: "user" }),
+      body: JSON.stringify({ username, password, role: "user", streak: 0 }),
       headers: {
         "Content-Type": "application/json",
       },

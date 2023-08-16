@@ -1,25 +1,21 @@
 import styled from "styled-components";
-import SearchResults from "../SearchResults";
-import { useEffect, useState } from "react";
+
 import SearchIcon from "@/assets/icons/SearchIcon";
+import { useRouter } from "next/router";
 
 function SearchBar({
   query,
   setQuery,
-  dictionaryQuery,
   setDictionaryQuery,
   handleSearchInput,
   searchResults,
-  setSearchResults,
-  setDictionaryResults,
-  dictionaryResults,
-  dictionaryIsLoading,
-  handleAddEntry,
+  // setSearchResults,
+  setHasEntries,
 }) {
-  const [hasEntries, setHasEntries] = useState(false);
-  useEffect(() => {
-    setSearchResults(searchResults);
-  }, [searchResults, setSearchResults]);
+  const router = useRouter();
+  // useEffect(() => {
+  //   setSearchResults(searchResults);
+  // }, [searchResults, setSearchResults]);
 
   function handleSearchBarSubmit(event) {
     event.preventDefault();
@@ -39,28 +35,13 @@ function SearchBar({
       setHasEntries(false);
     }
 
-    form.reset();
-  }
-
-  // OnChange should still look up the words
-  function handleSearchBarOnInput(query) {
-    // Empty useStates before searching for new word
-    setDictionaryQuery("");
-    setSearchResults([]);
-    setDictionaryResults([]);
-
-    // search in word List
-    setQuery(query);
-    handleSearchInput(query);
+    router.push("/search");
   }
 
   return (
     <>
       <StyledSearchBarForm onSubmit={(event) => handleSearchBarSubmit(event)}>
         <StyledSearchBar
-          onChange={(event) =>
-            handleSearchBarOnInput(event.target.value.toLowerCase())
-          }
           type="text"
           placeholder="Search... (hit enter to search the dictionary)"
           aria-label="search-bar"
@@ -76,18 +57,6 @@ function SearchBar({
           </span>
         </StyledSearchBarButton>
       </StyledSearchBarForm>
-
-      <SearchResults
-        searchResults={searchResults}
-        query={query}
-        dictionaryQuery={dictionaryQuery}
-        setDictionaryQuery={setDictionaryQuery}
-        dictionaryResults={dictionaryResults}
-        dictionaryIsLoading={dictionaryIsLoading}
-        hasEntries={hasEntries}
-        setHasEntries={setHasEntries}
-        handleAddEntry={handleAddEntry}
-      />
     </>
   );
 }

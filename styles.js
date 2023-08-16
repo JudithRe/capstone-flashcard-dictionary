@@ -27,11 +27,14 @@ export default createGlobalStyle`
     --inset-box-shadow: 1px 1px 5px -1px #969496;
   }
   
+
+  * {
+  background-color: var(--light-grey);
+  }
   *,
   *::before,
   *::after {
     box-sizing: border-box;
-    background-color: var(--light-grey);
     color: var(--text-color);
   }
 

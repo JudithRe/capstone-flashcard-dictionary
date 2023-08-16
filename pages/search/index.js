@@ -1,11 +1,7 @@
 import JG from "@/assets/icons/JG";
-import SearchBar from "@/components/OnPageSearchBar";
 import Heading from "@/components/PageHeading";
-
-import Signout from "@/components/Signout";
-import StudyDisplay from "@/components/StudyDisplay";
+import SearchComponent from "@/components/SearchComponent";
 import { MainContent } from "@/components/StyledComponents/MainContent";
-import { StyledCenterAlign } from "@/components/StyledComponents/StyledSection";
 import { hasToken } from "@/utils/checkUser";
 
 export async function getServerSideProps(context) {
@@ -22,8 +18,7 @@ export async function getServerSideProps(context) {
 
   return { props: {} };
 }
-export default function HomePage({
-  wordList,
+export default function Search({
   query,
   setQuery,
   dictionaryQuery,
@@ -35,8 +30,7 @@ export default function HomePage({
   dictionaryIsLoading,
   setSearchResults,
   handleAddEntry,
-  activeUser,
-
+  hasEntries,
   setHasEntries,
 }) {
   return (
@@ -53,7 +47,7 @@ export default function HomePage({
         }
       />
       <MainContent>
-        <SearchBar
+        <SearchComponent
           query={query}
           setQuery={setQuery}
           dictionaryQuery={dictionaryQuery}
@@ -65,12 +59,9 @@ export default function HomePage({
           dictionaryResults={dictionaryResults}
           dictionaryIsLoading={dictionaryIsLoading}
           handleAddEntry={handleAddEntry}
+          hasEntries={hasEntries}
           setHasEntries={setHasEntries}
         />
-        <StyledCenterAlign>
-          <StudyDisplay wordList={wordList} activeUser={activeUser} />
-        </StyledCenterAlign>
-        <Signout />
       </MainContent>
     </>
   );

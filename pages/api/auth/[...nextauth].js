@@ -46,6 +46,8 @@ export default NextAuth({
           _id: user._id,
           username: user.username,
           role: user.role,
+          streak: user.streak,
+          lastUpdate: user.lastStreakUpdate,
         };
       }
       return token;

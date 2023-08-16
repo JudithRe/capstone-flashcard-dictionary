@@ -30,10 +30,19 @@ export default function App({
   const [searchResults, setSearchResults] = useState([]);
   const [dictionaryResults, setDictionaryResults] = useState([]);
   const [isDetailEditMode, setIsDetailEditMode] = useState(false);
-  const [activeUser, setActiveUser] = useState();
+  const [activeUser, setActiveUser] = useState({
+    _id: "default",
+    streak: 0,
+    lastStreakUpdate: 0,
+  });
+  const [hasEntries, setHasEntries] = useState(false);
 
-  function handleActiveUser(activeUser) {
-    setActiveUser(activeUser);
+  function handleActiveUser(activeUserId, streak, update) {
+    setActiveUser({
+      _id: activeUserId,
+      streak: streak,
+      lastStreakUpdate: update,
+    });
   }
 
   function handleDetailEditMode(boolean) {
@@ -48,7 +57,9 @@ export default function App({
   );
 
   // Fetching from database
-  const DatabaseURL = `/api/word-list/${activeUser ? activeUser : "loading"}`; // Only fetching data for activeUser
+  const DatabaseURL = `/api/word-list/${
+    activeUser._id ? activeUser._id : "loading"
+  }`; // Only fetching data for activeUser
 
   const {
     data: databaseData,
@@ -146,6 +157,8 @@ export default function App({
           handleDetailEditMode={handleDetailEditMode}
           isDetailEditMode={isDetailEditMode}
           activeUser={activeUser}
+          hasEntries={hasEntries}
+          setHasEntries={setHasEntries}
           {...pageProps}
         />
         <Layout handleActiveUser={handleActiveUser} />

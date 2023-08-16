@@ -6,6 +6,7 @@ import ListIcon from "@/assets/icons/ListIcon";
 import AddIcon from "@/assets/icons/AddIcon";
 import StudyIcon from "@/assets/icons/StudyIcon";
 import { useRouter } from "next/router";
+import SearchIcon from "@/assets/icons/SearchIcon";
 
 export default function Navigation() {
   const router = useRouter();
@@ -28,6 +29,22 @@ export default function Navigation() {
                 className="nav-transition"
                 height={activePath === "/" ? "55px" : "30px"}
                 width={activePath === "/" ? "55px" : "30px"}
+              />
+            </span>
+          </StyledNavigationLink>
+        </StyledNavigationItem>
+        <StyledNavigationItem>
+          <StyledNavigationLink href="/search">
+            <span
+              className="inherit-background-color"
+              role="img"
+              aria-label="Search"
+            >
+              <SearchIcon
+                className="nav-transition"
+                height={activePath === "/search" ? "55px" : "30px"}
+                width={activePath === "/search" ? "55px" : "30px"}
+                color="white"
               />
             </span>
           </StyledNavigationLink>
@@ -88,7 +105,7 @@ const StyledNavList = styled.ul`
   justify-content: space-between;
   align-items: flex-end;
   height: var(--footer-height);
-  padding: 2rem;
+  padding: 2rem 0.5rem;
   background-color: var(--dark-main);
   list-style-type: none;
   z-index: 5;
