@@ -9,13 +9,9 @@ function SearchBar({
   setDictionaryQuery,
   handleSearchInput,
   searchResults,
-  // setSearchResults,
   setHasEntries,
 }) {
   const router = useRouter();
-  // useEffect(() => {
-  //   setSearchResults(searchResults);
-  // }, [searchResults, setSearchResults]);
 
   function handleSearchBarSubmit(event) {
     event.preventDefault();
@@ -43,7 +39,7 @@ function SearchBar({
       <StyledSearchBarForm onSubmit={(event) => handleSearchBarSubmit(event)}>
         <StyledSearchBar
           type="text"
-          placeholder="Search... (hit enter to search the dictionary)"
+          placeholder="Search..."
           aria-label="search-bar"
           name="searchInput"
         />
