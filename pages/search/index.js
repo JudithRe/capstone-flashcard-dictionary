@@ -20,18 +20,18 @@ export async function getServerSideProps(context) {
 }
 export default function Search({
   query,
-  setQuery,
+  handleSetQuery,
   dictionaryQuery,
-  setDictionaryQuery,
+  handleSetDictionaryQuery,
   searchResults,
   handleSearchInput,
-  setDictionaryResults,
+  handleSetDictionaryResults,
   dictionaryResults,
   dictionaryIsLoading,
-  setSearchResults,
+  handleSearchResults,
   handleAddEntry,
   hasEntries,
-  setHasEntries,
+  handleHasEntries,
 }) {
   return (
     <>
@@ -49,18 +49,18 @@ export default function Search({
       <MainContent>
         <SearchComponent
           query={query}
-          setQuery={setQuery}
+          handleSetQuery={handleSetQuery}
           dictionaryQuery={dictionaryQuery}
-          setDictionaryQuery={setDictionaryQuery}
+          handleSetDictionaryQuery={handleSetDictionaryQuery}
           handleSearchInput={handleSearchInput}
           searchResults={searchResults}
-          setSearchResults={setSearchResults}
-          setDictionaryResults={setDictionaryResults}
+          handleSearchResults={handleSearchResults}
+          handleSetDictionaryResults={handleSetDictionaryResults}
           dictionaryResults={dictionaryResults}
           dictionaryIsLoading={dictionaryIsLoading}
           handleAddEntry={handleAddEntry}
           hasEntries={hasEntries}
-          setHasEntries={setHasEntries}
+          handleHasEntries={handleHasEntries}
         />
       </MainContent>
     </>

@@ -5,22 +5,22 @@ import SearchIcon from "@/assets/icons/SearchIcon";
 
 function SearchComponent({
   query,
-  setQuery,
+  handleSetQuery,
   dictionaryQuery,
-  setDictionaryQuery,
+  handleSetDictionaryQuery,
   handleSearchInput,
   searchResults,
-  setSearchResults,
-  setDictionaryResults,
+  handleSearchResults,
+  handleSetDictionaryResults,
   dictionaryResults,
   dictionaryIsLoading,
   handleAddEntry,
   hasEntries,
-  setHasEntries,
+  handleHasEntries,
 }) {
   useEffect(() => {
-    setSearchResults(searchResults);
-  }, [searchResults, setSearchResults]);
+    handleSearchResults(searchResults);
+  }, [searchResults, handleSearchResults]);
 
   function handleSearchBarSubmit(event) {
     event.preventDefault();
@@ -29,15 +29,15 @@ function SearchComponent({
     const formData = new FormData(form);
     const searchQuery = Object.fromEntries(formData);
 
-    setQuery(searchQuery.searchInput.toLowerCase());
+    handleSetQuery(searchQuery.searchInput.toLowerCase());
     handleSearchInput(searchQuery.searchInput.toLowerCase());
-    setHasEntries(true);
+    handleHasEntries(true);
 
     // Search Dictionary if no searchResults in list
     if (searchResults.length === 0 && query.length > 0) {
-      setDictionaryQuery(searchQuery.searchInput.toLowerCase());
+      handleSetDictionaryQuery(searchQuery.searchInput.toLowerCase());
 
-      setHasEntries(false);
+      handleHasEntries(false);
     }
 
     form.reset();
@@ -46,12 +46,12 @@ function SearchComponent({
   // OnChange should still look up the words
   function handleSearchBarOnInput(query) {
     // Empty useStates before searching for new word
-    setDictionaryQuery("");
-    setSearchResults([]);
-    setDictionaryResults([]);
+    handleSetDictionaryQuery("");
+    handleSearchResults([]);
+    handleSetDictionaryResults([]);
 
     // search in word List
-    setQuery(query);
+    handleSetQuery(query);
     handleSearchInput(query);
   }
 
@@ -82,11 +82,11 @@ function SearchComponent({
         searchResults={searchResults}
         query={query}
         dictionaryQuery={dictionaryQuery}
-        setDictionaryQuery={setDictionaryQuery}
+        handleSetDictionaryQuery={handleSetDictionaryQuery}
         dictionaryResults={dictionaryResults}
         dictionaryIsLoading={dictionaryIsLoading}
         hasEntries={hasEntries}
-        setHasEntries={setHasEntries}
+        handleHasEntries={handleHasEntries}
         handleAddEntry={handleAddEntry}
       />
     </>

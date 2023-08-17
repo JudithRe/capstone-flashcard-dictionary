@@ -37,6 +37,25 @@ export default function App({
   });
   const [hasEntries, setHasEntries] = useState(false);
 
+  function handleSetDictionaryResults(dictionaryResults) {
+    setDictionaryResults(dictionaryResults);
+  }
+
+  function handleSearchResults(searchResults) {
+    setSearchResults(searchResults);
+  }
+
+  function handleSetDictionaryQuery(queryText) {
+    setDictionaryQuery(queryText);
+  }
+
+  function handleHasEntries(boolean) {
+    setHasEntries(boolean);
+  }
+
+  function handleSetQuery(queryText) {
+    setQuery(queryText);
+  }
   function handleActiveUser(activeUserId, streak, update) {
     setActiveUser({
       _id: activeUserId,
@@ -86,7 +105,7 @@ export default function App({
 
   // Search Word List
   function handleSearchInput(query) {
-    setSearchResults([]);
+    handleSearchResults([]);
     const searchedRegex = new RegExp(query, "i");
 
     // Check for input types
@@ -101,7 +120,7 @@ export default function App({
         japaneseRegEx.test(item.japanese.reading)
       );
 
-      setSearchResults([...englishResults, ...japaneseResults]);
+      handleSearchResults([...englishResults, ...japaneseResults]);
     }
 
     // If all Kana only search Reading
@@ -109,7 +128,7 @@ export default function App({
       const results = databaseData.filter((item) =>
         searchedRegex.test(item.japanese.reading)
       );
-      setSearchResults(results);
+      handleSearchResults(results);
     }
 
     // If Kanjis are included search Japanese Definition
@@ -117,13 +136,13 @@ export default function App({
       const results = databaseData.filter((item) =>
         searchedRegex.test(item.japanese.word)
       );
-      setSearchResults(results);
+      handleSearchResults(results);
     }
   }
 
   // Search Dictionary and check if word is already in Word List
   useEffect(() => {
-    setDictionaryResults([]);
+    handleSetDictionaryResults([]);
 
     if (dictionaryData && databaseData) {
       const structuredOutput = handleDictionaryOutput({
@@ -131,7 +150,7 @@ export default function App({
         databaseData,
         activeUser,
       });
-      setDictionaryResults(structuredOutput);
+      handleSetDictionaryResults(structuredOutput);
     }
   }, [dictionaryQuery, dictionaryData, databaseData, activeUser]);
 
@@ -145,20 +164,20 @@ export default function App({
           databaseMutate={databaseMutate}
           handleAddEntry={handleAddEntry}
           query={query}
-          setQuery={setQuery}
+          handleSetQuery={handleSetQuery}
           dictionaryQuery={dictionaryQuery}
-          setDictionaryQuery={setDictionaryQuery}
+          handleSetDictionaryQuery={handleSetDictionaryQuery}
           handleSearchInput={handleSearchInput}
           searchResults={searchResults}
-          setSearchResults={setSearchResults}
+          handleSearchResults={handleSearchResults}
           dictionaryResults={dictionaryResults}
-          setDictionaryResults={setDictionaryResults}
+          handleSetDictionaryResults={handleSetDictionaryResults}
           dictionaryIsLoading={dictionaryIsLoading}
           handleDetailEditMode={handleDetailEditMode}
           isDetailEditMode={isDetailEditMode}
           activeUser={activeUser}
           hasEntries={hasEntries}
-          setHasEntries={setHasEntries}
+          handleHasEntries={handleHasEntries}
           {...pageProps}
         />
         <Layout handleActiveUser={handleActiveUser} />

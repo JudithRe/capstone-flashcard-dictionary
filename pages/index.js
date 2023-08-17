@@ -25,19 +25,19 @@ export async function getServerSideProps(context) {
 export default function HomePage({
   wordList,
   query,
-  setQuery,
+  handleSetQuery,
   dictionaryQuery,
-  setDictionaryQuery,
+  handleSetDictionaryQuery,
   searchResults,
   handleSearchInput,
-  setDictionaryResults,
+  handleSetDictionaryResults,
   dictionaryResults,
   dictionaryIsLoading,
-  setSearchResults,
+  handleSearchResults,
   handleAddEntry,
   activeUser,
 
-  setHasEntries,
+  handleHasEntries,
 }) {
   return (
     <>
@@ -55,17 +55,17 @@ export default function HomePage({
       <MainContent>
         <SearchBar
           query={query}
-          setQuery={setQuery}
+          handleSetQuery={handleSetQuery}
           dictionaryQuery={dictionaryQuery}
-          setDictionaryQuery={setDictionaryQuery}
+          handleSetDictionaryQuery={handleSetDictionaryQuery}
           handleSearchInput={handleSearchInput}
           searchResults={searchResults}
-          setSearchResults={setSearchResults}
-          setDictionaryResults={setDictionaryResults}
+          handleSearchResults={handleSearchResults}
+          handleSetDictionaryResults={handleSetDictionaryResults}
           dictionaryResults={dictionaryResults}
           dictionaryIsLoading={dictionaryIsLoading}
           handleAddEntry={handleAddEntry}
-          setHasEntries={setHasEntries}
+          handleHasEntries={handleHasEntries}
         />
         <StyledCenterAlign>
           <StudyDisplay wordList={wordList} activeUser={activeUser} />

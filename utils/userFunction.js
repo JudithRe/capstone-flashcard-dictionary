@@ -1,6 +1,6 @@
 const currentDate = new Date();
+
 export function hasStudiedRecently(wordList) {
-  const currentDate = new Date();
   if (!wordList) {
     return;
   }
@@ -15,10 +15,7 @@ export function hasStudiedRecently(wordList) {
       return comparisonDate <= currentDate;
     });
 
-    if (hasRecentReview) {
-      return true;
-    }
-    return false;
+    return hasRecentReview;
   }
 }
 

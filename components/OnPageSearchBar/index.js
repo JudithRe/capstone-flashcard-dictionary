@@ -5,11 +5,11 @@ import { useRouter } from "next/router";
 
 function SearchBar({
   query,
-  setQuery,
-  setDictionaryQuery,
+  handleSetQuery,
+  handleSetDictionaryQuery,
   handleSearchInput,
   searchResults,
-  setHasEntries,
+  handleHasEntries,
 }) {
   const router = useRouter();
 
@@ -20,15 +20,15 @@ function SearchBar({
     const formData = new FormData(form);
     const searchQuery = Object.fromEntries(formData);
 
-    setQuery(searchQuery.searchInput.toLowerCase());
+    handleSetQuery(searchQuery.searchInput.toLowerCase());
     handleSearchInput(searchQuery.searchInput.toLowerCase());
-    setHasEntries(true);
+    handleHasEntries(true);
 
     // Search Dictionary if no searchResults in list
     if (searchResults.length === 0 && query.length > 0) {
-      setDictionaryQuery(searchQuery.searchInput.toLowerCase());
+      handleSetDictionaryQuery(searchQuery.searchInput.toLowerCase());
 
-      setHasEntries(false);
+      handleHasEntries(false);
     }
 
     router.push("/search");
