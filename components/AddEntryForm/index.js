@@ -13,7 +13,7 @@ function AddEntryForm({ handleAddEntry, activeUser }) {
 
     const { japaneseInput, reading, englishInput } = newEntry;
     const newEntryObject = {
-      userId: activeUser,
+      userId: activeUser._id,
       isDictionaryEntry: false,
       slug: japaneseInput,
       japanese: {

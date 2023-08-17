@@ -30,10 +30,38 @@ export default function App({
   const [searchResults, setSearchResults] = useState([]);
   const [dictionaryResults, setDictionaryResults] = useState([]);
   const [isDetailEditMode, setIsDetailEditMode] = useState(false);
-  const [activeUser, setActiveUser] = useState();
+  const [activeUser, setActiveUser] = useState({
+    _id: "default",
+    streak: 0,
+    lastStreakUpdate: 0,
+  });
+  const [hasEntries, setHasEntries] = useState(false);
 
-  function handleActiveUser(activeUser) {
-    setActiveUser(activeUser);
+  function handleSetDictionaryResults(dictionaryResults) {
+    setDictionaryResults(dictionaryResults);
+  }
+
+  function handleSearchResults(searchResults) {
+    setSearchResults(searchResults);
+  }
+
+  function handleSetDictionaryQuery(queryText) {
+    setDictionaryQuery(queryText);
+  }
+
+  function handleHasEntries(boolean) {
+    setHasEntries(boolean);
+  }
+
+  function handleSetQuery(queryText) {
+    setQuery(queryText);
+  }
+  function handleActiveUser(activeUserId, streak, update) {
+    setActiveUser({
+      _id: activeUserId,
+      streak: streak,
+      lastStreakUpdate: update,
+    });
   }
 
   function handleDetailEditMode(boolean) {
@@ -48,7 +76,9 @@ export default function App({
   );
 
   // Fetching from database
-  const DatabaseURL = `/api/word-list/${activeUser ? activeUser : "loading"}`; // Only fetching data for activeUser
+  const DatabaseURL = `/api/word-list/${
+    activeUser._id ? activeUser._id : "loading"
+  }`; // Only fetching data for activeUser
 
   const {
     data: databaseData,
@@ -75,7 +105,7 @@ export default function App({
 
   // Search Word List
   function handleSearchInput(query) {
-    setSearchResults([]);
+    handleSearchResults([]);
     const searchedRegex = new RegExp(query, "i");
 
     // Check for input types
@@ -90,7 +120,7 @@ export default function App({
         japaneseRegEx.test(item.japanese.reading)
       );
 
-      setSearchResults([...englishResults, ...japaneseResults]);
+      handleSearchResults([...englishResults, ...japaneseResults]);
     }
 
     // If all Kana only search Reading
@@ -98,7 +128,7 @@ export default function App({
       const results = databaseData.filter((item) =>
         searchedRegex.test(item.japanese.reading)
       );
-      setSearchResults(results);
+      handleSearchResults(results);
     }
 
     // If Kanjis are included search Japanese Definition
@@ -106,13 +136,13 @@ export default function App({
       const results = databaseData.filter((item) =>
         searchedRegex.test(item.japanese.word)
       );
-      setSearchResults(results);
+      handleSearchResults(results);
     }
   }
 
   // Search Dictionary and check if word is already in Word List
   useEffect(() => {
-    setDictionaryResults([]);
+    handleSetDictionaryResults([]);
 
     if (dictionaryData && databaseData) {
       const structuredOutput = handleDictionaryOutput({
@@ -120,7 +150,7 @@ export default function App({
         databaseData,
         activeUser,
       });
-      setDictionaryResults(structuredOutput);
+      handleSetDictionaryResults(structuredOutput);
     }
   }, [dictionaryQuery, dictionaryData, databaseData, activeUser]);
 
@@ -134,18 +164,20 @@ export default function App({
           databaseMutate={databaseMutate}
           handleAddEntry={handleAddEntry}
           query={query}
-          setQuery={setQuery}
+          handleSetQuery={handleSetQuery}
           dictionaryQuery={dictionaryQuery}
-          setDictionaryQuery={setDictionaryQuery}
+          handleSetDictionaryQuery={handleSetDictionaryQuery}
           handleSearchInput={handleSearchInput}
           searchResults={searchResults}
-          setSearchResults={setSearchResults}
+          handleSearchResults={handleSearchResults}
           dictionaryResults={dictionaryResults}
-          setDictionaryResults={setDictionaryResults}
+          handleSetDictionaryResults={handleSetDictionaryResults}
           dictionaryIsLoading={dictionaryIsLoading}
           handleDetailEditMode={handleDetailEditMode}
           isDetailEditMode={isDetailEditMode}
           activeUser={activeUser}
+          hasEntries={hasEntries}
+          handleHasEntries={handleHasEntries}
           {...pageProps}
         />
         <Layout handleActiveUser={handleActiveUser} />

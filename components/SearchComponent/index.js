@@ -3,23 +3,24 @@ import SearchResults from "../SearchResults";
 import { useEffect, useState } from "react";
 import SearchIcon from "@/assets/icons/SearchIcon";
 
-function SearchBar({
+function SearchComponent({
   query,
-  setQuery,
+  handleSetQuery,
   dictionaryQuery,
-  setDictionaryQuery,
+  handleSetDictionaryQuery,
   handleSearchInput,
   searchResults,
-  setSearchResults,
-  setDictionaryResults,
+  handleSearchResults,
+  handleSetDictionaryResults,
   dictionaryResults,
   dictionaryIsLoading,
   handleAddEntry,
+  hasEntries,
+  handleHasEntries,
 }) {
-  const [hasEntries, setHasEntries] = useState(false);
   useEffect(() => {
-    setSearchResults(searchResults);
-  }, [searchResults, setSearchResults]);
+    handleSearchResults(searchResults);
+  }, [searchResults, handleSearchResults]);
 
   function handleSearchBarSubmit(event) {
     event.preventDefault();
@@ -28,15 +29,15 @@ function SearchBar({
     const formData = new FormData(form);
     const searchQuery = Object.fromEntries(formData);
 
-    setQuery(searchQuery.searchInput.toLowerCase());
+    handleSetQuery(searchQuery.searchInput.toLowerCase());
     handleSearchInput(searchQuery.searchInput.toLowerCase());
-    setHasEntries(true);
+    handleHasEntries(true);
 
     // Search Dictionary if no searchResults in list
     if (searchResults.length === 0 && query.length > 0) {
-      setDictionaryQuery(searchQuery.searchInput.toLowerCase());
+      handleSetDictionaryQuery(searchQuery.searchInput.toLowerCase());
 
-      setHasEntries(false);
+      handleHasEntries(false);
     }
 
     form.reset();
@@ -45,12 +46,12 @@ function SearchBar({
   // OnChange should still look up the words
   function handleSearchBarOnInput(query) {
     // Empty useStates before searching for new word
-    setDictionaryQuery("");
-    setSearchResults([]);
-    setDictionaryResults([]);
+    handleSetDictionaryQuery("");
+    handleSearchResults([]);
+    handleSetDictionaryResults([]);
 
     // search in word List
-    setQuery(query);
+    handleSetQuery(query);
     handleSearchInput(query);
   }
 
@@ -81,11 +82,11 @@ function SearchBar({
         searchResults={searchResults}
         query={query}
         dictionaryQuery={dictionaryQuery}
-        setDictionaryQuery={setDictionaryQuery}
+        handleSetDictionaryQuery={handleSetDictionaryQuery}
         dictionaryResults={dictionaryResults}
         dictionaryIsLoading={dictionaryIsLoading}
         hasEntries={hasEntries}
-        setHasEntries={setHasEntries}
+        handleHasEntries={handleHasEntries}
         handleAddEntry={handleAddEntry}
       />
     </>
@@ -120,4 +121,4 @@ const StyledSearchBarButton = styled.button`
   padding: 0 15px;
 `;
 
-export default SearchBar;
+export default SearchComponent;

@@ -7,11 +7,11 @@ function SearchResults({
   searchResults,
   query,
   dictionaryQuery,
-  setDictionaryQuery,
+  handleSetDictionaryQuery,
   dictionaryResults,
   dictionaryIsLoading,
   hasEntries,
-  setHasEntries,
+  handleHasEntries,
   handleAddEntry,
 }) {
   if (query.length === 0) {
@@ -19,8 +19,8 @@ function SearchResults({
   }
 
   function handleSearchDictionaryButtonSubmit() {
-    setDictionaryQuery(query);
-    setHasEntries(false);
+    handleSetDictionaryQuery(query);
+    handleHasEntries(false);
   }
 
   return (

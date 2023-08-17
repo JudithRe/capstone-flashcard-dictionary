@@ -23,6 +23,16 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+
+  lastStreakUpdate: {
+    type: Date,
+    default: Date.now,
+  },
+
+  streak: {
+    type: Number,
+    default: 0,
+  },
 });
 
 // Encryption

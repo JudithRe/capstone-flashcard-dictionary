@@ -9,9 +9,13 @@ export default function Layout({ handleActiveUser }) {
 
   useEffect(() => {
     if (session) {
-      handleActiveUser(session.user._id);
+      handleActiveUser(
+        session.user._id,
+        session.user.streak,
+        session.user.lastUpdate
+      );
     }
-  }, [session, handleActiveUser]);
+  }, [session]);
 
   return (
     <>
