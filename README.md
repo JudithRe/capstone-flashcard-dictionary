@@ -1,37 +1,16 @@
-# New Next Project
+# Capstone Project: Jisho Genius
 
-This project was created from the neue fische `next` template.
+When looking up new words, most dictionaries don't give you the opportunity to save and practice them - and flashcard apps don't usually allow you to import words from a dictionary. 
 
-You can [🔗 **use this template on CodeSandbox**](https://codesandbox.io/p/sandbox/github/neuefische/web-exercises/tree/main/templates/next?file=/README.md) or locally by running this command in your Terminal:
+Jisho Genius combines both by providing an SRS flashcard system that you can feed with your own creations - or with any word from jisho.org.
+The app is optimised for Japanese language learning and can therefore also display readings for each entry. 
 
-```bash
-npx -y ghcd@latest neuefische/web-exercises/tree/main/templates/next my-app -i
-```
+It is a study buddy for retaining all the new words you learn. 
 
-## Development
 
-### Local Development
-
-To work locally, please install the dependencies using `npm i` first.
-
-Run `npm run dev` to start a development server and open the displayed URL in a browser.
-
-Use `npm run test` to run the tests.
-
-### CodeSandbox Cloud
-
-Select the "Preview: 3000" tab to view this project.
-
-Select the "Tests: logs" tab to view the tests.
-
-> The `npm run dev` and `npm run test` scripts run automatically.
-
-### Scripts
-
-You can use the following commands:
-
-- `npm run dev` to start a development server
-- `npm run build` to build the project
-- `npm run start` to start a production server
-- `npm run test` to run the tests
-- `npm run lint` to run the linter
+Tech Stack: 
+- Next.js
+- Styled Components
+- MongoDB
+- mongoose
+- node.js
