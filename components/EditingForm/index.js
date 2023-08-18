@@ -174,7 +174,7 @@ function EditingForm({
               {previousCategoryName ? previousCategoryName : "no category"}
             </option>
             {categoryData
-              .filter((category) => !previousCategory.includes(category._id))
+              .filter((category) => !previousCategory === category._id)
               .map((category) => {
                 return (
                   <option

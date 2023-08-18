@@ -24,8 +24,9 @@ function CategorySelector({ categoryData, wordList, handleFilterWordList }) {
       return;
     }
 
+    console.log("wordlist 0", wordList[0]);
     handleFilterWordList(
-      wordList.filter((entry) => entry.category.includes(event.target.value))
+      wordList.filter((entry) => entry.category === event.target.value)
     );
   }
 
