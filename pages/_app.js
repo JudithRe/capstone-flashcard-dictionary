@@ -86,7 +86,9 @@ export default function App({
   } = useSWR(DatabaseURL, fetcher);
 
   // Fetching Category
-  const CategoryURL = `/api/word-list/category/`;
+  const CategoryURL = `/api/word-list/category/${
+    activeUser._id ? activeUser._id : "loading"
+  }`; // Only fetching data for activeUser
   const {
     data: categoryData,
     isLoading: categoryIsLoading,

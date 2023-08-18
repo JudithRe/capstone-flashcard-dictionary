@@ -20,7 +20,7 @@ export async function deleteCategory(
   wordList,
   databaseMutate
 ) {
-  const response = await fetch(`/api/word-list/category/${_id}`, {
+  const response = await fetch(`/api/word-list/category/item/${_id}`, {
     method: "DELETE",
   });
 
