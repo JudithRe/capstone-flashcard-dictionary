@@ -30,5 +30,7 @@ export default async function handler(request, response) {
     await Entry.findByIdAndDelete(id);
 
     response.status(200).json({ status: "Entry deleted." });
+    return;
   }
+  response.status(405).json({ message: "Method not allowed" });
 }

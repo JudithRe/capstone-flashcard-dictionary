@@ -30,6 +30,7 @@ export default async function handler(request, response) {
     await Category.findByIdAndDelete(id);
 
     response.status(200).json({ status: "Category deleted." });
+    return;
   }
   response.status(405).json({ message: "Method not allowed" });
 }

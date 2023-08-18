@@ -31,5 +31,7 @@ export default async function handler(request, response) {
     await User.findByIdAndDelete(id);
 
     response.status(200).json({ status: "User deleted." });
+    return;
   }
+  response.status(405).json({ message: "Method not allowed" });
 }
