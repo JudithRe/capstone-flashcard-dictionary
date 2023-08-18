@@ -35,7 +35,7 @@ function CategorySelector({ categoryData, wordList, handleFilterWordList }) {
         <StyledCategorySelector
           onChange={(event) => handleDropdownChange(event)}
         >
-          <option value="default" defaultValue>
+          <option value="default" selected>
             Choose a Category
           </option>
           {categoryData.map((category) => {

@@ -8,7 +8,7 @@ export default async function handler(request, response) {
 
   if (categoryName !== "loading") {
     if (request.method === "GET") {
-      const category = await Category.find({
+      const category = await Category.findOne({
         userId: userId,
         name: categoryName,
       });

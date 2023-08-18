@@ -52,11 +52,11 @@ function EditingForm({
       await handleAddCategory(newCategoryObject);
       const newCategory = await getCategory(activeUser, newEntry.newCategory);
 
-      if (newCategory.length > 0) {
+      if (newCategory) {
         const newEntryWithNewCategory = {
           ...newEntry,
-          category: newCategory[0]._id,
-          categoryName: newCategory[0].name,
+          category: newCategory._id,
+          categoryName: newCategory.name,
         };
 
         updateEntry(newEntryWithNewCategory, entry);
@@ -85,6 +85,7 @@ function EditingForm({
   async function updateEntry(newData, previousEntry) {
     const { japaneseInput, reading, englishInput, category, categoryName } =
       newData;
+
     const updatedEntry = {
       ...previousEntry,
       category: category,

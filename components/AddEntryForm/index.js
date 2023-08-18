@@ -48,11 +48,11 @@ function AddEntryForm({
       await handleAddCategory(newCategoryObject);
       const newCategory = await getCategory(activeUser, newEntry.newCategory);
 
-      if (newCategory.length > 0) {
+      if (newCategory) {
         const newEntryObject = {
           userId: activeUser._id,
-          category: newCategory[0]._id,
-          categoryName: newCategory[0].name,
+          category: newCategory._id,
+          categoryName: newCategory.name,
           isDictionaryEntry: false,
           slug: japaneseInput,
           japanese: {
@@ -70,6 +70,7 @@ function AddEntryForm({
             streak: 0,
           },
         };
+
         handleAddEntry(newEntryObject);
 
         form.reset();

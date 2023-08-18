@@ -7,6 +7,7 @@ export default async function handler(request, response) {
   await dbConnect();
 
   if (user === "loading" || user === "default") {
+    response.status(425).json({ message: "Still loading" });
     return;
   }
 

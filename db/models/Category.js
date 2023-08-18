@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 
 const categorySchema = new Schema(
   {
-    userId: { type: [Schema.Types.ObjectId], ref: "User" },
+    userId: { type: Schema.Types.ObjectId, ref: "User" },
     isPublic: { type: Boolean },
     name: { type: String, required: true },
   },

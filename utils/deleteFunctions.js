@@ -28,12 +28,12 @@ export async function deleteCategory(
     categoryMutate();
 
     const entriesToChange = wordList.filter((entry) => {
-      return entry.category[0] === _id;
+      return entry.category === _id;
     });
 
     if (entriesToChange.length > 0) {
       entriesToChange.forEach((element) => {
-        const updatedEntry = { ...element, category: [], categoryName: "" };
+        const updatedEntry = { ...element, category: null, categoryName: "" };
         updateCategoryInEntry(updatedEntry._id, updatedEntry, databaseMutate);
         return;
       });
