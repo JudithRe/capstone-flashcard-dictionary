@@ -40,6 +40,9 @@ export default function WordDetail({
   databaseMutate,
   isDetailEditMode,
   handleDetailEditMode,
+  handleAddCategory,
+  activeUser,
+  categoryData,
 }) {
   const router = useRouter();
   const { id } = router.query;
@@ -65,7 +68,20 @@ export default function WordDetail({
   }
 
   if (entryData) {
-    const { english, japanese, isCommon, jlpt, wanikani, study } = entryData;
+    const {
+      english,
+      japanese,
+      isCommon,
+      jlpt,
+      wanikani,
+      study,
+      categoryName,
+      category,
+    } = entryData;
+    console.log("entryData", entryData);
+    console.log("category ", category);
+    console.log("name", categoryName);
+
     const { lastReview, stage, wrongAnswerCount, rightAnswerCount, streak } =
       study;
 
@@ -81,6 +97,11 @@ export default function WordDetail({
             entry={entryData}
             _id={id}
             databaseMutate={databaseMutate}
+            handleAddCategory={handleAddCategory}
+            activeUser={activeUser}
+            categoryData={categoryData}
+            previousCategory={category}
+            previousCategoryName={categoryName}
           />
         )}
         <StyledCenterAlign>
@@ -119,6 +140,8 @@ export default function WordDetail({
           <StyledCard>
             <StyledHeading2>Further Information</StyledHeading2>
             <StyledTag>{isCommon ? "Common Word" : "Not Common"}</StyledTag>
+            <StyledHeading3>Category</StyledHeading3>
+            <StyledTag>{categoryName ? categoryName : "No category"}</StyledTag>
             {(jlpt || wanikani) && <StyledHeading3>Difficulty</StyledHeading3>}
             <StyledCenterAlign>
               {jlpt && <StyledTag>{jlpt}</StyledTag>}
@@ -152,7 +175,7 @@ const StyledHeading3 = styled.h3`
   margin: 0px;
 `;
 
-const StyledTag = styled.p`
+export const StyledTag = styled.p`
   padding: 15px;
   border-radius: 25px;
   background-color: var(--light-grey);

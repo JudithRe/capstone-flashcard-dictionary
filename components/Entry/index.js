@@ -6,7 +6,7 @@ import {
   StyledSubmitButton,
 } from "../StyledComponents/StyledButtons";
 import { StyledSectionRightAlign } from "../StyledComponents/StyledSection";
-import { deleteEntry } from "@/utils/deleteEntry";
+import { deleteEntry } from "@/utils/deleteFunctions.js";
 
 import { LinkWithoutDecoration } from "../StyledComponents/LinkWithoutDecoration";
 import EntryContent from "../EntryContent";
@@ -122,7 +122,7 @@ function Entry({
   }
 }
 
-const StyledEditComponent = styled.div`
+export const StyledEditComponent = styled.div`
   background-color: transparent;
   display: flex;
   flex-direction: column;
@@ -138,7 +138,7 @@ const StyledEditComponent = styled.div`
   }
 `;
 
-const PositionRelativeDiv = styled.div`
+export const PositionRelativeDiv = styled.div`
   position: relative;
 `;
 

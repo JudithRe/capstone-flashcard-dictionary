@@ -4,7 +4,9 @@ const { Schema } = mongoose;
 
 const entrySchema = new Schema(
   {
-    userId: { type: [Schema.Types.ObjectId], ref: "User" },
+    userId: { type: Schema.Types.ObjectId, ref: "User" },
+    category: { type: Schema.Types.ObjectId, ref: "Category" },
+    categoryName: { type: String },
     showAddButton: { type: Boolean, required: true },
     isDictionaryEntry: { type: Boolean, required: true },
     slug: { type: String, required: true },

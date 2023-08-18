@@ -85,8 +85,16 @@ export default function Navigation() {
               aria-label="Word List"
             >
               <ListIcon
-                height={activePath === "/words" ? "55px" : "30px"}
-                width={activePath === "/words" ? "55px" : "30px"}
+                height={
+                  activePath === "/words" || activePath === "/categories"
+                    ? "55px"
+                    : "30px"
+                }
+                width={
+                  activePath === "/words" || activePath === "/categories"
+                    ? "55px"
+                    : "30px"
+                }
               />
             </span>
           </StyledNavigationLink>

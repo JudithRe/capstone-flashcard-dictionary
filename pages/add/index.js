@@ -24,12 +24,18 @@ export default function AddEntries({
   handleAddEntry,
   wordList,
   activeUser,
-  handleActiveUser,
+  categoryData,
+  handleAddCategory,
 }) {
   return (
     <MainContent>
       <Heading id="add-form-title" PageTitle="Add your Words" />
-      <AddEntryForm handleAddEntry={handleAddEntry} activeUser={activeUser} />
+      <AddEntryForm
+        handleAddEntry={handleAddEntry}
+        activeUser={activeUser}
+        categoryData={categoryData}
+        handleAddCategory={handleAddCategory}
+      />
       <StyledSection>
         <h2>Your Current Word List</h2>
         <EntriesContainer wordList={wordList} />

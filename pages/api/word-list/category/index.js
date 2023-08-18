@@ -1,20 +1,20 @@
 import dbConnect from "@/db/connect";
-import Entry from "@/db/models/Entry";
+import Category from "@/db/models/Category";
 
 export default async function handler(request, response) {
   await dbConnect();
 
   if (request.method === "GET") {
-    const entries = await Entry.find();
-    response.status(200).json(entries);
+    const categories = await Category.find();
+    response.status(200).json(categories);
     return;
   }
 
   if (request.method === "POST") {
     try {
-      const entryData = request.body;
-      await Entry.create(entryData);
-      response.status(201).json({ status: "Entry created" });
+      const categoryData = request.body;
+      await Category.create(categoryData);
+      response.status(201).json({ status: "Category created" });
       return;
     } catch (error) {
       console.log("There was an error ", error.message);

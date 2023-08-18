@@ -1,5 +1,5 @@
 import dbConnect from "@/db/connect";
-import Entry from "@/db/models/Entry";
+import Category from "@/db/models/Category";
 
 export default async function handler(request, response) {
   await dbConnect();
@@ -7,29 +7,29 @@ export default async function handler(request, response) {
   const { id } = request.query;
 
   if (request.method === "GET") {
-    const entry = await Entry.findById(id);
+    const category = await Category.findById(id);
 
-    if (!entry) {
+    if (!category) {
       return response.status(404).json({ status: "Not Found" });
     }
 
-    response.status(200).json(entry);
+    response.status(200).json(category);
     return;
   }
 
   if (request.method === "PUT") {
-    const updatedEntry = request.body;
+    const updatedCategory = request.body;
 
-    await Entry.findByIdAndUpdate(id, updatedEntry);
+    await Category.findByIdAndUpdate(id, updatedCategory);
 
-    response.status(200).json({ status: "Entry updated." });
+    response.status(200).json({ status: "Category updated." });
     return;
   }
 
   if (request.method === "DELETE") {
-    await Entry.findByIdAndDelete(id);
+    await Category.findByIdAndDelete(id);
 
-    response.status(200).json({ status: "Entry deleted." });
+    response.status(200).json({ status: "Category deleted." });
     return;
   }
   response.status(405).json({ message: "Method not allowed" });

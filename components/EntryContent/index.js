@@ -1,10 +1,12 @@
+import { StyledTag } from "@/pages/words/[id]";
 import styled from "styled-components";
 
 function EntryContent({ entry }) {
-  const { japanese, english } = entry;
+  const { japanese, english, categoryName } = entry;
 
   return (
     <>
+      {categoryName && <StyledTag>{categoryName}</StyledTag>}
       <StyledJPDefinition>{japanese.word}</StyledJPDefinition>
       <StyledUl>
         <StyledDefinition>{japanese.reading}</StyledDefinition>
