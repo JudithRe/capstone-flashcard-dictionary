@@ -1,5 +1,3 @@
-// Might need this for later US
-
 import dbConnect from "@/db/connect";
 import Entry from "@/db/models/Entry";
 

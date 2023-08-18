@@ -7,6 +7,7 @@ import { useState } from "react";
 import EditIcon from "@/assets/icons/EditIcon";
 import CorrectIcon from "@/assets/icons/CorrectIcon";
 import { hasToken } from "@/utils/checkUser";
+import CategorySelector from "@/components/CategorySelector";
 
 export async function getServerSideProps(context) {
   const token = await hasToken(context.req);
@@ -28,14 +29,26 @@ export default function WordList({
   databaseIsLoading,
   databaseMutate,
   handleDetailEditMode,
+  categoryData,
 }) {
   const [isEditMode, setIsEditMode] = useState(false);
+
+  const [filteredWordList, setFilteredWordList] = useState(wordList);
+
+  function handleFilterWordList(filteredList) {
+    setFilteredWordList(filteredList);
+  }
 
   return (
     <>
       {wordList && <Heading PageTitle={`${wordList.length} Saved Words`} />}
       <MainContent>
         <StyledSectionRightAlign>
+          <CategorySelector
+            categoryData={categoryData}
+            wordList={wordList}
+            handleFilterWordList={handleFilterWordList}
+          />
           <StyledSecondaryButton
             type="button"
             onClick={() => setIsEditMode(!isEditMode)}
@@ -62,7 +75,7 @@ export default function WordList({
         <EntriesContainer
           isEditMode={isEditMode}
           handleDetailEditMode={handleDetailEditMode}
-          wordList={wordList}
+          wordList={filteredWordList}
           databaseIsLoading={databaseIsLoading}
           databaseMutate={databaseMutate}
         />

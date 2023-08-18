@@ -75,16 +75,23 @@ export default function App({
     fetcher
   );
 
-  // Fetching from database
+  // Fetching from Word List
   const DatabaseURL = `/api/word-list/${
     activeUser._id ? activeUser._id : "loading"
   }`; // Only fetching data for activeUser
-
   const {
     data: databaseData,
     isLoading: databaseIsLoading,
     mutate: databaseMutate,
   } = useSWR(DatabaseURL, fetcher);
+
+  // Fetching Category
+  const CategoryURL = `/api/word-list/category/`;
+  const {
+    data: categoryData,
+    isLoading: categoryIsLoading,
+    mutate: categoryMutate,
+  } = useSWR(CategoryURL, fetcher);
 
   // Add Entry to Word List
   async function handleAddEntry(newEntry) {
@@ -100,6 +107,21 @@ export default function App({
 
     if (response.ok) {
       databaseMutate();
+    }
+  }
+
+  // Add Category
+  async function handleAddCategory(newCategory) {
+    const response = await fetch(CategoryURL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newCategory),
+    });
+
+    if (response.ok) {
+      categoryMutate();
     }
   }
 
@@ -178,6 +200,9 @@ export default function App({
           activeUser={activeUser}
           hasEntries={hasEntries}
           handleHasEntries={handleHasEntries}
+          handleAddCategory={handleAddCategory}
+          categoryData={categoryData}
+          categoryMutate={categoryMutate}
           {...pageProps}
         />
         <Layout handleActiveUser={handleActiveUser} />

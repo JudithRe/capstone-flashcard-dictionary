@@ -31,7 +31,6 @@ function StudyDisplay({ wordList, activeUser }) {
   if (!wordList) {
     return <StyledResultDisplay>Loading...</StyledResultDisplay>;
   }
-
   return (
     <StyledSection>
       <NoStyleLink href="/study">
@@ -46,11 +45,13 @@ function StudyDisplay({ wordList, activeUser }) {
         <StyledCounter>{studyDisplayData.streak}</StyledCounter>
         <StyledCounterText>days</StyledCounterText>
       </StyledStudyCounter>
-      <StyledStudyCounter>
-        <StyledCounterText>Items</StyledCounterText>
-        <StyledCounter>{studyDisplayData.items}</StyledCounter>
-        <StyledCounterText>words</StyledCounterText>
-      </StyledStudyCounter>
+      <NoStyleLink href="/words">
+        <StyledStudyCounter>
+          <StyledCounterText>Items</StyledCounterText>
+          <StyledCounter>{studyDisplayData.items}</StyledCounter>
+          <StyledCounterText>words</StyledCounterText>
+        </StyledStudyCounter>
+      </NoStyleLink>
     </StyledSection>
   );
 }
