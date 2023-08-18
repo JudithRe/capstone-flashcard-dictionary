@@ -117,6 +117,7 @@ const StyledNavList = styled.ul`
   background-color: var(--dark-main);
   list-style-type: none;
   z-index: 5;
+  box-shadow: var(--default-box-shadow-top);
 
   @media ${device.tablet} {
     background-color: transparent;
@@ -124,8 +125,10 @@ const StyledNavList = styled.ul`
     align-items: flex-start;
     gap: 1rem;
     width: auto;
+    box-shadow: none;
 
-    top: 0;
+    top: 8rem;
+
     left: 0;
   }
 `;
@@ -134,6 +137,7 @@ const StyledNavigationItem = styled.li`
   padding: 15px;
   border-radius: 50%;
   background-color: var(--dark-main);
+  box-shadow: var(--default-box-shadow-top);
 
   @media ${device.tablet} {
     padding-left: 40px;

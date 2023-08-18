@@ -186,7 +186,7 @@ export const StyledDropDown = styled(StyledCategorySelector)`
 `;
 
 export const StyledForm = styled.form`
-  background-color: inherit;
+  background: transparent;
   display: flex;
   flex-direction: column;
   gap: 10px;

@@ -32,3 +32,12 @@ export const StyledCenterAlign = styled.div`
   gap: 0.5rem;
   z-index: 2;
 `;
+
+export const StyledSectionTopBetween = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 90vw;
+  position: fixed;
+  top: 1rem;
+  z-index: 5;
+`;

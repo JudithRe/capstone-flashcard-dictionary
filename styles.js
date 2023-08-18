@@ -1,4 +1,10 @@
 import { createGlobalStyle } from "styled-components";
+import { Poppins } from "@next/font/google";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+});
 
 export default createGlobalStyle`
   :root {
@@ -8,7 +14,7 @@ export default createGlobalStyle`
     --light-grey: #CBCBD4;
     --highlight-red: #B82C23;
     --highlight-green: #5F8179;
-    --dark-main: #2E2836;
+    --dark-main: #3f374a;
     --text-color: #30343F;
     --dark-mode-text-color: #ffffff; 
     --overlay: rgba(203, 203, 2012, 0.8);
@@ -16,36 +22,43 @@ export default createGlobalStyle`
 /* HEIGHTS and WIDTHS */
 
     --footer-height: 5rem;
-    --card-width: 360px;
-  --header-height: 100px;
+    --card-width: 340px;
+    --header-height: 100px;
     --header-height-mobile: 175px;
-    --header-height-desktop: 200px; 
+    --header-height-desktop: 225px; 
 
 /* OTHER */
-
-    --default-box-shadow: 4px 8px 10px -4px #969496;
+    --default-box-shadow-top: 3px -3px 8px -1px  #3f374a;
+    --default-box-shadow: 5px 5px 10px -2px #3a3345;
     --inset-box-shadow: 1px 1px 5px -1px #969496;
     --border-radius: 25px;
   }
   
 
   * {
-  background-color: var(--light-grey);
+  /* background-color: var(--light-grey); */
   }
   *,
   *::before,
   *::after {
     box-sizing: border-box;
     color: var(--text-color);
+    
   }
 
   body {
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     font-family: system-ui;
+    background-image: url("/BackgroundVector.png");
+    background-repeat: repeat;
+    font-family: ${poppins.style.fontFamily}, Helvetica, sans-serif;
   }
   
   .inherit-background-color {
-  background-color: inherit;
+  background-color: transparent;
 }
 
 .transparent-background-color {
@@ -53,6 +66,6 @@ export default createGlobalStyle`
 }
 
 .navTransition {
-  transition: 250ms linear;
+  transition: 400ms linear;
 }
 `;

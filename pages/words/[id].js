@@ -1,23 +1,23 @@
 import EditIcon from "@/assets/icons/EditIcon";
 import EditingForm from "@/components/EditingForm";
-import {
-  StyledDefinition,
-  StyledJPDefinition,
-  StyledUl,
-} from "@/components/Entry";
+import { StyledDefinition, StyledUl } from "@/components/Entry";
 import { StyledResultDisplay } from "@/components/SearchResults";
 import { MainContent } from "@/components/StyledComponents/MainContent";
 import { FixedCenteredPosition } from "@/components/StyledComponents/Modal";
-import { StyledSecondaryButton } from "@/components/StyledComponents/StyledButtons";
+import {
+  StyledBackButton,
+  StyledSecondaryButton,
+} from "@/components/StyledComponents/StyledButtons";
 import { StyledCard } from "@/components/StyledComponents/StyledCard";
 import {
   StyledCenterAlign,
-  StyledSectionRightAlign,
+  StyledSectionTopBetween,
 } from "@/components/StyledComponents/StyledSection";
 import { getVisualDate } from "@/utils/helperFunctions";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { hasToken } from "@/utils/checkUser";
+import Heading from "@/components/PageHeading";
 
 export async function getServerSideProps(context) {
   const token = await hasToken(context.req);
@@ -47,7 +47,7 @@ export default function WordDetail({
   const router = useRouter();
   const { id } = router.query;
 
-  if (databaseIsLoading) {
+  if (databaseIsLoading || !wordList) {
     return (
       <FixedCenteredPosition>
         <StyledResultDisplay>Loading...</StyledResultDisplay>
@@ -78,9 +78,6 @@ export default function WordDetail({
       categoryName,
       category,
     } = entryData;
-    console.log("entryData", entryData);
-    console.log("category ", category);
-    console.log("name", categoryName);
 
     const { lastReview, stage, wrongAnswerCount, rightAnswerCount, streak } =
       study;
@@ -104,61 +101,57 @@ export default function WordDetail({
             previousCategoryName={categoryName}
           />
         )}
-        <StyledCenterAlign>
-          <StyledSectionRightAlign>
-            <StyledSecondaryButton type="button" onClick={() => router.back()}>
-              Back
-            </StyledSecondaryButton>
-            <StyledSecondaryButton
-              type="button"
-              onClick={() => handleDetailEditMode(true)}
+        <Heading PageTitle={japanese.word} />
+
+        <StyledSectionTopBetween>
+          <StyledBackButton href="/words">Back</StyledBackButton>
+          <StyledSecondaryButton
+            type="button"
+            onClick={() => handleDetailEditMode(true)}
+          >
+            <span
+              className="inherit-background-color"
+              role="img"
+              aria-label="edit"
             >
-              <span
-                className="inherit-background-color"
-                role="img"
-                aria-label="edit"
-              >
-                <EditIcon height="20px" width="20px" />
-              </span>
-            </StyledSecondaryButton>
-          </StyledSectionRightAlign>
+              <EditIcon height="20px" width="20px" />
+            </span>
+          </StyledSecondaryButton>
+        </StyledSectionTopBetween>
 
-          <StyledCard>
-            <StyledJPDefinition>{japanese.word}</StyledJPDefinition>
-            <StyledUl>
-              <StyledDefinition>{japanese.reading}</StyledDefinition>
-            </StyledUl>
-            <StyledUl>
-              {english.map((definition) => (
-                <StyledDefinition key={definition}>
-                  {definition}
-                </StyledDefinition>
-              ))}
-            </StyledUl>
-          </StyledCard>
+        <StyledCard>
+          <StyledUl>
+            <StyledDefinition>Reading: {japanese.reading}</StyledDefinition>
+          </StyledUl>
+          <StyledUl>
+            Definition:
+            {english.map((definition) => (
+              <StyledDefinition key={definition}>{definition}</StyledDefinition>
+            ))}
+          </StyledUl>
+        </StyledCard>
 
-          <StyledCard>
-            <StyledHeading2>Further Information</StyledHeading2>
-            <StyledTag>{isCommon ? "Common Word" : "Not Common"}</StyledTag>
-            <StyledHeading3>Category</StyledHeading3>
-            <StyledTag>{categoryName ? categoryName : "No category"}</StyledTag>
-            {(jlpt || wanikani) && <StyledHeading3>Difficulty</StyledHeading3>}
-            <StyledCenterAlign>
-              {jlpt && <StyledTag>{jlpt}</StyledTag>}
-              {wanikani && <StyledTag>{wanikani}</StyledTag>}
-            </StyledCenterAlign>
-          </StyledCard>
+        <StyledCard>
+          <StyledHeading2>Further Information</StyledHeading2>
+          <StyledTag>{isCommon ? "Common Word" : "Not Common"}</StyledTag>
+          <StyledHeading3>Category</StyledHeading3>
+          <StyledTag>{categoryName ? categoryName : "No category"}</StyledTag>
+          {(jlpt || wanikani) && <StyledHeading3>Difficulty</StyledHeading3>}
+          <StyledCenterAlign>
+            {jlpt && <StyledTag>{jlpt}</StyledTag>}
+            {wanikani && <StyledTag>{wanikani}</StyledTag>}
+          </StyledCenterAlign>
+        </StyledCard>
 
-          <StyledCard>
-            <StyledHeading2>Study Progress</StyledHeading2>
-            <StyledCenterAlign>
-              <StyledTag>Stage {stage}</StyledTag>
-              <StyledTag>Streak {streak}</StyledTag>
-            </StyledCenterAlign>
-            <p className="inherit-background-color">{`last review: ${visualReviewDate}`}</p>
-            <p className="inherit-background-color">{`wrong: ${wrongAnswerCount} / right: ${rightAnswerCount}`}</p>
-          </StyledCard>
-        </StyledCenterAlign>
+        <StyledCard>
+          <StyledHeading2>Study Progress</StyledHeading2>
+          <StyledCenterAlign>
+            <StyledTag>Stage {stage}</StyledTag>
+            <StyledTag>Streak {streak}</StyledTag>
+          </StyledCenterAlign>
+          <p className="inherit-background-color">{`last review: ${visualReviewDate}`}</p>
+          <p className="inherit-background-color">{`wrong: ${wrongAnswerCount} / right: ${rightAnswerCount}`}</p>
+        </StyledCard>
       </MainContent>
     );
   }

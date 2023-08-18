@@ -111,8 +111,11 @@ const StyledEndSessionButton = styled(StyledSubmitButton)`
 
 export const StudyModal = styled.section`
   position: fixed;
-  background-color: var(--light-grey);
+  left: 0;
+  top: 0;
+  background-image: url("/BackgroundVector.png");
+  background-repeat: repeat;
   width: 100vw;
   height: 100vh;
-  z-index: 5;
+  z-index: 6;
 `;
