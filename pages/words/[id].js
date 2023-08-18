@@ -78,6 +78,9 @@ export default function WordDetail({
       categoryName,
       category,
     } = entryData;
+    console.log("entryData", entryData);
+    console.log("category ", category);
+    console.log("name", categoryName);
 
     const { lastReview, stage, wrongAnswerCount, rightAnswerCount, streak } =
       study;
