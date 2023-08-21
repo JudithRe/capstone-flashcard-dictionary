@@ -1,4 +1,3 @@
-import { StyledTag } from "@/pages/words/[id]";
 import styled from "styled-components";
 
 function EntryContent({ entry }) {
@@ -6,7 +5,11 @@ function EntryContent({ entry }) {
 
   return (
     <>
-      {categoryName && <StyledTag>{categoryName}</StyledTag>}
+      {categoryName && (
+        <BottomMargin>
+          <StyledTagLeft>{categoryName}</StyledTagLeft>
+        </BottomMargin>
+      )}
       <StyledJPDefinition>{japanese.word}</StyledJPDefinition>
       <StyledUl>
         <StyledDefinition>{japanese.reading}</StyledDefinition>
@@ -46,6 +49,23 @@ export const StyledUl = styled.ul`
   padding: 0;
   text-align: center;
   margin: 0;
+`;
+export const StyledTag = styled.span`
+  padding: 5px 15px;
+  border-radius: 25px;
+  background-color: var(--dark-main);
+  color: var(--dark-mode-text-color);
+`;
+
+const StyledTagLeft = styled(StyledTag)`
+  position: absolute;
+  left: 0;
+  top: 15px;
+  border-radius: 0 25px 25px 0;
+`;
+
+const BottomMargin = styled.div`
+  margin-bottom: 2.5rem;
 `;
 
 export default EntryContent;

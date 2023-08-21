@@ -36,6 +36,7 @@ export default function App({
     lastStreakUpdate: 0,
   });
   const [hasEntries, setHasEntries] = useState(false);
+  const [newEntries, setNewEntries] = useState([]);
 
   function handleSetDictionaryResults(dictionaryResults) {
     setDictionaryResults(dictionaryResults);
@@ -99,6 +100,7 @@ export default function App({
   async function handleAddEntry(newEntry) {
     const entryWithoutAddButton = { ...newEntry, showAddButton: false };
 
+    setNewEntries([...newEntries, entryWithoutAddButton]);
     const response = await fetch(DatabaseURL, {
       method: "POST",
       headers: {
@@ -205,6 +207,7 @@ export default function App({
           handleAddCategory={handleAddCategory}
           categoryData={categoryData}
           categoryMutate={categoryMutate}
+          newEntries={newEntries}
           {...pageProps}
         />
         <Layout handleActiveUser={handleActiveUser} />

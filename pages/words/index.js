@@ -42,6 +42,7 @@ export default function WordList({
   return (
     <>
       {wordList && <Heading PageTitle={`${wordList.length} Saved Words`} />}
+
       <MainContent>
         <StyledSectionRightAlign>
           <CategorySelector

@@ -1,9 +1,11 @@
+import { device } from "@/utils/globalValues";
 import styled from "styled-components";
 
 export const StyledSection = styled.section`
   padding: 1rem;
   display: flex;
   justify-content: center;
+  align-items: stretch;
   flex-wrap: wrap;
   gap: 1rem;
   width: 100%;
@@ -13,6 +15,10 @@ export const StyledSectionRightAlign = styled(StyledSection)`
   justify-content: flex-end;
   justify-self: flex-end;
   background-color: inherit;
+  margin-right: -4rem;
+  @media ${device.tablet} {
+    margin-right: -5rem;
+  }
 `;
 
 export const StyledSectionLeftAlign = styled(StyledSection)`
@@ -36,7 +42,7 @@ export const StyledCenterAlign = styled.div`
 export const StyledSectionTopBetween = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 90vw;
+  width: 100vw;
   position: fixed;
   top: 1rem;
   z-index: 5;

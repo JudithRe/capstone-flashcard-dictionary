@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import SearchResults from "../SearchResults";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import SearchIcon from "@/assets/icons/SearchIcon";
 
 function SearchComponent({
@@ -63,7 +63,7 @@ function SearchComponent({
             handleSearchBarOnInput(event.target.value.toLowerCase())
           }
           type="text"
-          placeholder="Search... (hit enter to search the dictionary)"
+          placeholder='Dictionary Search on "enter"'
           aria-label="search-bar"
           name="searchInput"
         />

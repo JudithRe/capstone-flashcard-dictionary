@@ -22,7 +22,7 @@ export async function getServerSideProps(context) {
 
 export default function AddEntries({
   handleAddEntry,
-  wordList,
+  newEntries,
   activeUser,
   categoryData,
   handleAddCategory,
@@ -35,11 +35,14 @@ export default function AddEntries({
         activeUser={activeUser}
         categoryData={categoryData}
         handleAddCategory={handleAddCategory}
+        newEntries={newEntries}
       />
-      <StyledSection>
-        <h2>Your Current Word List</h2>
-        <EntriesContainer wordList={wordList} />
-      </StyledSection>
+      {newEntries.length > 0 && (
+        <StyledSection>
+          <h2>Recently Added Words</h2>
+          <EntriesContainer wordList={newEntries} />
+        </StyledSection>
+      )}
     </MainContent>
   );
 }

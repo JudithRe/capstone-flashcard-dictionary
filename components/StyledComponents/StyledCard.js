@@ -5,12 +5,19 @@ export const StyledCard = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   padding: 1rem;
-  background: radial-gradient(circle, #ffffff 55%, #efefef 85%);
+  background: radial-gradient(circle, #ffffff 50%, #efefef 100%);
   width: var(--card-width);
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: var(--default-box-shadow);
   position: relative;
-  z-index: 2;
+  z-index: 3;
+  height: 100%;
+`;
+
+export const StyledCardLeftAlign = styled(StyledCard)`
+  align-items: flex-start;
+  padding: 1rem 1.5rem;
 `;

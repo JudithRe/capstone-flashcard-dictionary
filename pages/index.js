@@ -1,12 +1,11 @@
-import JG from "@/assets/icons/JG";
 import SearchBar from "@/components/OnPageSearchBar";
-import Heading from "@/components/PageHeading";
 
-import Signout from "@/components/Signout";
 import StudyDisplay from "@/components/StudyDisplay";
-import { MainContent } from "@/components/StyledComponents/MainContent";
+import { IndexMainContent } from "@/components/StyledComponents/IndexMainContent";
+
 import { StyledCenterAlign } from "@/components/StyledComponents/StyledSection";
 import { hasToken } from "@/utils/checkUser";
+import Greeting from "@/components/Greeting";
 
 export async function getServerSideProps(context) {
   const token = await hasToken(context.req);
@@ -41,18 +40,7 @@ export default function HomePage({
 }) {
   return (
     <>
-      <Heading
-        PageTitle={
-          <span
-            className="transparent-background-color"
-            role="h1"
-            aria-label="Jisho Genius"
-          >
-            <JG />
-          </span>
-        }
-      />
-      <MainContent>
+      <IndexMainContent>
         <SearchBar
           query={query}
           handleSetQuery={handleSetQuery}
@@ -70,8 +58,8 @@ export default function HomePage({
         <StyledCenterAlign>
           <StudyDisplay wordList={wordList} activeUser={activeUser} />
         </StyledCenterAlign>
-        <Signout />
-      </MainContent>
+        <Greeting />
+      </IndexMainContent>
     </>
   );
 }

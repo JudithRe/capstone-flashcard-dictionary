@@ -1,9 +1,10 @@
-import { device } from "@/utils/globalValues";
 import styled from "styled-components";
 import { StyledCard } from "../StyledComponents/StyledCard";
 import {
-  StyledSecondaryButton,
+  StyledSecondaryButtonRight,
   StyledSubmitButton,
+  StyledEditButtonDark,
+  StyledEditButtonRed,
 } from "../StyledComponents/StyledButtons";
 import { StyledSectionRightAlign } from "../StyledComponents/StyledSection";
 import { deleteEntry } from "@/utils/deleteFunctions.js";
@@ -36,7 +37,7 @@ function Entry({
         </LinkWithoutDecoration>
         {isEditMode && (
           <StyledEditComponent>
-            <StyledSecondaryButton
+            <StyledEditButtonDark
               type="button"
               onClick={() => deleteEntry(_id, databaseMutate)}
             >
@@ -47,8 +48,8 @@ function Entry({
               >
                 <DeleteIcon width="16px" height="16px" />
               </span>
-            </StyledSecondaryButton>
-            <StyledSubmitButton
+            </StyledEditButtonDark>
+            <StyledEditButtonRed
               type="button"
               onClick={() => {
                 handleDetailEditMode(true);
@@ -62,7 +63,7 @@ function Entry({
               >
                 <EditIcon width="16px" height="16px" />
               </span>
-            </StyledSubmitButton>
+            </StyledEditButtonRed>
           </StyledEditComponent>
         )}
       </PositionRelativeDiv>
@@ -102,7 +103,7 @@ function Entry({
             </StyledSubmitButton>
           )}
           {isEditMode && (
-            <StyledSecondaryButton
+            <StyledSecondaryButtonRight
               type="button"
               onClick={() => deleteEntry(_id, databaseMutate)}
             >
@@ -113,7 +114,7 @@ function Entry({
               >
                 <DeleteIcon width="16px" height="16px" />
               </span>
-            </StyledSecondaryButton>
+            </StyledSecondaryButtonRight>
           )}
         </StyledSectionRightAlign>
         <EntryContent entry={entry} />
@@ -126,20 +127,14 @@ export const StyledEditComponent = styled.div`
   background-color: transparent;
   display: flex;
   flex-direction: column;
-  position: absolute;
   gap: 0.3rem;
-  top: 0;
-  padding: 10px;
-  right: -30px;
+  padding: 10px 0;
   z-index: 3;
-
-  @media ${device.tablet} {
-    margin-left: -35px;
-  }
+  margin-left: -15px;
 `;
 
 export const PositionRelativeDiv = styled.div`
-  position: relative;
+  display: flex;
 `;
 
 export const StyledJPDefinition = styled.h2`

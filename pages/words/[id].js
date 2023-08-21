@@ -1,23 +1,21 @@
 import EditIcon from "@/assets/icons/EditIcon";
 import EditingForm from "@/components/EditingForm";
-import { StyledDefinition, StyledUl } from "@/components/Entry";
+
 import { StyledResultDisplay } from "@/components/SearchResults";
 import { MainContent } from "@/components/StyledComponents/MainContent";
 import { FixedCenteredPosition } from "@/components/StyledComponents/Modal";
 import {
   StyledBackButton,
-  StyledSecondaryButton,
+  StyledSecondaryButtonRight,
 } from "@/components/StyledComponents/StyledButtons";
-import { StyledCard } from "@/components/StyledComponents/StyledCard";
-import {
-  StyledCenterAlign,
-  StyledSectionTopBetween,
-} from "@/components/StyledComponents/StyledSection";
+import { StyledCardLeftAlign } from "@/components/StyledComponents/StyledCard";
+import { StyledSectionTopBetween } from "@/components/StyledComponents/StyledSection";
 import { getVisualDate } from "@/utils/helperFunctions";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { hasToken } from "@/utils/checkUser";
 import Heading from "@/components/PageHeading";
+import { indie } from "@/styles";
 
 export async function getServerSideProps(context) {
   const token = await hasToken(context.req);
@@ -104,8 +102,8 @@ export default function WordDetail({
         <Heading PageTitle={japanese.word} />
 
         <StyledSectionTopBetween>
-          <StyledBackButton href="/words">Back</StyledBackButton>
-          <StyledSecondaryButton
+          <StyledBackButton href="/words"></StyledBackButton>
+          <StyledSecondaryButtonRight
             type="button"
             onClick={() => handleDetailEditMode(true)}
           >
@@ -116,60 +114,97 @@ export default function WordDetail({
             >
               <EditIcon height="20px" width="20px" />
             </span>
-          </StyledSecondaryButton>
+          </StyledSecondaryButtonRight>
         </StyledSectionTopBetween>
+        <StyledTagContainer>
+          <StyledTag>Stage {stage}</StyledTag>
+          <StyledTag>{streak}-day streak</StyledTag>
+        </StyledTagContainer>
+        <StyledCardLeftAlign>
+          <StyledHeading3>Reading</StyledHeading3>
+          <StyledCardParagraph>{japanese.reading}</StyledCardParagraph>
 
-        <StyledCard>
-          <StyledUl>
-            <StyledDefinition>Reading: {japanese.reading}</StyledDefinition>
-          </StyledUl>
-          <StyledUl>
-            Definition:
+          <StyledHeading3>Definition</StyledHeading3>
+          <StyledList>
             {english.map((definition) => (
-              <StyledDefinition key={definition}>{definition}</StyledDefinition>
+              <li key={definition}>{definition}</li>
             ))}
-          </StyledUl>
-        </StyledCard>
+          </StyledList>
+        </StyledCardLeftAlign>
 
-        <StyledCard>
+        <StyledCardLeftAlign>
           <StyledHeading2>Further Information</StyledHeading2>
           <StyledTag>{isCommon ? "Common Word" : "Not Common"}</StyledTag>
           <StyledHeading3>Category</StyledHeading3>
           <StyledTag>{categoryName ? categoryName : "No category"}</StyledTag>
           {(jlpt || wanikani) && <StyledHeading3>Difficulty</StyledHeading3>}
-          <StyledCenterAlign>
+          <StyledTagContainer>
             {jlpt && <StyledTag>{jlpt}</StyledTag>}
             {wanikani && <StyledTag>{wanikani}</StyledTag>}
-          </StyledCenterAlign>
-        </StyledCard>
+          </StyledTagContainer>
+        </StyledCardLeftAlign>
 
-        <StyledCard>
+        <StyledCardLeftAlign>
           <StyledHeading2>Study Progress</StyledHeading2>
-          <StyledCenterAlign>
-            <StyledTag>Stage {stage}</StyledTag>
-            <StyledTag>Streak {streak}</StyledTag>
-          </StyledCenterAlign>
-          <p className="inherit-background-color">{`last review: ${visualReviewDate}`}</p>
-          <p className="inherit-background-color">{`wrong: ${wrongAnswerCount} / right: ${rightAnswerCount}`}</p>
-        </StyledCard>
+
+          <StyledHeading3>Last Review</StyledHeading3>
+          <p className="inherit-background-color">{visualReviewDate}</p>
+          <StyledHeading3>Answer Count</StyledHeading3>
+          <StyledTagContainer>
+            <StyledTagRed>{`wrong: ${wrongAnswerCount}`}</StyledTagRed>
+            <StyledTagGreen>{`right: ${rightAnswerCount}`}</StyledTagGreen>
+          </StyledTagContainer>
+        </StyledCardLeftAlign>
       </MainContent>
     );
   }
 }
 
 const StyledHeading2 = styled.h2`
-  background-color: inherit;
-  font-size: 1.5rem;
-  margin: 0px;
-`;
-const StyledHeading3 = styled.h3`
+  padding: 1rem 0 0.3rem 0;
+  color: var(--dark-main);
   background-color: inherit;
   font-size: 1.3rem;
+  letter-spacing: 3px;
   margin: 0px;
+  font-family: ${indie.style.fontFamily}, Helvetica, sans-serif;
 `;
 
-export const StyledTag = styled.p`
-  padding: 15px;
+const StyledCardParagraph = styled.p`
+  margin-top: 0;
+`;
+const StyledHeading3 = styled.h3`
+  padding: 1.5rem 0 0.3rem 0;
+  color: var(--dark-main);
+  background-color: inherit;
+  font-size: 1.2rem;
+  letter-spacing: 3px;
+  margin: 0px;
+  font-family: ${indie.style.fontFamily}, Helvetica, sans-serif;
+`;
+
+export const StyledTag = styled.span`
+  padding: 5px 15px;
   border-radius: 25px;
-  background-color: var(--light-grey);
+  background-color: var(--dark-main);
+  color: var(--dark-mode-text-color);
+`;
+
+const StyledTagRed = styled(StyledTag)`
+  background-color: var(--highlight-red);
+`;
+
+const StyledTagGreen = styled(StyledTag)`
+  background-color: var(--highlight-green);
+`;
+
+const StyledList = styled.ul`
+  margin-top: 0;
+  padding-left: 1.3rem;
+`;
+
+const StyledTagContainer = styled.span`
+  display: flex;
+  gap: 0.8rem;
+  padding-bottom: 1rem;
 `;

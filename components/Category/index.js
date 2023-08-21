@@ -1,6 +1,6 @@
 import DeleteIcon from "@/assets/icons/DeleteIcon";
 import { StyledEditComponent } from "../Entry";
-import { StyledSecondaryButton } from "../StyledComponents/StyledButtons";
+import { StyledSecondaryButtonRight } from "../StyledComponents/StyledButtons";
 import { StyledCard } from "../StyledComponents/StyledCard";
 import { deleteCategory } from "@/utils/deleteFunctions";
 
@@ -16,7 +16,7 @@ function Category({
     <StyledCard>
       {isEditMode && (
         <StyledEditComponent>
-          <StyledSecondaryButton
+          <StyledSecondaryButtonRight
             type="button"
             onClick={() =>
               deleteCategory(_id, categoryMutate, wordList, databaseMutate)
@@ -29,7 +29,7 @@ function Category({
             >
               <DeleteIcon width="16px" height="16px" />
             </span>
-          </StyledSecondaryButton>
+          </StyledSecondaryButtonRight>
         </StyledEditComponent>
       )}
       <h2 className="inherit-background-color">{name}</h2>

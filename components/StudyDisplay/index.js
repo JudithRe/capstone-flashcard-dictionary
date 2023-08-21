@@ -56,14 +56,14 @@ function StudyDisplay({ wordList, activeUser }) {
   );
 }
 
-const NoStyleLink = styled(Link)`
+export const NoStyleLink = styled(Link)`
   text-decoration: none;
 `;
 
 const StyledStudyCounter = styled.div`
   background-color: var(--dark-main);
   padding: 10px;
-  border-radius: 20px;
+  border-radius: 25px 0 25px 0;
   min-width: 85px;
   display: flex;
   flex-direction: column;
@@ -73,6 +73,7 @@ const StyledStudyCounter = styled.div`
 
 const StyledReviewCounter = styled(StyledStudyCounter)`
   background-color: var(--highlight-red);
+  border-radius: 0 25px 0 25px;
 `;
 
 const StyledCounterText = styled.p`

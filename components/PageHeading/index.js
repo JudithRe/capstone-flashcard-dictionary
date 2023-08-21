@@ -1,13 +1,9 @@
+import { indie } from "@/styles";
+import { device } from "@/utils/globalValues";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
 function Heading({ PageTitle }) {
-  const router = useRouter();
-  const activePath = router.pathname;
-
-  if (activePath === "/") {
-    return <StyledPageHeadingRight>{PageTitle}</StyledPageHeadingRight>;
-  }
   return <StyledPageHeadingCenter>{PageTitle}</StyledPageHeadingCenter>;
 }
 
@@ -18,15 +14,16 @@ const StyledPageHeadingCenter = styled.h1`
   transform: translate(-50%);
   background-color: transparent;
   color: var(--dark-mode-text-color);
-  font-size: 2rem;
+  font-size: 1.7rem;
+  letter-spacing: 3px;
   padding: 0.3rem 1rem;
   text-align: center;
-  z-index: 5;
-`;
+  z-index: 3;
+  font-family: ${indie.style.fontFamily}, Helvetica, sans-serif;
 
-const StyledPageHeadingRight = styled(StyledPageHeadingCenter)`
-  transform: none;
-  right: 0;
+  @media ${device.tablet} {
+    font-size: 2.5rem;
+  }
 `;
 
 export default Heading;

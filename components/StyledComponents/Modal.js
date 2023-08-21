@@ -6,7 +6,7 @@ export const Modal = styled.main`
   background-color: var(--overlay);
   width: 100vw;
   height: 100vh;
-  z-index: 5;
+  z-index: 6;
 `;
 
 export const FixedCenteredPosition = styled.div`
@@ -14,4 +14,5 @@ export const FixedCenteredPosition = styled.div`
   transform: translate(50%, -50%);
   top: 50%;
   right: 50%;
+  z-index: 5;
 `;

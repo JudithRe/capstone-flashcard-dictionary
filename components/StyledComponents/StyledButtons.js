@@ -7,14 +7,27 @@ export const StyledSubmitButton = styled.button`
   color: var(--dark-mode-text-color);
   padding: 10px 17px;
   border: none;
-  border-radius: 25px;
+  border-radius: 25px 0 0 25px;
   box-shadow: var(--default-box-shadow);
   font-weight: 500;
   font-size: 1.2rem;
   line-height: 1.2rem;
 
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 25%);
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0px 15px 25px -5px rgba(0, 0, 0, 25%);
+    transform: scale(1.03);
+  }
+
+  &:active {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 25%);
+    transform: scale(0.98);
+  }
+
   &:disabled {
-    background-color: var(--light-grey);
+    background-color: var(--disabled);
     box-shadow: var(--inset-box-shadow);
   }
 `;
@@ -24,8 +37,13 @@ export const StyledCenteredButton = styled(StyledSubmitButton)`
 `;
 
 export const StyledSecondaryButton = styled(StyledSubmitButton)`
-  /* background-color: var(--dark-main); */
-  background: radial-gradient(circle, var(--dark-main) 60%, #322c3b 90%);
+  background-color: var(--dark-main);
+  border-radius: 25px;
+`;
+
+export const StyledSecondaryButtonRight = styled(StyledSubmitButton)`
+  background-color: var(--dark-main);
+  border-radius: 25px 0 0 25px;
 `;
 
 /* Settings and Signout buttons */
@@ -49,16 +67,27 @@ export const StyledSettingsButton = styled.button`
 `;
 
 export const StyledBackButton = styled(Link)`
-  padding: 10px;
+  padding: 10px 17px;
   margin: 0;
   align-items: center;
   /* background-color: var(--dark-main); */
   background: radial-gradient(circle, var(--dark-main) 60%, #322c3b 90%);
-  border-radius: 25px;
+  border-radius: 0 25px 25px 0;
   color: var(--dark-mode-text-color);
   text-decoration: none;
   font-size: 1rem;
-  box-shadow: var(--default-box-shadow);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 25%);
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0px 15px 25px -5px rgba(0, 0, 0, 25%);
+    transform: scale(1.03);
+  }
+
+  &:active {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 25%);
+    transform: scale(0.98);
+  }
 
   &::before {
     content: "← ";
@@ -77,4 +106,13 @@ export const StyledGhostButton = styled.button`
   text-decoration: none;
   font-size: 0.8rem;
   font-weight: 800;
+`;
+
+export const StyledEditButtonDark = styled(StyledSubmitButton)`
+  background-color: var(--dark-main);
+  border-radius: 25px 0 25px 0;
+`;
+
+export const StyledEditButtonRed = styled(StyledSubmitButton)`
+  border-radius: 0 25px 0 25px;
 `;

@@ -7,6 +7,7 @@ import AddIcon from "@/assets/icons/AddIcon";
 import StudyIcon from "@/assets/icons/StudyIcon";
 import { useRouter } from "next/router";
 import SearchIcon from "@/assets/icons/SearchIcon";
+import ProfileIcon from "@/assets/icons/ProfileIcon";
 
 export default function Navigation() {
   const router = useRouter();
@@ -99,6 +100,20 @@ export default function Navigation() {
             </span>
           </StyledNavigationLink>
         </StyledNavigationItem>
+        <StyledNavigationItem>
+          <StyledNavigationLink href="/profile">
+            <span
+              className="inherit-background-color"
+              role="img"
+              aria-label="Profile"
+            >
+              <ProfileIcon
+                height={activePath === "/profile" ? "55px" : "30px"}
+                width={activePath === "/profile" ? "55px" : "30px"}
+              />
+            </span>
+          </StyledNavigationLink>
+        </StyledNavigationItem>
       </StyledNavList>
     </nav>
   );
@@ -113,7 +128,7 @@ const StyledNavList = styled.ul`
   justify-content: space-between;
   align-items: flex-end;
   height: var(--footer-height);
-  padding: 2rem 0.5rem;
+  padding: 2rem 0;
   background-color: var(--dark-main);
   list-style-type: none;
   z-index: 5;
