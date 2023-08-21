@@ -12,6 +12,7 @@ export const StyledSubmitButton = styled.button`
   font-weight: 500;
   font-size: 1.2rem;
   line-height: 1.2rem;
+  margin-right: 7px;
 
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 25%);
   cursor: pointer;
@@ -34,6 +35,7 @@ export const StyledSubmitButton = styled.button`
 
 export const StyledCenteredButton = styled(StyledSubmitButton)`
   align-self: center;
+  border-radius: 0 25px 0 25px;
 `;
 
 export const StyledSecondaryButton = styled(StyledSubmitButton)`
