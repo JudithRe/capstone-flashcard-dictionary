@@ -1,14 +1,9 @@
 import JG from "@/assets/icons/JG";
-import { indie } from "@/styles";
-import { device } from "@/utils/globalValues";
-import { useRouter } from "next/router";
+
 import styled from "styled-components";
 import { NoStyleLink } from "../StudyDisplay";
 
 function Logo({ width, height, color }) {
-  const router = useRouter();
-  const activePath = router.pathname;
-
   return (
     <NoStyleLink href="/">
       <StyledLogo>

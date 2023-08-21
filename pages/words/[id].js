@@ -15,7 +15,6 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import { hasToken } from "@/utils/checkUser";
 import Heading from "@/components/PageHeading";
-import { indie } from "@/styles";
 
 export async function getServerSideProps(context) {
   const token = await hasToken(context.req);
@@ -167,7 +166,6 @@ const StyledHeading2 = styled.h2`
   font-size: 1.3rem;
   letter-spacing: 3px;
   margin: 0px;
-  font-family: ${indie.style.fontFamily}, Helvetica, sans-serif;
 `;
 
 const StyledCardParagraph = styled.p`
@@ -180,7 +178,6 @@ const StyledHeading3 = styled.h3`
   font-size: 1.2rem;
   letter-spacing: 3px;
   margin: 0px;
-  font-family: ${indie.style.fontFamily}, Helvetica, sans-serif;
 `;
 
 export const StyledTag = styled.span`

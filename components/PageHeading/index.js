@@ -1,6 +1,6 @@
-import { indie } from "@/styles";
+// import { indie } from "@/styles";
 import { device } from "@/utils/globalValues";
-import { useRouter } from "next/router";
+
 import styled from "styled-components";
 
 function Heading({ PageTitle }) {
@@ -19,7 +19,6 @@ const StyledPageHeadingCenter = styled.h1`
   padding: 0.3rem 1rem;
   text-align: center;
   z-index: 3;
-  font-family: ${indie.style.fontFamily}, Helvetica, sans-serif;
 
   @media ${device.tablet} {
     font-size: 2.5rem;
