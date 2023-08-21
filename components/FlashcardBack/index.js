@@ -56,6 +56,7 @@ export const StyledFlashcard = styled(StyledCard)`
   transform: translate(50%, -50%);
   top: 50%;
   right: 50%;
+  height: auto;
 `;
 
 const StyledAnswerSection = styled.div`
