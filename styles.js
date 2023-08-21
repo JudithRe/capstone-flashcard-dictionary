@@ -1,11 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import {
-  Poppins,
-  Short_Stack,
-  Waiting_for_the_Sunrise,
-  Permanent_Marker,
-} from "@next/font/google";
-// import { Indie_Flower } from "@next/font/google";
+import { Poppins, Permanent_Marker } from "@next/font/google";
 
 const poppins = Poppins({
   subsets: ["latin"],
