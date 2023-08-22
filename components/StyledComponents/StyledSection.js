@@ -14,11 +14,12 @@ export const StyledSection = styled.section`
 
 export const StyledSectionRightAlign = styled(StyledSection)`
   justify-content: flex-end;
-  justify-self: flex-end;
+  align-items: flex-end;
   background-color: inherit;
-  margin-right: -4rem;
+  margin-right: 0;
+  padding: none;
   @media ${device.tablet} {
-    margin-right: -5rem;
+    margin-right: 0;
     display: flex;
     gap: 1rem;
     justify-content: center;

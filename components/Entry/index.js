@@ -16,6 +16,8 @@ import CorrectIcon from "@/assets/icons/CorrectIcon";
 import AddIcon from "@/assets/icons/AddIcon";
 import EditIcon from "@/assets/icons/EditIcon";
 import { useRouter } from "next/router";
+import { device } from "@/utils/globalValues";
+import { Spacer } from "../StyledComponents/MainContent";
 
 function Entry({
   entry,
@@ -73,7 +75,7 @@ function Entry({
   if (!_id) {
     return (
       <StyledCard>
-        <StyledSectionRightAlign>
+        <StyledSectionRightAlignAbsolute>
           {showAddButton && (
             <StyledAddButton
               type="button"
@@ -116,12 +118,22 @@ function Entry({
               </span>
             </StyledSecondaryButtonRight>
           )}
-        </StyledSectionRightAlign>
+        </StyledSectionRightAlignAbsolute>
+        <Spacer />
+        <Spacer />
+        <Spacer />
         <EntryContent entry={entry} />
       </StyledCard>
     );
   }
 }
+
+const StyledSectionRightAlignAbsolute = styled.div`
+  position: absolute;
+  right: 0;
+  top: 1rem;
+  padding: none;
+`;
 
 export const StyledEditComponent = styled.div`
   background-color: transparent;
