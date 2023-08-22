@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 import { permanent } from "./utils/fonts";
 
 // Body Font
-import { Poppins } from "@next/font/google";
+import { Poppins } from "@next/font/google/index.d.ts";
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],

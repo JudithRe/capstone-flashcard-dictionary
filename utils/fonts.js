@@ -1,4 +1,4 @@
-import { Permanent_Marker } from "@next/font/google";
+import { Permanent_Marker } from "@next/font/google/index.d.ts";
 
 export const permanent = Permanent_Marker({
   subsets: ["latin"],
