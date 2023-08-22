@@ -20,43 +20,23 @@ export default function Greeting() {
 }
 
 const StyledUsername = styled.span`
-  font-size: 1.2rem;
-  font-weight: 900;
-  letter-spacing: 4px;
+  font-size: 1.5rem;
+  font-weight: 600;
 
   color: var(--dark-mode-text-color);
   @media ${device.tablet} {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 `;
 
 const StyledGreeting = styled.p`
-  font-size: 1rem;
+  max-width: 300px;
+  font-size: 1.3rem;
   font-weight: 900;
   color: var(--dark-mode-text-color);
   @media ${device.tablet} {
-    font-size: 1.3rem;
-  }
-`;
-
-const StyledGreetingVertical = styled.p`
-  /* position: fixed;
-  top: 3rem; */
-  font-size: 1.2rem;
-  font-weight: 900;
-  letter-spacing: 7px;
-  padding: 10px 0;
-  /* left: 50%;
-  transform: translate(-100%); */
-  margin: 12px 0 0 -2px;
-  writing-mode: vertical-lr;
-  text-orientation: upright;
-  max-height: 15rem;
-  z-index: 6;
-
-  @media ${device.tablet} {
+    max-width: 400px;
     font-size: 1.6rem;
-    margin: 21px 0 0 -2px;
   }
 `;
 

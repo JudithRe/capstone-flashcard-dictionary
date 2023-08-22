@@ -1,6 +1,5 @@
 import EditIcon from "@/assets/icons/EditIcon";
 import EditingForm from "@/components/EditingForm";
-
 import { StyledResultDisplay } from "@/components/SearchResults";
 import { MainContent } from "@/components/StyledComponents/MainContent";
 import { FixedCenteredPosition } from "@/components/StyledComponents/Modal";
@@ -15,6 +14,9 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import { hasToken } from "@/utils/checkUser";
 import Heading from "@/components/PageHeading";
+import { device } from "@/utils/globalValues";
+import WrongIcon from "@/assets/icons/WrongIcon";
+import CorrectIcon from "@/assets/icons/CorrectIcon";
 
 export async function getServerSideProps(context) {
   const token = await hasToken(context.req);
@@ -46,9 +48,11 @@ export default function WordDetail({
 
   if (databaseIsLoading || !wordList) {
     return (
-      <FixedCenteredPosition>
-        <StyledResultDisplay>Loading...</StyledResultDisplay>
-      </FixedCenteredPosition>
+      <MainContent>
+        <FixedCenteredPosition>
+          <StyledResultDisplay>Loading...</StyledResultDisplay>
+        </FixedCenteredPosition>
+      </MainContent>
     );
   }
 
@@ -98,8 +102,9 @@ export default function WordDetail({
             previousCategoryName={categoryName}
           />
         )}
-        <Heading PageTitle={japanese.word} />
-
+        <StyledSectionFixedCenter>
+          <Heading PageTitle={japanese.word} />
+        </StyledSectionFixedCenter>
         <StyledSectionTopBetween>
           <StyledBackButton href="/words"></StyledBackButton>
           <StyledSecondaryButtonRight
@@ -115,10 +120,12 @@ export default function WordDetail({
             </span>
           </StyledSecondaryButtonRight>
         </StyledSectionTopBetween>
-        <StyledTagContainer>
-          <StyledTag>Stage {stage}</StyledTag>
-          <StyledTag>{streak}-day streak</StyledTag>
-        </StyledTagContainer>
+        <LessMargin>
+          <StyledTagContainer>
+            <StyledTag>Stage: {stage}</StyledTag>
+            <StyledTag>Streak: {streak}</StyledTag>
+          </StyledTagContainer>
+        </LessMargin>
         <StyledCardLeftAlign>
           <StyledHeading3>Reading</StyledHeading3>
           <StyledCardParagraph>{japanese.reading}</StyledCardParagraph>
@@ -145,13 +152,23 @@ export default function WordDetail({
 
         <StyledCardLeftAlign>
           <StyledHeading2>Study Progress</StyledHeading2>
-
-          <StyledHeading3>Last Review</StyledHeading3>
-          <p className="inherit-background-color">{visualReviewDate}</p>
+          <div>
+            <StyledHeading3>Last Review: </StyledHeading3>
+            <span className="inherit-background-color">
+              {" "}
+              {visualReviewDate}
+            </span>
+          </div>
           <StyledHeading3>Answer Count</StyledHeading3>
           <StyledTagContainer>
-            <StyledTagRed>{`wrong: ${wrongAnswerCount}`}</StyledTagRed>
-            <StyledTagGreen>{`right: ${rightAnswerCount}`}</StyledTagGreen>
+            <StyledTagRed>
+              <WrongIcon height="16px" />
+              {` ${wrongAnswerCount}`}
+            </StyledTagRed>
+            <StyledTagGreen>
+              <CorrectIcon height="16px" />
+              {` ${rightAnswerCount}`}
+            </StyledTagGreen>
           </StyledTagContainer>
         </StyledCardLeftAlign>
       </MainContent>
@@ -159,12 +176,19 @@ export default function WordDetail({
   }
 }
 
+const LessMargin = styled.div`
+  margin-top: -2rem;
+  @media ${device.tablet} {
+    margin-top: 0;
+  }
+`;
+
 const StyledHeading2 = styled.h2`
   padding: 1rem 0 0.3rem 0;
   color: var(--dark-main);
   background-color: inherit;
   font-size: 1.3rem;
-  letter-spacing: 3px;
+
   margin: 0px;
 `;
 
@@ -172,11 +196,12 @@ const StyledCardParagraph = styled.p`
   margin-top: 0;
 `;
 const StyledHeading3 = styled.h3`
+  display: inline-block;
   padding: 1.5rem 0 0.3rem 0;
   color: var(--dark-main);
   background-color: inherit;
   font-size: 1.2rem;
-  letter-spacing: 3px;
+
   margin: 0px;
 `;
 
@@ -188,10 +213,12 @@ export const StyledTag = styled.span`
 `;
 
 const StyledTagRed = styled(StyledTag)`
+  padding: 5px 15px 5px 5px;
   background-color: var(--highlight-red);
 `;
 
 const StyledTagGreen = styled(StyledTag)`
+  padding: 5px 15px 5px 5px;
   background-color: var(--highlight-green);
 `;
 
@@ -204,4 +231,16 @@ const StyledTagContainer = styled.span`
   display: flex;
   gap: 0.8rem;
   padding-bottom: 1rem;
+`;
+
+const StyledSectionFixedCenter = styled.div`
+  position: fixed;
+  width: 300px;
+  top: 0;
+  right: 50%;
+  transform: translate(50%);
+  z-index: 5;
+  @media ${device.tablet} {
+    width: 400px;
+  }
 `;

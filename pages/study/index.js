@@ -66,7 +66,7 @@ export default function StudyPage({ wordList, databaseMutate }) {
             >
               <WrongIcon height="16px" width="16px" />
             </span>
-            End Session
+            {`  End Session`}
           </StyledEndSessionButton>
 
           {isFront && studyList.length === 0 && (

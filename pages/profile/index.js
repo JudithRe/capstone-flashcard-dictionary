@@ -1,7 +1,6 @@
 import Heading from "@/components/PageHeading";
 import { MainContent } from "@/components/StyledComponents/MainContent";
 import { StyledGhostButton } from "@/components/StyledComponents/StyledButtons";
-
 import { hasToken } from "@/utils/checkUser";
 import styled from "styled-components";
 import { useSession, signOut } from "next-auth/react";

@@ -1,8 +1,6 @@
 import SearchBar from "@/components/OnPageSearchBar";
-
 import StudyDisplay from "@/components/StudyDisplay";
 import { IndexMainContent } from "@/components/StyledComponents/IndexMainContent";
-
 import { StyledCenterAlign } from "@/components/StyledComponents/StyledSection";
 import { hasToken } from "@/utils/checkUser";
 import Greeting from "@/components/Greeting";

@@ -13,7 +13,7 @@ export const StyledCard = styled.section`
   border-radius: 5px;
   box-shadow: var(--default-box-shadow);
   position: relative;
-  z-index: 3;
+  z-index: 1;
   height: 100%;
 `;
 

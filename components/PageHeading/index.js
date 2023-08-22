@@ -1,6 +1,4 @@
-// import { indie } from "@/styles";
 import { device } from "@/utils/globalValues";
-
 import styled from "styled-components";
 
 function Heading({ PageTitle }) {
@@ -9,20 +7,22 @@ function Heading({ PageTitle }) {
 
 const StyledPageHeadingCenter = styled.h1`
   position: absolute;
-
+  max-width: 300px;
   left: 50%;
-  top: 1.6rem;
+  top: 2.2rem;
   transform: translate(-50%);
   background-color: transparent;
   color: var(--dark-mode-text-color);
-  font-size: 1.7rem;
-  letter-spacing: 3px;
+  font-size: 1.4rem;
+
   padding: 0.3rem 1rem;
   text-align: center;
   z-index: 3;
 
   @media ${device.tablet} {
-    font-size: 2.5rem;
+    max-width: 400px;
+    top: 3rem;
+    font-size: 2rem;
   }
 `;
 

@@ -6,7 +6,6 @@ import ListIcon from "@/assets/icons/ListIcon";
 import AddIcon from "@/assets/icons/AddIcon";
 import StudyIcon from "@/assets/icons/StudyIcon";
 import { useRouter } from "next/router";
-import SearchIcon from "@/assets/icons/SearchIcon";
 import ProfileIcon from "@/assets/icons/ProfileIcon";
 
 export default function Navigation() {
@@ -72,12 +71,12 @@ export default function Navigation() {
             >
               <ListIcon
                 height={
-                  activePath === "/words" || activePath === "/categories"
+                  activePath.includes("/words") || activePath === "/categories"
                     ? "55px"
                     : "30px"
                 }
                 width={
-                  activePath === "/words" || activePath === "/categories"
+                  activePath.includes("/words") || activePath === "/categories"
                     ? "55px"
                     : "30px"
                 }

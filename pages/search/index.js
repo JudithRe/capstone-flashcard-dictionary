@@ -3,7 +3,6 @@ import EntriesContainer from "@/components/EntriesContainer";
 import Heading from "@/components/PageHeading";
 import SearchComponent from "@/components/SearchComponent";
 import { MainContent, Spacer } from "@/components/StyledComponents/MainContent";
-
 import { StyledSecondaryButtonRight } from "@/components/StyledComponents/StyledButtons";
 import {
   StyledSection,

@@ -1,5 +1,4 @@
 import JG from "@/assets/icons/JG";
-
 import styled from "styled-components";
 import { NoStyleLink } from "../StudyDisplay";
 import { useRouter } from "next/router";

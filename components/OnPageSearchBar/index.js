@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 import SearchIcon from "@/assets/icons/SearchIcon";
 import { useRouter } from "next/router";
 

@@ -52,24 +52,9 @@ export default createGlobalStyle`
     background-color: var(--light-grey);
     background-image: url("/background-vector.png");
     background-repeat: repeat;
-    
-    letter-spacing: 1px;
+
   }
   
-
-  h1, h2, h3, .greeting {
-    
-    
-    letter-spacing: 3px;
-
-  }
-  .inherit-background-color {
-  background-color: transparent;
-}
-
-.transparent-background-color {
-  background-color: transparent;
-}
 
 .navTransition {
   transition: 400ms linear;

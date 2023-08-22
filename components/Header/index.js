@@ -1,6 +1,4 @@
 import { device } from "@/utils/globalValues";
-import { useRouter } from "next/router";
-
 import styled from "styled-components";
 import Logo from "../Logo";
 
