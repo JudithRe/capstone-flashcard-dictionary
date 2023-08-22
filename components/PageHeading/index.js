@@ -8,7 +8,7 @@ function Heading({ PageTitle }) {
 }
 
 const StyledPageHeadingCenter = styled.h1`
-  position: fixed;
+  position: absolute;
 
   left: 50%;
   top: 1.6rem;

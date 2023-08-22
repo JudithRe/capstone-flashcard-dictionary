@@ -94,5 +94,5 @@ export default function WordList({
 const StyledStickyDiv = styled.div`
   z-index: 10;
   position: sticky;
-  top: 1rem;
+  top: 2.5rem;
 `;
