@@ -120,6 +120,7 @@ export const StyledEditButtonDark = styled(StyledSubmitButton)`
 
 export const StyledEditButtonRed = styled(StyledSubmitButton)`
   border-radius: 0 25px 0 25px;
+  background-color: var(--highlight-blue);
 `;
 
 export const StyledAddButton = styled(StyledSubmitButton)`

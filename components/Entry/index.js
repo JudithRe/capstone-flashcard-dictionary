@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { StyledCard } from "../StyledComponents/StyledCard";
 import {
   StyledSecondaryButtonRight,
-  StyledSubmitButton,
   StyledEditButtonDark,
   StyledEditButtonRed,
   StyledAddButton,
@@ -17,7 +16,6 @@ import CorrectIcon from "@/assets/icons/CorrectIcon";
 import AddIcon from "@/assets/icons/AddIcon";
 import EditIcon from "@/assets/icons/EditIcon";
 import { useRouter } from "next/router";
-import { StyledSubmitButtonRight } from "../EditingForm";
 
 function Entry({
   entry,

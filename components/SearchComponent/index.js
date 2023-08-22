@@ -100,8 +100,10 @@ const StyledSearchBarForm = styled.form`
   background-color: var(--dark-mode-text-color);
   padding: 10px;
   border-radius: 25px;
-  z-index: 5;
+  z-index: 3;
   box-shadow: var(--default-box-shadow);
+  position: sticky;
+  top: 5rem;
 `;
 
 const StyledSearchBar = styled.input`

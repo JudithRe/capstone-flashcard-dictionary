@@ -4,7 +4,10 @@ import AddCategoryForm from "@/components/AddCategoryForm";
 import Category from "@/components/Category";
 import Heading from "@/components/PageHeading";
 import { MainContent } from "@/components/StyledComponents/MainContent";
-import { StyledSecondaryButtonRight } from "@/components/StyledComponents/StyledButtons";
+import {
+  StyledSecondaryButton,
+  StyledSecondaryButtonRight,
+} from "@/components/StyledComponents/StyledButtons";
 import {
   StyledCenterAlign,
   StyledSection,
@@ -43,9 +46,9 @@ export default function Categories({
     <MainContent>
       <Heading id="add-form-title" PageTitle="Your Categories" />
       <StyledSectionRightAlign>
-        <StyledSecondaryButtonRight type="button" onClick={() => router.back()}>
+        <StyledSecondaryButton type="button" onClick={() => router.back()}>
           Back
-        </StyledSecondaryButtonRight>
+        </StyledSecondaryButton>
         <StyledSecondaryButtonRight
           type="button"
           onClick={() => setIsEditMode(!isEditMode)}

@@ -19,6 +19,10 @@ export const StyledSectionRightAlign = styled(StyledSection)`
   margin-right: -4rem;
   @media ${device.tablet} {
     margin-right: -5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: nowrap;
   }
 `;
 
@@ -32,7 +36,7 @@ export const StyledCenterAlign = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  flex-wrap: wrap;
+
   width: 100%;
   align-items: center;
   background-color: transparent;
@@ -52,7 +56,7 @@ export const StyledSectionTopBetween = styled.div`
 
 export const StyledSectionFixedTopRight = styled.div`
   margin: 0;
-  position: fixed;
+  position: absolute;
   right: 0;
   top: 175px;
   z-index: 5;

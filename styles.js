@@ -75,4 +75,8 @@ export default createGlobalStyle`
   transition: 400ms linear;
 }
 
+.background-light-blue {
+  background-color: var(--highlight-blue);
+}
+
 `;

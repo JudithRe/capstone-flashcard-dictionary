@@ -2,7 +2,7 @@ import AddEntryForm from "@/components/AddEntryForm";
 import EntriesContainer from "@/components/EntriesContainer";
 import Heading from "@/components/PageHeading";
 import SearchComponent from "@/components/SearchComponent";
-import { MainContent } from "@/components/StyledComponents/MainContent";
+import { MainContent, Spacer } from "@/components/StyledComponents/MainContent";
 
 import { StyledSecondaryButtonRight } from "@/components/StyledComponents/StyledButtons";
 import {
@@ -57,6 +57,7 @@ export default function Search({
               : "Search for words in the dictionary"}
           </StyledSecondaryButtonRight>
         </StyledSectionFixedTopRight>
+        <Spacer />
         {isSearch && (
           <SearchComponent
             query={query}

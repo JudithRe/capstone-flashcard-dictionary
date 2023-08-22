@@ -7,7 +7,8 @@ import { handleDictionaryOutput } from "@/utils/refactorDictionaryOutput";
 import useSWR from "swr";
 import { SessionProvider } from "next-auth/react";
 
-// import { Poppins } from "@next/font/google";
+import { Poppins } from "@next/font/google";
+const poppins = Poppins({ subsets: ["latin"], weight: ["400", "700", "800"] });
 
 const fetcher = async (url) => {
   const response = await fetch(url);
@@ -186,11 +187,11 @@ export default function App({
     <>
       <SessionProvider session={session}>
         <GlobalStyle />
-        {/* <style jsx global>{`
+        <style jsx global>{`
           html {
             font-family: ${poppins.style.fontFamily};
           }
-        `}</style> */}
+        `}</style>
         <Component
           wordList={databaseData}
           databaseIsLoading={databaseIsLoading}

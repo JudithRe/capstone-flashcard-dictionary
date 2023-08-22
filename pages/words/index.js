@@ -2,10 +2,7 @@ import EntriesContainer from "@/components/EntriesContainer";
 import Heading from "@/components/PageHeading";
 import { MainContent } from "@/components/StyledComponents/MainContent";
 import { StyledSectionRightAlign } from "@/components/StyledComponents/StyledSection";
-import {
-  StyledSecondaryButton,
-  StyledSecondaryButtonSticky,
-} from "@/components/StyledComponents/StyledButtons";
+import { StyledSecondaryButton } from "@/components/StyledComponents/StyledButtons";
 import { useState } from "react";
 import EditIcon from "@/assets/icons/EditIcon";
 import CorrectIcon from "@/assets/icons/CorrectIcon";
@@ -56,23 +53,16 @@ export default function WordList({
               handleFilterWordList={handleFilterWordList}
             />
             <StyledSecondaryButton
+              className="background-light-blue"
               type="button"
               onClick={() => setIsEditMode(!isEditMode)}
             >
               {!isEditMode ? (
-                <span
-                  className="inherit-background-color"
-                  role="img"
-                  aria-label="edit"
-                >
+                <span role="img" aria-label="edit">
                   <EditIcon height="20px" width="20px" />
                 </span>
               ) : (
-                <span
-                  className="inherit-background-color"
-                  role="img"
-                  aria-label="done editing"
-                >
+                <span role="img" aria-label="done editing">
                   <CorrectIcon height="16px" width="16px" />
                 </span>
               )}
