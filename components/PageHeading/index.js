@@ -8,9 +8,10 @@ function Heading({ PageTitle }) {
 }
 
 const StyledPageHeadingCenter = styled.h1`
-  position: absolute;
+  position: fixed;
+
   left: 50%;
-  top: 0.2rem;
+  top: 1.6rem;
   transform: translate(-50%);
   background-color: transparent;
   color: var(--dark-mode-text-color);

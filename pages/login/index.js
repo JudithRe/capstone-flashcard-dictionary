@@ -23,42 +23,16 @@ function AuthPage() {
 
   if (isLoading) {
     return (
-      <>
-        <Heading
-          PageTitle={
-            <span
-              className="transparent-background-color"
-              role="h1"
-              aria-label="Jisho Genius"
-            >
-              <JG />
-            </span>
-          }
-        />
-        <FixedCenteredPosition>
-          <StyledResultDisplay>Loading...</StyledResultDisplay>
-        </FixedCenteredPosition>
-      </>
+      <FixedCenteredPosition>
+        <StyledResultDisplay>Loading...</StyledResultDisplay>
+      </FixedCenteredPosition>
     );
   }
 
   return (
-    <>
-      <Heading
-        PageTitle={
-          <span
-            className="transparent-background-color"
-            role="h1"
-            aria-label="Jisho Genius"
-          >
-            <JG />
-          </span>
-        }
-      />
-      <FixedCenteredPosition>
-        <AuthForm />
-      </FixedCenteredPosition>
-    </>
+    <FixedCenteredPosition>
+      <AuthForm />
+    </FixedCenteredPosition>
   );
 }
 

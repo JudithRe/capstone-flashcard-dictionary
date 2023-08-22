@@ -34,32 +34,17 @@ export default function Navigation() {
             </span>
           </StyledNavigationLink>
         </StyledNavigationItem>
+
         <StyledNavigationItem>
           <StyledNavigationLink href="/search">
-            <span
-              className="inherit-background-color"
-              role="img"
-              aria-label="Search"
-            >
-              <SearchIcon
-                className="nav-transition"
-                height={activePath === "/search" ? "55px" : "30px"}
-                width={activePath === "/search" ? "55px" : "30px"}
-                color="white"
-              />
-            </span>
-          </StyledNavigationLink>
-        </StyledNavigationItem>
-        <StyledNavigationItem>
-          <StyledNavigationLink href="/add">
             <span
               className="inherit-background-color"
               role="img"
               aria-label="Add Words"
             >
               <AddIcon
-                height={activePath === "/add" ? "55px" : "30px"}
-                width={activePath === "/add" ? "55px" : "30px"}
+                height={activePath === "/search" ? "55px" : "30px"}
+                width={activePath === "/search" ? "55px" : "30px"}
               />
             </span>
           </StyledNavigationLink>

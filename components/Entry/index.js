@@ -5,6 +5,7 @@ import {
   StyledSubmitButton,
   StyledEditButtonDark,
   StyledEditButtonRed,
+  StyledAddButton,
 } from "../StyledComponents/StyledButtons";
 import { StyledSectionRightAlign } from "../StyledComponents/StyledSection";
 import { deleteEntry } from "@/utils/deleteFunctions.js";
@@ -162,10 +163,6 @@ export const StyledUl = styled.ul`
   padding: 0;
   text-align: center;
   margin: 0;
-`;
-
-const StyledAddButton = styled(StyledSubmitButton)`
-  margin-right: 0;
 `;
 
 export default Entry;

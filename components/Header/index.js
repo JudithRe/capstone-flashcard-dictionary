@@ -2,25 +2,20 @@ import { device } from "@/utils/globalValues";
 import { useRouter } from "next/router";
 
 import styled from "styled-components";
+import Logo from "../Logo";
 
 export default function Header() {
-  const router = useRouter();
-  const activePath = router.pathname;
-
-  // if (activePath === "/") {
-  //   return (
-  //     <HeaderBackground>
-  //       <StyledCircleLeft />
-  //     </HeaderBackground>
-  //   );
-  // }
-
-  return <StyledCircleCenter />;
+  return (
+    <>
+      <StyledCircleCenter />
+      <Logo width="100px" />
+    </>
+  );
 }
 
 const StyledCircle = styled.div`
   position: fixed;
-  z-index: 0;
+  z-index: 2;
 
   width: 300px;
   height: 300px;

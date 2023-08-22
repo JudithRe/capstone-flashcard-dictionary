@@ -9,6 +9,7 @@ export const StyledSection = styled.section`
   flex-wrap: wrap;
   gap: 1rem;
   width: 100%;
+  z-index: 1;
 `;
 
 export const StyledSectionRightAlign = styled(StyledSection)`
@@ -46,5 +47,13 @@ export const StyledSectionTopBetween = styled.div`
   margin: 0;
   position: fixed;
   top: 1rem;
+  z-index: 5;
+`;
+
+export const StyledSectionFixedTopRight = styled.div`
+  margin: 0;
+  position: fixed;
+  right: 0;
+  top: 175px;
   z-index: 5;
 `;

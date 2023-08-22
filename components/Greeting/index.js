@@ -20,22 +20,22 @@ export default function Greeting() {
 }
 
 const StyledUsername = styled.span`
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 900;
   letter-spacing: 4px;
 
   color: var(--dark-mode-text-color);
   @media ${device.tablet} {
-    font-size: 2.2rem;
+    font-size: 1.6rem;
   }
 `;
 
 const StyledGreeting = styled.p`
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 900;
   color: var(--dark-mode-text-color);
   @media ${device.tablet} {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
   }
 `;
 
@@ -67,6 +67,6 @@ const StyledFixedSection = styled.div`
   right: 50%;
   transform: translate(50%);
 
-  top: 1rem;
+  top: 2.5rem;
   z-index: 5;
 `;

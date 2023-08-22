@@ -1,3 +1,4 @@
+import { device } from "@/utils/globalValues";
 import Link from "next/link";
 import styled from "styled-components";
 
@@ -41,6 +42,7 @@ export const StyledCenteredButton = styled(StyledSubmitButton)`
 export const StyledSecondaryButton = styled(StyledSubmitButton)`
   background-color: var(--dark-main);
   border-radius: 25px;
+  align-self: center;
 `;
 
 export const StyledSecondaryButtonRight = styled(StyledSubmitButton)`
@@ -118,4 +120,12 @@ export const StyledEditButtonDark = styled(StyledSubmitButton)`
 
 export const StyledEditButtonRed = styled(StyledSubmitButton)`
   border-radius: 0 25px 0 25px;
+`;
+
+export const StyledAddButton = styled(StyledSubmitButton)`
+  margin-right: 0rem;
+
+  @media ${device.tablet} {
+    margin-right: 0;
+  }
 `;
