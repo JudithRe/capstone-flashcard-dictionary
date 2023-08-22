@@ -1,17 +1,27 @@
 import { device } from "@/utils/globalValues";
+import { useRouter } from "next/router";
 
 import styled from "styled-components";
 
 export default function Header() {
-  return <StyledCircle />;
+  const router = useRouter();
+  const activePath = router.pathname;
+
+  // if (activePath === "/") {
+  //   return (
+  //     <HeaderBackground>
+  //       <StyledCircleLeft />
+  //     </HeaderBackground>
+  //   );
+  // }
+
+  return <StyledCircleCenter />;
 }
 
 const StyledCircle = styled.div`
-  position: absolute;
-  top: 0;
-  right: 50%;
+  position: fixed;
   z-index: 0;
-  transform: translate(50%, -50%);
+
   width: 300px;
   height: 300px;
   border-radius: 50%;
@@ -22,4 +32,15 @@ const StyledCircle = styled.div`
     width: 400px;
     height: 400px;
   }
+`;
+
+const StyledCircleCenter = styled(StyledCircle)`
+  top: 0;
+  right: 50%;
+  transform: translate(50%, -50%);
+`;
+const StyledCircleLeft = styled(StyledCircle)`
+  right: 0;
+  top: 0;
+  transform: translate(50%, -50%);
 `;

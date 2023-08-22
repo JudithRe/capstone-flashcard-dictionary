@@ -220,21 +220,25 @@ const StyledCenteredCard = styled(StyledCard)`
   transform: translate(50%, -50%);
   top: 50%;
   right: 50%;
+  height: auto;
 `;
 
 export const StyledWarningText = styled.p`
   margin-top: 0;
-  margin-bottom: 2rem;
-  font-size: 0.7rem;
+
+  font-size: 0.9rem;
 `;
 
 const StyledFormTitle = styled.h2`
   font-size: 1.3rem;
-  margin: 15px;
+  margin: 15px 0;
+  align-self: flex-start;
 `;
 
 const StyledFormButtonRight = styled(StyledSecondaryButtonRight)`
   position: absolute;
+  margin: 0;
+  top: 1rem;
   right: 0;
 `;
 

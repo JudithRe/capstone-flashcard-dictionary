@@ -1,15 +1,6 @@
 import { createGlobalStyle } from "styled-components";
-// import { Poppins, Permanent_Marker } from "@next/font/google";
+import { permanent, poppins } from "./utils/fonts";
 
-// const poppins = Poppins({
-//   subsets: ["latin"],
-//   weight: ["400", "500", "600", "700", "800", "900"],
-// });
-
-// export const indie = Permanent_Marker({
-//   subsets: ["latin"],
-//   weight: ["400"],
-// });
 export default createGlobalStyle`
   :root {
 
@@ -62,12 +53,12 @@ export default createGlobalStyle`
     background-color: var(--light-grey);
     background-image: url("/background-vector.png");
     background-repeat: repeat;
-    font-family:  Helvetica, sans-serif;
+    font-family:  ${poppins.style.fontFamily}, Helvetica, sans-serif;
   }
   
 
-  h1, h2, h3 {
-    font-family:  Helvetica, sans-serif;
+  h1, h2, h3, .greeting {
+    font-family:  ${permanent.style.fontFamily}, Helvetica, sans-serif;
     letter-spacing: 3px;
   }
   .inherit-background-color {

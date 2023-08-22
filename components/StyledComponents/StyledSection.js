@@ -43,6 +43,7 @@ export const StyledSectionTopBetween = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100vw;
+  margin: 0;
   position: fixed;
   top: 1rem;
   z-index: 5;

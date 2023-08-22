@@ -213,6 +213,7 @@ function AddEntryForm({
 
 export const StyledDropDown = styled(StyledCategorySelector)`
   color: var(--text-color);
+  font-size: 1rem;
 `;
 
 export const StyledForm = styled.form`
@@ -227,14 +228,14 @@ export const StyledFormLabel = styled.label`
   background-color: inherit;
   margin-bottom: -5px;
   font-weight: 500;
+  margin-left: 10px;
 `;
 
 export const StyledFormInput = styled.input`
   background-color: var(--dark-mode-text-color);
   padding: 10px;
-  border: 2px solid var(--dark-main);
-  border-radius: 25px;
-  /* box-shadow: inset var(--inset-box-shadow); */
+  border: 1px solid var(--dark-main);
+  border-radius: 15px;
 `;
 
 export const StyledFormSubmitButton = styled.button`

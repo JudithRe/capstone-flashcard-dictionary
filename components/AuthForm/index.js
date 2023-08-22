@@ -8,6 +8,7 @@ import { StyledSettingsButton } from "../StyledComponents/StyledButtons";
 import styled from "styled-components";
 import ErrorIcon from "@/assets/icons/ErrorIcon";
 import { StyledSubmitButtonRight, StyledWarningText } from "../EditingForm";
+import { MainContent } from "../StyledComponents/MainContent";
 
 function AuthForm() {
   const [registered, setRegistered] = useState(false);
@@ -128,9 +129,9 @@ function AuthForm() {
               {loginProcess ? "Log in" : "Create Account"}
             </StyledSubmitButtonRight>
 
-            <StyledWarningText className="inherit-background-color">
+            <StyledLoginText className="inherit-background-color">
               {loginProcess ? "No Account yet?" : "Already a user?"}
-            </StyledWarningText>
+            </StyledLoginText>
 
             <StyledSettingsButtonLeft
               type="button"
@@ -158,6 +159,9 @@ function AuthForm() {
   );
 }
 
+const StyledLoginText = styled(StyledWarningText)`
+  margin-bottom: 3rem;
+`;
 const StyledErrorMessage = styled.p`
   background-color: inherit;
   border: 1px solid var(--highlight-red);

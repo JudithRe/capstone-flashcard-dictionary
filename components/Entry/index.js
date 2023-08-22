@@ -16,6 +16,7 @@ import CorrectIcon from "@/assets/icons/CorrectIcon";
 import AddIcon from "@/assets/icons/AddIcon";
 import EditIcon from "@/assets/icons/EditIcon";
 import { useRouter } from "next/router";
+import { StyledSubmitButtonRight } from "../EditingForm";
 
 function Entry({
   entry,
@@ -75,7 +76,7 @@ function Entry({
       <StyledCard>
         <StyledSectionRightAlign>
           {showAddButton && (
-            <StyledSubmitButton
+            <StyledAddButton
               type="button"
               onClick={(event) => {
                 event.target.disabled = true;
@@ -89,10 +90,10 @@ function Entry({
               >
                 <AddIcon height="16px" width="16px" />
               </span>
-            </StyledSubmitButton>
+            </StyledAddButton>
           )}
           {!showAddButton && isDictionaryEntry && (
-            <StyledSubmitButton type="button" disabled={true}>
+            <StyledAddButton type="button" disabled={true}>
               <span
                 className="inherit-background-color"
                 role="img"
@@ -100,7 +101,7 @@ function Entry({
               >
                 <CorrectIcon height="16px" width="16px" />
               </span>
-            </StyledSubmitButton>
+            </StyledAddButton>
           )}
           {isEditMode && (
             <StyledSecondaryButtonRight
@@ -161,6 +162,10 @@ export const StyledUl = styled.ul`
   padding: 0;
   text-align: center;
   margin: 0;
+`;
+
+const StyledAddButton = styled(StyledSubmitButton)`
+  margin-right: 0;
 `;
 
 export default Entry;

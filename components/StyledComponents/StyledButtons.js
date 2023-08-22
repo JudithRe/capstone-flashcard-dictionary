@@ -46,6 +46,7 @@ export const StyledSecondaryButton = styled(StyledSubmitButton)`
 export const StyledSecondaryButtonRight = styled(StyledSubmitButton)`
   background-color: var(--dark-main);
   border-radius: 25px 0 0 25px;
+  margin-right: 0;
 `;
 
 /* Settings and Signout buttons */

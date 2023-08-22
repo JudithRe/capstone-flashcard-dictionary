@@ -7,40 +7,66 @@ export default function Greeting() {
 
   if (session?.user?.username) {
     return (
-      <>
-        <StyledFixedSection>
-          <StyledGreetingVertical className="transparent-background-color">
-            こんにちは。
-          </StyledGreetingVertical>
-        </StyledFixedSection>
-      </>
+      <StyledFixedSection>
+        <StyledGreeting className="greeting">
+          <StyledUsername>{session?.user?.username}</StyledUsername>
+          さん、
+          <br />
+          こんにちは。
+        </StyledGreeting>
+      </StyledFixedSection>
     );
   }
 }
 
+const StyledUsername = styled.span`
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 4px;
+
+  color: var(--dark-mode-text-color);
+  @media ${device.tablet} {
+    font-size: 2.2rem;
+  }
+`;
+
+const StyledGreeting = styled.p`
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: var(--dark-mode-text-color);
+  @media ${device.tablet} {
+    font-size: 1.6rem;
+  }
+`;
+
 const StyledGreetingVertical = styled.p`
-  position: fixed;
-  top: 3rem;
+  /* position: fixed;
+  top: 3rem; */
   font-size: 1.2rem;
   font-weight: 900;
   letter-spacing: 7px;
   padding: 10px 0;
-  left: 50%;
-  transform: translate(-100%);
-  writing-mode: vertical-rl;
+  /* left: 50%;
+  transform: translate(-100%); */
+  margin: 12px 0 0 -2px;
+  writing-mode: vertical-lr;
   text-orientation: upright;
   max-height: 15rem;
+  z-index: 6;
 
   @media ${device.tablet} {
     font-size: 1.6rem;
+    margin: 21px 0 0 -2px;
   }
 `;
 
 const StyledFixedSection = styled.div`
   position: fixed;
   background-color: transparent;
-  left: 2rem;
-  width: 40%;
-  top: 3rem;
-  z-index: 15;
+  display: flex;
+  right: 50%;
+  transform: translate(50%);
+
+  top: 1rem;
+  z-index: 5;
 `;
