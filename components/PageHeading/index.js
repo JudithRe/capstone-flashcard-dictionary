@@ -1,8 +1,13 @@
+import { permanent } from "@/fonts";
 import { device } from "@/utils/globalValues";
 import styled from "styled-components";
 
 function Heading({ PageTitle }) {
-  return <StyledPageHeadingCenter>{PageTitle}</StyledPageHeadingCenter>;
+  return (
+    <StyledPageHeadingCenter className={permanent.className}>
+      {PageTitle}
+    </StyledPageHeadingCenter>
+  );
 }
 
 const StyledPageHeadingCenter = styled.h1`

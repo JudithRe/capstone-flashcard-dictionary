@@ -48,7 +48,6 @@ export default createGlobalStyle`
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: system-ui;
     background-color: var(--light-grey);
     background-image: url("/background-vector.png");
     background-repeat: repeat;
