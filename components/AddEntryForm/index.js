@@ -80,6 +80,36 @@ function AddEntryForm({
       }
     }
 
+    if (categoryValues[1] === "default") {
+      const newEntryObject = {
+        userId: activeUser._id,
+        category: null,
+        categoryName: "",
+        isDictionaryEntry: false,
+        slug: japaneseInput,
+        japanese: {
+          word: japaneseInput,
+          reading: reading,
+        },
+        english: englishInput.split(", "),
+
+        study: {
+          lastReview: "new",
+          stage: 0,
+          lastWasWrongAnswer: false,
+          wrongAnswerCount: 0,
+          rightAnswerCount: 0,
+          streak: 0,
+        },
+      };
+
+      handleAddEntry(newEntryObject);
+
+      form.reset();
+      form.englishInput.focus();
+      setNeedsNewCategory(false);
+      return;
+    }
     const newEntryObject = {
       userId: activeUser._id,
       category: categoryValues[0],
@@ -147,7 +177,7 @@ function AddEntryForm({
             name="category"
             onChange={(event) => handleDropdownChange(event)}
           >
-            <option value="default" defaultValue>
+            <option value={[null, "default"]} defaultValue>
               Choose a Category
             </option>
             {categoryData.map((category) => {
@@ -183,10 +213,11 @@ function AddEntryForm({
 
 export const StyledDropDown = styled(StyledCategorySelector)`
   color: var(--text-color);
+  font-size: 1rem;
 `;
 
 export const StyledForm = styled.form`
-  background-color: inherit;
+  background: transparent;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -197,23 +228,25 @@ export const StyledFormLabel = styled.label`
   background-color: inherit;
   margin-bottom: -5px;
   font-weight: 500;
+  margin-left: 10px;
 `;
 
 export const StyledFormInput = styled.input`
-  background-color: inherit;
+  background-color: var(--dark-mode-text-color);
   padding: 10px;
-  border: 1px solid var(--light-grey);
-  border-radius: 5px;
-  box-shadow: inset var(--inset-box-shadow);
+  border: 1px solid var(--dark-main);
+  border-radius: 15px;
 `;
 
 export const StyledFormSubmitButton = styled.button`
   align-self: flex-end;
+  font-size: 1.2rem;
   background-color: var(--highlight-red);
   color: var(--dark-mode-text-color);
   padding: 10px 15px;
+  margin-right: -1rem;
   border: none;
-  border-radius: 25px;
+  border-radius: 25px 0 0 25px;
   box-shadow: var(--default-box-shadow);
   font-weight: 500;
 `;

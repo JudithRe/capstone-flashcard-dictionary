@@ -4,12 +4,10 @@ import { useRouter } from "next/router";
 
 import { StyledCard } from "../StyledComponents/StyledCard";
 import { StyledForm, StyledFormInput, StyledFormLabel } from "../AddEntryForm";
-import {
-  StyledSettingsButton,
-  StyledSubmitButton,
-} from "../StyledComponents/StyledButtons";
+import { StyledSettingsButton } from "../StyledComponents/StyledButtons";
 import styled from "styled-components";
 import ErrorIcon from "@/assets/icons/ErrorIcon";
+import { StyledSubmitButtonRight, StyledWarningText } from "../EditingForm";
 
 function AuthForm() {
   const [registered, setRegistered] = useState(false);
@@ -126,17 +124,20 @@ function AuthForm() {
               ref={passwordInputRef}
             />
 
-            <StyledSubmitButton>
+            <StyledSubmitButtonRight>
               {loginProcess ? "Log in" : "Create Account"}
-            </StyledSubmitButton>
+            </StyledSubmitButtonRight>
 
-            <p className="inherit-background-color">
+            <StyledLoginText className="inherit-background-color">
               {loginProcess ? "No Account yet?" : "Already a user?"}
-            </p>
+            </StyledLoginText>
 
-            <StyledSettingsButton type="button" onClick={switchAuthModeHandler}>
+            <StyledSettingsButtonLeft
+              type="button"
+              onClick={switchAuthModeHandler}
+            >
               {loginProcess ? "Create Account" : "Log in"}
-            </StyledSettingsButton>
+            </StyledSettingsButtonLeft>
           </StyledForm>
         </>
       ) : (
@@ -157,6 +158,9 @@ function AuthForm() {
   );
 }
 
+const StyledLoginText = styled(StyledWarningText)`
+  margin-bottom: 3rem;
+`;
 const StyledErrorMessage = styled.p`
   background-color: inherit;
   border: 1px solid var(--highlight-red);
@@ -166,6 +170,13 @@ const StyledErrorMessage = styled.p`
   &::before {
     background-color: inherit;
   }
+`;
+
+const StyledSettingsButtonLeft = styled(StyledSettingsButton)`
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
+  border-radius: 0 25px 25px 0;
 `;
 
 export default AuthForm;

@@ -6,7 +6,7 @@ import ListIcon from "@/assets/icons/ListIcon";
 import AddIcon from "@/assets/icons/AddIcon";
 import StudyIcon from "@/assets/icons/StudyIcon";
 import { useRouter } from "next/router";
-import SearchIcon from "@/assets/icons/SearchIcon";
+import ProfileIcon from "@/assets/icons/ProfileIcon";
 
 export default function Navigation() {
   const router = useRouter();
@@ -33,32 +33,17 @@ export default function Navigation() {
             </span>
           </StyledNavigationLink>
         </StyledNavigationItem>
+
         <StyledNavigationItem>
           <StyledNavigationLink href="/search">
-            <span
-              className="inherit-background-color"
-              role="img"
-              aria-label="Search"
-            >
-              <SearchIcon
-                className="nav-transition"
-                height={activePath === "/search" ? "55px" : "30px"}
-                width={activePath === "/search" ? "55px" : "30px"}
-                color="white"
-              />
-            </span>
-          </StyledNavigationLink>
-        </StyledNavigationItem>
-        <StyledNavigationItem>
-          <StyledNavigationLink href="/add">
             <span
               className="inherit-background-color"
               role="img"
               aria-label="Add Words"
             >
               <AddIcon
-                height={activePath === "/add" ? "55px" : "30px"}
-                width={activePath === "/add" ? "55px" : "30px"}
+                height={activePath === "/search" ? "55px" : "30px"}
+                width={activePath === "/search" ? "55px" : "30px"}
               />
             </span>
           </StyledNavigationLink>
@@ -86,15 +71,29 @@ export default function Navigation() {
             >
               <ListIcon
                 height={
-                  activePath === "/words" || activePath === "/categories"
+                  activePath.includes("/words") || activePath === "/categories"
                     ? "55px"
                     : "30px"
                 }
                 width={
-                  activePath === "/words" || activePath === "/categories"
+                  activePath.includes("/words") || activePath === "/categories"
                     ? "55px"
                     : "30px"
                 }
+              />
+            </span>
+          </StyledNavigationLink>
+        </StyledNavigationItem>
+        <StyledNavigationItem>
+          <StyledNavigationLink href="/profile">
+            <span
+              className="inherit-background-color"
+              role="img"
+              aria-label="Profile"
+            >
+              <ProfileIcon
+                height={activePath === "/profile" ? "55px" : "30px"}
+                width={activePath === "/profile" ? "55px" : "30px"}
               />
             </span>
           </StyledNavigationLink>
@@ -113,10 +112,11 @@ const StyledNavList = styled.ul`
   justify-content: space-between;
   align-items: flex-end;
   height: var(--footer-height);
-  padding: 2rem 0.5rem;
+  padding: 2rem 0;
   background-color: var(--dark-main);
   list-style-type: none;
   z-index: 5;
+  box-shadow: var(--default-box-shadow-top);
 
   @media ${device.tablet} {
     background-color: transparent;
@@ -124,8 +124,10 @@ const StyledNavList = styled.ul`
     align-items: flex-start;
     gap: 1rem;
     width: auto;
+    box-shadow: none;
 
-    top: 0;
+    top: 8rem;
+
     left: 0;
   }
 `;
@@ -134,6 +136,7 @@ const StyledNavigationItem = styled.li`
   padding: 15px;
   border-radius: 50%;
   background-color: var(--dark-main);
+  box-shadow: var(--default-box-shadow-top);
 
   @media ${device.tablet} {
     padding-left: 40px;

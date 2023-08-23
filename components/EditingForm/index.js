@@ -9,7 +9,7 @@ import {
   StyledFormLabel,
 } from "../AddEntryForm";
 import {
-  StyledSecondaryButton,
+  StyledSecondaryButtonRight,
   StyledSubmitButton,
 } from "../StyledComponents/StyledButtons";
 import WrongIcon from "@/assets/icons/WrongIcon";
@@ -75,6 +75,7 @@ function EditingForm({
       category: categoryInfo[0],
       categoryName: categoryInfo[1],
     };
+
     updateEntry(newEntryWithCategory, entry);
     handleDetailEditMode(false);
 
@@ -117,7 +118,7 @@ function EditingForm({
   return (
     <Modal>
       <StyledCenteredCard>
-        <StyledSecondaryButton
+        <StyledFormButtonRight
           type="button"
           onClick={() => handleDetailEditMode(false)}
         >
@@ -128,12 +129,17 @@ function EditingForm({
           >
             <WrongIcon height="16px" width="16px" />
           </span>
-        </StyledSecondaryButton>
-        <h2 className="inherit-background-color">Edit your Entry</h2>
+        </StyledFormButtonRight>
+        <StyledFormTitle
+          id="edit-form-title"
+          className="inherit-background-color"
+        >
+          Edit your Entry
+        </StyledFormTitle>
 
         <StyledForm
           onSubmit={handleFormSubmit}
-          aria-labelledby="add-form-title"
+          aria-labelledby="edit-form-title"
         >
           <StyledFormLabel htmlFor="english-input">English</StyledFormLabel>
           <StyledFormInput
@@ -170,7 +176,7 @@ function EditingForm({
             id="category"
             onChange={(event) => handleDropdownChange(event)}
           >
-            <option defaultValue={previousCategory}>
+            <option value={[previousCategory, previousCategoryName]} selected>
               {previousCategoryName ? previousCategoryName : "no category"}
             </option>
             {categoryData
@@ -199,10 +205,10 @@ function EditingForm({
               />
             </>
           )}
-          <StyledSubmitButton type="submit">Save</StyledSubmitButton>
-          <p className="inherit-background-color">
+          <StyledSubmitButtonRight type="submit">Save</StyledSubmitButtonRight>
+          <StyledWarningText>
             Saving will cause your study progress to be reset to 0.
-          </p>
+          </StyledWarningText>
         </StyledForm>
       </StyledCenteredCard>
     </Modal>
@@ -214,6 +220,30 @@ const StyledCenteredCard = styled(StyledCard)`
   transform: translate(50%, -50%);
   top: 50%;
   right: 50%;
+  height: auto;
 `;
 
+export const StyledWarningText = styled.p`
+  margin-top: 0;
+
+  font-size: 0.9rem;
+`;
+
+const StyledFormTitle = styled.h2`
+  font-size: 1.3rem;
+  margin: 15px 0;
+  align-self: flex-start;
+`;
+
+const StyledFormButtonRight = styled(StyledSecondaryButtonRight)`
+  position: absolute;
+  margin: 0;
+  top: 1rem;
+  right: 0;
+`;
+
+export const StyledSubmitButtonRight = styled(StyledSubmitButton)`
+  margin-right: -1rem;
+  border-radius: 25px 0 0 25px;
+`;
 export default EditingForm;

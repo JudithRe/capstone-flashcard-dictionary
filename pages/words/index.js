@@ -8,6 +8,7 @@ import EditIcon from "@/assets/icons/EditIcon";
 import CorrectIcon from "@/assets/icons/CorrectIcon";
 import { hasToken } from "@/utils/checkUser";
 import CategorySelector from "@/components/CategorySelector";
+import { styled } from "styled-components";
 
 export async function getServerSideProps(context) {
   const token = await hasToken(context.req);
@@ -42,36 +43,32 @@ export default function WordList({
   return (
     <>
       {wordList && <Heading PageTitle={`${wordList.length} Saved Words`} />}
+
       <MainContent>
-        <StyledSectionRightAlign>
-          <CategorySelector
-            categoryData={categoryData}
-            wordList={wordList}
-            handleFilterWordList={handleFilterWordList}
-          />
-          <StyledSecondaryButton
-            type="button"
-            onClick={() => setIsEditMode(!isEditMode)}
-          >
-            {!isEditMode ? (
-              <span
-                className="inherit-background-color"
-                role="img"
-                aria-label="edit"
-              >
-                <EditIcon height="20px" width="20px" />
-              </span>
-            ) : (
-              <span
-                className="inherit-background-color"
-                role="img"
-                aria-label="done editing"
-              >
-                <CorrectIcon height="16px" width="16px" />
-              </span>
-            )}
-          </StyledSecondaryButton>
-        </StyledSectionRightAlign>
+        <StyledStickyDiv>
+          <StyledSectionRightAlign>
+            <CategorySelector
+              categoryData={categoryData}
+              wordList={wordList}
+              handleFilterWordList={handleFilterWordList}
+            />
+            <StyledSecondaryButton
+              className="background-light-blue"
+              type="button"
+              onClick={() => setIsEditMode(!isEditMode)}
+            >
+              {!isEditMode ? (
+                <span role="img" aria-label="edit">
+                  <EditIcon height="20px" width="20px" />
+                </span>
+              ) : (
+                <span role="img" aria-label="done editing">
+                  <CorrectIcon height="16px" width="16px" />
+                </span>
+              )}
+            </StyledSecondaryButton>
+          </StyledSectionRightAlign>
+        </StyledStickyDiv>
         <EntriesContainer
           isEditMode={isEditMode}
           handleDetailEditMode={handleDetailEditMode}
@@ -83,3 +80,9 @@ export default function WordList({
     </>
   );
 }
+
+const StyledStickyDiv = styled.div`
+  z-index: 10;
+  position: sticky;
+  top: 2.5rem;
+`;

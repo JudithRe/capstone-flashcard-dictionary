@@ -5,54 +5,63 @@ export default createGlobalStyle`
 
 /* COLORS */
 
-    --light-grey: #CBCBD4;
-    --highlight-red: #B82C23;
+    
+    --light-grey: #D8D6CC;
+    
+    --highlight-red: #D04C3C;
     --highlight-green: #5F8179;
-    --dark-main: #2E2836;
+    --highlight-blue: #3F7496;
+    
+    --dark-main: #223257;
     --text-color: #30343F;
     --dark-mode-text-color: #ffffff; 
-    --overlay: rgba(203, 203, 2012, 0.8);
+    --overlay: rgba(216,	214,	204, 0.9);
+    --disabled: #CBCBD4;  
 
 /* HEIGHTS and WIDTHS */
 
     --footer-height: 5rem;
-    --card-width: 360px;
-  --header-height: 100px;
-    --header-height-mobile: 175px;
-    --header-height-desktop: 200px; 
+    --card-width: 300px;
+    --header-height: 100px;
+    --header-height-mobile: 225px;
+    --header-height-desktop: 225px; 
 
 /* OTHER */
 
-    --default-box-shadow: 4px 8px 10px -4px #969496;
-    --inset-box-shadow: 1px 1px 5px -1px #969496;
+    --default-box-shadow: 1px 4px 4px -1px rgba(0, 0, 0, 0.25);
+    --inset-box-shadow: 1px 1px 3px -4px #969496;
     --border-radius: 25px;
   }
   
 
-  * {
-  background-color: var(--light-grey);
-  }
+
   *,
   *::before,
   *::after {
     box-sizing: border-box;
     color: var(--text-color);
+    
   }
 
   body {
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     font-family: system-ui;
+    background-color: var(--light-grey);
+    background-image: url("/background-vector.png");
+    background-repeat: repeat;
+
   }
   
-  .inherit-background-color {
-  background-color: inherit;
-}
-
-.transparent-background-color {
-  background-color: transparent;
-}
 
 .navTransition {
-  transition: 250ms linear;
+  transition: 400ms linear;
 }
+
+.background-light-blue {
+  background-color: var(--highlight-blue);
+}
+
 `;

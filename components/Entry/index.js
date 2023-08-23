@@ -1,9 +1,10 @@
-import { device } from "@/utils/globalValues";
 import styled from "styled-components";
 import { StyledCard } from "../StyledComponents/StyledCard";
 import {
-  StyledSecondaryButton,
-  StyledSubmitButton,
+  StyledSecondaryButtonRight,
+  StyledEditButtonDark,
+  StyledEditButtonRed,
+  StyledAddButton,
 } from "../StyledComponents/StyledButtons";
 import { StyledSectionRightAlign } from "../StyledComponents/StyledSection";
 import { deleteEntry } from "@/utils/deleteFunctions.js";
@@ -15,6 +16,8 @@ import CorrectIcon from "@/assets/icons/CorrectIcon";
 import AddIcon from "@/assets/icons/AddIcon";
 import EditIcon from "@/assets/icons/EditIcon";
 import { useRouter } from "next/router";
+import { device } from "@/utils/globalValues";
+import { Spacer } from "../StyledComponents/MainContent";
 
 function Entry({
   entry,
@@ -36,7 +39,7 @@ function Entry({
         </LinkWithoutDecoration>
         {isEditMode && (
           <StyledEditComponent>
-            <StyledSecondaryButton
+            <StyledEditButtonDark
               type="button"
               onClick={() => deleteEntry(_id, databaseMutate)}
             >
@@ -47,8 +50,8 @@ function Entry({
               >
                 <DeleteIcon width="16px" height="16px" />
               </span>
-            </StyledSecondaryButton>
-            <StyledSubmitButton
+            </StyledEditButtonDark>
+            <StyledEditButtonRed
               type="button"
               onClick={() => {
                 handleDetailEditMode(true);
@@ -62,7 +65,7 @@ function Entry({
               >
                 <EditIcon width="16px" height="16px" />
               </span>
-            </StyledSubmitButton>
+            </StyledEditButtonRed>
           </StyledEditComponent>
         )}
       </PositionRelativeDiv>
@@ -72,9 +75,9 @@ function Entry({
   if (!_id) {
     return (
       <StyledCard>
-        <StyledSectionRightAlign>
+        <StyledSectionRightAlignAbsolute>
           {showAddButton && (
-            <StyledSubmitButton
+            <StyledAddButton
               type="button"
               onClick={(event) => {
                 event.target.disabled = true;
@@ -88,10 +91,10 @@ function Entry({
               >
                 <AddIcon height="16px" width="16px" />
               </span>
-            </StyledSubmitButton>
+            </StyledAddButton>
           )}
           {!showAddButton && isDictionaryEntry && (
-            <StyledSubmitButton type="button" disabled={true}>
+            <StyledAddButton type="button" disabled={true}>
               <span
                 className="inherit-background-color"
                 role="img"
@@ -99,10 +102,10 @@ function Entry({
               >
                 <CorrectIcon height="16px" width="16px" />
               </span>
-            </StyledSubmitButton>
+            </StyledAddButton>
           )}
           {isEditMode && (
-            <StyledSecondaryButton
+            <StyledSecondaryButtonRight
               type="button"
               onClick={() => deleteEntry(_id, databaseMutate)}
             >
@@ -113,33 +116,37 @@ function Entry({
               >
                 <DeleteIcon width="16px" height="16px" />
               </span>
-            </StyledSecondaryButton>
+            </StyledSecondaryButtonRight>
           )}
-        </StyledSectionRightAlign>
+        </StyledSectionRightAlignAbsolute>
+        <Spacer />
+        <Spacer />
+        <Spacer />
         <EntryContent entry={entry} />
       </StyledCard>
     );
   }
 }
 
+const StyledSectionRightAlignAbsolute = styled.div`
+  position: absolute;
+  right: 0;
+  top: 1rem;
+  padding: none;
+`;
+
 export const StyledEditComponent = styled.div`
   background-color: transparent;
   display: flex;
   flex-direction: column;
-  position: absolute;
   gap: 0.3rem;
-  top: 0;
-  padding: 10px;
-  right: -30px;
+  padding: 10px 0;
   z-index: 3;
-
-  @media ${device.tablet} {
-    margin-left: -35px;
-  }
+  margin-left: -15px;
 `;
 
 export const PositionRelativeDiv = styled.div`
-  position: relative;
+  display: flex;
 `;
 
 export const StyledJPDefinition = styled.h2`

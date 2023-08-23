@@ -39,7 +39,7 @@ export default function StudyPage({ wordList, databaseMutate }) {
         <MainContent>
           <Heading PageTitle="Study" />
           <FixedCenteredPosition>
-            <StyledCenteredButton
+            <StyledStartButton
               onClick={() =>
                 generateStudyMode({
                   wordList,
@@ -49,7 +49,7 @@ export default function StudyPage({ wordList, databaseMutate }) {
               }
             >
               START
-            </StyledCenteredButton>
+            </StyledStartButton>
           </FixedCenteredPosition>
         </MainContent>
       )}
@@ -65,9 +65,10 @@ export default function StudyPage({ wordList, databaseMutate }) {
               aria-label="exit"
             >
               <WrongIcon height="16px" width="16px" />
-            </span>{" "}
-            End Session
+            </span>
+            {`  End Session`}
           </StyledEndSessionButton>
+
           {isFront && studyList.length === 0 && (
             <StyledStudyDisplay>
               <p>No reviews</p>
@@ -100,19 +101,25 @@ const StyledStudyDisplay = styled.div`
 const StyledEndSessionButton = styled(StyledSubmitButton)`
   position: fixed;
   top: 1rem;
-  right: 1rem;
+  right: 0;
   background-color: var(--dark-main);
+  border-radius: 25px 0 0 25px;
+`;
 
-  &::before {
-    background-color: inherit;
-    color: var(--dark-mode-text-color);
-  }
+const StyledStartButton = styled(StyledCenteredButton)`
+  padding: 20px;
+  border-radius: 0 25px 0 25px;
+  transition: all 0.3s;
 `;
 
 export const StudyModal = styled.section`
   position: fixed;
-  background-color: var(--light-grey);
+  left: 0;
+  top: 0;
+  background-image: url("/background-vector.png");
+  background-repeat: repeat;
+
   width: 100vw;
   height: 100vh;
-  z-index: 5;
+  z-index: 6;
 `;

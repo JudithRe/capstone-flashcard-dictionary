@@ -3,8 +3,6 @@ import { getSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import AuthForm from "@/components/AuthForm";
 import { FixedCenteredPosition } from "@/components/StyledComponents/Modal";
-import Heading from "@/components/PageHeading";
-import JG from "@/assets/icons/JG";
 import { StyledResultDisplay } from "@/components/SearchResults";
 
 function AuthPage() {
@@ -23,42 +21,16 @@ function AuthPage() {
 
   if (isLoading) {
     return (
-      <>
-        <Heading
-          PageTitle={
-            <span
-              className="transparent-background-color"
-              role="h1"
-              aria-label="Jisho Genius"
-            >
-              <JG />
-            </span>
-          }
-        />
-        <FixedCenteredPosition>
-          <StyledResultDisplay>Loading...</StyledResultDisplay>
-        </FixedCenteredPosition>
-      </>
+      <FixedCenteredPosition>
+        <StyledResultDisplay>Loading...</StyledResultDisplay>
+      </FixedCenteredPosition>
     );
   }
 
   return (
-    <>
-      <Heading
-        PageTitle={
-          <span
-            className="transparent-background-color"
-            role="h1"
-            aria-label="Jisho Genius"
-          >
-            <JG />
-          </span>
-        }
-      />
-      <FixedCenteredPosition>
-        <AuthForm />
-      </FixedCenteredPosition>
-    </>
+    <FixedCenteredPosition>
+      <AuthForm />
+    </FixedCenteredPosition>
   );
 }
 

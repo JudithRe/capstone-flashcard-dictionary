@@ -6,7 +6,6 @@ import { convertToKana } from "@/utils/helperFunctions";
 import { handleDictionaryOutput } from "@/utils/refactorDictionaryOutput";
 import useSWR from "swr";
 import { SessionProvider } from "next-auth/react";
-import {} from "next-auth/react";
 
 const fetcher = async (url) => {
   const response = await fetch(url);
@@ -20,6 +19,7 @@ const fetcher = async (url) => {
 
   return await response.json();
 };
+
 export default function App({
   Component,
   pageProps: { session, ...pageProps },
@@ -36,6 +36,7 @@ export default function App({
     lastStreakUpdate: 0,
   });
   const [hasEntries, setHasEntries] = useState(false);
+  const [newEntries, setNewEntries] = useState([]);
 
   function handleSetDictionaryResults(dictionaryResults) {
     setDictionaryResults(dictionaryResults);
@@ -99,6 +100,7 @@ export default function App({
   async function handleAddEntry(newEntry) {
     const entryWithoutAddButton = { ...newEntry, showAddButton: false };
 
+    setNewEntries([...newEntries, entryWithoutAddButton]);
     const response = await fetch(DatabaseURL, {
       method: "POST",
       headers: {
@@ -182,6 +184,7 @@ export default function App({
     <>
       <SessionProvider session={session}>
         <GlobalStyle />
+
         <Component
           wordList={databaseData}
           databaseIsLoading={databaseIsLoading}
@@ -205,6 +208,7 @@ export default function App({
           handleAddCategory={handleAddCategory}
           categoryData={categoryData}
           categoryMutate={categoryMutate}
+          newEntries={newEntries}
           {...pageProps}
         />
         <Layout handleActiveUser={handleActiveUser} />
