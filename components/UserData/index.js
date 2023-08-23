@@ -2,10 +2,7 @@ import ProfileIcon from "@/assets/icons/ProfileIcon";
 import styled from "styled-components";
 import { StyledSection } from "../StyledComponents/StyledSection";
 import { signOut, useSession } from "next-auth/react";
-import {
-  StyledGhostButton,
-  StyledSecondaryButton,
-} from "../StyledComponents/StyledButtons";
+import { StyledGhostButton } from "../StyledComponents/StyledButtons";
 
 export default function UserData() {
   const { data: session } = useSession();
