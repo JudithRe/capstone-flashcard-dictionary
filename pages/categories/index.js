@@ -44,7 +44,7 @@ export default function Categories({
   const router = useRouter();
   return (
     <MainContent>
-      <Heading id="add-form-title" PageTitle="Your Categories" />
+      <Heading id="add-form-title">Your Categories</Heading>
       <StyledSectionRightAlign>
         <StyledSecondaryButton type="button" onClick={() => router.back()}>
           Back

@@ -37,7 +37,7 @@ export default function StudyPage({ wordList, databaseMutate }) {
     <>
       {!isStudyMode && (
         <MainContent>
-          <Heading PageTitle="Study" />
+          <Heading>Study</Heading>
           <FixedCenteredPosition>
             <StyledStartButton
               onClick={() =>

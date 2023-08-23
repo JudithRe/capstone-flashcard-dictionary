@@ -13,11 +13,17 @@ export const StyledCard = styled.section`
   border-radius: 5px;
   box-shadow: var(--default-box-shadow);
   position: relative;
-  z-index: 1;
+  z-index: 0;
   height: 100%;
 `;
 
 export const StyledCardLeftAlign = styled(StyledCard)`
   align-items: flex-start;
   padding: 1rem 1.5rem;
+`;
+
+export const StyledCardLarge = styled(StyledCard)`
+  align-items: flex-start;
+  padding: 1rem 1.5rem;
+  width: 80%;
 `;

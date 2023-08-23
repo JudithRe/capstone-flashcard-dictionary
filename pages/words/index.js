@@ -42,7 +42,7 @@ export default function WordList({
 
   return (
     <>
-      {wordList && <Heading PageTitle={`${wordList.length} Saved Words`} />}
+      {wordList && <Heading>{wordList.length} Saved Words</Heading>}
 
       <MainContent>
         <StyledStickyDiv>

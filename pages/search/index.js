@@ -47,7 +47,7 @@ export default function Search({
   const [isSearch, setIsSearch] = useState(true);
   return (
     <>
-      <Heading PageTitle="Search and Add Words" />
+      <Heading>Search and Add Words</Heading>
       <MainContent>
         <StyledSectionFixedTopRight>
           <StyledSecondaryButtonRight onClick={() => setIsSearch(!isSearch)}>

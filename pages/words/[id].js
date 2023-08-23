@@ -15,8 +15,8 @@ import styled from "styled-components";
 import { hasToken } from "@/utils/checkUser";
 import Heading from "@/components/PageHeading";
 import { device } from "@/utils/globalValues";
-import WrongIcon from "@/assets/icons/WrongIcon";
-import CorrectIcon from "@/assets/icons/CorrectIcon";
+import { StyledCircle } from "@/components/Header";
+import SingleBarDiagram from "@/components/SingleBarDiagram";
 
 export async function getServerSideProps(context) {
   const token = await hasToken(context.req);
@@ -84,8 +84,17 @@ export default function WordDetail({
       study;
 
     const visualReviewDate = getVisualDate(lastReview);
+
+    const AnswerOverview = [
+      { id: "1", name: "wrong", value: wrongAnswerCount },
+      { id: "2", name: "right", value: rightAnswerCount },
+    ];
+
     return (
       <MainContent>
+        <StyledFixedTop>
+          <StyledCircle />
+        </StyledFixedTop>
         {isDetailEditMode && (
           <EditingForm
             handleDetailEditMode={handleDetailEditMode}
@@ -103,7 +112,7 @@ export default function WordDetail({
           />
         )}
         <StyledSectionFixedCenter>
-          <Heading PageTitle={japanese.word} />
+          <Heading>{japanese.word}</Heading>
         </StyledSectionFixedCenter>
         <StyledSectionTopBetween>
           <StyledBackButton href="/words"></StyledBackButton>
@@ -160,48 +169,43 @@ export default function WordDetail({
             </span>
           </div>
           <StyledHeading3>Answer Count</StyledHeading3>
-          <StyledTagContainer>
-            <StyledTagRed>
-              <WrongIcon height="16px" />
-              {` ${wrongAnswerCount}`}
-            </StyledTagRed>
-            <StyledTagGreen>
-              <CorrectIcon height="16px" />
-              {` ${rightAnswerCount}`}
-            </StyledTagGreen>
-          </StyledTagContainer>
+          <SingleBarDiagram
+            inputArray={AnswerOverview}
+            unit="times"
+            height="250"
+          />
         </StyledCardLeftAlign>
       </MainContent>
     );
   }
 }
 
-const LessMargin = styled.div`
-  margin-top: -2rem;
-  @media ${device.tablet} {
-    margin-top: 0;
-  }
+const StyledFixedTop = styled.div`
+  position: fixed;
+  top: 0;
+  z-index: 1;
 `;
 
-const StyledHeading2 = styled.h2`
-  padding: 1rem 0 0.3rem 0;
+const LessMargin = styled.div`
+  margin-top: -2rem;
+`;
+
+export const StyledHeading2 = styled.h2`
+  padding: 1rem 0 0rem 0;
   color: var(--dark-main);
   background-color: inherit;
-  font-size: 1.3rem;
-
+  font-size: 1.5rem;
   margin: 0px;
 `;
 
 const StyledCardParagraph = styled.p`
   margin-top: 0;
 `;
-const StyledHeading3 = styled.h3`
+export const StyledHeading3 = styled.h3`
   display: inline-block;
   padding: 1.5rem 0 0.3rem 0;
   color: var(--dark-main);
-  background-color: inherit;
   font-size: 1.2rem;
-
   margin: 0px;
 `;
 
@@ -210,16 +214,6 @@ export const StyledTag = styled.span`
   border-radius: 25px;
   background-color: var(--dark-main);
   color: var(--dark-mode-text-color);
-`;
-
-const StyledTagRed = styled(StyledTag)`
-  padding: 5px 15px 5px 5px;
-  background-color: var(--highlight-red);
-`;
-
-const StyledTagGreen = styled(StyledTag)`
-  padding: 5px 15px 5px 5px;
-  background-color: var(--highlight-green);
 `;
 
 const StyledList = styled.ul`
