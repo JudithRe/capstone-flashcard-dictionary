@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { permanent } from "./fonts";
 
 export default createGlobalStyle`
   :root {
@@ -48,13 +49,13 @@ export default createGlobalStyle`
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: system-ui;
     background-color: var(--light-grey);
     background-image: url("/background-vector.png");
     background-repeat: repeat;
 
   }
   
+
 
 .navTransition {
   transition: 400ms linear;

@@ -1,3 +1,4 @@
+import { permanent } from "@/fonts";
 import { device } from "@/utils/globalValues";
 import styled from "styled-components";
 
