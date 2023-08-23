@@ -45,7 +45,7 @@ export default function ProfilePage({ wordList }) {
         <StyledHeading2>JLPT Distribution</StyledHeading2>
         <BarDiagram inputArray={JLPTDistribution} />
         <StyledWarningText>
-          *Words or phrases that have no JLPT alue attached.
+          *Words or phrases that have no JLPT classification.
         </StyledWarningText>
       </StyledCardLarge>
       <StyledCardLarge>
