@@ -3,11 +3,7 @@ import { device } from "@/utils/globalValues";
 import styled from "styled-components";
 
 function Heading({ PageTitle }) {
-  return (
-    <StyledPageHeadingCenter className={permanent.className}>
-      {PageTitle}
-    </StyledPageHeadingCenter>
-  );
+  return <StyledPageHeadingCenter>{PageTitle}</StyledPageHeadingCenter>;
 }
 
 const StyledPageHeadingCenter = styled.h1`

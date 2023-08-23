@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { permanent } from "./fonts";
 
 export default createGlobalStyle`
   :root {
@@ -54,6 +55,11 @@ export default createGlobalStyle`
 
   }
   
+  h1,  
+  h2, 
+  h3 {
+    font-family: ${permanent.style.fontFamily}, sans-serif;
+  }
 
 .navTransition {
   transition: 400ms linear;

@@ -187,7 +187,7 @@ export default function App({
         <GlobalStyle />
         <style jsx global>{`
           html {
-            font-family: ${poppins.style.fontFamily};
+            font-family: ${poppins.style.fontFamily}, sans-serif;
           }
         `}</style>
         <Component
