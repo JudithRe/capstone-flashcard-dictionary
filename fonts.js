@@ -8,6 +8,6 @@ export const permanent = Permanent_Marker({
 
 export const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "700", "800"],
+  weight: ["400"],
   variable: "--font-poppins",
 });

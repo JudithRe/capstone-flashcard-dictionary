@@ -34,18 +34,22 @@ function StudyDisplay({ wordList, activeUser }) {
   return (
     <StyledSection>
       <NoStyleLink href="/study">
-        <StyledReviewCounter>
+        <StyledReviewCounter
+          className={
+            studyDisplayData.reviewsDue === 0 ? "background-light-blue" : ""
+          }
+        >
           <StyledCounterText>Reviews</StyledCounterText>
           <StyledCounter>{studyDisplayData.reviewsDue}</StyledCounter>
           <StyledCounterText>due</StyledCounterText>
         </StyledReviewCounter>
       </NoStyleLink>
       <NoStyleLink href="/profile">
-        <StyledStreakCounter>
+        <StyledStudyCounter>
           <StyledCounterText>Streak</StyledCounterText>
           <StyledCounter>{studyDisplayData.streak}</StyledCounter>
           <StyledCounterText>days</StyledCounterText>
-        </StyledStreakCounter>
+        </StyledStudyCounter>
       </NoStyleLink>
       <NoStyleLink href="/words">
         <StyledStudyCounter>
@@ -71,11 +75,6 @@ const StyledStudyCounter = styled.div`
   flex-direction: column;
   align-items: center;
   box-shadow: var(--default-box-shadow);
-`;
-
-const StyledStreakCounter = styled(StyledStudyCounter)`
-  background-color: var(--highlight-blue);
-  border-radius: 0 25px 0 25px;
 `;
 
 const StyledReviewCounter = styled(StyledStudyCounter)`
