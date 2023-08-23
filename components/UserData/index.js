@@ -18,7 +18,7 @@ export default function UserData() {
 
       <StyledUserInfo>
         <StyledParagraphNoMargins>
-          <span style={{ fontSize: 1 + "rem" }}>You're signed in as</span>
+          <span style={{ fontSize: 1 + "rem" }}>You&apos;re signed in as</span>
         </StyledParagraphNoMargins>
         <StyledParagraphNoMargins style={{ marginBottom: 0.5 + "rem" }}>
           {session?.user?.username}
