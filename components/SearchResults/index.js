@@ -25,11 +25,11 @@ function SearchResults({
 
   return (
     <>
-      <StyledResultDisplay>
+      <StyledResultDisplayNoMargin>
         {searchResults.length > 0
           ? `${searchResults.length} results for "${query}" in your word list.`
           : `No results for "${query}" in your word list.`}
-      </StyledResultDisplay>
+      </StyledResultDisplayNoMargin>
       {searchResults.length > 0 && (
         <EntriesContainer
           wordList={searchResults}
@@ -57,6 +57,10 @@ function SearchResults({
 
 export const StyledResultDisplay = styled.p`
   align-self: center;
+`;
+export const StyledResultDisplayNoMargin = styled.p`
+  align-self: center;
+  margin: 0 1rem -10px 1rem;
 `;
 
 export default SearchResults;

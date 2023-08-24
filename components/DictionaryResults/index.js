@@ -1,5 +1,8 @@
 import EntriesContainer from "../EntriesContainer";
-import { StyledResultDisplay } from "../SearchResults";
+import {
+  StyledResultDisplay,
+  StyledResultDisplayNoMargin,
+} from "../SearchResults";
 
 function DictionaryResults({
   query,
@@ -21,11 +24,11 @@ function DictionaryResults({
   if (dictionaryResults) {
     return (
       <>
-        <StyledResultDisplay>
+        <StyledResultDisplayNoMargin>
           {dictionaryResults.length > 0
             ? `${dictionaryResults.length} results for "${query}" from jisho.org`
             : `No results for "${query}"`}
-        </StyledResultDisplay>
+        </StyledResultDisplayNoMargin>
         <EntriesContainer
           wordList={dictionaryResults}
           handleAddEntry={handleAddEntry}
