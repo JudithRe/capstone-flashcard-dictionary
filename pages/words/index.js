@@ -42,7 +42,7 @@ export default function WordList({
 
   return (
     <>
-      {wordList && <Heading>{wordList.length} Saved Words</Heading>}
+      {filteredWordList && <Heading>{filteredWordList.length} Words</Heading>}
 
       <MainContent>
         <StyledStickyDiv>
@@ -69,6 +69,7 @@ export default function WordList({
             </StyledSecondaryButton>
           </StyledSectionRightAlign>
         </StyledStickyDiv>
+
         <EntriesContainer
           isEditMode={isEditMode}
           handleDetailEditMode={handleDetailEditMode}
