@@ -1,7 +1,6 @@
 export default function JG({ height = 64, width = 80, color = "white" }) {
   return (
     <svg
-      className="transparent-background-color"
       width={width}
       height={height}
       viewBox="0 0 123 31"

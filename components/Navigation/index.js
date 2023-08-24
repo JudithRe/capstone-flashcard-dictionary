@@ -111,36 +111,36 @@ const StyledNavList = styled.ul`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  height: var(--footer-height);
+  height: 6rem;
   padding: 2rem 0;
-  background-color: var(--dark-main);
+  backdrop-filter: blur(25px);
   list-style-type: none;
   z-index: 5;
+  border-radius: 20%;
   box-shadow: var(--default-box-shadow-top);
 
   @media ${device.tablet} {
+    backdrop-filter: none;
     background-color: transparent;
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
     width: auto;
     box-shadow: none;
-
     top: 8rem;
-
     left: 0;
   }
 `;
 
 const StyledNavigationItem = styled.li`
-  padding: 15px;
-  border-radius: 50%;
+  padding: 15px 17px 5px 17px;
+  border-radius: 999px 999px 0 0;
   background-color: var(--dark-main);
   box-shadow: var(--default-box-shadow-top);
 
   @media ${device.tablet} {
-    padding-left: 40px;
-    border-radius: 0 40% 40% 0;
+    padding: 15px 20px 8px 40px;
+    border-radius: 0 999px 999px 0;
     margin-left: 0;
     margin-left: -35px;
   }

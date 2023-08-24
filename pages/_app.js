@@ -6,7 +6,6 @@ import { convertToKana } from "@/utils/helperFunctions";
 import { handleDictionaryOutput } from "@/utils/refactorDictionaryOutput";
 import useSWR from "swr";
 import { SessionProvider } from "next-auth/react";
-import { poppins } from "@/fonts";
 
 const fetcher = async (url) => {
   const response = await fetch(url);
@@ -185,11 +184,6 @@ export default function App({
     <>
       <SessionProvider session={session}>
         <GlobalStyle />
-        <style jsx global>{`
-          html {
-            font-family: ${poppins.style.fontFamily}, sans-serif;
-          }
-        `}</style>
         <Layout handleActiveUser={handleActiveUser}>
           <Component
             wordList={databaseData}

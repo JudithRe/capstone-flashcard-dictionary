@@ -8,14 +8,16 @@ import {
   StyledSecondaryButtonRight,
 } from "@/components/StyledComponents/StyledButtons";
 import { StyledCardLeftAlign } from "@/components/StyledComponents/StyledCard";
-import { StyledSectionTopBetween } from "@/components/StyledComponents/StyledSection";
+import {
+  StyledSectionFixedTopCenter,
+  StyledSectionTopBetween,
+} from "@/components/StyledComponents/StyledSection";
 import { getVisualDate } from "@/utils/helperFunctions";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { hasToken } from "@/utils/checkUser";
 import Heading from "@/components/PageHeading";
 import { device } from "@/utils/globalValues";
-import { StyledCircle } from "@/components/Header";
 import SingleBarDiagram from "@/components/SingleBarDiagram";
 
 export async function getServerSideProps(context) {
@@ -92,9 +94,9 @@ export default function WordDetail({
 
     return (
       <MainContent>
-        <StyledFixedTop>
-          <StyledCircle />
-        </StyledFixedTop>
+        <StyledSectionFixedTopCenter>
+          <PermanentCircle />
+        </StyledSectionFixedTopCenter>
         {isDetailEditMode && (
           <EditingForm
             handleDetailEditMode={handleDetailEditMode}
@@ -129,12 +131,12 @@ export default function WordDetail({
             </span>
           </StyledSecondaryButtonRight>
         </StyledSectionTopBetween>
-        <LessMargin>
-          <StyledTagContainer>
-            <StyledTag>Stage: {stage}</StyledTag>
-            <StyledTag>Streak: {streak}</StyledTag>
-          </StyledTagContainer>
-        </LessMargin>
+
+        <StyledTagContainer>
+          <StyledTag>Stage: {stage}</StyledTag>
+          <StyledTag>Streak: {streak}</StyledTag>
+        </StyledTagContainer>
+
         <StyledCardLeftAlign>
           <StyledHeading3>Reading</StyledHeading3>
           <StyledCardParagraph>{japanese.reading}</StyledCardParagraph>
@@ -149,25 +151,28 @@ export default function WordDetail({
 
         <StyledCardLeftAlign>
           <StyledHeading2>Further Information</StyledHeading2>
-          <StyledTag>{isCommon ? "Common Word" : "Not Common"}</StyledTag>
+          <StyledList>
+            <li>{isCommon ? "Common Word" : "Not Common"}</li>
+          </StyledList>
           <StyledHeading3>Category</StyledHeading3>
-          <StyledTag>{categoryName ? categoryName : "No category"}</StyledTag>
+          <StyledList>
+            <li>{categoryName ? categoryName : "No category"}</li>
+          </StyledList>
           {(jlpt || wanikani) && <StyledHeading3>Difficulty</StyledHeading3>}
-          <StyledTagContainer>
-            {jlpt && <StyledTag>{jlpt}</StyledTag>}
-            {wanikani && <StyledTag>{wanikani}</StyledTag>}
-          </StyledTagContainer>
+          <StyledList>
+            {jlpt && <li>{jlpt}</li>}
+            {wanikani && <li>{wanikani}</li>}
+          </StyledList>
         </StyledCardLeftAlign>
 
         <StyledCardLeftAlign>
           <StyledHeading2>Study Progress</StyledHeading2>
-          <div>
-            <StyledHeading3>Last Review: </StyledHeading3>
-            <span className="inherit-background-color">
-              {" "}
-              {visualReviewDate}
-            </span>
-          </div>
+
+          <StyledHeading3>Last Review</StyledHeading3>
+          <StyledList>
+            <li>{visualReviewDate}</li>
+          </StyledList>
+
           <StyledHeading3>Answer Count</StyledHeading3>
           <SingleBarDiagram
             inputArray={AnswerOverview}
@@ -180,21 +185,23 @@ export default function WordDetail({
   }
 }
 
-const StyledFixedTop = styled.div`
-  position: fixed;
-  top: 0;
-  z-index: 1;
-`;
+const PermanentCircle = styled.div`
+  width: 300px;
+  height: 150px;
+  border-radius: 0 0 50% 50%/0 0 100% 100%;
+  background-color: var(--highlight-red);
+  color: var(--dark-mode-text-color);
 
-const LessMargin = styled.div`
-  margin-top: -2rem;
+  @media ${device.tablet} {
+    width: 400px;
+    height: 200px;
+  }
 `;
 
 export const StyledHeading2 = styled.h2`
-  padding: 1rem 0 0rem 0;
+  padding: 1.5rem 0 0.3rem 0;
   color: var(--dark-main);
-  background-color: inherit;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin: 0px;
 `;
 
@@ -218,6 +225,7 @@ export const StyledTag = styled.span`
 
 const StyledList = styled.ul`
   margin-top: 0;
+  margin-bottom: 0;
   padding-left: 1.3rem;
 `;
 

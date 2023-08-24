@@ -5,8 +5,8 @@ import Heading from "@/components/PageHeading";
 import { MainContent } from "@/components/StyledComponents/MainContent";
 import { FixedCenteredPosition } from "@/components/StyledComponents/Modal";
 import {
-  StyledCenteredButton,
-  StyledSubmitButton,
+  StyledEndSessionButton,
+  StyledStartButton,
 } from "@/components/StyledComponents/StyledButtons";
 import { generateStudyMode } from "@/utils/studyFunctions";
 import { useState } from "react";
@@ -48,7 +48,7 @@ export default function StudyPage({ wordList, databaseMutate }) {
                 })
               }
             >
-              START
+              Start
             </StyledStartButton>
           </FixedCenteredPosition>
         </MainContent>
@@ -96,20 +96,6 @@ const StyledStudyDisplay = styled.div`
   transform: translate(50%, -50%);
   top: 50%;
   right: 50%;
-`;
-
-const StyledEndSessionButton = styled(StyledSubmitButton)`
-  position: fixed;
-  top: 1rem;
-  right: 0;
-  background-color: var(--dark-main);
-  border-radius: 25px 0 0 25px;
-`;
-
-const StyledStartButton = styled(StyledCenteredButton)`
-  padding: 20px;
-  border-radius: 0 25px 0 25px;
-  transition: all 0.3s;
 `;
 
 export const StudyModal = styled.section`

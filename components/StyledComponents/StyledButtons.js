@@ -14,6 +14,7 @@ export const StyledSubmitButton = styled.button`
   font-size: 1.2rem;
   line-height: 1.2rem;
   margin-right: 7px;
+  transition: all 0.3s;
 
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 25%);
   cursor: pointer;
@@ -36,7 +37,7 @@ export const StyledSubmitButton = styled.button`
 
 export const StyledCenteredButton = styled(StyledSubmitButton)`
   align-self: center;
-  border-radius: 0 25px 0 25px;
+  border-radius: 15px;
 `;
 
 export const StyledSecondaryButton = styled(StyledSubmitButton)`
@@ -83,6 +84,7 @@ export const StyledBackButton = styled(Link)`
   font-size: 1rem;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 25%);
   cursor: pointer;
+  transition: all 0.3s;
 
   &:hover {
     box-shadow: 0px 15px 25px -5px rgba(0, 0, 0, 25%);
@@ -109,8 +111,6 @@ export const StyledGhostButton = styled.button`
   border: 2px solid var(--dark-main);
   background-color: transparent;
   text-decoration: none;
-  font-size: 0.8rem;
-  font-weight: 800;
 `;
 
 export const StyledEditButtonDark = styled(StyledSubmitButton)`
@@ -129,4 +129,18 @@ export const StyledAddButton = styled(StyledSubmitButton)`
   @media ${device.tablet} {
     margin-right: 0;
   }
+`;
+
+export const StyledEndSessionButton = styled(StyledSubmitButton)`
+  position: fixed;
+  top: 1rem;
+  right: 0;
+  background-color: var(--dark-main);
+  border-radius: 25px 0 0 25px;
+`;
+
+export const StyledStartButton = styled(StyledCenteredButton)`
+  padding: 20px;
+  border-radius: 5px;
+  background-color: var(--highlight-blue);
 `;

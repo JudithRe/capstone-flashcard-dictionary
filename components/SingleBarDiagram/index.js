@@ -32,8 +32,7 @@ export default function SingleBarDiagram({ inputArray, unit, height }) {
             >
               <StyledBarLabel>{element.name}</StyledBarLabel>
               <StyledBarDescription>
-                {Math.round(percentage * 10) / 10}% <br />
-                {element.value} {unit}
+                {Math.round(percentage * 10) / 10}% / {element.value} {unit}
               </StyledBarDescription>
             </StyledBarElement>
           );
@@ -43,7 +42,7 @@ export default function SingleBarDiagram({ inputArray, unit, height }) {
   }
 }
 
-const StyledBarLabel = styled.h3`
+const StyledBarLabel = styled.p`
   margin: 5px 0;
   color: var(--dark-mode-text-color);
 `;
@@ -55,8 +54,8 @@ const StyledBarDescription = styled.p`
 `;
 
 const StyledBarElement = styled.div`
-  height: 2rem;
-  padding: 2px 0 0 10px;
+  width: 100%;
+  padding: 0 15px 15px 10px;
   height: ${(props) => (props.value ? props.value : "0")}%;
   color: var(--dark-mode-text-color);
   background-color: var(--dark-main);
@@ -91,7 +90,7 @@ const StyledBarDiagram = styled.div`
   display: flex;
   flex-direction: column-reverse;
   align-self: center;
-  width: 150px;
+  width: 100%;
   height: ${(props) => (props.height ? props.height : "500")}px;
 
   @media ${device.tablet} {
