@@ -57,6 +57,8 @@ export default function Search({
           </StyledSecondaryButtonRight>
         </StyledSectionFixedTopRight>
         <Spacer />
+        <Spacer />
+
         {isSearch && (
           <SearchComponent
             query={query}

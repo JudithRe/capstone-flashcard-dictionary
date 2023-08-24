@@ -1,12 +1,10 @@
 import { device } from "@/utils/globalValues";
 import styled from "styled-components";
-import Logo from "../Logo";
 
 export default function Header() {
   return (
     <StyledHeaderPosition>
       <StyledCircle />
-      <Logo width="100px" />
     </StyledHeaderPosition>
   );
 }
@@ -17,20 +15,21 @@ const StyledHeaderPosition = styled.div`
   align-items: center;
   position: sticky;
   top: -5rem;
-
-  margin-bottom: -100px;
+  backdrop-filter: blur(1px);
+  height: 150px;
   z-index: 2;
+
   @media ${device.tablet} {
-    margin-bottom: -100px;
+    height: 200px;
     top: -8rem;
   }
 `;
 
 export const StyledCircle = styled.div`
-  transform: translate(0%, -50%);
   width: 300px;
   height: 300px;
-  border-radius: 50%;
+
+  border-radius: 0 0 50% 50%/0 0 100% 100%;
   background-color: var(--highlight-red);
   color: var(--dark-mode-text-color);
 

@@ -8,13 +8,9 @@ export const MainContent = styled.main`
   align-items: center;
   padding: 0 1rem;
   gap: 1.5rem;
-  margin: 0 0 var(--footer-height) 0;
-
+  margin: 1rem 0 var(--footer-height) 0;
   z-index: 2;
   width: 100vw;
-
-  @media ${device.tablet} {
-  }
 `;
 
 export const Spacer = styled.div`

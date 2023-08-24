@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
-import { permanent } from "./fonts";
+
+import { poppins } from "./fonts";
 
 export default createGlobalStyle`
   :root {
@@ -41,6 +42,7 @@ export default createGlobalStyle`
   *::after {
     box-sizing: border-box;
     color: var(--text-color);
+    font-family: ${poppins.style.fontFamily}, sans-serif;
     
   }
 
@@ -52,6 +54,7 @@ export default createGlobalStyle`
     background-color: var(--light-grey);
     background-image: url("/background-vector.png");
     background-repeat: repeat;
+    
 
   }
   

@@ -12,6 +12,7 @@ import { StyledCardLarge } from "@/components/StyledComponents/StyledCard";
 import { StyledWarningText } from "@/components/EditingForm";
 import SingleBarDiagram from "@/components/SingleBarDiagram";
 import { StyledHeading2, StyledHeading3 } from "../words/[id]";
+import PieChart from "@/components/PieChart";
 
 export async function getServerSideProps(context) {
   const token = await hasToken(context.req);

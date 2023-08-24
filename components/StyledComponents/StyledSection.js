@@ -62,3 +62,9 @@ export const StyledSectionFixedTopRight = styled.div`
   top: 175px;
   z-index: 5;
 `;
+
+export const StyledSectionFixedTopCenter = styled.div`
+  position: fixed;
+  top: 0;
+  z-index: 2;
+`;
