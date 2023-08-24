@@ -22,7 +22,7 @@ export default createGlobalStyle`
 
 /* HEIGHTS and WIDTHS */
 
-    --footer-height: 5rem;
+    --footer-height: 7rem;
     --card-width: 300px;
     --header-height: 100px;
     --header-height-mobile: 225px;

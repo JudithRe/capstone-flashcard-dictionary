@@ -42,7 +42,12 @@ export default function WordList({
 
   return (
     <>
-      {filteredWordList && <Heading>{filteredWordList.length} Words</Heading>}
+      {filteredWordList && (
+        <Heading>
+          {filteredWordList.length}{" "}
+          {filteredWordList.length === 1 ? "Word" : "Words"}
+        </Heading>
+      )}
 
       <MainContent>
         <StyledStickyDiv>

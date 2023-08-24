@@ -35,7 +35,7 @@ export default function HomePage({
   handleSearchResults,
   handleAddEntry,
   activeUser,
-
+  databaseIsLoading,
   handleHasEntries,
 }) {
   const { data: session } = useSession();
@@ -63,7 +63,11 @@ export default function HomePage({
           handleHasEntries={handleHasEntries}
         />
         <StyledCenterAlign>
-          <StudyDisplay wordList={wordList} activeUser={activeUser} />
+          <StudyDisplay
+            wordList={wordList}
+            activeUser={activeUser}
+            databaseIsLoading={databaseIsLoading}
+          />
         </StyledCenterAlign>
       </MainContent>
     </>

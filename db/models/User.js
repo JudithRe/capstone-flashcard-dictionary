@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema({
 
   lastStreakUpdate: {
     type: Date,
-    default: Date.now,
+    default: null,
   },
 
   streak: {

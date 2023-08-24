@@ -5,7 +5,9 @@ import * as wanakana from "wanakana";
 import { convertToKana } from "@/utils/helperFunctions";
 import { handleDictionaryOutput } from "@/utils/refactorDictionaryOutput";
 import useSWR from "swr";
+
 import { SessionProvider } from "next-auth/react";
+import { SWRConfig } from "swr";
 
 const fetcher = async (url) => {
   const response = await fetch(url);
@@ -184,34 +186,36 @@ export default function App({
     <>
       <SessionProvider session={session}>
         <GlobalStyle />
-        <Layout handleActiveUser={handleActiveUser}>
-          <Component
-            wordList={databaseData}
-            databaseIsLoading={databaseIsLoading}
-            databaseMutate={databaseMutate}
-            handleAddEntry={handleAddEntry}
-            query={query}
-            handleSetQuery={handleSetQuery}
-            dictionaryQuery={dictionaryQuery}
-            handleSetDictionaryQuery={handleSetDictionaryQuery}
-            handleSearchInput={handleSearchInput}
-            searchResults={searchResults}
-            handleSearchResults={handleSearchResults}
-            dictionaryResults={dictionaryResults}
-            handleSetDictionaryResults={handleSetDictionaryResults}
-            dictionaryIsLoading={dictionaryIsLoading}
-            handleDetailEditMode={handleDetailEditMode}
-            isDetailEditMode={isDetailEditMode}
-            activeUser={activeUser}
-            hasEntries={hasEntries}
-            handleHasEntries={handleHasEntries}
-            handleAddCategory={handleAddCategory}
-            categoryData={categoryData}
-            categoryMutate={categoryMutate}
-            newEntries={newEntries}
-            {...pageProps}
-          />
-        </Layout>
+        <SWRConfig value={{ fetcher }}>
+          <Layout handleActiveUser={handleActiveUser}>
+            <Component
+              wordList={databaseData}
+              databaseIsLoading={databaseIsLoading}
+              databaseMutate={databaseMutate}
+              handleAddEntry={handleAddEntry}
+              query={query}
+              handleSetQuery={handleSetQuery}
+              dictionaryQuery={dictionaryQuery}
+              handleSetDictionaryQuery={handleSetDictionaryQuery}
+              handleSearchInput={handleSearchInput}
+              searchResults={searchResults}
+              handleSearchResults={handleSearchResults}
+              dictionaryResults={dictionaryResults}
+              handleSetDictionaryResults={handleSetDictionaryResults}
+              dictionaryIsLoading={dictionaryIsLoading}
+              handleDetailEditMode={handleDetailEditMode}
+              isDetailEditMode={isDetailEditMode}
+              activeUser={activeUser}
+              hasEntries={hasEntries}
+              handleHasEntries={handleHasEntries}
+              handleAddCategory={handleAddCategory}
+              categoryData={categoryData}
+              categoryMutate={categoryMutate}
+              newEntries={newEntries}
+              {...pageProps}
+            />
+          </Layout>
+        </SWRConfig>
       </SessionProvider>
     </>
   );

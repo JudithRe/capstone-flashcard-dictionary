@@ -7,6 +7,8 @@ import AddIcon from "@/assets/icons/AddIcon";
 import StudyIcon from "@/assets/icons/StudyIcon";
 import { useRouter } from "next/router";
 import ProfileIcon from "@/assets/icons/ProfileIcon";
+import { StyledParagraphNoMargins } from "../UserData";
+import { StyledCounterText } from "../StudyDisplay";
 
 export default function Navigation() {
   const router = useRouter();
@@ -18,7 +20,10 @@ export default function Navigation() {
   return (
     <nav>
       <StyledNavList>
-        <StyledNavigationItem>
+        <StyledNavigationItem
+          className="navTransition"
+          $isActive={activePath === "/" ? true : false}
+        >
           <StyledNavigationLink href="/">
             <span
               className="inherit-background-color"
@@ -31,10 +36,14 @@ export default function Navigation() {
                 width={activePath === "/" ? "55px" : "30px"}
               />
             </span>
+            <StyledCounterText>Home</StyledCounterText>
           </StyledNavigationLink>
         </StyledNavigationItem>
 
-        <StyledNavigationItem>
+        <StyledNavigationItem
+          className="navTransition"
+          $isActive={activePath === "/search" ? true : false}
+        >
           <StyledNavigationLink href="/search">
             <span
               className="inherit-background-color"
@@ -46,9 +55,13 @@ export default function Navigation() {
                 width={activePath === "/search" ? "55px" : "30px"}
               />
             </span>
+            <StyledCounterText>Add</StyledCounterText>
           </StyledNavigationLink>
         </StyledNavigationItem>
-        <StyledNavigationItem>
+        <StyledNavigationItem
+          className="navTransition"
+          $isActive={activePath === "/study" ? true : false}
+        >
           <StyledNavigationLink href="/study">
             <span
               className="inherit-background-color"
@@ -60,9 +73,17 @@ export default function Navigation() {
                 width={activePath === "/study" ? "55px" : "30px"}
               />
             </span>
+            <StyledCounterText>Study</StyledCounterText>
           </StyledNavigationLink>
         </StyledNavigationItem>
-        <StyledNavigationItem>
+        <StyledNavigationItem
+          className="navTransition"
+          $isActive={
+            activePath.includes("/words") || activePath === "/categories"
+              ? true
+              : false
+          }
+        >
           <StyledNavigationLink href="/words">
             <span
               className="inherit-background-color"
@@ -82,9 +103,13 @@ export default function Navigation() {
                 }
               />
             </span>
+            <StyledCounterText>Words</StyledCounterText>
           </StyledNavigationLink>
         </StyledNavigationItem>
-        <StyledNavigationItem>
+        <StyledNavigationItem
+          className="navTransition"
+          $isActive={activePath === "/profile" ? true : false}
+        >
           <StyledNavigationLink href="/profile">
             <span
               className="inherit-background-color"
@@ -96,6 +121,7 @@ export default function Navigation() {
                 width={activePath === "/profile" ? "55px" : "30px"}
               />
             </span>
+            <StyledCounterText>Profile</StyledCounterText>
           </StyledNavigationLink>
         </StyledNavigationItem>
       </StyledNavList>
@@ -111,7 +137,7 @@ const StyledNavList = styled.ul`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  height: 6rem;
+  height: 7rem;
   padding: 2rem 0;
   backdrop-filter: blur(25px);
   list-style-type: none;
@@ -133,21 +159,25 @@ const StyledNavList = styled.ul`
 `;
 
 const StyledNavigationItem = styled.li`
-  padding: 15px 17px 5px 17px;
+  padding: 15px 15px 5px 15px;
   border-radius: 999px 999px 0 0;
-  background-color: var(--dark-main);
+  background-color: ${(props) =>
+    props.$isActive ? "var(--highlight-blue)" : "var(--dark-main)"};
   box-shadow: var(--default-box-shadow-top);
 
   @media ${device.tablet} {
-    padding: 15px 20px 8px 40px;
+    padding: 15px 30px 8px 60px;
     border-radius: 0 999px 999px 0;
     margin-left: 0;
     margin-left: -35px;
+    box-shadow: var(--default-box-shadow);
   }
 `;
 
 const StyledNavigationLink = styled(Link)`
-  background-color: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: var(--dark-mode-text-color);
   text-decoration: none;
   font-size: 1.3em;

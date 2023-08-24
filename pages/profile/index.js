@@ -35,7 +35,7 @@ export default function ProfilePage({ wordList }) {
   const StageDistribution = getStageOverview(wordList);
 
   const AnswerOverview = getAnswerOverview(wordList);
-  console.log("stages", AnswerOverview);
+
   return (
     <MainContent>
       <Heading>Profile</Heading>

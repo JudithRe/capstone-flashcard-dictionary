@@ -1,16 +1,5 @@
 const currentDate = new Date();
 
-export function generateStudyMode({ wordList, setStudyList, setIsStudyMode }) {
-  const entriesDue = wordList.filter((entry) => {
-    return isDue(entry.study.lastReview, entry.study.stage);
-  });
-
-  setStudyList(entriesDue);
-  setIsStudyMode(true);
-
-  return entriesDue;
-}
-
 export function isDue(lastReview, stage) {
   if (lastReview === "new") {
     return true;
@@ -144,12 +133,16 @@ async function handleUpdateEntryInStudyMode({
 }
 
 function setNewStreak(streak, wasWrongAnswer) {
-  if ((wasWrongAnswer && streak > 0) || (!wasWrongAnswer && streak < 0)) {
+  if (wasWrongAnswer && streak > 0) {
     return 0;
   }
 
   if (wasWrongAnswer && streak <= 0) {
     return streak - 1;
+  }
+
+  if (!wasWrongAnswer && streak < 0) {
+    return 1;
   }
 
   return streak + 1;

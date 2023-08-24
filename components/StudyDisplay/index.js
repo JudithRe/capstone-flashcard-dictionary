@@ -5,30 +5,43 @@ import { useEffect, useState } from "react";
 import { StyledResultDisplay } from "../SearchResults";
 import { handleStreakUpdate } from "@/utils/userFunction";
 import Link from "next/link";
+import useSWR from "swr";
 
-function StudyDisplay({ wordList, activeUser }) {
+function StudyDisplay({ wordList, activeUser, databaseIsLoading }) {
   const [studyDisplayData, setStudyDisplayData] = useState({
     reviewsDue: 0,
     streak: 0,
     items: 0,
   });
 
+  const UserURL = `/api/user-update/${
+    activeUser._id ? activeUser._id : "loading"
+  }`;
+
+  const {
+    data: userData,
+    isLoading: userIsLoading,
+    mutate: userMutate,
+  } = useSWR(UserURL);
+
   useEffect(() => {
     if (wordList) {
       const reviewsDueList = wordList.filter((entry) => {
         return isDue(entry.study.lastReview, entry.study.stage);
       });
-      handleStreakUpdate({ activeUser, wordList });
 
-      setStudyDisplayData({
-        reviewsDue: reviewsDueList.length,
-        items: wordList.length,
-        streak: activeUser.streak,
-      });
+      handleStreakUpdate({ userData, wordList, userMutate });
+      if (userData) {
+        setStudyDisplayData({
+          reviewsDue: reviewsDueList.length,
+          items: wordList.length,
+          streak: userData.streak,
+        });
+      }
     }
-  }, [wordList, activeUser]);
+  }, [wordList, activeUser, userData]);
 
-  if (!wordList) {
+  if (databaseIsLoading || userIsLoading) {
     return <StyledResultDisplay>Loading...</StyledResultDisplay>;
   }
   return (
@@ -55,7 +68,9 @@ function StudyDisplay({ wordList, activeUser }) {
         <StyledStudyCounter>
           <StyledCounterText>Items</StyledCounterText>
           <StyledCounter>{studyDisplayData.items}</StyledCounter>
-          <StyledCounterText>words</StyledCounterText>
+          <StyledCounterText>
+            {studyDisplayData.items === 1 ? "word" : "words"}
+          </StyledCounterText>
         </StyledStudyCounter>
       </NoStyleLink>
     </StyledSection>
@@ -82,10 +97,9 @@ const StyledReviewCounter = styled(StyledStudyCounter)`
   border-radius: 0 25px 0 25px;
 `;
 
-const StyledCounterText = styled.p`
+export const StyledCounterText = styled.p`
   margin: 0;
   font-size: 0.8rem;
-  background-color: transparent;
   color: var(--dark-mode-text-color);
 `;
 const StyledCounter = styled.p`

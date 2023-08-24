@@ -134,7 +134,7 @@ export const StyledAddButton = styled(StyledSubmitButton)`
 export const StyledEndSessionButton = styled(StyledSubmitButton)`
   position: fixed;
   top: 1rem;
-  right: 0;
+  right: -15px;
   background-color: var(--dark-main);
   border-radius: 25px 0 0 25px;
 `;

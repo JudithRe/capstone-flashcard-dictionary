@@ -1,4 +1,8 @@
-export default function CorrectIcon({ height = "40", width = "40" }) {
+export default function CorrectIcon({
+  height = "40",
+  width = "40",
+  color = "white",
+}) {
   return (
     <svg
       className="inherit-background-color"
@@ -13,14 +17,14 @@ export default function CorrectIcon({ height = "40", width = "40" }) {
         height="7.18557"
         rx="3.59279"
         transform="matrix(0.589637 -0.807668 0.771424 0.636322 8.64844 35.3526)"
-        fill="white"
+        fill={color}
       />
       <rect
         width="20.1307"
         height="7.19427"
         rx="3.59714"
         transform="matrix(-0.6055 -0.795845 0.75832 -0.651883 12.1895 40)"
-        fill="white"
+        fill={color}
       />
     </svg>
   );

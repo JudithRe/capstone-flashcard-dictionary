@@ -47,6 +47,6 @@ const StyledUserInfo = styled.div`
   gap: 5px;
 `;
 
-const StyledParagraphNoMargins = styled.p`
+export const StyledParagraphNoMargins = styled.p`
   margin: 0;
 `;

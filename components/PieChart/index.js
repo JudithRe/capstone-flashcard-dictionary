@@ -54,8 +54,7 @@ const Slice = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  clip-path: ${(props) =>
-    `polygon(50% 50%, 100% 100%, 100% 0, ${props.cx}% ${props.cy}%)`};
+  clip-path: ${(props) => `polygon(50% 50%, 100% 100%, 100% 0)`};
   transform: ${(props) => `rotate(${props.rotate}deg)`};
   transform-origin: 100% 100%;
   background-color: ${(props) => props.color};

@@ -8,10 +8,12 @@ import {
   StyledEndSessionButton,
   StyledStartButton,
 } from "@/components/StyledComponents/StyledButtons";
-import { generateStudyMode } from "@/utils/studyFunctions";
-import { useState } from "react";
+import { isDue } from "@/utils/studyFunctions";
+import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { hasToken } from "@/utils/checkUser";
+import CorrectIcon from "@/assets/icons/CorrectIcon";
+import { StyledParagraphNoMargins } from "@/components/UserData";
 
 export async function getServerSideProps(context) {
   const token = await hasToken(context.req);
@@ -33,23 +35,47 @@ export default function StudyPage({ wordList, databaseMutate }) {
   const [isStudyMode, setIsStudyMode] = useState(false);
   const [isFront, setIsFront] = useState(true);
 
+  useEffect(() => {
+    function generateStudyMode() {
+      if (wordList) {
+        const entriesDue = wordList.filter((entry) => {
+          return isDue(entry.study.lastReview, entry.study.stage);
+        });
+
+        setStudyList(entriesDue);
+
+        return entriesDue;
+      }
+    }
+    generateStudyMode();
+  }, [wordList]);
+
   return (
     <>
-      {!isStudyMode && (
+      {!isStudyMode && studyList.length > 0 && (
         <MainContent>
           <Heading>Study</Heading>
           <FixedCenteredPosition>
-            <StyledStartButton
-              onClick={() =>
-                generateStudyMode({
-                  wordList,
-                  setStudyList,
-                  setIsStudyMode,
-                })
-              }
-            >
+            <p style={{ textAlign: "center" }}>
+              {`${studyList.length} ${
+                studyList.length > 1 ? "entries" : "entry"
+              } due.`}
+            </p>
+            <StyledStartButton onClick={() => setIsStudyMode(true)}>
               Start
             </StyledStartButton>
+          </FixedCenteredPosition>
+        </MainContent>
+      )}
+      {!isStudyMode && studyList.length === 0 && (
+        <MainContent>
+          <Heading>Study</Heading>
+          <FixedCenteredPosition>
+            <CorrectIcon color="var(--dark-main)" /> <br />
+            <StyledParagraphNoMargins style={{ textAlign: "center" }}>
+              No reviews available. <br />
+              Well done!
+            </StyledParagraphNoMargins>
           </FixedCenteredPosition>
         </MainContent>
       )}
@@ -70,9 +96,13 @@ export default function StudyPage({ wordList, databaseMutate }) {
           </StyledEndSessionButton>
 
           {isFront && studyList.length === 0 && (
-            <StyledStudyDisplay>
-              <p>No reviews</p>
-            </StyledStudyDisplay>
+            <FixedCenteredPosition>
+              <CorrectIcon color="var(--dark-main)" /> <br />
+              <StyledParagraphNoMargins style={{ textAlign: "center" }}>
+                All done for now. <br />
+                Check back again later!
+              </StyledParagraphNoMargins>
+            </FixedCenteredPosition>
           )}
           {isFront && studyList.length > 0 && (
             <FlashcardFront setIsFront={setIsFront} entry={studyList[0]} />
@@ -90,13 +120,6 @@ export default function StudyPage({ wordList, databaseMutate }) {
     </>
   );
 }
-
-const StyledStudyDisplay = styled.div`
-  position: fixed;
-  transform: translate(50%, -50%);
-  top: 50%;
-  right: 50%;
-`;
 
 export const StudyModal = styled.section`
   position: fixed;
