@@ -4,17 +4,30 @@ import Logo from "../Logo";
 
 export default function Header() {
   return (
-    <>
-      <StyledCircleCenter />
+    <StyledHeaderPosition>
+      <StyledCircle />
       <Logo width="100px" />
-    </>
+    </StyledHeaderPosition>
   );
 }
+const StyledHeaderPosition = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: -5rem;
 
-const StyledCircle = styled.div`
-  position: fixed;
+  margin-bottom: -100px;
   z-index: 2;
+  @media ${device.tablet} {
+    margin-bottom: -100px;
+    top: -8rem;
+  }
+`;
 
+export const StyledCircle = styled.div`
+  transform: translate(0%, -50%);
   width: 300px;
   height: 300px;
   border-radius: 50%;
@@ -25,15 +38,4 @@ const StyledCircle = styled.div`
     width: 400px;
     height: 400px;
   }
-`;
-
-const StyledCircleCenter = styled(StyledCircle)`
-  top: 0;
-  right: 50%;
-  transform: translate(50%, -50%);
-`;
-const StyledCircleLeft = styled(StyledCircle)`
-  right: 0;
-  top: 0;
-  transform: translate(50%, -50%);
 `;

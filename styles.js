@@ -56,7 +56,6 @@ export default createGlobalStyle`
   }
   
 
-
 .navTransition {
   transition: 400ms linear;
 }

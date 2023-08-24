@@ -2,8 +2,8 @@ import { permanent } from "@/fonts";
 import { device } from "@/utils/globalValues";
 import styled from "styled-components";
 
-function Heading({ PageTitle }) {
-  return <StyledPageHeadingCenter>{PageTitle}</StyledPageHeadingCenter>;
+function Heading({ children }) {
+  return <StyledPageHeadingCenter>{children}</StyledPageHeadingCenter>;
 }
 
 const StyledPageHeadingCenter = styled.h1`
@@ -21,7 +21,7 @@ const StyledPageHeadingCenter = styled.h1`
   z-index: 3;
 
   @media ${device.tablet} {
-    max-width: 400px;
+    max-width: 350px;
     top: 3rem;
     font-size: 2rem;
   }

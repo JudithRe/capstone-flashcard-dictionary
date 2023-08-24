@@ -1,9 +1,17 @@
 import Heading from "@/components/PageHeading";
-import { MainContent } from "@/components/StyledComponents/MainContent";
-import { StyledGhostButton } from "@/components/StyledComponents/StyledButtons";
+import { MainContent, Spacer } from "@/components/StyledComponents/MainContent";
 import { hasToken } from "@/utils/checkUser";
-import styled from "styled-components";
-import { useSession, signOut } from "next-auth/react";
+import {
+  getAnswerOverview,
+  getJLPTStats,
+  getStageOverview,
+} from "@/utils/statistics";
+import BarDiagram from "@/components/BarDiagram";
+import UserData from "@/components/UserData";
+import { StyledCardLarge } from "@/components/StyledComponents/StyledCard";
+import { StyledWarningText } from "@/components/EditingForm";
+import SingleBarDiagram from "@/components/SingleBarDiagram";
+import { StyledHeading2, StyledHeading3 } from "../words/[id]";
 
 export async function getServerSideProps(context) {
   const token = await hasToken(context.req);
@@ -20,28 +28,38 @@ export async function getServerSideProps(context) {
   return { props: {} };
 }
 
-export default function ProfilePage({ wordList, databaseMutate }) {
-  const { data: session } = useSession();
+export default function ProfilePage({ wordList }) {
+  const JLPTDistribution = getJLPTStats(wordList);
+
+  const StageDistribution = getStageOverview(wordList);
+
+  const AnswerOverview = getAnswerOverview(wordList);
+  console.log("stages", AnswerOverview);
   return (
     <MainContent>
-      <Heading PageTitle="Profile" />
-      <SignOutDiv>
-        Signed in as {session?.user?.username}
-        <StyledGhostButton onClick={() => signOut()}>
-          Sign Out
-        </StyledGhostButton>
-      </SignOutDiv>
+      <Heading>Profile</Heading>
+      <StyledCardLarge>
+        <UserData />
+      </StyledCardLarge>
+      <StyledCardLarge>
+        <StyledHeading2>JLPT Distribution</StyledHeading2>
+        <BarDiagram inputArray={JLPTDistribution} />
+        <StyledWarningText>
+          *Words or phrases that have no JLPT classification.
+        </StyledWarningText>
+      </StyledCardLarge>
+      <StyledCardLarge>
+        <StyledHeading2>Study Info</StyledHeading2>
+        <StyledHeading3>Stage Distribution</StyledHeading3>
+        <SingleBarDiagram inputArray={StageDistribution} unit="entries" />
+        <StyledHeading3>Answer Distribution</StyledHeading3>
+        <SingleBarDiagram
+          inputArray={AnswerOverview}
+          unit="times"
+          height="250"
+        />
+        <Spacer />
+      </StyledCardLarge>
     </MainContent>
   );
 }
-
-const SignOutDiv = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%);
-  font-size: 0.7rem;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-`;

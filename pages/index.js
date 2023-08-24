@@ -1,11 +1,11 @@
 import SearchBar from "@/components/OnPageSearchBar";
 import StudyDisplay from "@/components/StudyDisplay";
-import { IndexMainContent } from "@/components/StyledComponents/IndexMainContent";
+
 import { StyledCenterAlign } from "@/components/StyledComponents/StyledSection";
 import { hasToken } from "@/utils/checkUser";
-import Greeting from "@/components/Greeting";
 import { useSession } from "next-auth/react";
 import Heading from "@/components/PageHeading";
+import { MainContent } from "@/components/StyledComponents/MainContent";
 
 export async function getServerSideProps(context) {
   const token = await hasToken(context.req);
@@ -41,11 +41,12 @@ export default function HomePage({
   const { data: session } = useSession();
   return (
     <>
-      <IndexMainContent>
-        <Heading
-          PageTitle={`${session?.user?.username}さん、
-        こんにちは。`}
-        />
+      <MainContent>
+        <Heading>
+          {session?.user?.username}さん、
+          <br />
+          こんにちは。
+        </Heading>
 
         <SearchBar
           query={query}
@@ -64,7 +65,7 @@ export default function HomePage({
         <StyledCenterAlign>
           <StudyDisplay wordList={wordList} activeUser={activeUser} />
         </StyledCenterAlign>
-      </IndexMainContent>
+      </MainContent>
     </>
   );
 }

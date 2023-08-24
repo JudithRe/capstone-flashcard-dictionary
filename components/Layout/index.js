@@ -3,7 +3,7 @@ import Header from "../Header";
 import Navigation from "../Navigation";
 import { useEffect } from "react";
 
-export default function Layout({ handleActiveUser }) {
+export default function Layout({ handleActiveUser, children }) {
   const { data: session } = useSession();
 
   useEffect(() => {
@@ -19,6 +19,7 @@ export default function Layout({ handleActiveUser }) {
   return (
     <>
       <Header />
+      <main>{children}</main>
       <Navigation />
     </>
   );

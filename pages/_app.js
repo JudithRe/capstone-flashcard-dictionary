@@ -190,33 +190,34 @@ export default function App({
             font-family: ${poppins.style.fontFamily}, sans-serif;
           }
         `}</style>
-        <Component
-          wordList={databaseData}
-          databaseIsLoading={databaseIsLoading}
-          databaseMutate={databaseMutate}
-          handleAddEntry={handleAddEntry}
-          query={query}
-          handleSetQuery={handleSetQuery}
-          dictionaryQuery={dictionaryQuery}
-          handleSetDictionaryQuery={handleSetDictionaryQuery}
-          handleSearchInput={handleSearchInput}
-          searchResults={searchResults}
-          handleSearchResults={handleSearchResults}
-          dictionaryResults={dictionaryResults}
-          handleSetDictionaryResults={handleSetDictionaryResults}
-          dictionaryIsLoading={dictionaryIsLoading}
-          handleDetailEditMode={handleDetailEditMode}
-          isDetailEditMode={isDetailEditMode}
-          activeUser={activeUser}
-          hasEntries={hasEntries}
-          handleHasEntries={handleHasEntries}
-          handleAddCategory={handleAddCategory}
-          categoryData={categoryData}
-          categoryMutate={categoryMutate}
-          newEntries={newEntries}
-          {...pageProps}
-        />
-        <Layout handleActiveUser={handleActiveUser} />
+        <Layout handleActiveUser={handleActiveUser}>
+          <Component
+            wordList={databaseData}
+            databaseIsLoading={databaseIsLoading}
+            databaseMutate={databaseMutate}
+            handleAddEntry={handleAddEntry}
+            query={query}
+            handleSetQuery={handleSetQuery}
+            dictionaryQuery={dictionaryQuery}
+            handleSetDictionaryQuery={handleSetDictionaryQuery}
+            handleSearchInput={handleSearchInput}
+            searchResults={searchResults}
+            handleSearchResults={handleSearchResults}
+            dictionaryResults={dictionaryResults}
+            handleSetDictionaryResults={handleSetDictionaryResults}
+            dictionaryIsLoading={dictionaryIsLoading}
+            handleDetailEditMode={handleDetailEditMode}
+            isDetailEditMode={isDetailEditMode}
+            activeUser={activeUser}
+            hasEntries={hasEntries}
+            handleHasEntries={handleHasEntries}
+            handleAddCategory={handleAddCategory}
+            categoryData={categoryData}
+            categoryMutate={categoryMutate}
+            newEntries={newEntries}
+            {...pageProps}
+          />
+        </Layout>
       </SessionProvider>
     </>
   );

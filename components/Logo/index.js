@@ -40,7 +40,6 @@ const StyledLogo = styled.div`
   right: 50%;
   top: -5px;
   transform: translate(50%);
-  z-index: 5;
 `;
 
 export default Logo;
