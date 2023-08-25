@@ -10,6 +10,7 @@ import {
 } from "@/components/StyledComponents/StyledButtons";
 import CorrectIcon from "@/assets/icons/CorrectIcon";
 import { StyledParagraphNoMargins } from "@/components/UserData";
+import { CenteredParagraph } from "@/components/StyledComponents/ParagraphsAndHeadings";
 
 // Component Imports
 import FlashcardBack from "@/components/FlashcardBack";
@@ -51,11 +52,11 @@ export default function StudyPage({ wordList, databaseMutate }) {
         <>
           <Heading>Study</Heading>
           <FixedCenteredPosition>
-            <p style={{ textAlign: "center" }}>
+            <CenteredParagraph style={{ textAlign: "center" }}>
               {`${studyList.length} ${
                 studyList.length > 1 ? "entries" : "entry"
               } due.`}
-            </p>
+            </CenteredParagraph>
             <StyledStartButton onClick={() => setIsStudyMode(true)}>
               Start
             </StyledStartButton>

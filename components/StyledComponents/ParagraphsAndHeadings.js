@@ -17,3 +17,7 @@ export const StyledHeading3 = styled.h3`
   font-size: 1.2rem;
   margin: 0px;
 `;
+
+export const CenteredParagraph = styled.p`
+  text-align: center;
+`;
