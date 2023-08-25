@@ -50,8 +50,6 @@ export default function HomePage({
         <br />
         こんにちは。
       </Heading>
-      <Spacer />
-      <Spacer />
       <SearchBar
         query={query}
         handleSetQuery={handleSetQuery}

@@ -1,5 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-
 import { poppins } from "./fonts";
 
 export default createGlobalStyle`

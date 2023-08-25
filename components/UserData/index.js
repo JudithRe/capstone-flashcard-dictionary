@@ -54,4 +54,5 @@ const StyledUserInfo = styled.div`
 
 export const StyledParagraphNoMargins = styled.p`
   margin: 0;
+  text-align: ${(props) => (props.$isCentered ? "center" : "left")};
 `;

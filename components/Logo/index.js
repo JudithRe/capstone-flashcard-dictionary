@@ -18,11 +18,7 @@ function Logo({ width, height, color }) {
       <StyledLogo>
         <Spacer />
         <Spacer />
-        <span
-          className="transparent-background-color"
-          role="h1"
-          aria-label="Jisho Genius"
-        >
+        <span role="h1" aria-label="Jisho Genius">
           <JG width="170px" />
         </span>
       </StyledLogo>

@@ -18,7 +18,7 @@ function CategorySelector({ categoryData, wordList, handleFilterWordList }) {
 
   function handleDropdownChange(event) {
     if (event.target.value === "create") {
-      router.push("/categories");
+      router.push("/words/categories");
       return;
     }
 

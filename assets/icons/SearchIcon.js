@@ -5,7 +5,6 @@ export default function SearchIcon({
 }) {
   return (
     <svg
-      className="navTransition inherit-background-color"
       width={width}
       height={height}
       viewBox="0 0 60 60"

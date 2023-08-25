@@ -124,7 +124,7 @@ function AuthForm() {
               {loginProcess ? "Log in" : "Create Account"}
             </StyledSubmitButtonRight>
 
-            <StyledLoginText className="inherit-background-color">
+            <StyledLoginText>
               {loginProcess ? "No Account yet?" : "Already a user?"}
             </StyledLoginText>
 
@@ -140,10 +140,7 @@ function AuthForm() {
         <>
           <p>You have successfully registered!</p>
 
-          <StyledSettingsButton
-            onClick={() => router.reload()}
-            className="button button-color"
-          >
+          <StyledSettingsButton onClick={() => router.reload()}>
             Login Now
           </StyledSettingsButton>
         </>

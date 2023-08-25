@@ -74,7 +74,7 @@ export const StyledBackButton = styled(Link)`
   margin: 0;
   align-items: center;
   background-color: var(--dark-main);
-  border-radius: 0 25px 25px 0;
+  border-radius: ${(props) => (props.$isCentered ? "25px" : "0 25px 25px 0")};
   color: var(--dark-mode-text-color);
   text-decoration: none;
   font-size: 1rem;

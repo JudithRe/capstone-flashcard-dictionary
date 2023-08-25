@@ -5,7 +5,6 @@ export default function CorrectIcon({
 }) {
   return (
     <svg
-      className="inherit-background-color"
       width={width}
       height={height}
       viewBox="0 0 40 40"

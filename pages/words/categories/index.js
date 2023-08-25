@@ -55,19 +55,11 @@ export default function Categories({
           onClick={() => setIsEditMode(!isEditMode)}
         >
           {!isEditMode ? (
-            <span
-              className="inherit-background-color"
-              role="img"
-              aria-label="edit"
-            >
+            <span role="img" aria-label="edit">
               <EditIcon height="20px" width="20px" />
             </span>
           ) : (
-            <span
-              className="inherit-background-color"
-              role="img"
-              aria-label="done editing"
-            >
+            <span role="img" aria-label="done editing">
               <CorrectIcon height="16px" width="16px" />
             </span>
           )}
