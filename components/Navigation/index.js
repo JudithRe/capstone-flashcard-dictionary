@@ -18,20 +18,16 @@ export default function Navigation() {
   const router = useRouter();
   const activePath = router.pathname;
 
-  if (activePath === "/login") {
+  if (activePath === "/login" || activePath === "/404") {
     return;
   }
   return (
     <nav>
       <StyledNavList>
-        <StyledNavigationItem
-          className="navTransition"
-          $isActive={activePath === "/" ? true : false}
-        >
+        <StyledNavigationItem $isActive={activePath === "/" ? true : false}>
           <StyledNavigationLink href="/">
             <span role="img" aria-label="Home">
               <HomeIcon
-                className="nav-transition"
                 height={activePath === "/" ? "55px" : "30px"}
                 width={activePath === "/" ? "55px" : "30px"}
               />
@@ -39,10 +35,7 @@ export default function Navigation() {
             <StyledCounterText>Home</StyledCounterText>
           </StyledNavigationLink>
         </StyledNavigationItem>
-        <StyledNavigationItem
-          className="navTransition"
-          $isActive={activePath === "/add" ? true : false}
-        >
+        <StyledNavigationItem $isActive={activePath === "/add" ? true : false}>
           <StyledNavigationLink href="/add">
             <span role="img" aria-label="Add Words">
               <AddIcon
@@ -54,7 +47,6 @@ export default function Navigation() {
           </StyledNavigationLink>
         </StyledNavigationItem>
         <StyledNavigationItem
-          className="navTransition"
           $isActive={activePath === "/study" ? true : false}
         >
           <StyledNavigationLink href="/study">
@@ -68,7 +60,6 @@ export default function Navigation() {
           </StyledNavigationLink>
         </StyledNavigationItem>
         <StyledNavigationItem
-          className="navTransition"
           $isActive={
             activePath.includes("/words") || activePath === "/categories"
               ? true
@@ -78,23 +69,14 @@ export default function Navigation() {
           <StyledNavigationLink href="/words">
             <span role="img" aria-label="Word List">
               <ListIcon
-                height={
-                  activePath.includes("/words") || activePath === "/categories"
-                    ? "55px"
-                    : "30px"
-                }
-                width={
-                  activePath.includes("/words") || activePath === "/categories"
-                    ? "55px"
-                    : "30px"
-                }
+                height={activePath.includes("/words") ? "55px" : "30px"}
+                width={activePath.includes("/words") ? "55px" : "30px"}
               />
             </span>
             <StyledCounterText>Words</StyledCounterText>
           </StyledNavigationLink>
         </StyledNavigationItem>
         <StyledNavigationItem
-          className="navTransition"
           $isActive={activePath === "/profile" ? true : false}
         >
           <StyledNavigationLink href="/profile">
@@ -153,6 +135,7 @@ const StyledNavigationItem = styled.li`
   background-color: ${(props) =>
     props.$isActive ? "var(--highlight-blue)" : "var(--dark-main)"};
   box-shadow: var(--default-box-shadow-top);
+  transition: 400ms linear;
 
   @media ${device.tablet} {
     padding: 15px 30px 8px 60px;

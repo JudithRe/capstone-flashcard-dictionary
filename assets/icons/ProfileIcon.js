@@ -1,11 +1,12 @@
+import { StyledNavSvg } from "./HomeIcon";
+
 export default function ProfileIcon({
   height = "40",
   width = "40",
   color = "white",
 }) {
   return (
-    <svg
-      className="navTransition"
+    <StyledNavSvg
       width={width}
       height={height}
       viewBox="0 0 60 60"
@@ -30,6 +31,6 @@ export default function ProfileIcon({
         d="M36.9845 47.4335L31.4493 48.2252C27.8387 48.7416 24.1666 48.7096 20.5662 48.1303L15.793 47.3622L14.7856 54.523C14.3728 57.4577 16.7692 60.056 19.8363 59.9991L33.7903 59.74C36.9813 59.6808 39.2987 56.7894 38.5574 53.7923L36.9845 47.4335Z"
         fill={color}
       />
-    </svg>
+    </StyledNavSvg>
   );
 }

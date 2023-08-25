@@ -1,5 +1,4 @@
 // Style Imports
-
 import WrongIcon from "@/assets/icons/WrongIcon";
 import {
   FixedCenteredPosition,
@@ -18,7 +17,7 @@ import FlashcardFront from "@/components/FlashcardFront";
 import Heading from "@/components/PageHeading";
 
 // Function and Dependency Imports
-import { isDue } from "@/utils/studyFunctions";
+import { generateStudyMode } from "@/utils/studyFunctions";
 import { useEffect, useState } from "react";
 import { hasToken } from "@/utils/checkUser";
 
@@ -43,18 +42,7 @@ export default function StudyPage({ wordList, databaseMutate }) {
   const [isFront, setIsFront] = useState(true);
 
   useEffect(() => {
-    function generateStudyMode() {
-      if (wordList) {
-        const entriesDue = wordList.filter((entry) => {
-          return isDue(entry.study.lastReview, entry.study.stage);
-        });
-
-        setStudyList(entriesDue);
-
-        return entriesDue;
-      }
-    }
-    generateStudyMode();
+    generateStudyMode(wordList, setStudyList);
   }, [wordList]);
 
   return (
@@ -79,7 +67,7 @@ export default function StudyPage({ wordList, databaseMutate }) {
           <Heading>Study</Heading>
           <FixedCenteredPosition>
             <CorrectIcon color="var(--dark-main)" /> <br />
-            <StyledParagraphNoMargins style={{ textAlign: "center" }}>
+            <StyledParagraphNoMargins $isCentered={true}>
               No reviews available. <br />
               Well done!
             </StyledParagraphNoMargins>
@@ -101,7 +89,7 @@ export default function StudyPage({ wordList, databaseMutate }) {
           {isFront && studyList.length === 0 && (
             <FixedCenteredPosition>
               <CorrectIcon color="var(--dark-main)" /> <br />
-              <StyledParagraphNoMargins style={{ textAlign: "center" }}>
+              <StyledParagraphNoMargins $isCentered={true}>
                 All done for now. <br />
                 Check back again later!
               </StyledParagraphNoMargins>

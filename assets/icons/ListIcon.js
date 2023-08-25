@@ -1,7 +1,8 @@
+import { StyledNavSvg } from "./HomeIcon";
+
 export default function ListIcon({ height = "40", width = "40" }) {
   return (
-    <svg
-      className="navTransition inherit-background-color"
+    <StyledNavSvg
       width={width}
       height={height}
       viewBox="0 0 60 60"
@@ -28,6 +29,6 @@ export default function ListIcon({ height = "40", width = "40" }) {
         d="M21.7443 0.254292C22.5717 -0.102665 23.5185 -0.0829789 24.3296 0.308049L59.4322 17.2304C60.1803 17.5911 60.1916 18.6296 59.4515 19.0056L40.5772 28.5955C39.715 29.0336 38.691 29.0447 37.8191 28.6254L1.07836 10.9564C0.302484 10.5833 0.325652 9.49462 1.11674 9.15333L21.7443 0.254292Z"
         fill="white"
       />
-    </svg>
+    </StyledNavSvg>
   );
 }

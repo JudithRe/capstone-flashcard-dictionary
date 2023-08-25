@@ -1,5 +1,15 @@
 const currentDate = new Date();
 
+export function generateStudyMode(wordList, setStudyList) {
+  if (wordList) {
+    const entriesDue = wordList.filter((entry) => {
+      return isDue(entry.study.lastReview, entry.study.stage);
+    });
+
+    setStudyList(entriesDue);
+  }
+}
+
 export function isDue(lastReview, stage) {
   if (lastReview === "new") {
     return true;
@@ -141,7 +151,7 @@ function setNewStreak(streak, wasWrongAnswer) {
     return streak - 1;
   }
 
-  if (!wasWrongAnswer && streak < 0) {
+  if (!wasWrongAnswer && streak <= 0) {
     return 1;
   }
 

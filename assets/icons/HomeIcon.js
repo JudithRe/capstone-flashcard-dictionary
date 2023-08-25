@@ -1,7 +1,8 @@
+import styled from "styled-components";
+
 export default function HomeIcon({ height = "40", width = "40" }) {
   return (
-    <svg
-      className="navTransition inherit-background-color"
+    <StyledNavSvg
       width={width}
       height={height}
       viewBox="0 0 40 40"
@@ -44,6 +45,12 @@ export default function HomeIcon({ height = "40", width = "40" }) {
         d="M12 11.875C12 11.7024 12.1492 11.5625 12.3333 11.5625C12.5174 11.5625 12.6667 11.7024 12.6667 11.875V16.25C12.6667 16.4226 12.5174 16.5625 12.3333 16.5625C12.1492 16.5625 12 16.4226 12 16.25V11.875Z"
         fill="white"
       />
-    </svg>
+    </StyledNavSvg>
   );
 }
+
+// Transition
+
+export const StyledNavSvg = styled.svg`
+  transition: 400ms linear;
+`;

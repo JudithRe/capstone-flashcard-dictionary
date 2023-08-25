@@ -1,7 +1,8 @@
+import { StyledNavSvg } from "./HomeIcon";
+
 export default function StudyIcon({ height = "40", width = "40" }) {
   return (
-    <svg
-      className="navTransition inherit-background-color"
+    <StyledNavSvg
       width={width}
       height={height}
       viewBox="0 0 40 40"
@@ -20,6 +21,6 @@ export default function StudyIcon({ height = "40", width = "40" }) {
         d="M25.1733 8.52024H38.0328C39.1193 8.52024 40 9.40099 40 10.4874V38.0331C40 39.1195 39.1193 40.0002 38.0328 40.0002H25.1733C24.0868 40.0002 23.2061 39.1195 23.2061 38.0331V10.4874C23.2061 9.40098 24.0868 8.52024 25.1733 8.52024Z"
         fill="white"
       />
-    </svg>
+    </StyledNavSvg>
   );
 }

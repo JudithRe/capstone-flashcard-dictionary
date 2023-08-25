@@ -28,7 +28,7 @@ function FlashcardBack({ entry, studyList, setIsFront, databaseMutate }) {
             handleWrongAnswer({ studyList, setIsFront, entry, databaseMutate })
           }
         >
-          <span role="img" aria-label="did not know">
+          <span role="img" aria-label="I do not know the answer">
             <WrongIcon width="20px" height="20px" />
           </span>
         </WrongAnswerButton>
@@ -37,7 +37,7 @@ function FlashcardBack({ entry, studyList, setIsFront, databaseMutate }) {
             handleRightAnswer({ studyList, setIsFront, entry, databaseMutate })
           }
         >
-          <span role="img" aria-label="did know">
+          <span role="img" aria-label="I know know the answer">
             <CorrectIcon width="20px" height="20px" />
           </span>
         </RightAnswerButton>
