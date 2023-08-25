@@ -52,7 +52,7 @@ export default function StudyPage({ wordList, databaseMutate }) {
         <>
           <Heading>Study</Heading>
           <FixedCenteredPosition>
-            <CenteredParagraph style={{ textAlign: "center" }}>
+            <CenteredParagraph>
               {`${studyList.length} ${
                 studyList.length > 1 ? "entries" : "entry"
               } due.`}

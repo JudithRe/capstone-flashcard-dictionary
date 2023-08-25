@@ -18,9 +18,9 @@ export default function UserData() {
 
       <StyledUserInfo>
         <StyledParagraphNoMargins>
-          <span style={{ fontSize: 1 + "rem" }}>You&apos;re signed in as</span>
+          <smallerInlineFont>You&apos;re signed in as</smallerInlineFont>
         </StyledParagraphNoMargins>
-        <StyledParagraphNoMargins style={{ marginBottom: 0.5 + "rem" }}>
+        <StyledParagraphNoMargins $needsMarginBottom={true}>
           {session?.user?.username}
         </StyledParagraphNoMargins>
         <StyledGhostButton onClick={() => signOut()}>
@@ -32,6 +32,10 @@ export default function UserData() {
 }
 
 // Styles
+
+const smallerInlineFont = styled.span`
+  font-size: 1rem;
+`;
 
 const StyledProfilePicturePlaceholder = styled.div`
   display: flex;
@@ -55,4 +59,5 @@ const StyledUserInfo = styled.div`
 export const StyledParagraphNoMargins = styled.p`
   margin: 0;
   text-align: ${(props) => (props.$isCentered ? "center" : "left")};
+  margin-bottom: ${(props) => (props.$needsMarginBottom ? "0.5rem" : "0")};
 `;

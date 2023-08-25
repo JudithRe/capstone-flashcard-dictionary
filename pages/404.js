@@ -14,7 +14,7 @@ export default function Page404() {
       <Heading>404</Heading>
       <FixedCenteredPosition>
         <WorriedIcon color="var(--dark-main)" width="150" height="150" /> <br />
-        <StyledParagraphNoMargins style={{ textAlign: "center" }}>
+        <StyledParagraphNoMargins $isCentered={true}>
           This Page does not seem to exist.
         </StyledParagraphNoMargins>
         <Spacer />
