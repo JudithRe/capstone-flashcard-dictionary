@@ -1,11 +1,15 @@
+// Style Imports
+import { StyledCenterAlign } from "@/components/StyledComponents/StyledSection";
+import { Spacer } from "@/components/StyledComponents/MainContent";
+
+// Component Imports
 import SearchBar from "@/components/OnPageSearchBar";
 import StudyDisplay from "@/components/StudyDisplay";
+import Heading from "@/components/PageHeading";
 
-import { StyledCenterAlign } from "@/components/StyledComponents/StyledSection";
+// Function and Dependency Imports
 import { hasToken } from "@/utils/checkUser";
 import { useSession } from "next-auth/react";
-import Heading from "@/components/PageHeading";
-import { MainContent } from "@/components/StyledComponents/MainContent";
 
 export async function getServerSideProps(context) {
   const token = await hasToken(context.req);
@@ -41,35 +45,34 @@ export default function HomePage({
   const { data: session } = useSession();
   return (
     <>
-      <MainContent>
-        <Heading>
-          {session?.user?.username}さん、
-          <br />
-          こんにちは。
-        </Heading>
-
-        <SearchBar
-          query={query}
-          handleSetQuery={handleSetQuery}
-          dictionaryQuery={dictionaryQuery}
-          handleSetDictionaryQuery={handleSetDictionaryQuery}
-          handleSearchInput={handleSearchInput}
-          searchResults={searchResults}
-          handleSearchResults={handleSearchResults}
-          handleSetDictionaryResults={handleSetDictionaryResults}
-          dictionaryResults={dictionaryResults}
-          dictionaryIsLoading={dictionaryIsLoading}
-          handleAddEntry={handleAddEntry}
-          handleHasEntries={handleHasEntries}
+      <Heading>
+        {session?.user?.username}さん、
+        <br />
+        こんにちは。
+      </Heading>
+      <Spacer />
+      <Spacer />
+      <SearchBar
+        query={query}
+        handleSetQuery={handleSetQuery}
+        dictionaryQuery={dictionaryQuery}
+        handleSetDictionaryQuery={handleSetDictionaryQuery}
+        handleSearchInput={handleSearchInput}
+        searchResults={searchResults}
+        handleSearchResults={handleSearchResults}
+        handleSetDictionaryResults={handleSetDictionaryResults}
+        dictionaryResults={dictionaryResults}
+        dictionaryIsLoading={dictionaryIsLoading}
+        handleAddEntry={handleAddEntry}
+        handleHasEntries={handleHasEntries}
+      />
+      <StyledCenterAlign>
+        <StudyDisplay
+          wordList={wordList}
+          activeUser={activeUser}
+          databaseIsLoading={databaseIsLoading}
         />
-        <StyledCenterAlign>
-          <StudyDisplay
-            wordList={wordList}
-            activeUser={activeUser}
-            databaseIsLoading={databaseIsLoading}
-          />
-        </StyledCenterAlign>
-      </MainContent>
+      </StyledCenterAlign>
     </>
   );
 }

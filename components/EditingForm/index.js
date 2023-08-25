@@ -1,7 +1,6 @@
+// Styles Imports
 import styled from "styled-components";
 import { StyledCard } from "../StyledComponents/StyledCard";
-import { convertToKana } from "@/utils/helperFunctions.js";
-import { Modal } from "../StyledComponents/Modal";
 import {
   StyledDropDown,
   StyledForm,
@@ -13,6 +12,12 @@ import {
   StyledSubmitButton,
 } from "../StyledComponents/StyledButtons";
 import WrongIcon from "@/assets/icons/WrongIcon";
+
+// Components Imports
+import { Modal } from "../StyledComponents/Modal";
+
+// Functions and Dependencies Imports
+import { convertToKana } from "@/utils/helperFunctions.js";
 import { useState } from "react";
 import { getCategory } from "@/utils/getCategory";
 
@@ -122,20 +127,11 @@ function EditingForm({
           type="button"
           onClick={() => handleDetailEditMode(false)}
         >
-          <span
-            className="inherit-background-color"
-            role="img"
-            aria-label="exit"
-          >
+          <span role="img" aria-label="close">
             <WrongIcon height="16px" width="16px" />
           </span>
         </StyledFormButtonRight>
-        <StyledFormTitle
-          id="edit-form-title"
-          className="inherit-background-color"
-        >
-          Edit your Entry
-        </StyledFormTitle>
+        <StyledFormTitle id="edit-form-title">Edit your Entry</StyledFormTitle>
 
         <StyledForm
           onSubmit={handleFormSubmit}
@@ -202,6 +198,7 @@ function EditingForm({
                 type="text"
                 id="new-category"
                 name="newCategory"
+                maxLength={35}
               />
             </>
           )}
@@ -215,6 +212,8 @@ function EditingForm({
   );
 }
 
+// Styles
+
 const StyledCenteredCard = styled(StyledCard)`
   position: fixed;
   transform: translate(50%, -50%);
@@ -225,7 +224,6 @@ const StyledCenteredCard = styled(StyledCard)`
 
 export const StyledWarningText = styled.p`
   margin-top: 0;
-
   font-size: 0.9rem;
 `;
 

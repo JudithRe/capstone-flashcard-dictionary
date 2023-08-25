@@ -1,3 +1,4 @@
+// Styles Imports
 import styled from "styled-components";
 import { StyledCard } from "../StyledComponents/StyledCard";
 import {
@@ -6,18 +7,19 @@ import {
   StyledEditButtonRed,
   StyledAddButton,
 } from "../StyledComponents/StyledButtons";
-import { StyledSectionRightAlign } from "../StyledComponents/StyledSection";
-import { deleteEntry } from "@/utils/deleteFunctions.js";
-
-import { LinkWithoutDecoration } from "../StyledComponents/LinkWithoutDecoration";
-import EntryContent from "../EntryContent";
+import { LinkWithoutDecoration } from "../StyledComponents/Links";
 import DeleteIcon from "@/assets/icons/DeleteIcon";
 import CorrectIcon from "@/assets/icons/CorrectIcon";
 import AddIcon from "@/assets/icons/AddIcon";
 import EditIcon from "@/assets/icons/EditIcon";
-import { useRouter } from "next/router";
-import { device } from "@/utils/globalValues";
+
+// Components Imports
+import EntryContent from "../EntryContent";
 import { Spacer } from "../StyledComponents/MainContent";
+
+// Functions and Dependencies Imports
+import { deleteEntry } from "@/utils/deleteFunctions.js";
+import { useRouter } from "next/router";
 
 function Entry({
   entry,
@@ -43,11 +45,7 @@ function Entry({
               type="button"
               onClick={() => deleteEntry(_id, databaseMutate)}
             >
-              <span
-                className="inherit-background-color"
-                role="img"
-                aria-label="delete"
-              >
+              <span role="img" aria-label="delete">
                 <DeleteIcon width="16px" height="16px" />
               </span>
             </StyledEditButtonDark>
@@ -58,11 +56,7 @@ function Entry({
                 router.push(`/words/${_id}`);
               }}
             >
-              <span
-                className="inherit-background-color"
-                role="img"
-                aria-label="edit"
-              >
+              <span role="img" aria-label="edit">
                 <EditIcon width="16px" height="16px" />
               </span>
             </StyledEditButtonRed>
@@ -84,22 +78,14 @@ function Entry({
                 handleAddEntry(entry);
               }}
             >
-              <span
-                className="inherit-background-color"
-                role="img"
-                aria-label="add to list"
-              >
+              <span role="img" aria-label="add to list">
                 <AddIcon height="16px" width="16px" />
               </span>
             </StyledAddButton>
           )}
           {!showAddButton && isDictionaryEntry && (
             <StyledAddButton type="button" disabled={true}>
-              <span
-                className="inherit-background-color"
-                role="img"
-                aria-label="in list already"
-              >
+              <span role="img" aria-label="in list already">
                 <CorrectIcon height="16px" width="16px" />
               </span>
             </StyledAddButton>
@@ -109,11 +95,7 @@ function Entry({
               type="button"
               onClick={() => deleteEntry(_id, databaseMutate)}
             >
-              <span
-                className="inherit-background-color"
-                role="img"
-                aria-label="delete"
-              >
+              <span role="img" aria-label="delete">
                 <DeleteIcon width="16px" height="16px" />
               </span>
             </StyledSecondaryButtonRight>
@@ -127,6 +109,8 @@ function Entry({
     );
   }
 }
+
+// Styles
 
 const StyledSectionRightAlignAbsolute = styled.div`
   position: absolute;

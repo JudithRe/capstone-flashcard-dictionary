@@ -1,5 +1,12 @@
-import styled from "styled-components";
+// Styles Imports
 import SearchIcon from "@/assets/icons/SearchIcon";
+import {
+  StyledSearchBar,
+  StyledSearchBarButton,
+  StyledSearchBarForm,
+} from "../SearchComponent";
+
+// Functions and Dependencies Imports
 import { useRouter } from "next/router";
 
 function SearchBar({
@@ -30,7 +37,7 @@ function SearchBar({
       handleHasEntries(false);
     }
 
-    router.push("/search");
+    router.push("/add");
   }
 
   return (
@@ -43,45 +50,13 @@ function SearchBar({
           name="searchInput"
         />
         <StyledSearchBarButton>
-          <span
-            className="inherit-background-color"
-            role="img"
-            aria-label="Search"
-          >
-            <SearchIcon height="30px" width="30px" />
+          <span role="img" aria-label="Search">
+            <SearchIcon height="25px" width="25px" />
           </span>
         </StyledSearchBarButton>
       </StyledSearchBarForm>
     </>
   );
 }
-const StyledSearchBarForm = styled.form`
-  width: 80%;
-  display: flex;
-  align-self: center;
-  justify-content: space-between;
-  background-color: var(--dark-mode-text-color);
-  padding: 10px;
-  border-radius: 25px;
-  z-index: 5;
-  box-shadow: var(--default-box-shadow);
-`;
-
-const StyledSearchBar = styled.input`
-  background-color: inherit;
-  padding: 10px;
-  border: none;
-  width: 100%;
-
-  &::placeholder {
-    color: black;
-  }
-`;
-
-const StyledSearchBarButton = styled.button`
-  border: none;
-  background-color: transparent;
-  padding: 0 15px;
-`;
 
 export default SearchBar;

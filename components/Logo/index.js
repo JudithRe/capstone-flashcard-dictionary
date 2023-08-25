@@ -1,9 +1,13 @@
+// Styles Imports
 import JG from "@/assets/icons/JG";
 import styled from "styled-components";
-import { NoStyleLink } from "../StudyDisplay";
-import { useRouter } from "next/router";
-import { device } from "@/utils/globalValues";
+import { NoStyleLink } from "../StyledComponents/Links";
+
+// Components Imports
 import { Spacer } from "../StyledComponents/MainContent";
+
+// Functions and Dependencies Imports
+import { useRouter } from "next/router";
 
 function Logo({ width, height, color }) {
   const router = useRouter();
@@ -38,20 +42,21 @@ function Logo({ width, height, color }) {
   );
 }
 
+// Styles
+
 const RedDiv = styled.div`
   position: fixed;
   top: 0;
   right: 50%;
   transform: translate(50%);
   z-index: 5;
-  height: 30px;
-  width: 100px;
+  height: 45px;
+  width: 150px;
   background-color: var(--highlight-red);
 `;
 
 const StyledLogo = styled.div`
   background-color: transparent;
-
   position: fixed;
   right: 50%;
   top: -5px;

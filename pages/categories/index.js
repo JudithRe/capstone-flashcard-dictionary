@@ -1,20 +1,23 @@
+// Import Styles
 import CorrectIcon from "@/assets/icons/CorrectIcon";
 import EditIcon from "@/assets/icons/EditIcon";
-import AddCategoryForm from "@/components/AddCategoryForm";
-import Category from "@/components/Category";
-import Heading from "@/components/PageHeading";
-import { MainContent } from "@/components/StyledComponents/MainContent";
 import {
-  StyledSecondaryButton,
+  StyledBackButton,
   StyledSecondaryButtonRight,
 } from "@/components/StyledComponents/StyledButtons";
 import {
   StyledCenterAlign,
   StyledSection,
-  StyledSectionRightAlign,
+  StyledSectionTopBetween,
 } from "@/components/StyledComponents/StyledSection";
+
+// Import Components
+import AddCategoryForm from "@/components/AddCategoryForm";
+import Category from "@/components/Category";
+import Heading from "@/components/PageHeading";
+
+// Import Functions and Dependencies
 import { hasToken } from "@/utils/checkUser";
-import { useRouter } from "next/router";
 import { useState } from "react";
 
 export async function getServerSideProps(context) {
@@ -40,15 +43,13 @@ export default function Categories({
   activeUser,
   databaseMutate,
 }) {
-  const [isEditMode, setIsEditMode] = useState();
-  const router = useRouter();
+  const [isEditMode, setIsEditMode] = useState(false);
+
   return (
-    <MainContent>
+    <>
       <Heading id="add-form-title">Your Categories</Heading>
-      <StyledSectionRightAlign>
-        <StyledSecondaryButton type="button" onClick={() => router.back()}>
-          Back
-        </StyledSecondaryButton>
+      <StyledSectionTopBetween>
+        <StyledBackButton href="/words"></StyledBackButton>
         <StyledSecondaryButtonRight
           type="button"
           onClick={() => setIsEditMode(!isEditMode)}
@@ -71,7 +72,8 @@ export default function Categories({
             </span>
           )}
         </StyledSecondaryButtonRight>
-      </StyledSectionRightAlign>
+      </StyledSectionTopBetween>
+
       <AddCategoryForm
         handleAddCategory={handleAddCategory}
         activeUser={activeUser}
@@ -93,6 +95,6 @@ export default function Categories({
           })}
         </StyledCenterAlign>
       </StyledSection>
-    </MainContent>
+    </>
   );
 }

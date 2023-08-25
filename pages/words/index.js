@@ -1,14 +1,20 @@
-import EntriesContainer from "@/components/EntriesContainer";
-import Heading from "@/components/PageHeading";
-import { MainContent } from "@/components/StyledComponents/MainContent";
-import { StyledSectionRightAlign } from "@/components/StyledComponents/StyledSection";
+// Style Imports
+import {
+  StyledSectionRightAlign,
+  StyledStickyDiv,
+} from "@/components/StyledComponents/StyledSection";
 import { StyledSecondaryButton } from "@/components/StyledComponents/StyledButtons";
-import { useState } from "react";
 import EditIcon from "@/assets/icons/EditIcon";
 import CorrectIcon from "@/assets/icons/CorrectIcon";
-import { hasToken } from "@/utils/checkUser";
+
+// Component Imports
+import EntriesContainer from "@/components/EntriesContainer";
+import Heading from "@/components/PageHeading";
 import CategorySelector from "@/components/CategorySelector";
-import { styled } from "styled-components";
+
+//Function and Dependency Imports
+import { useState } from "react";
+import { hasToken } from "@/utils/checkUser";
 
 export async function getServerSideProps(context) {
   const token = await hasToken(context.req);
@@ -33,7 +39,6 @@ export default function WordList({
   categoryData,
 }) {
   const [isEditMode, setIsEditMode] = useState(false);
-
   const [filteredWordList, setFilteredWordList] = useState(wordList);
 
   function handleFilterWordList(filteredList) {
@@ -49,7 +54,7 @@ export default function WordList({
         </Heading>
       )}
 
-      <MainContent>
+      <>
         <StyledStickyDiv>
           <StyledSectionRightAlign>
             <CategorySelector
@@ -58,7 +63,6 @@ export default function WordList({
               handleFilterWordList={handleFilterWordList}
             />
             <StyledSecondaryButton
-              className="background-light-blue"
               type="button"
               onClick={() => setIsEditMode(!isEditMode)}
             >
@@ -82,13 +86,7 @@ export default function WordList({
           databaseIsLoading={databaseIsLoading}
           databaseMutate={databaseMutate}
         />
-      </MainContent>
+      </>
     </>
   );
 }
-
-const StyledStickyDiv = styled.div`
-  z-index: 10;
-  position: sticky;
-  top: 2.5rem;
-`;

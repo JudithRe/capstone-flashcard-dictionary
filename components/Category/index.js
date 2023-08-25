@@ -1,8 +1,12 @@
+// Styles Imports
 import DeleteIcon from "@/assets/icons/DeleteIcon";
-import { StyledEditComponent } from "../Entry";
-import { StyledSecondaryButtonRight } from "../StyledComponents/StyledButtons";
+import { PositionRelativeDiv, StyledEditComponent } from "../Entry";
+import { StyledEditButtonDark } from "../StyledComponents/StyledButtons";
 import { StyledCard } from "../StyledComponents/StyledCard";
+
+// Functions and Dependencies Imports
 import { deleteCategory } from "@/utils/deleteFunctions";
+import { StyledSectionRightAlign } from "../StyledComponents/StyledSection";
 
 function Category({
   category,
@@ -13,10 +17,13 @@ function Category({
 }) {
   const { name, _id } = category;
   return (
-    <StyledCard>
+    <PositionRelativeDiv>
+      <StyledCard>
+        <h2 className="inherit-background-color">{name}</h2>
+      </StyledCard>
       {isEditMode && (
         <StyledEditComponent>
-          <StyledSecondaryButtonRight
+          <StyledEditButtonDark
             type="button"
             onClick={() =>
               deleteCategory(_id, categoryMutate, wordList, databaseMutate)
@@ -29,11 +36,10 @@ function Category({
             >
               <DeleteIcon width="16px" height="16px" />
             </span>
-          </StyledSecondaryButtonRight>
+          </StyledEditButtonDark>
         </StyledEditComponent>
       )}
-      <h2 className="inherit-background-color">{name}</h2>
-    </StyledCard>
+    </PositionRelativeDiv>
   );
 }
 

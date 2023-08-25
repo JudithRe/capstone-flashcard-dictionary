@@ -1,4 +1,7 @@
+// Styles Imports
 import { styled } from "styled-components";
+
+// Functions and Dependencies Imports
 import { device } from "@/utils/globalValues";
 
 export default function SingleBarDiagram({ inputArray, unit, height }) {
@@ -41,6 +44,8 @@ export default function SingleBarDiagram({ inputArray, unit, height }) {
     );
   }
 }
+
+// Styles
 
 const StyledBarLabel = styled.p`
   margin: 5px 0;

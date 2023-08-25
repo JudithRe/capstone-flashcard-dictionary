@@ -1,14 +1,18 @@
+// Styles Imports
 import styled from "styled-components";
-import Link from "next/link";
-import { device } from "@/utils/globalValues";
 import HomeIcon from "@/assets/icons/HomeIcon";
 import ListIcon from "@/assets/icons/ListIcon";
 import AddIcon from "@/assets/icons/AddIcon";
 import StudyIcon from "@/assets/icons/StudyIcon";
-import { useRouter } from "next/router";
 import ProfileIcon from "@/assets/icons/ProfileIcon";
-import { StyledParagraphNoMargins } from "../UserData";
 import { StyledCounterText } from "../StudyDisplay";
+
+// Components Imports
+import Link from "next/link";
+
+// Functions and Dependencies Imports
+import { device } from "@/utils/globalValues";
+import { useRouter } from "next/router";
 
 export default function Navigation() {
   const router = useRouter();
@@ -25,11 +29,7 @@ export default function Navigation() {
           $isActive={activePath === "/" ? true : false}
         >
           <StyledNavigationLink href="/">
-            <span
-              className="inherit-background-color"
-              role="img"
-              aria-label="Home"
-            >
+            <span role="img" aria-label="Home">
               <HomeIcon
                 className="nav-transition"
                 height={activePath === "/" ? "55px" : "30px"}
@@ -39,20 +39,15 @@ export default function Navigation() {
             <StyledCounterText>Home</StyledCounterText>
           </StyledNavigationLink>
         </StyledNavigationItem>
-
         <StyledNavigationItem
           className="navTransition"
-          $isActive={activePath === "/search" ? true : false}
+          $isActive={activePath === "/add" ? true : false}
         >
-          <StyledNavigationLink href="/search">
-            <span
-              className="inherit-background-color"
-              role="img"
-              aria-label="Add Words"
-            >
+          <StyledNavigationLink href="/add">
+            <span role="img" aria-label="Add Words">
               <AddIcon
-                height={activePath === "/search" ? "55px" : "30px"}
-                width={activePath === "/search" ? "55px" : "30px"}
+                height={activePath === "/add" ? "55px" : "30px"}
+                width={activePath === "/add" ? "55px" : "30px"}
               />
             </span>
             <StyledCounterText>Add</StyledCounterText>
@@ -63,11 +58,7 @@ export default function Navigation() {
           $isActive={activePath === "/study" ? true : false}
         >
           <StyledNavigationLink href="/study">
-            <span
-              className="inherit-background-color"
-              role="img"
-              aria-label="Study"
-            >
+            <span role="img" aria-label="Study">
               <StudyIcon
                 height={activePath === "/study" ? "55px" : "30px"}
                 width={activePath === "/study" ? "55px" : "30px"}
@@ -85,11 +76,7 @@ export default function Navigation() {
           }
         >
           <StyledNavigationLink href="/words">
-            <span
-              className="inherit-background-color"
-              role="img"
-              aria-label="Word List"
-            >
+            <span role="img" aria-label="Word List">
               <ListIcon
                 height={
                   activePath.includes("/words") || activePath === "/categories"
@@ -111,11 +98,7 @@ export default function Navigation() {
           $isActive={activePath === "/profile" ? true : false}
         >
           <StyledNavigationLink href="/profile">
-            <span
-              className="inherit-background-color"
-              role="img"
-              aria-label="Profile"
-            >
+            <span role="img" aria-label="Profile">
               <ProfileIcon
                 height={activePath === "/profile" ? "55px" : "30px"}
                 width={activePath === "/profile" ? "55px" : "30px"}
@@ -129,30 +112,36 @@ export default function Navigation() {
   );
 }
 
+// Styles
+
 const StyledNavList = styled.ul`
-  margin-bottom: -2rem;
-  position: fixed;
-  bottom: 0;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  height: 7rem;
   padding: 2rem 0;
   backdrop-filter: blur(25px);
-  list-style-type: none;
-  z-index: 5;
   border-radius: 20%;
   box-shadow: var(--default-box-shadow-top);
 
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  position: fixed;
+  bottom: 0;
+  margin-bottom: -2rem;
+  height: 7rem;
+
+  list-style-type: none;
+  z-index: 5;
+
   @media ${device.tablet} {
+    width: auto;
     backdrop-filter: none;
-    background-color: transparent;
+    box-shadow: none;
+
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
-    width: auto;
-    box-shadow: none;
+
     top: 8rem;
     left: 0;
   }

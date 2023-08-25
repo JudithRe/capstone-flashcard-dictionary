@@ -30,9 +30,7 @@ function AddCategoryForm({ handleAddCategory, activeUser }) {
   return (
     <StyledSection>
       <StyledCard>
-        <h2 id="category-form" className="inherit-background-color">
-          Create a Category
-        </h2>
+        <h2 id="category-form">Create a Category</h2>
         <StyledForm onSubmit={handleFormSubmit} aria-labelledby="category-form">
           <StyledFormLabel htmlFor="category-name">
             Category Title

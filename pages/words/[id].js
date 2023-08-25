@@ -1,7 +1,7 @@
+// Style Imports
+import styled from "styled-components";
 import EditIcon from "@/assets/icons/EditIcon";
-import EditingForm from "@/components/EditingForm";
 import { StyledResultDisplay } from "@/components/SearchResults";
-import { MainContent } from "@/components/StyledComponents/MainContent";
 import { FixedCenteredPosition } from "@/components/StyledComponents/Modal";
 import {
   StyledBackButton,
@@ -9,16 +9,27 @@ import {
 } from "@/components/StyledComponents/StyledButtons";
 import { StyledCardLeftAlign } from "@/components/StyledComponents/StyledCard";
 import {
+  StyledSectionFixedCenter,
   StyledSectionFixedTopCenter,
   StyledSectionTopBetween,
 } from "@/components/StyledComponents/StyledSection";
+import {
+  StyledCardParagraph,
+  StyledHeading2,
+  StyledHeading3,
+} from "@/components/StyledComponents/ParagraphsAndHeadings";
+
+// Component Imports
+import EditingForm from "@/components/EditingForm";
+import Heading from "@/components/PageHeading";
+import SingleBarDiagram from "@/components/SingleBarDiagram";
+
+// Function and Dependency Imports
 import { getVisualDate } from "@/utils/helperFunctions";
 import { useRouter } from "next/router";
-import styled from "styled-components";
 import { hasToken } from "@/utils/checkUser";
-import Heading from "@/components/PageHeading";
 import { device } from "@/utils/globalValues";
-import SingleBarDiagram from "@/components/SingleBarDiagram";
+import { StyledTag } from "@/components/EntryContent";
 
 export async function getServerSideProps(context) {
   const token = await hasToken(context.req);
@@ -50,11 +61,9 @@ export default function WordDetail({
 
   if (databaseIsLoading || !wordList) {
     return (
-      <MainContent>
-        <FixedCenteredPosition>
-          <StyledResultDisplay>Loading...</StyledResultDisplay>
-        </FixedCenteredPosition>
-      </MainContent>
+      <FixedCenteredPosition>
+        <StyledResultDisplay>Loading...</StyledResultDisplay>
+      </FixedCenteredPosition>
     );
   }
 
@@ -62,11 +71,9 @@ export default function WordDetail({
 
   if (!entryData) {
     return (
-      <MainContent>
-        <FixedCenteredPosition>
-          <StyledResultDisplay>No entry found.</StyledResultDisplay>
-        </FixedCenteredPosition>
-      </MainContent>
+      <FixedCenteredPosition>
+        <StyledResultDisplay>No entry found.</StyledResultDisplay>
+      </FixedCenteredPosition>
     );
   }
 
@@ -93,7 +100,7 @@ export default function WordDetail({
     ];
 
     return (
-      <MainContent>
+      <>
         <StyledSectionFixedTopCenter>
           <PermanentCircle />
         </StyledSectionFixedTopCenter>
@@ -122,11 +129,7 @@ export default function WordDetail({
             type="button"
             onClick={() => handleDetailEditMode(true)}
           >
-            <span
-              className="inherit-background-color"
-              role="img"
-              aria-label="edit"
-            >
+            <span role="img" aria-label="edit">
               <EditIcon height="20px" width="20px" />
             </span>
           </StyledSecondaryButtonRight>
@@ -180,10 +183,12 @@ export default function WordDetail({
             height="250"
           />
         </StyledCardLeftAlign>
-      </MainContent>
+      </>
     );
   }
 }
+
+// Styles
 
 const PermanentCircle = styled.div`
   width: 300px;
@@ -198,31 +203,6 @@ const PermanentCircle = styled.div`
   }
 `;
 
-export const StyledHeading2 = styled.h2`
-  padding: 1.5rem 0 0.3rem 0;
-  color: var(--dark-main);
-  font-size: 1.2rem;
-  margin: 0px;
-`;
-
-const StyledCardParagraph = styled.p`
-  margin-top: 0;
-`;
-export const StyledHeading3 = styled.h3`
-  display: inline-block;
-  padding: 1.5rem 0 0.3rem 0;
-  color: var(--dark-main);
-  font-size: 1.2rem;
-  margin: 0px;
-`;
-
-export const StyledTag = styled.span`
-  padding: 5px 15px;
-  border-radius: 25px;
-  background-color: var(--dark-main);
-  color: var(--dark-mode-text-color);
-`;
-
 const StyledList = styled.ul`
   margin-top: 0;
   margin-bottom: 0;
@@ -233,16 +213,4 @@ const StyledTagContainer = styled.span`
   display: flex;
   gap: 0.8rem;
   padding-bottom: 1rem;
-`;
-
-const StyledSectionFixedCenter = styled.div`
-  position: fixed;
-  width: 300px;
-  top: 0;
-  right: 50%;
-  transform: translate(50%);
-  z-index: 5;
-  @media ${device.tablet} {
-    width: 400px;
-  }
 `;

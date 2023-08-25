@@ -1,13 +1,16 @@
+// Styles Imports
+import styled from "styled-components";
+
+// Functions and Dependencies Imports
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import styled from "styled-components";
 
 function CategorySelector({ categoryData, wordList, handleFilterWordList }) {
   const router = useRouter();
 
   useEffect(() => {
     handleFilterWordList(wordList);
-  }, [wordList]);
+  }, [wordList, handleFilterWordList]);
 
   if (!wordList) {
     return;
@@ -52,17 +55,20 @@ function CategorySelector({ categoryData, wordList, handleFilterWordList }) {
     </StyledCategoryForm>
   );
 }
+
+// Styles
+
 const StyledCategoryForm = styled.form`
   background-color: var(--dark-main);
   padding: 0 25px;
   border-radius: var(--border-radius);
 `;
+
 export const StyledCategorySelector = styled.select`
   background-color: inherit;
   color: var(--dark-mode-text-color);
-  padding: 10px;
+  padding: 8px 10px 8px 10px;
   border: none;
-
   font-size: 1.2rem;
 `;
 

@@ -1,11 +1,14 @@
+// Styles Imports
 import styled from "styled-components";
 import { StyledSection } from "../StyledComponents/StyledSection";
+import { StyledResultDisplay } from "../SearchResults";
+
+// Functions and Dependencies Imports
 import { isDue } from "@/utils/studyFunctions";
 import { useEffect, useState } from "react";
-import { StyledResultDisplay } from "../SearchResults";
 import { handleStreakUpdate } from "@/utils/userFunction";
-import Link from "next/link";
 import useSWR from "swr";
+import { NoStyleLink } from "../StyledComponents/Links";
 
 function StudyDisplay({ wordList, activeUser, databaseIsLoading }) {
   const [studyDisplayData, setStudyDisplayData] = useState({
@@ -39,7 +42,7 @@ function StudyDisplay({ wordList, activeUser, databaseIsLoading }) {
         });
       }
     }
-  }, [wordList, activeUser, userData]);
+  }, [wordList, activeUser, userData, userMutate]);
 
   if (databaseIsLoading || userIsLoading) {
     return <StyledResultDisplay>Loading...</StyledResultDisplay>;
@@ -48,9 +51,7 @@ function StudyDisplay({ wordList, activeUser, databaseIsLoading }) {
     <StyledSection>
       <NoStyleLink href="/study">
         <StyledReviewCounter
-          className={
-            studyDisplayData.reviewsDue === 0 ? "background-light-blue" : ""
-          }
+          $hasReviews={studyDisplayData.reviewsDue === 0 ? false : true}
         >
           <StyledCounterText>Reviews</StyledCounterText>
           <StyledCounter>{studyDisplayData.reviewsDue}</StyledCounter>
@@ -61,7 +62,9 @@ function StudyDisplay({ wordList, activeUser, databaseIsLoading }) {
         <StyledStudyCounter>
           <StyledCounterText>Streak</StyledCounterText>
           <StyledCounter>{studyDisplayData.streak}</StyledCounter>
-          <StyledCounterText>days</StyledCounterText>
+          <StyledCounterText>
+            {studyDisplayData.streak === 1 ? "day" : "days"}
+          </StyledCounterText>
         </StyledStudyCounter>
       </NoStyleLink>
       <NoStyleLink href="/words">
@@ -77,14 +80,12 @@ function StudyDisplay({ wordList, activeUser, databaseIsLoading }) {
   );
 }
 
-export const NoStyleLink = styled(Link)`
-  text-decoration: none;
-`;
+// Styles
 
 const StyledStudyCounter = styled.div`
   background-color: var(--dark-main);
   padding: 10px;
-  border-radius: 25px 0 25px 0;
+  border-radius: 10px;
   min-width: 85px;
   display: flex;
   flex-direction: column;
@@ -93,8 +94,8 @@ const StyledStudyCounter = styled.div`
 `;
 
 const StyledReviewCounter = styled(StyledStudyCounter)`
-  background-color: var(--highlight-red);
-  border-radius: 0 25px 0 25px;
+  background-color: ${(props) =>
+    props.$hasReviews ? "var(--highlight-red)" : "var(--highlight-blue)"};
 `;
 
 export const StyledCounterText = styled.p`
@@ -102,6 +103,7 @@ export const StyledCounterText = styled.p`
   font-size: 0.8rem;
   color: var(--dark-mode-text-color);
 `;
+
 const StyledCounter = styled.p`
   margin: 5px;
   font-size: 1.6rem;

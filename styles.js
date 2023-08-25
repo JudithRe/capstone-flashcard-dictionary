@@ -57,14 +57,9 @@ export default createGlobalStyle`
     
 
   }
-  
 
 .navTransition {
   transition: 400ms linear;
-}
-
-.background-light-blue {
-  background-color: var(--highlight-blue);
 }
 
 `;

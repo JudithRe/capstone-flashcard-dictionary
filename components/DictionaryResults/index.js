@@ -1,8 +1,11 @@
-import EntriesContainer from "../EntriesContainer";
+// Styles Imports
 import {
   StyledResultDisplay,
   StyledResultDisplayNoMargin,
 } from "../SearchResults";
+
+// Components Imports
+import EntriesContainer from "../EntriesContainer";
 
 function DictionaryResults({
   query,

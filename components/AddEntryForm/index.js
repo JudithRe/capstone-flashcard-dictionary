@@ -1,12 +1,15 @@
+// Styles Imports
 import styled from "styled-components";
 import { StyledCard } from "../StyledComponents/StyledCard";
 import { StyledSection } from "../StyledComponents/StyledSection";
-import { convertToKana } from "@/utils/helperFunctions.js";
 import { StyledCategorySelector } from "../CategorySelector";
-import { useState } from "react";
-import { getCategory } from "@/utils/getCategory";
 import { FixedCenteredPosition } from "../StyledComponents/Modal";
 import { StyledResultDisplay } from "../SearchResults";
+
+// Functions and Dependencies Imports
+import { getCategory } from "@/utils/getCategory";
+import { convertToKana } from "@/utils/helperFunctions.js";
+import { useState } from "react";
 
 function AddEntryForm({
   handleAddEntry,
@@ -45,6 +48,7 @@ function AddEntryForm({
         userId: activeUser._id,
         name: newEntry.newCategory,
       };
+
       await handleAddCategory(newCategoryObject);
       const newCategory = await getCategory(activeUser, newEntry.newCategory);
 
@@ -142,7 +146,7 @@ function AddEntryForm({
   return (
     <StyledSection>
       <StyledCard>
-        <h2 className="inherit-background-color">Create your Entry</h2>
+        <h2>Create your Entry</h2>
         <StyledForm
           onSubmit={handleFormSubmit}
           aria-labelledby="add-form-title"
@@ -201,6 +205,8 @@ function AddEntryForm({
                 type="text"
                 id="new-category"
                 name="newCategory"
+                maxLength={35}
+                placeholder="max. 35 characters"
               />
             </>
           )}
@@ -211,6 +217,7 @@ function AddEntryForm({
   );
 }
 
+// Styles
 export const StyledDropDown = styled(StyledCategorySelector)`
   color: var(--text-color);
   font-size: 1rem;

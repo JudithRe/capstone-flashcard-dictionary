@@ -1,8 +1,11 @@
+// Styles Imports
 import ProfileIcon from "@/assets/icons/ProfileIcon";
 import styled from "styled-components";
 import { StyledSection } from "../StyledComponents/StyledSection";
-import { signOut, useSession } from "next-auth/react";
 import { StyledGhostButton } from "../StyledComponents/StyledButtons";
+
+// Functions and Dependencies Imports
+import { signOut, useSession } from "next-auth/react";
 
 export default function UserData() {
   const { data: session } = useSession();
@@ -27,6 +30,8 @@ export default function UserData() {
     </StyledSection>
   );
 }
+
+// Styles
 
 const StyledProfilePicturePlaceholder = styled.div`
   display: flex;

@@ -1,5 +1,4 @@
 // Delete entry from database
-
 export async function deleteEntry(_id, databaseMutate) {
   const response = await fetch(`/api/word-list/item/${_id}`, {
     method: "DELETE",
@@ -13,7 +12,6 @@ export async function deleteEntry(_id, databaseMutate) {
 }
 
 // Delete category from database
-
 export async function deleteCategory(
   _id,
   categoryMutate,
@@ -43,6 +41,7 @@ export async function deleteCategory(
   }
 }
 
+// Update Category
 export async function updateCategoryInEntry(_id, updatedEntry, databaseMutate) {
   const response = await fetch(`/api/word-list/item/${_id}`, {
     method: "PUT",

@@ -1,7 +1,10 @@
+// Styles Imports
 import styled from "styled-components";
+import { StyledCenteredButton } from "../StyledComponents/StyledButtons";
+
+// Components Imports
 import EntriesContainer from "../EntriesContainer";
 import DictionaryResults from "../DictionaryResults";
-import { StyledCenteredButton } from "../StyledComponents/StyledButtons";
 
 function SearchResults({
   searchResults,
@@ -54,6 +57,8 @@ function SearchResults({
     </>
   );
 }
+
+// Styles
 
 export const StyledResultDisplay = styled.p`
   align-self: center;

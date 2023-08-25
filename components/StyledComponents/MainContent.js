@@ -1,4 +1,3 @@
-import { device } from "@/utils/globalValues";
 import styled from "styled-components";
 
 export const MainContent = styled.main`

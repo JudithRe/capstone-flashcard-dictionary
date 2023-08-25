@@ -1,19 +1,26 @@
+// Style Imports
+
 import WrongIcon from "@/assets/icons/WrongIcon";
-import FlashcardBack from "@/components/FlashcardBack";
-import FlashcardFront from "@/components/FlashcardFront";
-import Heading from "@/components/PageHeading";
-import { MainContent } from "@/components/StyledComponents/MainContent";
-import { FixedCenteredPosition } from "@/components/StyledComponents/Modal";
+import {
+  FixedCenteredPosition,
+  StudyModal,
+} from "@/components/StyledComponents/Modal";
 import {
   StyledEndSessionButton,
   StyledStartButton,
 } from "@/components/StyledComponents/StyledButtons";
-import { isDue } from "@/utils/studyFunctions";
-import { useEffect, useState } from "react";
-import { styled } from "styled-components";
-import { hasToken } from "@/utils/checkUser";
 import CorrectIcon from "@/assets/icons/CorrectIcon";
 import { StyledParagraphNoMargins } from "@/components/UserData";
+
+// Component Imports
+import FlashcardBack from "@/components/FlashcardBack";
+import FlashcardFront from "@/components/FlashcardFront";
+import Heading from "@/components/PageHeading";
+
+// Function and Dependency Imports
+import { isDue } from "@/utils/studyFunctions";
+import { useEffect, useState } from "react";
+import { hasToken } from "@/utils/checkUser";
 
 export async function getServerSideProps(context) {
   const token = await hasToken(context.req);
@@ -53,7 +60,7 @@ export default function StudyPage({ wordList, databaseMutate }) {
   return (
     <>
       {!isStudyMode && studyList.length > 0 && (
-        <MainContent>
+        <>
           <Heading>Study</Heading>
           <FixedCenteredPosition>
             <p style={{ textAlign: "center" }}>
@@ -65,10 +72,10 @@ export default function StudyPage({ wordList, databaseMutate }) {
               Start
             </StyledStartButton>
           </FixedCenteredPosition>
-        </MainContent>
+        </>
       )}
       {!isStudyMode && studyList.length === 0 && (
-        <MainContent>
+        <>
           <Heading>Study</Heading>
           <FixedCenteredPosition>
             <CorrectIcon color="var(--dark-main)" /> <br />
@@ -77,7 +84,7 @@ export default function StudyPage({ wordList, databaseMutate }) {
               Well done!
             </StyledParagraphNoMargins>
           </FixedCenteredPosition>
-        </MainContent>
+        </>
       )}
       {isStudyMode && (
         <StudyModal>
@@ -85,11 +92,7 @@ export default function StudyPage({ wordList, databaseMutate }) {
             type="button"
             onClick={() => setIsStudyMode(false)}
           >
-            <span
-              className="inherit-background-color"
-              role="img"
-              aria-label="exit"
-            >
+            <span role="img" aria-label="exit">
               <WrongIcon height="16px" width="16px" />
             </span>
             {`  End Session`}
@@ -120,15 +123,3 @@ export default function StudyPage({ wordList, databaseMutate }) {
     </>
   );
 }
-
-export const StudyModal = styled.section`
-  position: fixed;
-  left: 0;
-  top: 0;
-  background-image: url("/background-vector.png");
-  background-repeat: repeat;
-
-  width: 100vw;
-  height: 100vh;
-  z-index: 6;
-`;

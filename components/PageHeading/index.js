@@ -1,6 +1,8 @@
-import { permanent } from "@/fonts";
-import { device } from "@/utils/globalValues";
+// Styles Imports
 import styled from "styled-components";
+
+// Functions and Dependencies Imports
+import { device } from "@/utils/globalValues";
 
 function Heading({ children }) {
   return <StyledPageHeadingCenter>{children}</StyledPageHeadingCenter>;
@@ -15,7 +17,6 @@ const StyledPageHeadingCenter = styled.h1`
   background-color: transparent;
   color: var(--dark-mode-text-color);
   font-size: 1.4rem;
-
   padding: 0.3rem 1rem;
   text-align: center;
   z-index: 3;

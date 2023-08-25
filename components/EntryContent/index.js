@@ -23,6 +23,8 @@ function EntryContent({ entry }) {
   );
 }
 
+// Styles
+
 export const StyledJPDefinition = styled.h2`
   background-color: inherit;
   font-size: 1.5rem;
@@ -31,13 +33,10 @@ export const StyledJPDefinition = styled.h2`
 
 export const StyledDefinition = styled.li`
   display: inline-block;
-  background-color: inherit;
   list-style-type: none;
-
   font-size: 1rem;
   &:not(:last-child)::after {
     content: " ⦁ ";
-    background-color: inherit;
   }
   &:not(:first-child) {
     padding-left: 0.3rem;
@@ -45,7 +44,6 @@ export const StyledDefinition = styled.li`
 `;
 
 export const StyledUl = styled.ul`
-  background-color: inherit;
   padding: 0;
   text-align: center;
   margin: 0;

@@ -1,11 +1,15 @@
-import { useEffect, useState } from "react";
+// Style Import
 import GlobalStyle from "../styles";
+
+// Component Imports
 import Layout from "@/components/Layout";
+
+// Function and Dependency Imports
+import { useEffect, useState } from "react";
 import * as wanakana from "wanakana";
 import { convertToKana } from "@/utils/helperFunctions";
 import { handleDictionaryOutput } from "@/utils/refactorDictionaryOutput";
 import useSWR from "swr";
-
 import { SessionProvider } from "next-auth/react";
 import { SWRConfig } from "swr";
 
@@ -32,30 +36,27 @@ export default function App({
   const [searchResults, setSearchResults] = useState([]);
   const [dictionaryResults, setDictionaryResults] = useState([]);
   const [isDetailEditMode, setIsDetailEditMode] = useState(false);
+  const [hasEntries, setHasEntries] = useState(false);
+  const [newEntries, setNewEntries] = useState([]);
   const [activeUser, setActiveUser] = useState({
     _id: "default",
     streak: 0,
     lastStreakUpdate: 0,
   });
-  const [hasEntries, setHasEntries] = useState(false);
-  const [newEntries, setNewEntries] = useState([]);
 
+  // Global Setter Functions
   function handleSetDictionaryResults(dictionaryResults) {
     setDictionaryResults(dictionaryResults);
   }
-
   function handleSearchResults(searchResults) {
     setSearchResults(searchResults);
   }
-
   function handleSetDictionaryQuery(queryText) {
     setDictionaryQuery(queryText);
   }
-
   function handleHasEntries(boolean) {
     setHasEntries(boolean);
   }
-
   function handleSetQuery(queryText) {
     setQuery(queryText);
   }
@@ -66,10 +67,11 @@ export default function App({
       lastStreakUpdate: update,
     });
   }
-
   function handleDetailEditMode(boolean) {
     setIsDetailEditMode(boolean);
   }
+
+  // Global Fetching Functions
 
   // Fetching from Dictionary
   const DictionaryURL = `/api/dictionary-search/${dictionaryQuery}`;
