@@ -68,44 +68,36 @@ function Entry({
 
   if (!_id) {
     return (
-      <StyledCard>
-        <StyledSectionRightAlignAbsolute>
-          {showAddButton && (
-            <StyledAddButton
-              type="button"
-              onClick={(event) => {
-                event.target.disabled = true;
-                handleAddEntry(entry);
-              }}
-            >
-              <span role="img" aria-label="add to list">
-                <AddIcon height="16px" width="16px" />
-              </span>
-            </StyledAddButton>
-          )}
-          {!showAddButton && isDictionaryEntry && (
-            <StyledAddButton type="button" disabled={true}>
-              <span role="img" aria-label="in list already">
-                <CorrectIcon height="16px" width="16px" />
-              </span>
-            </StyledAddButton>
-          )}
-          {isEditMode && (
-            <StyledSecondaryButtonRight
-              type="button"
-              onClick={() => deleteEntry(_id, databaseMutate)}
-            >
-              <span role="img" aria-label="delete">
-                <DeleteIcon width="16px" height="16px" />
-              </span>
-            </StyledSecondaryButtonRight>
-          )}
-        </StyledSectionRightAlignAbsolute>
-        <Spacer />
-        <Spacer />
-        <Spacer />
-        <EntryContent entry={entry} />
-      </StyledCard>
+      <PositionRelativeDiv>
+        <StyledCard>
+          <StyledSectionRightAlignAbsolute>
+            {showAddButton && (
+              <StyledAddButton
+                type="button"
+                onClick={(event) => {
+                  event.target.disabled = true;
+                  handleAddEntry(entry);
+                }}
+              >
+                <span role="img" aria-label="add to list">
+                  <AddIcon height="16px" width="16px" />
+                </span>
+              </StyledAddButton>
+            )}
+            {!showAddButton && isDictionaryEntry && (
+              <StyledAddButton type="button" disabled={true}>
+                <span role="img" aria-label="in list already">
+                  <CorrectIcon height="16px" width="16px" />
+                </span>
+              </StyledAddButton>
+            )}
+          </StyledSectionRightAlignAbsolute>
+          <Spacer />
+          <Spacer />
+          <Spacer />
+          <EntryContent entry={entry} />
+        </StyledCard>
+      </PositionRelativeDiv>
     );
   }
 }

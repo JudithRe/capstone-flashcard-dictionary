@@ -10,7 +10,7 @@ function CategorySelector({ categoryData, wordList, handleFilterWordList }) {
 
   useEffect(() => {
     handleFilterWordList(wordList);
-  }, [wordList, handleFilterWordList]);
+  }, [wordList]);
 
   if (!wordList) {
     return;

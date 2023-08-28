@@ -116,6 +116,7 @@ function AuthForm() {
             <StyledFormInput
               type="password"
               id="password"
+              minLength={8}
               required
               ref={passwordInputRef}
             />

@@ -18,7 +18,7 @@ import FlashcardFront from "@/components/FlashcardFront";
 import Heading from "@/components/PageHeading";
 
 // Function and Dependency Imports
-import { generateStudyMode } from "@/utils/studyFunctions";
+import { generateStudyMode, isDue } from "@/utils/studyFunctions";
 import { useEffect, useState } from "react";
 import { hasToken } from "@/utils/checkUser";
 

@@ -30,12 +30,21 @@ function streakHasBeenSet(userData) {
 export async function handleStreakUpdate({ userData, wordList, userMutate }) {
   if (wordList && userData) {
     const hasRecentStreakUpdate = streakHasBeenSet(userData);
+    const recentStudy = hasStudiedRecently(wordList);
+
+    if (hasRecentStreakUpdate && recentStudy && userData.streak === 0) {
+      const updatedData = {
+        newStreak: 1,
+        lastStreakUpdate: currentDate,
+      };
+      updateUser(userData, updatedData);
+      userMutate;
+      return;
+    }
 
     if (hasRecentStreakUpdate) {
       return;
     }
-
-    const recentStudy = hasStudiedRecently(wordList);
 
     if (!recentStudy && userData.streak === 0) {
       return;

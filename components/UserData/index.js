@@ -18,7 +18,7 @@ export default function UserData() {
 
       <StyledUserInfo>
         <StyledParagraphNoMargins>
-          <smallerInlineFont>You&apos;re signed in as</smallerInlineFont>
+          <SmallerInlineFont>You&apos;re signed in as</SmallerInlineFont>
         </StyledParagraphNoMargins>
         <StyledParagraphNoMargins $needsMarginBottom={true}>
           {session?.user?.username}
@@ -33,7 +33,7 @@ export default function UserData() {
 
 // Styles
 
-const smallerInlineFont = styled.span`
+const SmallerInlineFont = styled.span`
   font-size: 1rem;
 `;
 
