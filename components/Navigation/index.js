@@ -132,7 +132,7 @@ const StyledNavContainer = styled.nav`
 
   @media ${device.tablet} {
     width: auto;
-    top: 0;
+    top: 2rem;
     left: 0;
   }
 `;
