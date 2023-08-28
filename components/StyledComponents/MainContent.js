@@ -11,6 +11,10 @@ export const MainContent = styled.main`
   margin: 1rem 0 var(--footer-height) 0;
   z-index: 2;
   width: 100vw;
+
+  @media ${device.tablet} {
+    padding: 0 90px;
+  }
 `;
 
 export const Spacer = styled.div`

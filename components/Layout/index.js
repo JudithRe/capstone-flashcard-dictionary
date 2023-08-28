@@ -24,9 +24,9 @@ export default function Layout({ handleActiveUser, children }) {
   return (
     <>
       <Header />
+      <Navigation />
       <Logo width="115px" />
       <MainContent>{children}</MainContent>
-      <Navigation />
     </>
   );
 }

@@ -22,7 +22,7 @@ export default function Navigation() {
     return;
   }
   return (
-    <nav>
+    <StyledNavContainer>
       <StyledNavList>
         <StyledNavigationItem $isActive={activePath === "/" ? true : false}>
           <StyledNavigationLink href="/">
@@ -90,7 +90,7 @@ export default function Navigation() {
           </StyledNavigationLink>
         </StyledNavigationItem>
       </StyledNavList>
-    </nav>
+    </StyledNavContainer>
   );
 }
 
@@ -107,11 +107,6 @@ const StyledNavList = styled.ul`
   justify-content: space-between;
   align-items: flex-end;
 
-  position: fixed;
-  bottom: 0;
-  margin-bottom: -2rem;
-  height: 7rem;
-
   list-style-type: none;
   z-index: 5;
 
@@ -123,8 +118,21 @@ const StyledNavList = styled.ul`
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
+  }
+`;
 
-    top: 8rem;
+const StyledNavContainer = styled.nav`
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  height: auto;
+  margin-bottom: -3rem;
+  overflow-x: auto;
+  z-index: 5;
+
+  @media ${device.tablet} {
+    width: auto;
+    top: 0;
     left: 0;
   }
 `;
