@@ -1,6 +1,7 @@
 // Style Imports
 import { StyledCardLarge } from "@/components/StyledComponents/StyledCard";
-import { StyledWarningText } from "@/components/EditingForm";
+import { StyledWarningText } from "@/components/EditingForm/styled.EditingForm";
+
 import {
   StyledHeading2,
   StyledHeading3,

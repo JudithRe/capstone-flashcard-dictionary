@@ -4,7 +4,7 @@ import {
   StyledSearchBar,
   StyledSearchBarButton,
   StyledSearchBarForm,
-} from "../SearchComponent";
+} from "../SearchComponent/styled.SearchComponent";
 
 // Functions and Dependencies Imports
 import { useRouter } from "next/router";

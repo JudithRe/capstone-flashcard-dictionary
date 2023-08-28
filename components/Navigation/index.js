@@ -1,11 +1,11 @@
-// Styles Imports
+// Style Imports
 import styled from "styled-components";
 import HomeIcon from "@/assets/icons/HomeIcon";
 import ListIcon from "@/assets/icons/ListIcon";
 import AddIcon from "@/assets/icons/AddIcon";
 import StudyIcon from "@/assets/icons/StudyIcon";
 import ProfileIcon from "@/assets/icons/ProfileIcon";
-import { StyledCounterText } from "../StudyDisplay";
+import { StyledCounterText } from "../StudyDisplay/styled.StudyDisplay";
 
 // Components Imports
 import Link from "next/link";

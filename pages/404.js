@@ -2,7 +2,7 @@
 import { FixedCenteredPosition } from "@/components/StyledComponents/Modal";
 import { StyledBackButton } from "@/components/StyledComponents/StyledButtons";
 import WorriedIcon from "@/assets/icons/WorriedIcon";
-import { StyledParagraphNoMargins } from "@/components/UserData";
+import { StyledParagraphNoMargins } from "@/components/UserData/styled.UserData";
 import { Spacer } from "@/components/StyledComponents/MainContent";
 
 // Component Imports

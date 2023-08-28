@@ -1,7 +1,6 @@
 // Style Imports
 import styled from "styled-components";
 import EditIcon from "@/assets/icons/EditIcon";
-import { StyledResultDisplay } from "@/components/SearchResults";
 import { FixedCenteredPosition } from "@/components/StyledComponents/Modal";
 import {
   StyledBackButton,
@@ -18,6 +17,8 @@ import {
   StyledHeading2,
   StyledHeading3,
 } from "@/components/StyledComponents/ParagraphsAndHeadings";
+import { StyledResultDisplay } from "@/components/SearchResults/styled.SearchResults";
+import { StyledTag } from "@/components/EntryContent/styled.EntryContent";
 
 // Component Imports
 import EditingForm from "@/components/EditingForm";
@@ -29,7 +30,6 @@ import { getVisualDate } from "@/utils/helperFunctions";
 import { useRouter } from "next/router";
 import { hasToken } from "@/utils/checkUser";
 import { device } from "@/utils/globalValues";
-import { StyledTag } from "@/components/EntryContent";
 
 export async function getServerSideProps(context) {
   const token = await hasToken(context.req);

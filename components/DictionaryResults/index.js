@@ -1,8 +1,8 @@
-// Styles Imports
+// Style Imports
 import {
   StyledResultDisplay,
   StyledResultDisplayNoMargin,
-} from "../SearchResults";
+} from "../SearchResults/styled.SearchResults";
 
 // Components Imports
 import EntriesContainer from "../EntriesContainer";

@@ -1,5 +1,5 @@
 // Styles Imports
-import { StyledResultDisplay } from "../SearchResults";
+import { StyledResultDisplay } from "../SearchResults/styled.SearchResults";
 import { FixedCenteredPosition } from "../StyledComponents/Modal";
 import { StyledSection } from "../StyledComponents/StyledSection";
 

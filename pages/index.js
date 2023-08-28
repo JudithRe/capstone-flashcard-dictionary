@@ -1,6 +1,5 @@
 // Style Imports
 import { StyledCenterAlign } from "@/components/StyledComponents/StyledSection";
-import { Spacer } from "@/components/StyledComponents/MainContent";
 
 // Component Imports
 import SearchBar from "@/components/OnPageSearchBar";

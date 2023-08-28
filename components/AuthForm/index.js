@@ -1,10 +1,17 @@
 // Styles Imports
 import { StyledCard } from "../StyledComponents/StyledCard";
-import { StyledForm, StyledFormInput, StyledFormLabel } from "../AddEntryForm";
+import {
+  StyledForm,
+  StyledFormInput,
+  StyledFormLabel,
+} from "../AddEntryForm/styled.AddEntryForm";
+import {
+  StyledSubmitButtonRight,
+  StyledWarningText,
+} from "../EditingForm/styled.EditingForm";
 import { StyledSettingsButton } from "../StyledComponents/StyledButtons";
 import styled from "styled-components";
 import ErrorIcon from "@/assets/icons/ErrorIcon";
-import { StyledSubmitButtonRight, StyledWarningText } from "../EditingForm";
 
 // Functions and Dependencies Imports
 import { useState, useRef } from "react";

@@ -1,5 +1,5 @@
 // Styles Imports
-import { styled } from "styled-components";
+import styled from "styled-components";
 
 // Functions and Dependencies Imports
 import { device } from "@/utils/globalValues";

@@ -1,6 +1,6 @@
 // Style Imports
 import { FixedCenteredPosition } from "@/components/StyledComponents/Modal";
-import { StyledResultDisplay } from "@/components/SearchResults";
+import { StyledResultDisplay } from "@/components/SearchResults/styled.SearchResults";
 
 // Component Imports
 import AuthForm from "@/components/AuthForm";

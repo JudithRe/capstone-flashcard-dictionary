@@ -1,6 +1,9 @@
 // Styles Imports
 import DeleteIcon from "@/assets/icons/DeleteIcon";
-import { PositionRelativeDiv, StyledEditComponent } from "../Entry";
+import {
+  PositionRelativeDiv,
+  StyledEditComponent,
+} from "../Entry/styled.Entry";
 import { StyledEditButtonDark } from "../StyledComponents/StyledButtons";
 import { StyledCard } from "../StyledComponents/StyledCard";
 

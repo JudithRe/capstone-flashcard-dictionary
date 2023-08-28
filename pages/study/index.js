@@ -9,7 +9,7 @@ import {
   StyledStartButton,
 } from "@/components/StyledComponents/StyledButtons";
 import CorrectIcon from "@/assets/icons/CorrectIcon";
-import { StyledParagraphNoMargins } from "@/components/UserData";
+import { StyledParagraphNoMargins } from "@/components/UserData/styled.UserData";
 import { CenteredParagraph } from "@/components/StyledComponents/ParagraphsAndHeadings";
 
 // Component Imports
@@ -18,7 +18,7 @@ import FlashcardFront from "@/components/FlashcardFront";
 import Heading from "@/components/PageHeading";
 
 // Function and Dependency Imports
-import { generateStudyMode, isDue } from "@/utils/studyFunctions";
+import { generateStudyMode } from "@/utils/studyFunctions";
 import { useEffect, useState } from "react";
 import { hasToken } from "@/utils/checkUser";
 

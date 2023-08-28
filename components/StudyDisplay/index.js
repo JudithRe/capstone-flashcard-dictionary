@@ -1,14 +1,19 @@
-// Styles Imports
-import styled from "styled-components";
+// Style Imports
 import { StyledSection } from "../StyledComponents/StyledSection";
-import { StyledResultDisplay } from "../SearchResults";
+import { NoStyleLink } from "../StyledComponents/Links";
+import {
+  StyledCounter,
+  StyledCounterText,
+  StyledReviewCounter,
+  StyledStudyCounter,
+} from "./styled.StudyDisplay";
+import { StyledResultDisplay } from "../SearchResults/styled.SearchResults";
 
 // Functions and Dependencies Imports
 import { isDue } from "@/utils/studyFunctions";
 import { useEffect, useState } from "react";
 import { handleStreakUpdate } from "@/utils/userFunction";
 import useSWR from "swr";
-import { NoStyleLink } from "../StyledComponents/Links";
 
 function StudyDisplay({ wordList, activeUser, databaseIsLoading }) {
   const [studyDisplayData, setStudyDisplayData] = useState({
@@ -79,36 +84,5 @@ function StudyDisplay({ wordList, activeUser, databaseIsLoading }) {
     </StyledSection>
   );
 }
-
-// Styles
-
-const StyledStudyCounter = styled.div`
-  background-color: var(--dark-main);
-  padding: 10px;
-  border-radius: 10px;
-  min-width: 85px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-shadow: var(--default-box-shadow);
-`;
-
-const StyledReviewCounter = styled(StyledStudyCounter)`
-  background-color: ${(props) =>
-    props.$hasReviews ? "var(--highlight-red)" : "var(--highlight-blue)"};
-`;
-
-export const StyledCounterText = styled.p`
-  margin: 0;
-  font-size: 0.8rem;
-  color: var(--dark-mode-text-color);
-`;
-
-const StyledCounter = styled.p`
-  margin: 5px;
-  font-size: 1.6rem;
-  background-color: transparent;
-  color: var(--dark-mode-text-color);
-`;
 
 export default StudyDisplay;
