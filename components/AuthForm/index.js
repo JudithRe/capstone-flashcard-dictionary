@@ -86,6 +86,8 @@ function AuthForm() {
           hasError: true,
           errorMessage: "Still loading. Please wait a minute and try again.",
         });
+        console.log("error", errorMessage);
+        return;
       }
     } else {
       try {
