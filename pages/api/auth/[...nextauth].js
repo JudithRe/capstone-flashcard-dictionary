@@ -3,7 +3,7 @@ import User from "@/db/models/User";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-export default NextAuth({
+export const authOptions = {
   session: {
     jwt: true,
   },
@@ -64,4 +64,5 @@ export default NextAuth({
     signIn: "/login",
     error: "/login",
   },
-});
+};
+export default NextAuth(authOptions);

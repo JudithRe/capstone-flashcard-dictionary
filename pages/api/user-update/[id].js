@@ -1,7 +1,10 @@
 import dbConnect from "@/db/connect";
 import User from "@/db/models/User";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "../auth/[...nextauth]";
 
 export default async function handler(request, response) {
+  const session = await getServerSession(request, response, authOptions);
   await dbConnect();
 
   const { id } = request.query;
