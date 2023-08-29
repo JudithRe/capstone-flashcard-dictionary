@@ -2,7 +2,7 @@
 import { StyledCard } from "../StyledComponents/StyledCard";
 import { StyledSection } from "../StyledComponents/StyledSection";
 import { FixedCenteredPosition } from "../StyledComponents/Modal";
-import { StyledResultDisplay } from "../SearchResults";
+
 import {
   StyledDropDown,
   StyledForm,
@@ -10,6 +10,7 @@ import {
   StyledFormLabel,
   StyledFormSubmitButton,
 } from "./styled.AddEntryForm";
+import { StyledResultDisplay } from "../SearchResults/styled.SearchResults";
 
 // Functions and Dependencies Imports
 import { getCategory } from "@/utils/getCategory";
