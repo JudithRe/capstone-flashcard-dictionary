@@ -1,11 +1,11 @@
-import { StyledCard } from "../StyledComponents/StyledCard";
-import { StyledSection } from "../StyledComponents/StyledSection";
 import {
   StyledForm,
   StyledFormInput,
   StyledFormLabel,
   StyledFormSubmitButton,
-} from "../AddEntryForm";
+} from "../AddEntryForm/styled.AddEntryForm";
+import { StyledCard } from "../StyledComponents/StyledCard";
+import { StyledSection } from "../StyledComponents/StyledSection";
 
 function AddCategoryForm({ handleAddCategory, activeUser }) {
   function handleFormSubmit(event) {

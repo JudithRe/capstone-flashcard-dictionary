@@ -19,32 +19,34 @@ function Category({
 }) {
   const { name, _id } = category;
 
-  const categoryWordList = wordList.filter((entry) => entry.category === _id);
-  return (
-    <PositionRelativeDiv>
-      <StyledCard>
-        <h2>{name}</h2>
-        <p>
-          {categoryWordList.length}{" "}
-          {categoryWordList.length === 1 ? "entry" : "entries"}
-        </p>
-      </StyledCard>
-      {isEditMode && (
-        <StyledEditComponent>
-          <StyledEditButtonDark
-            type="button"
-            onClick={() =>
-              deleteCategory(_id, categoryMutate, wordList, databaseMutate)
-            }
-          >
-            <span role="img" aria-label="delete">
-              <DeleteIcon width="16px" height="16px" />
-            </span>
-          </StyledEditButtonDark>
-        </StyledEditComponent>
-      )}
-    </PositionRelativeDiv>
-  );
+  if (wordList) {
+    const categoryWordList = wordList.filter((entry) => entry.category === _id);
+    return (
+      <PositionRelativeDiv>
+        <StyledCard>
+          <h2>{name}</h2>
+          <p>
+            {categoryWordList.length}{" "}
+            {categoryWordList.length === 1 ? "entry" : "entries"}
+          </p>
+        </StyledCard>
+        {isEditMode && (
+          <StyledEditComponent>
+            <StyledEditButtonDark
+              type="button"
+              onClick={() =>
+                deleteCategory(_id, categoryMutate, wordList, databaseMutate)
+              }
+            >
+              <span role="img" aria-label="delete">
+                <DeleteIcon width="16px" height="16px" />
+              </span>
+            </StyledEditButtonDark>
+          </StyledEditComponent>
+        )}
+      </PositionRelativeDiv>
+    );
+  }
 }
 
 export default Category;
