@@ -18,6 +18,7 @@ Jisho Genius is a study buddy for retaining all the new words you learn - even w
 
 
 ## Tech Stack: 
+- React
 - Next.js
 - Styled Components
 - MongoDB
