@@ -98,7 +98,7 @@ export default function Navigation() {
 
 const StyledNavList = styled.ul`
   width: 100%;
-  padding: 2rem 0;
+  padding: 0 0 2rem 0;
   backdrop-filter: blur(25px);
   border-radius: 20%;
   box-shadow: var(--default-box-shadow-top);
