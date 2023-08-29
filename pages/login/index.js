@@ -1,9 +1,14 @@
+// Style Imports
+import { FixedCenteredPosition } from "@/components/StyledComponents/Modal";
+import { StyledResultDisplay } from "@/components/SearchResults/styled.SearchResults";
+
+// Component Imports
+import AuthForm from "@/components/AuthForm";
+
+// Function and Dependency Imports
 import { useRouter } from "next/router";
 import { getSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import AuthForm from "@/components/AuthForm";
-import { FixedCenteredPosition } from "@/components/StyledComponents/Modal";
-import { StyledResultDisplay } from "@/components/SearchResults";
 
 function AuthPage() {
   const [isLoading, setIsLoading] = useState(true);

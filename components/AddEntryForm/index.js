@@ -1,12 +1,20 @@
-import styled from "styled-components";
+// Styles Imports
 import { StyledCard } from "../StyledComponents/StyledCard";
 import { StyledSection } from "../StyledComponents/StyledSection";
-import { convertToKana } from "@/utils/helperFunctions.js";
-import { StyledCategorySelector } from "../CategorySelector";
-import { useState } from "react";
-import { getCategory } from "@/utils/getCategory";
 import { FixedCenteredPosition } from "../StyledComponents/Modal";
 import { StyledResultDisplay } from "../SearchResults";
+import {
+  StyledDropDown,
+  StyledForm,
+  StyledFormInput,
+  StyledFormLabel,
+  StyledFormSubmitButton,
+} from "./styled.AddEntryForm";
+
+// Functions and Dependencies Imports
+import { getCategory } from "@/utils/getCategory";
+import { convertToKana } from "@/utils/helperFunctions.js";
+import { useState } from "react";
 
 function AddEntryForm({
   handleAddEntry,
@@ -45,6 +53,7 @@ function AddEntryForm({
         userId: activeUser._id,
         name: newEntry.newCategory,
       };
+
       await handleAddCategory(newCategoryObject);
       const newCategory = await getCategory(activeUser, newEntry.newCategory);
 
@@ -142,7 +151,7 @@ function AddEntryForm({
   return (
     <StyledSection>
       <StyledCard>
-        <h2 className="inherit-background-color">Create your Entry</h2>
+        <h2>Create your Entry</h2>
         <StyledForm
           onSubmit={handleFormSubmit}
           aria-labelledby="add-form-title"
@@ -201,6 +210,8 @@ function AddEntryForm({
                 type="text"
                 id="new-category"
                 name="newCategory"
+                maxLength={35}
+                placeholder="max. 35 characters"
               />
             </>
           )}
@@ -210,45 +221,5 @@ function AddEntryForm({
     </StyledSection>
   );
 }
-
-export const StyledDropDown = styled(StyledCategorySelector)`
-  color: var(--text-color);
-  font-size: 1rem;
-`;
-
-export const StyledForm = styled.form`
-  background: transparent;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
-`;
-
-export const StyledFormLabel = styled.label`
-  background-color: inherit;
-  margin-bottom: -5px;
-  font-weight: 500;
-  margin-left: 10px;
-`;
-
-export const StyledFormInput = styled.input`
-  background-color: var(--dark-mode-text-color);
-  padding: 10px;
-  border: 1px solid var(--dark-main);
-  border-radius: 15px;
-`;
-
-export const StyledFormSubmitButton = styled.button`
-  align-self: flex-end;
-  font-size: 1.2rem;
-  background-color: var(--highlight-red);
-  color: var(--dark-mode-text-color);
-  padding: 10px 15px;
-  margin-right: -1rem;
-  border: none;
-  border-radius: 25px 0 0 25px;
-  box-shadow: var(--default-box-shadow);
-  font-weight: 500;
-`;
 
 export default AddEntryForm;

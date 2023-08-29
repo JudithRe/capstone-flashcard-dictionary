@@ -1,4 +1,5 @@
-import { styled } from "styled-components";
+// Styles Imports
+import styled from "styled-components";
 
 export default function BarDiagram({ inputArray }) {
   if (inputArray) {
@@ -22,6 +23,8 @@ export default function BarDiagram({ inputArray }) {
     );
   }
 }
+
+// Styles
 
 const DiagramLabel = styled.span`
   width: 2.5rem;

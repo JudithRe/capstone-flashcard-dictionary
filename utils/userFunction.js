@@ -1,10 +1,6 @@
 const currentDate = new Date();
 
 export function hasStudiedRecently(wordList) {
-  if (!wordList) {
-    return;
-  }
-
   if (wordList) {
     const hasRecentReview = wordList.some((entry) => {
       const reviewDate = new Date(entry.study.lastReview);
@@ -12,72 +8,80 @@ export function hasStudiedRecently(wordList) {
         reviewDate.setDate(reviewDate.getDate() + 1)
       );
 
-      return comparisonDate <= currentDate;
+      return comparisonDate >= currentDate;
     });
 
     return hasRecentReview;
   }
 }
 
-function streakHasBeenSet(activeUser) {
-  const lastStreakUpdate = new Date(activeUser.lastStreakUpdate);
-  const updateDate = new Date(
-    lastStreakUpdate.setDate(lastStreakUpdate.getDate() + 1)
-  );
+function streakHasBeenSet(userData) {
+  if (userData) {
+    const lastStreakUpdate = new Date(userData.lastStreakUpdate);
 
-  return updateDate >= currentDate;
+    const updateDate = new Date(
+      lastStreakUpdate.setDate(lastStreakUpdate.getDate() + 1)
+    );
+
+    return updateDate >= currentDate;
+  }
 }
 
-export async function handleStreakUpdate({ activeUser, wordList }) {
-  if (streakHasBeenSet(activeUser)) {
-    return;
-  }
-  const recentStudy = hasStudiedRecently(wordList);
+export async function handleStreakUpdate({ userData, wordList, userMutate }) {
+  if (wordList && userData) {
+    const hasRecentStreakUpdate = streakHasBeenSet(userData);
+    const recentStudy = hasStudiedRecently(wordList);
 
-  if (recentStudy === undefined) {
-    return;
-  }
-  if (!recentStudy) {
-    if (activeUser.streak === 0) {
+    if (hasRecentStreakUpdate && recentStudy && userData.streak === 0) {
+      const updatedData = {
+        newStreak: 1,
+        lastStreakUpdate: currentDate,
+      };
+      updateUser(userData, updatedData);
+      userMutate;
       return;
     }
 
-    const userData = await getUser(activeUser);
+    if (hasRecentStreakUpdate) {
+      return;
+    }
 
-    if (userData) {
+    if (!recentStudy && userData.streak === 0) {
+      return;
+    }
+
+    if (!recentStudy && userData.streak !== 0) {
       const updatedData = {
         newStreak: 0,
         lastStreakUpdate: currentDate,
       };
       updateUser(userData, updatedData);
+      userMutate;
       return;
     }
-  }
 
-  const userData = await getUser(activeUser);
-
-  if (!userData) {
-    return;
-  }
-  if (userData) {
     const updatedData = {
-      newStreak: activeUser.streak + 1,
+      newStreak: userData.streak + 1,
       lastStreakUpdate: currentDate,
     };
     updateUser(userData, updatedData);
+    userMutate();
     return;
   }
 }
 
-async function getUser(activeUser) {
+export async function getUser(activeUser) {
   const id = activeUser._id;
-  const response = await fetch(`/api/user-update/${id}`, {
-    method: "GET",
-  });
 
-  if (response.ok) {
-    const user = await response.json();
-    return user;
+  if (id !== "default") {
+    const response = await fetch(`/api/user-update/${id}`, {
+      method: "GET",
+    });
+
+    if (response.ok) {
+      const user = await response.json();
+      return user;
+    }
   }
 }
 
@@ -92,13 +96,14 @@ async function updateUser(userData, updatedData) {
     lastStreakUpdate: lastStreakUpdate,
     streak: newStreak,
   };
-
-  const response = await fetch(`/api/user-update/${id}`, {
-    method: "PUT",
-    body: JSON.stringify(updatedUser),
-    headers: { "Content-Type": "application/json" },
-  });
-  if (response.ok) {
-    console.log("user updated");
+  if (id !== "default") {
+    const response = await fetch(`/api/user-update/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(updatedUser),
+      headers: { "Content-Type": "application/json" },
+    });
+    if (!response.ok) {
+      console.log("There was an error updating userData");
+    }
   }
 }

@@ -1,8 +1,16 @@
+// Styles Imports
 import ProfileIcon from "@/assets/icons/ProfileIcon";
-import styled from "styled-components";
 import { StyledSection } from "../StyledComponents/StyledSection";
-import { signOut, useSession } from "next-auth/react";
 import { StyledGhostButton } from "../StyledComponents/StyledButtons";
+import {
+  SmallerInlineFont,
+  StyledParagraphNoMargins,
+  StyledProfilePicturePlaceholder,
+  StyledUserInfo,
+} from "./styled.UserData";
+
+// Functions and Dependencies Imports
+import { signOut, useSession } from "next-auth/react";
 
 export default function UserData() {
   const { data: session } = useSession();
@@ -15,9 +23,9 @@ export default function UserData() {
 
       <StyledUserInfo>
         <StyledParagraphNoMargins>
-          <span style={{ fontSize: 1 + "rem" }}>You&apos;re signed in as</span>
+          <SmallerInlineFont>You&apos;re signed in as</SmallerInlineFont>
         </StyledParagraphNoMargins>
-        <StyledParagraphNoMargins style={{ marginBottom: 0.5 + "rem" }}>
+        <StyledParagraphNoMargins $needsMarginBottom={true}>
           {session?.user?.username}
         </StyledParagraphNoMargins>
         <StyledGhostButton onClick={() => signOut()}>
@@ -27,26 +35,3 @@ export default function UserData() {
     </StyledSection>
   );
 }
-
-const StyledProfilePicturePlaceholder = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  width: 130px;
-  height: 130px;
-  border: 4px solid var(--dark-main);
-`;
-
-const StyledUserInfo = styled.div`
-  font-size: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-`;
-
-const StyledParagraphNoMargins = styled.p`
-  margin: 0;
-`;

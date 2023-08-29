@@ -1,11 +1,17 @@
-import { useEffect, useState } from "react";
+// Style Import
 import GlobalStyle from "../styles";
+
+// Component Imports
 import Layout from "@/components/Layout";
+
+// Function and Dependency Imports
+import { useEffect, useState } from "react";
 import * as wanakana from "wanakana";
 import { convertToKana } from "@/utils/helperFunctions";
 import { handleDictionaryOutput } from "@/utils/refactorDictionaryOutput";
 import useSWR from "swr";
 import { SessionProvider } from "next-auth/react";
+import { SWRConfig } from "swr";
 
 const fetcher = async (url) => {
   const response = await fetch(url);
@@ -30,30 +36,27 @@ export default function App({
   const [searchResults, setSearchResults] = useState([]);
   const [dictionaryResults, setDictionaryResults] = useState([]);
   const [isDetailEditMode, setIsDetailEditMode] = useState(false);
+  const [hasEntries, setHasEntries] = useState(false);
+  const [newEntries, setNewEntries] = useState([]);
   const [activeUser, setActiveUser] = useState({
     _id: "default",
     streak: 0,
     lastStreakUpdate: 0,
   });
-  const [hasEntries, setHasEntries] = useState(false);
-  const [newEntries, setNewEntries] = useState([]);
 
+  // Global Setter Functions
   function handleSetDictionaryResults(dictionaryResults) {
     setDictionaryResults(dictionaryResults);
   }
-
   function handleSearchResults(searchResults) {
     setSearchResults(searchResults);
   }
-
   function handleSetDictionaryQuery(queryText) {
     setDictionaryQuery(queryText);
   }
-
   function handleHasEntries(boolean) {
     setHasEntries(boolean);
   }
-
   function handleSetQuery(queryText) {
     setQuery(queryText);
   }
@@ -64,10 +67,11 @@ export default function App({
       lastStreakUpdate: update,
     });
   }
-
   function handleDetailEditMode(boolean) {
     setIsDetailEditMode(boolean);
   }
+
+  // Global Fetching Functions
 
   // Fetching from Dictionary
   const DictionaryURL = `/api/dictionary-search/${dictionaryQuery}`;
@@ -184,34 +188,36 @@ export default function App({
     <>
       <SessionProvider session={session}>
         <GlobalStyle />
-        <Layout handleActiveUser={handleActiveUser}>
-          <Component
-            wordList={databaseData}
-            databaseIsLoading={databaseIsLoading}
-            databaseMutate={databaseMutate}
-            handleAddEntry={handleAddEntry}
-            query={query}
-            handleSetQuery={handleSetQuery}
-            dictionaryQuery={dictionaryQuery}
-            handleSetDictionaryQuery={handleSetDictionaryQuery}
-            handleSearchInput={handleSearchInput}
-            searchResults={searchResults}
-            handleSearchResults={handleSearchResults}
-            dictionaryResults={dictionaryResults}
-            handleSetDictionaryResults={handleSetDictionaryResults}
-            dictionaryIsLoading={dictionaryIsLoading}
-            handleDetailEditMode={handleDetailEditMode}
-            isDetailEditMode={isDetailEditMode}
-            activeUser={activeUser}
-            hasEntries={hasEntries}
-            handleHasEntries={handleHasEntries}
-            handleAddCategory={handleAddCategory}
-            categoryData={categoryData}
-            categoryMutate={categoryMutate}
-            newEntries={newEntries}
-            {...pageProps}
-          />
-        </Layout>
+        <SWRConfig value={{ fetcher }}>
+          <Layout handleActiveUser={handleActiveUser}>
+            <Component
+              wordList={databaseData}
+              databaseIsLoading={databaseIsLoading}
+              databaseMutate={databaseMutate}
+              handleAddEntry={handleAddEntry}
+              query={query}
+              handleSetQuery={handleSetQuery}
+              dictionaryQuery={dictionaryQuery}
+              handleSetDictionaryQuery={handleSetDictionaryQuery}
+              handleSearchInput={handleSearchInput}
+              searchResults={searchResults}
+              handleSearchResults={handleSearchResults}
+              dictionaryResults={dictionaryResults}
+              handleSetDictionaryResults={handleSetDictionaryResults}
+              dictionaryIsLoading={dictionaryIsLoading}
+              handleDetailEditMode={handleDetailEditMode}
+              isDetailEditMode={isDetailEditMode}
+              activeUser={activeUser}
+              hasEntries={hasEntries}
+              handleHasEntries={handleHasEntries}
+              handleAddCategory={handleAddCategory}
+              categoryData={categoryData}
+              categoryMutate={categoryMutate}
+              newEntries={newEntries}
+              {...pageProps}
+            />
+          </Layout>
+        </SWRConfig>
       </SessionProvider>
     </>
   );

@@ -1,6 +1,12 @@
+// Style Imports
+import {
+  StyledCategoryForm,
+  StyledCategorySelector,
+} from "./styled.CategorySelector";
+
+// Functions and Dependencies Imports
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import styled from "styled-components";
 
 function CategorySelector({ categoryData, wordList, handleFilterWordList }) {
   const router = useRouter();
@@ -15,7 +21,7 @@ function CategorySelector({ categoryData, wordList, handleFilterWordList }) {
 
   function handleDropdownChange(event) {
     if (event.target.value === "create") {
-      router.push("/categories");
+      router.push("/words/categories");
       return;
     }
 
@@ -52,18 +58,5 @@ function CategorySelector({ categoryData, wordList, handleFilterWordList }) {
     </StyledCategoryForm>
   );
 }
-const StyledCategoryForm = styled.form`
-  background-color: var(--dark-main);
-  padding: 0 25px;
-  border-radius: var(--border-radius);
-`;
-export const StyledCategorySelector = styled.select`
-  background-color: inherit;
-  color: var(--dark-mode-text-color);
-  padding: 10px;
-  border: none;
-
-  font-size: 1.2rem;
-`;
 
 export default CategorySelector;

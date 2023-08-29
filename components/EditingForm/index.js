@@ -1,18 +1,24 @@
-import styled from "styled-components";
-import { StyledCard } from "../StyledComponents/StyledCard";
-import { convertToKana } from "@/utils/helperFunctions.js";
-import { Modal } from "../StyledComponents/Modal";
+// Style Imports
+import {
+  StyledCenteredCard,
+  StyledFormButtonRight,
+  StyledFormTitle,
+  StyledSubmitButtonRight,
+  StyledWarningText,
+} from "./styled.EditingForm";
 import {
   StyledDropDown,
   StyledForm,
   StyledFormInput,
   StyledFormLabel,
-} from "../AddEntryForm";
-import {
-  StyledSecondaryButtonRight,
-  StyledSubmitButton,
-} from "../StyledComponents/StyledButtons";
+} from "../AddEntryForm/styled.AddEntryForm";
 import WrongIcon from "@/assets/icons/WrongIcon";
+
+// Components Imports
+import { Modal } from "../StyledComponents/Modal";
+
+// Functions and Dependencies Imports
+import { convertToKana } from "@/utils/helperFunctions.js";
 import { useState } from "react";
 import { getCategory } from "@/utils/getCategory";
 
@@ -122,20 +128,11 @@ function EditingForm({
           type="button"
           onClick={() => handleDetailEditMode(false)}
         >
-          <span
-            className="inherit-background-color"
-            role="img"
-            aria-label="exit"
-          >
+          <span role="img" aria-label="close">
             <WrongIcon height="16px" width="16px" />
           </span>
         </StyledFormButtonRight>
-        <StyledFormTitle
-          id="edit-form-title"
-          className="inherit-background-color"
-        >
-          Edit your Entry
-        </StyledFormTitle>
+        <StyledFormTitle id="edit-form-title">Edit your Entry</StyledFormTitle>
 
         <StyledForm
           onSubmit={handleFormSubmit}
@@ -202,6 +199,7 @@ function EditingForm({
                 type="text"
                 id="new-category"
                 name="newCategory"
+                maxLength={35}
               />
             </>
           )}
@@ -215,35 +213,4 @@ function EditingForm({
   );
 }
 
-const StyledCenteredCard = styled(StyledCard)`
-  position: fixed;
-  transform: translate(50%, -50%);
-  top: 50%;
-  right: 50%;
-  height: auto;
-`;
-
-export const StyledWarningText = styled.p`
-  margin-top: 0;
-
-  font-size: 0.9rem;
-`;
-
-const StyledFormTitle = styled.h2`
-  font-size: 1.3rem;
-  margin: 15px 0;
-  align-self: flex-start;
-`;
-
-const StyledFormButtonRight = styled(StyledSecondaryButtonRight)`
-  position: absolute;
-  margin: 0;
-  top: 1rem;
-  right: 0;
-`;
-
-export const StyledSubmitButtonRight = styled(StyledSubmitButton)`
-  margin-right: -1rem;
-  border-radius: 25px 0 0 25px;
-`;
 export default EditingForm;

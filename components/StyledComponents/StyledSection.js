@@ -60,11 +60,32 @@ export const StyledSectionFixedTopRight = styled.div`
   position: absolute;
   right: 0;
   top: 175px;
-  z-index: 5;
+  z-index: 0;
+  @media ${device.tablet} {
+    z-index: 3;
+  }
 `;
 
 export const StyledSectionFixedTopCenter = styled.div`
   position: fixed;
   top: 0;
   z-index: 2;
+`;
+
+export const StyledSectionFixedCenter = styled.div`
+  position: fixed;
+  width: 300px;
+  top: 0;
+  right: 50%;
+  transform: translate(50%);
+  z-index: 5;
+  @media ${device.tablet} {
+    width: 400px;
+  }
+`;
+
+export const StyledStickyDiv = styled.div`
+  z-index: 10;
+  position: sticky;
+  top: 2.5rem;
 `;

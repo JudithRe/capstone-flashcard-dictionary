@@ -1,7 +1,6 @@
 export default function DeleteIcon({ height = "40", width = "40" }) {
   return (
     <svg
-      className="inherit-background-color"
       width={width}
       height={height}
       viewBox="0 0 40 40"

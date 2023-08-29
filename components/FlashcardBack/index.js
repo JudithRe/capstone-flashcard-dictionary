@@ -1,9 +1,20 @@
-import { styled } from "styled-components";
-import { StyledDefinition, StyledJPDefinition, StyledUl } from "../Entry";
-import { StyledCard } from "../StyledComponents/StyledCard";
-import { handleRightAnswer, handleWrongAnswer } from "@/utils/studyFunctions";
+// Styles Imports
+import {
+  RightAnswerButton,
+  StyledAnswerSection,
+  StyledFlashcard,
+  WrongAnswerButton,
+} from "./styled.FlashcardBack";
+import {
+  StyledDefinition,
+  StyledJPDefinition,
+  StyledUl,
+} from "../Entry/styled.Entry";
 import WrongIcon from "@/assets/icons/WrongIcon";
 import CorrectIcon from "@/assets/icons/CorrectIcon";
+
+// Functions and Dependencies Imports
+import { handleRightAnswer, handleWrongAnswer } from "@/utils/studyFunctions";
 
 function FlashcardBack({ entry, studyList, setIsFront, databaseMutate }) {
   const { japanese, english } = entry;
@@ -25,11 +36,7 @@ function FlashcardBack({ entry, studyList, setIsFront, databaseMutate }) {
             handleWrongAnswer({ studyList, setIsFront, entry, databaseMutate })
           }
         >
-          <span
-            className="inherit-background-color"
-            role="img"
-            aria-label="did not know"
-          >
+          <span role="img" aria-label="I do not know the answer">
             <WrongIcon width="20px" height="20px" />
           </span>
         </WrongAnswerButton>
@@ -38,11 +45,7 @@ function FlashcardBack({ entry, studyList, setIsFront, databaseMutate }) {
             handleRightAnswer({ studyList, setIsFront, entry, databaseMutate })
           }
         >
-          <span
-            className="inherit-background-color"
-            role="img"
-            aria-label="did know"
-          >
+          <span role="img" aria-label="I know know the answer">
             <CorrectIcon width="20px" height="20px" />
           </span>
         </RightAnswerButton>
@@ -50,39 +53,5 @@ function FlashcardBack({ entry, studyList, setIsFront, databaseMutate }) {
     </StyledFlashcard>
   );
 }
-
-export const StyledFlashcard = styled(StyledCard)`
-  position: fixed;
-  transform: translate(50%, -50%);
-  top: 50%;
-  right: 50%;
-  height: auto;
-`;
-
-const StyledAnswerSection = styled.div`
-  padding: 0.5 0 0.5rem 0;
-  background-color: inherit;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-`;
-const StyledAnswerButton = styled.button`
-  display: inline-block;
-  border: none;
-  border-radius: 25px;
-  width: 80px;
-  height: 50px;
-  padding: 5px 25px;
-  box-shadow: var(--default-box-shadow);
-  color: var(--dark-mode-text-color);
-`;
-
-const RightAnswerButton = styled(StyledAnswerButton)`
-  background-color: var(--highlight-green);
-`;
-const WrongAnswerButton = styled(StyledAnswerButton)`
-  background-color: var(--highlight-red);
-`;
 
 export default FlashcardBack;

@@ -1,8 +1,10 @@
-import Entry from "../Entry";
-import { StyledResultDisplay } from "../SearchResults";
+// Styles Imports
+import { StyledResultDisplay } from "../SearchResults/styled.SearchResults";
 import { FixedCenteredPosition } from "../StyledComponents/Modal";
-
 import { StyledSection } from "../StyledComponents/StyledSection";
+
+// Components Imports
+import Entry from "../Entry";
 
 function EntriesContainer({
   wordList,

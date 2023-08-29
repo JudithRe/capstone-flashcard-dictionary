@@ -1,7 +1,10 @@
-import styled from "styled-components";
+// Styles Imports
+import { StyledResultDisplayNoMargin } from "./styled.SearchResults";
+import { StyledCenteredButton } from "../StyledComponents/StyledButtons";
+
+// Components Imports
 import EntriesContainer from "../EntriesContainer";
 import DictionaryResults from "../DictionaryResults";
-import { StyledCenteredButton } from "../StyledComponents/StyledButtons";
 
 function SearchResults({
   searchResults,
@@ -54,13 +57,5 @@ function SearchResults({
     </>
   );
 }
-
-export const StyledResultDisplay = styled.p`
-  align-self: center;
-`;
-export const StyledResultDisplayNoMargin = styled.p`
-  align-self: center;
-  margin: 0 1rem -10px 1rem;
-`;
 
 export default SearchResults;

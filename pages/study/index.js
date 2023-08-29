@@ -1,16 +1,25 @@
+// Style Imports
 import WrongIcon from "@/assets/icons/WrongIcon";
-import FlashcardBack from "@/components/FlashcardBack";
-import FlashcardFront from "@/components/FlashcardFront";
-import Heading from "@/components/PageHeading";
-import { MainContent } from "@/components/StyledComponents/MainContent";
-import { FixedCenteredPosition } from "@/components/StyledComponents/Modal";
+import {
+  FixedCenteredPosition,
+  StudyModal,
+} from "@/components/StyledComponents/Modal";
 import {
   StyledEndSessionButton,
   StyledStartButton,
 } from "@/components/StyledComponents/StyledButtons";
+import CorrectIcon from "@/assets/icons/CorrectIcon";
+import { StyledParagraphNoMargins } from "@/components/UserData/styled.UserData";
+import { CenteredParagraph } from "@/components/StyledComponents/ParagraphsAndHeadings";
+
+// Component Imports
+import FlashcardBack from "@/components/FlashcardBack";
+import FlashcardFront from "@/components/FlashcardFront";
+import Heading from "@/components/PageHeading";
+
+// Function and Dependency Imports
 import { generateStudyMode } from "@/utils/studyFunctions";
-import { useState } from "react";
-import { styled } from "styled-components";
+import { useEffect, useState } from "react";
 import { hasToken } from "@/utils/checkUser";
 
 export async function getServerSideProps(context) {
@@ -33,25 +42,38 @@ export default function StudyPage({ wordList, databaseMutate }) {
   const [isStudyMode, setIsStudyMode] = useState(false);
   const [isFront, setIsFront] = useState(true);
 
+  useEffect(() => {
+    generateStudyMode(wordList, setStudyList);
+  }, [wordList]);
+
   return (
     <>
-      {!isStudyMode && (
-        <MainContent>
+      {!isStudyMode && studyList.length > 0 && (
+        <>
           <Heading>Study</Heading>
           <FixedCenteredPosition>
-            <StyledStartButton
-              onClick={() =>
-                generateStudyMode({
-                  wordList,
-                  setStudyList,
-                  setIsStudyMode,
-                })
-              }
-            >
+            <CenteredParagraph>
+              {`${studyList.length} ${
+                studyList.length > 1 ? "entries" : "entry"
+              } due.`}
+            </CenteredParagraph>
+            <StyledStartButton onClick={() => setIsStudyMode(true)}>
               Start
             </StyledStartButton>
           </FixedCenteredPosition>
-        </MainContent>
+        </>
+      )}
+      {!isStudyMode && studyList.length === 0 && (
+        <>
+          <Heading>Study</Heading>
+          <FixedCenteredPosition>
+            <CorrectIcon color="var(--dark-main)" /> <br />
+            <StyledParagraphNoMargins $isCentered={true}>
+              No reviews available. <br />
+              Well done!
+            </StyledParagraphNoMargins>
+          </FixedCenteredPosition>
+        </>
       )}
       {isStudyMode && (
         <StudyModal>
@@ -59,20 +81,20 @@ export default function StudyPage({ wordList, databaseMutate }) {
             type="button"
             onClick={() => setIsStudyMode(false)}
           >
-            <span
-              className="inherit-background-color"
-              role="img"
-              aria-label="exit"
-            >
+            <span role="img" aria-label="exit">
               <WrongIcon height="16px" width="16px" />
             </span>
             {`  End Session`}
           </StyledEndSessionButton>
 
           {isFront && studyList.length === 0 && (
-            <StyledStudyDisplay>
-              <p>No reviews</p>
-            </StyledStudyDisplay>
+            <FixedCenteredPosition>
+              <CorrectIcon color="var(--dark-main)" /> <br />
+              <StyledParagraphNoMargins $isCentered={true}>
+                All done for now. <br />
+                Check back again later!
+              </StyledParagraphNoMargins>
+            </FixedCenteredPosition>
           )}
           {isFront && studyList.length > 0 && (
             <FlashcardFront setIsFront={setIsFront} entry={studyList[0]} />
@@ -90,22 +112,3 @@ export default function StudyPage({ wordList, databaseMutate }) {
     </>
   );
 }
-
-const StyledStudyDisplay = styled.div`
-  position: fixed;
-  transform: translate(50%, -50%);
-  top: 50%;
-  right: 50%;
-`;
-
-export const StudyModal = styled.section`
-  position: fixed;
-  left: 0;
-  top: 0;
-  background-image: url("/background-vector.png");
-  background-repeat: repeat;
-
-  width: 100vw;
-  height: 100vh;
-  z-index: 6;
-`;

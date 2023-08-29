@@ -1,4 +1,3 @@
-import { device } from "@/utils/globalValues";
 import Link from "next/link";
 import styled from "styled-components";
 
@@ -15,7 +14,6 @@ export const StyledSubmitButton = styled.button`
   line-height: 1.2rem;
   margin-right: 7px;
   transition: all 0.3s;
-
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 25%);
   cursor: pointer;
 
@@ -48,7 +46,6 @@ export const StyledSecondaryButton = styled(StyledSubmitButton)`
 
 export const StyledSecondaryButtonRight = styled(StyledSubmitButton)`
   background-color: var(--dark-main);
-  border-radius: 25px 0 0 25px;
   margin-right: 0;
 `;
 
@@ -76,9 +73,8 @@ export const StyledBackButton = styled(Link)`
   padding: 10px 17px;
   margin: 0;
   align-items: center;
-  /* background-color: var(--dark-main); */
-  background: radial-gradient(circle, var(--dark-main) 60%, #322c3b 90%);
-  border-radius: 0 25px 25px 0;
+  background-color: var(--dark-main);
+  border-radius: ${(props) => (props.$isCentered ? "25px" : "0 25px 25px 0")};
   color: var(--dark-mode-text-color);
   text-decoration: none;
   font-size: 1rem;
@@ -115,26 +111,22 @@ export const StyledGhostButton = styled.button`
 
 export const StyledEditButtonDark = styled(StyledSubmitButton)`
   background-color: var(--dark-main);
-  border-radius: 25px 0 25px 0;
+  border-radius: 25px;
 `;
 
 export const StyledEditButtonRed = styled(StyledSubmitButton)`
-  border-radius: 0 25px 0 25px;
+  border-radius: 25px;
   background-color: var(--highlight-blue);
 `;
 
 export const StyledAddButton = styled(StyledSubmitButton)`
   margin-right: 0rem;
-
-  @media ${device.tablet} {
-    margin-right: 0;
-  }
 `;
 
 export const StyledEndSessionButton = styled(StyledSubmitButton)`
   position: fixed;
   top: 1rem;
-  right: 0;
+  right: -15px;
   background-color: var(--dark-main);
   border-radius: 25px 0 0 25px;
 `;

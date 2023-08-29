@@ -1,14 +1,13 @@
 const currentDate = new Date();
 
-export function generateStudyMode({ wordList, setStudyList, setIsStudyMode }) {
-  const entriesDue = wordList.filter((entry) => {
-    return isDue(entry.study.lastReview, entry.study.stage);
-  });
+export function generateStudyMode(wordList, setStudyList) {
+  if (wordList) {
+    const entriesDue = wordList.filter((entry) => {
+      return isDue(entry.study.lastReview, entry.study.stage);
+    });
 
-  setStudyList(entriesDue);
-  setIsStudyMode(true);
-
-  return entriesDue;
+    setStudyList(entriesDue);
+  }
 }
 
 export function isDue(lastReview, stage) {
@@ -132,24 +131,30 @@ async function handleUpdateEntryInStudyMode({
   };
 
   // Update entry in database
-  const response = await fetch(`/api/word-list/item/${_id}`, {
-    method: "PUT",
-    body: JSON.stringify(updatedEntry),
-    headers: { "Content-Type": "application/json" },
-  });
+  if (_id !== "default") {
+    const response = await fetch(`/api/word-list/item/${_id}`, {
+      method: "PUT",
+      body: JSON.stringify(updatedEntry),
+      headers: { "Content-Type": "application/json" },
+    });
 
-  if (response.ok) {
-    databaseMutate();
+    if (response.ok) {
+      databaseMutate();
+    }
   }
 }
 
 function setNewStreak(streak, wasWrongAnswer) {
-  if ((wasWrongAnswer && streak > 0) || (!wasWrongAnswer && streak < 0)) {
+  if (wasWrongAnswer && streak > 0) {
     return 0;
   }
 
   if (wasWrongAnswer && streak <= 0) {
     return streak - 1;
+  }
+
+  if (!wasWrongAnswer && streak <= 0) {
+    return 1;
   }
 
   return streak + 1;

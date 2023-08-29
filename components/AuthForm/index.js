@@ -1,13 +1,22 @@
-import { useState, useRef } from "react";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/router";
-
+// Styles Imports
 import { StyledCard } from "../StyledComponents/StyledCard";
-import { StyledForm, StyledFormInput, StyledFormLabel } from "../AddEntryForm";
+import {
+  StyledForm,
+  StyledFormInput,
+  StyledFormLabel,
+} from "../AddEntryForm/styled.AddEntryForm";
+import {
+  StyledSubmitButtonRight,
+  StyledWarningText,
+} from "../EditingForm/styled.EditingForm";
 import { StyledSettingsButton } from "../StyledComponents/StyledButtons";
 import styled from "styled-components";
 import ErrorIcon from "@/assets/icons/ErrorIcon";
-import { StyledSubmitButtonRight, StyledWarningText } from "../EditingForm";
+
+// Functions and Dependencies Imports
+import { useState, useRef } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
 
 function AuthForm() {
   const [registered, setRegistered] = useState(false);
@@ -77,6 +86,8 @@ function AuthForm() {
           hasError: true,
           errorMessage: "Still loading. Please wait a minute and try again.",
         });
+        console.log("error", errorMessage);
+        return;
       }
     } else {
       try {
@@ -92,9 +103,7 @@ function AuthForm() {
     <StyledCard>
       {!registered ? (
         <>
-          <h2 className="inherit-background-color">
-            {loginProcess ? "Login" : "Sign Up"}
-          </h2>
+          <h2>{loginProcess ? "Login" : "Sign Up"}</h2>
           <StyledForm onSubmit={submitHandler}>
             <StyledFormLabel htmlFor="username">Username</StyledFormLabel>
             <StyledFormInput
@@ -106,11 +115,7 @@ function AuthForm() {
 
             {loginError.hasError && (
               <StyledErrorMessage>
-                <span
-                  className="inherit-background-color"
-                  role="img"
-                  aria-label="error"
-                >
+                <span role="img" aria-label="error">
                   <ErrorIcon height="18px" width="18px" />
                 </span>
                 {loginError.errorMessage}
@@ -120,6 +125,7 @@ function AuthForm() {
             <StyledFormInput
               type="password"
               id="password"
+              minLength={8}
               required
               ref={passwordInputRef}
             />
@@ -128,7 +134,7 @@ function AuthForm() {
               {loginProcess ? "Log in" : "Create Account"}
             </StyledSubmitButtonRight>
 
-            <StyledLoginText className="inherit-background-color">
+            <StyledLoginText>
               {loginProcess ? "No Account yet?" : "Already a user?"}
             </StyledLoginText>
 
@@ -142,14 +148,9 @@ function AuthForm() {
         </>
       ) : (
         <>
-          <p className="inherit-background-color">
-            You have successfully registered!
-          </p>
+          <p>You have successfully registered!</p>
 
-          <StyledSettingsButton
-            onClick={() => router.reload()}
-            className="button button-color"
-          >
+          <StyledSettingsButton onClick={() => router.reload()}>
             Login Now
           </StyledSettingsButton>
         </>
@@ -157,6 +158,8 @@ function AuthForm() {
     </StyledCard>
   );
 }
+
+// Styles
 
 const StyledLoginText = styled(StyledWarningText)`
   margin-bottom: 3rem;
@@ -166,10 +169,6 @@ const StyledErrorMessage = styled.p`
   border: 1px solid var(--highlight-red);
   padding: 5px;
   border-radius: 5px;
-
-  &::before {
-    background-color: inherit;
-  }
 `;
 
 const StyledSettingsButtonLeft = styled(StyledSettingsButton)`

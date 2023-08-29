@@ -1,7 +1,8 @@
+import { StyledNavSvg } from "./HomeIcon";
+
 export default function AddIcon({ height = "40", width = "40" }) {
   return (
-    <svg
-      className="navTransition inherit-background-color"
+    <StyledNavSvg
       width={width}
       height={height}
       viewBox="0 0 60 60"
@@ -15,6 +16,6 @@ export default function AddIcon({ height = "40", width = "40" }) {
         d="M35 55C35 57.7614 32.7614 60 30 60C27.2386 60 25 57.7614 25 55L25 5C25 2.23857 27.2386 -2.41411e-07 30 0C32.7614 2.41411e-07 35 2.23858 35 5L35 55Z"
         fill="white"
       />
-    </svg>
+    </StyledNavSvg>
   );
 }

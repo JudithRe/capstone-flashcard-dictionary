@@ -1,8 +1,12 @@
-import { useSession } from "next-auth/react";
+// Components Imports
 import Header from "../Header";
 import Navigation from "../Navigation";
-import { useEffect } from "react";
 import Logo from "../Logo";
+import { MainContent } from "../StyledComponents/MainContent";
+
+// Functions and Dependencies Imports
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
 
 export default function Layout({ handleActiveUser, children }) {
   const { data: session } = useSession();
@@ -20,9 +24,9 @@ export default function Layout({ handleActiveUser, children }) {
   return (
     <>
       <Header />
-      <Logo width="115px" />
-      <main>{children}</main>
       <Navigation />
+      <Logo width="115px" />
+      <MainContent>{children}</MainContent>
     </>
   );
 }

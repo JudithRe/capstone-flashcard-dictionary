@@ -1,18 +1,26 @@
+// Style Imports
+import { StyledCardLarge } from "@/components/StyledComponents/StyledCard";
+import { StyledWarningText } from "@/components/EditingForm/styled.EditingForm";
+
+import {
+  StyledHeading2,
+  StyledHeading3,
+} from "@/components/StyledComponents/ParagraphsAndHeadings";
+
+// Component Imports
 import Heading from "@/components/PageHeading";
-import { MainContent, Spacer } from "@/components/StyledComponents/MainContent";
+import { Spacer } from "@/components/StyledComponents/MainContent";
+import BarDiagram from "@/components/BarDiagram";
+import UserData from "@/components/UserData";
+import SingleBarDiagram from "@/components/SingleBarDiagram";
+
+// Function and Dependency Imports
 import { hasToken } from "@/utils/checkUser";
 import {
   getAnswerOverview,
   getJLPTStats,
   getStageOverview,
 } from "@/utils/statistics";
-import BarDiagram from "@/components/BarDiagram";
-import UserData from "@/components/UserData";
-import { StyledCardLarge } from "@/components/StyledComponents/StyledCard";
-import { StyledWarningText } from "@/components/EditingForm";
-import SingleBarDiagram from "@/components/SingleBarDiagram";
-import { StyledHeading2, StyledHeading3 } from "../words/[id]";
-import PieChart from "@/components/PieChart";
 
 export async function getServerSideProps(context) {
   const token = await hasToken(context.req);
@@ -35,9 +43,9 @@ export default function ProfilePage({ wordList }) {
   const StageDistribution = getStageOverview(wordList);
 
   const AnswerOverview = getAnswerOverview(wordList);
-  console.log("stages", AnswerOverview);
+
   return (
-    <MainContent>
+    <>
       <Heading>Profile</Heading>
       <StyledCardLarge>
         <UserData />
@@ -61,6 +69,6 @@ export default function ProfilePage({ wordList }) {
         />
         <Spacer />
       </StyledCardLarge>
-    </MainContent>
+    </>
   );
 }
