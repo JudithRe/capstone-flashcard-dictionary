@@ -72,13 +72,16 @@ export async function handleStreakUpdate({ userData, wordList, userMutate }) {
 
 export async function getUser(activeUser) {
   const id = activeUser._id;
-  const response = await fetch(`/api/user-update/${id}`, {
-    method: "GET",
-  });
 
-  if (response.ok) {
-    const user = await response.json();
-    return user;
+  if (id !== "default") {
+    const response = await fetch(`/api/user-update/${id}`, {
+      method: "GET",
+    });
+
+    if (response.ok) {
+      const user = await response.json();
+      return user;
+    }
   }
 }
 
@@ -93,13 +96,14 @@ async function updateUser(userData, updatedData) {
     lastStreakUpdate: lastStreakUpdate,
     streak: newStreak,
   };
-
-  const response = await fetch(`/api/user-update/${id}`, {
-    method: "PUT",
-    body: JSON.stringify(updatedUser),
-    headers: { "Content-Type": "application/json" },
-  });
-  if (!response.ok) {
-    console.log("There was an error updating userData");
+  if (id !== "default") {
+    const response = await fetch(`/api/user-update/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(updatedUser),
+      headers: { "Content-Type": "application/json" },
+    });
+    if (!response.ok) {
+      console.log("There was an error updating userData");
+    }
   }
 }
